@@ -1,0 +1,156 @@
+<!---<div id="div_01" style="width:350px; height:250px;"><img id="img_01" width="250" height="250" src="https://www.bebefofuxo.com.br/lojas/00020368/prod/158m_p.jpg?cccfc=27451165"></div>
+
+<div id="div_02" style="width:350px; height:250px;"><img id="img_02" width="250" height="250" src="https://www-bebefofuxo-com-br.cdn.ampproject.org/i/s/s3-sa-east-1.amazonaws.com/x1p/lojas/00020368/prod/158m_p.jpg?cccfc=27451166"></div>--->
+
+<div id="aguarde">
+  Teste em andamento. Aguarde.
+</div>
+<div id="andamento"></div>
+
+
+<script>
+  
+  var endCDN = $(".ProdCapaDiv img").attr("src");
+  
+  var array = endCDN.split("00020368/prod/");
+  
+  endCDN = array[0] + "00020368/prod/";
+  
+  var conteudo_resposta = "Servidor CDN: " + endCDN + " <br>";
+
+  $.getJSON('https://ipapi.co/json/', function(data) {
+    conteudo_resposta += data["city"] + " <br>";
+    baixarProximo();
+  });
+
+  var i = 0;
+  var baixarCDN = false;
+
+  var imagens = ["158m_p.jpg","158m_m.jpg","158m.jpg",
+                "444I_p.jpg","444I_m.jpg","444I.jpg",
+                "393F_p.jpg","393F_m.jpg","393F.jpg",
+                "13770_p.jpg","13770_m.jpg","13770.jpg",
+                "13574_p.jpg","13574_m.jpg","13574.jpg",
+                 "7666_p.jpg","7666_m.jpg","7666.jpg",
+                "13195_p.jpg","13195_m.jpg","13195.jpg",
+                "451A_p.jpg","451A_m.jpg","451A.jpg",
+                "2011_p.jpg","2011_m.jpg","2011.jpg",
+                "4000_azul_p.jpg","4000_azul_m.jpg","4000_azul.jpg",
+                 "4943_p.jpg","4943_m.jpg","4943.jpg",
+                "4944_p.jpg","4944_m.jpg","4944.jpg",
+                "12405_p.jpg","12405_m.jpg","12405.jpg",
+                "14665_p.jpg","14665_m.jpg","14665.jpg",
+                "14697_p.jpg","14697_m.jpg","14697.jpg",
+                 "14772_p.jpg","14772_m.jpg","14772.jpg",
+                "55093_p.jpg","55093_m.jpg","55093.jpg"
+                ];
+  
+  
+  var comCache = false;
+
+  function baixarProximo()
+  {
+    
+    var concluido = 100 * i/imagens.length;
+    $("#andamento").text(parseInt(concluido) + "%");
+    
+    var d1 = new Date();
+    var n1 = d1.getTime();
+
+    var img = new Image();
+    img.onload = function() {
+
+      var d2 = new Date();
+      var n2 = d2.getTime();
+      var a = n2-n1;
+      var ondeBaixa = "SEM CDN: ";
+
+      if(baixarCDN == true)
+      {
+        var ondeBaixa = "COM CDN: ";
+      }
+
+      var cache = "";
+
+      if(comCache == true)
+      {
+        cache = " (cache)";
+      }
+
+      console.log(imagens[i] + " - " + ondeBaixa + a + "ms");
+      conteudo_resposta += imagens[i] + " - " + ondeBaixa + a + "ms" + cache + " <br>";
+
+      
+      if(baixarCDN == false)
+      {
+        baixarCDN = !baixarCDN;
+        img.src = null;
+        img.onload = null;
+        img = null;
+        
+      }
+      else
+      {
+        i = i + 1;
+        if(i <= imagens.length-1)
+        {
+            baixarCDN = !baixarCDN;
+          	img.src = null;
+        	img.onload = null;
+        	img = null;
+        }
+        else
+        {
+
+          if (comCache == false)
+          {
+            console.log("ENVIANDO TESTE");
+            console.log(conteudo_resposta);
+            $("#andamento").text("Enviando teste - Aguarde");
+            
+            var xhr = new XMLHttpRequest();
+            
+            xhr.onreadystatechange = fnprocess;
+    		xhr.open("GET","https://www.bebefofuxo.net/scripts/teste_cdn/teste_cdn.php?teste="+conteudo_resposta,true);
+  			xhr.send();
+          }
+          else
+          {
+            
+          }
+
+
+        }
+        
+      }
+
+
+
+    }
+
+    if(baixarCDN == false)
+    {
+      img.src = "https://www.bebefofuxo.com.br/lojas/00020368/prod/"+imagens[i]/*+"?cccfc=2453455"*/;
+    }
+    else
+    {
+      img.src = endCDN+imagens[i]/*+"?cccfc=23123125"*/;
+    }
+
+
+    setTimeout(baixarProximo, 3000);
+  }
+  
+  function fnprocess()
+  {
+
+    console.log("FIM DO TESTE");
+    console.log(conteudo_resposta);
+    $("#andamento").text("100% - Obrigado");
+    $("#aguarde").html(conteudo_resposta);
+
+  }
+
+
+</script>
+
