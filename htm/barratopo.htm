@@ -1,0 +1,375 @@
+<link rel="preload" as="image" href="https://banners-2g4.pages.dev/6_BODIES.webp">
+<style>
+#searchblack {
+	display:none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    cursor: pointer;
+    background-color: rgba(51, 51, 51, 0.5);
+	}
+</style>
+
+
+<script defer src="<PathTo file="htm/lojalib.js">"></script>
+<link media="print" onload="this.onload=null;this.media='all';" href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+<noscript>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
+</noscript>
+<div id="topofixed">
+  <!--<div id="compraWhatsapp">
+    <a href='https://api.whatsapp.com/send?phone=5511933209186&text=Ol%C3%A1%2C%20estou%20querendo%20comprar%2C%20pode%20me%20ajudar%3F' target='_blank'>Compre pelo Whatsapp<img src="<PathTo file="images/ic_whatsapp3.svg">" alt="WhatsApp" title="WhatsApp"></a>
+  </div>-->
+  <!--<div class="cupomPrimeiraCompra" id="cupomPrimeiraCompraDesktop">
+    <a href='/live-store'>Venha comprar ao vivo com nossa vendedora</a>
+  </div>-->
+  <div class="cupomPrimeiraCompra" id= "cupomPrimeiraCompraMobile_fixo">
+    <div class="cupomPrimeiraCompra_interno" id="cupomPrimeiraCompraMobile_interno"></div>
+    <div class="cupomPrimeiraCompra_interno2" id="cupomPrimeiraCompraMobile_interno2"></div>
+    <!-- voltar para valores maiores -->
+    <!--1ª compra? R$20 OFF acima de R$250 cupom 20BEMVINDO-->
+    <span id="frete_gratis"><b>FRETE GRÁTIS TODO BRASIL</b> compras acima de <b>R$99</b></span>
+    <!-- <span id="frete_gratis"><b>FRETE GRÁTIS TODO BRASIL SEM VALOR MÍNIMO</b> voltar frete -->
+    <!--1ª compra? R$20 OFF acima de R$250 cupom PRIMEIRABBF-->
+  </div>
+  <div class="cupomPrimeiraCompra" id= "cupomPrimeiraCompraMobile">
+    <!-- voltar para valores maiores -->
+    <!--1ª compra? R$20 OFF acima de R$250 cupom 20BEMVINDO-->
+    <span id="frete_gratis"><b>FRETE GRÁTIS TODO BRASIL</b> compras acima de <b>R$99</b></span>
+    <!-- <span id="frete_gratis"><b>FRETE GRÁTIS TODO BRASIL SEM VALOR MÍNIMO</b></span> voltar frete -->
+    <!--1ª compra? R$20 OFF acima de R$250 cupom PRIMEIRABBF-->
+  </div>
+  <div class="cupomPrimeiraCompra" id= "cupomPrimeiraCompraIntermediario">
+    <!-- voltar para valores maiores -->
+    <!--1ª compra? R$20 OFF acima de R$250 cupom 20BEMVINDO | Frete grátis SP e capitais: R$199 e demais regiões: R$239-->
+    1ª compra? R$20 OFF acima de R$250 cupom 20BEMVINDO | Frete <b>GRÁTIS</b> para <b>TODO BRASIL</b> em compras acima de <b>R$99</b>
+    <!-- 1ª compra? R$20 OFF acima de R$250 cupom 20BEMVINDO | Frete <b>GRÁTIS</b> para <b>TODO BRASIL SEM VALOR MÍNIMO</b> voltar frete -->
+    <!--1ª compra? R$20 OFF acima de R$250 cupom PRIMEIRABBF-->
+  </div>
+  <div class="cupomPrimeiraCompra" id= "cupomPrimeiraCompraDesktop">
+    <!-- voltar para valores maiores -->
+    <!--1ª compra? R$20 OFF acima de R$250 cupom 20BEMVINDO | Frete grátis SP e capitais: R$199 e demais regiões: R$239 | Parcelamos em até 6x sem juros-->
+    1ª compra? R$20 OFF acima de R$250 cupom 20BEMVINDO | Frete <b>GRÁTIS</b> para <b>TODO BRASIL</b> em compras acima de <b>R$99</b> | Parcelamos em até 6x sem juros
+    <!--1ª compra? R$20 OFF acima de R$250 cupom 20BEMVINDO | Frete <b>GRÁTIS</b> para <b>TODO BRASIL SEM VALOR MÍNIMO</b> | Parcelamos em até 6x sem juros voltar frete -->
+    <!--1ª compra? R$20 OFF acima de R$250 cupom PRIMEIRABBF-->
+  </div>
+  <div id="topogray">
+    <div class="topograyint">
+      <div class="topotel"><img src="<PathTo file="images/ic_telefone_topo.svg">" alt="Telefone" title="Telefone">Telefone: <span>(11) 93320-9186</span></div>
+      <div id="idLoginInfo" ></div>
+      <div class="toposociais">
+      <!-- ao ativar e desativar whatsapp vendas, mudar ".topocart" e ".topocart #idCartItemsTop" no lojasite.css (max-width: 567px)-->
+      <span id="compraWhatsappDesktop"><a id="compra_whatsapp" href="https://api.whatsapp.com/send?phone=5511933209186" target="_blank" rel="noopener"><img src="<PathTo file="images/Ic_Whatsapp.png">" alt="Whatsapp" title="Whatsapp" />Compre pelo Whatsapp</a>
+      &nbsp;&nbsp;</span>
+        
+      <!-- icone padrao loja -->
+      <span id="faqDesktop"><a href="/page,idloja,20368,arq,faq.htm,faq"><img src="<PathTo file="images/ic_faq.svg">" alt="Faq" title="Faq" />Dúvidas?</a>&nbsp;&nbsp;</span>
+      <!-- icone black friday -->
+      <!--<span id="faqDesktop"><a href="/page,idloja,20368,arq,faq.htm,faq?utm_source=site_org&utm_medium=faq"><img src="<PathTo file="images/ic_faq_black.png">" alt="Faq" title="Faq" />Dúvidas?</a>&nbsp;&nbsp;&nbsp;</span>-->
+      
+      
+        
+        <!--<span id="lojaFisica"><a id="compra_lojafisica" href="https://www.bebefofuxo.com.br/page,idloja,20368,arq,pag_loja_fisica.htm" rel="noopener"><img src="<PathTo file="images/ic_loja.svg">" alt="Loja Física" title="Loja Física"/><span>Loja Física</span></a>&nbsp;&nbsp;</span> VOLTAR-->
+      
+      <!-- icone padrao loja -->
+      <a href="https://www.facebook.com/bebefofuxo/" target="_blank" rel="noopener"><img src="<PathTo file="images/ic_facebook.svg">" alt="Facebook" title="Facebook" /><span>Facebook</span></a>&nbsp;&nbsp;
+      <!-- icone black friday -->
+      <!--<a href="https://www.facebook.com/bebefofuxo/" target="_blank" rel="noopener"><img src="<PathTo file="images/ic_facebook_black.png">" alt="Facebook" title="Facebook" />Facebook</a>&nbsp;&nbsp;&nbsp;-->
+        
+      <!-- icone padrao loja -->
+       <a href="https://www.instagram.com/bebe_fofuxo/" target="_blank" rel="noopener"><img src="<PathTo file="images/ic_instagram2.svg">" alt="Instagram" title="Instagram" /><span>Instagram</span></a>&nbsp;&nbsp;
+      <!-- icone black friday -->
+      <!--<a href="https://www.instagram.com/bebe_fofuxo/" target="_blank" rel="noopener"><img src="<PathTo file="images/ic_insta_black.png">" alt="Instagram" title="Instagram" />Instagram</a>-->
+        
+      <!-- icone padrao loja -->
+      <a href="https://www.blog.bebefofuxo.com.br" target="_blank" rel="noopener"><img src="<PathTo file="images/blog.svg">" alt="Blog" title="Blog" /><span>Blog</span></a>
+       <!-- icone black friday -->
+      <!--<a href="https://www.blog.bebefofuxo.com.br" target="_blank" rel="noopener"><img src="<PathTo file="images/ic_blog_black.png">" alt="Blog" title="Blog" />Blog</a>-->
+
+      </div>
+    </div>
+  </div>
+  <div id="topowhite">
+  <!-- Menu Mobile -->
+  <div class=zFmenumobile><IncludeHTML src="zFmenumobile.htm"></div>
+  <div class="topomenu" onclick="openNav()"><img src="<PathTo file="images/icon-menu2.svg">" title="Abrir Menu"></div>
+  <div class="topologo"><a href="https://www.bebefofuxo.com.br"><picture><source media="(max-width:1023px)" srcset="<PathTo file="images/logomobile.png">"><img src="<PathTo file="images/logotopo.png">" alt="Bebê Fofuxo" title="Bebê Fofuxo"></picture></a></div>
+  <div id="topobusca">
+    <div id="buscawhite">
+      <form name="TopSearchForm" method="GET" id="autocomplete-form" action="/listaprodutos.asp">
+      <input type="hidden" name="IDLoja" value="<IDLojaNum>">
+      <input type="hidden" name="Digitada" value="True">
+      <input type="text" id="autocomplete" value="<SearchText>" name="Texto" class="formbusca" placeholder="Busque produtos" onfocus="blacksearch()">
+      <input id="search_submit" type="submit">
+      </form>
+    </div>
+  <div id="searchblack" onclick="blackclose()"></div>  
+  </div>
+  
+  <div class="topoitens">
+    <div class="topouser"><a href='/account.asp?IDLoja=<IDLoja>'><img id="UserImage" src="<PathTo file="images/ic_user_topo.svg">" alt="Minha Conta"> Minha Conta</a></div>
+    <div class="topotrack"><a href="/track.asp?idloja=<IDLoja>"><img src="<PathTo file="images/ic_track_topo.svg">" alt="Meus Pedidos"> Meus Pedidos</a></div>
+    <div class="topocart"><a onclick="Cart$.fnShowCartCheckout();"><div id=idCartItemsTop><QtdCesta></div></a></div>
+  </div>
+  </div>
+  <!-- Megamenu Desktop -->
+  <div class="zFmenudesktop"><IncludeHTML src="zFmenudesktop.htm"></div>
+</div>
+<div id="topospace"></div>
+
+
+<div id='light_fretegratis_b'><div style='text-align:left'>
+  <img src="<PathTo file="images/POP-UP-PROMO.png">" alt='frete_gratis'></div></div>
+<div id='light_fretegratis'><div style='text-align:left' onclick='fechar_popup_frete();'>
+  <img src="<PathTo file="images/POP-UP-PROMO.png">" alt='frete_gratis'></div></div>
+<div id='fade_fretegratis' onclick='fechar_popup_frete();'></div>
+
+<script>
+  //POP UP DEVE SEMPRE TER O NOME POP-UP-PROMO.png E TER DIMENSAO 300px X 500px
+  //se não quiser mostrar popup de frete e nem de cupom, colocar false
+  var mostrar_popup = true;
+  //se for um popup que tem clique que adiciona um cupom, por exemplo, ele tem ação. Se for um pop apenas pra informar frete, não tem ação. O fechar não é considerado ação
+  var popup_com_acao = true;
+  //normalmente, quando o pop tem acao, devido a algum cupom, ele sempre vai aparecer na home, deixar como true. Caso contrário, o normal é deixar false. Porém, tem como mudar essas variáveis
+  var sempre_mostrar_popup_home = true;
+  //nome do cupom proposto pelo marketing
+  var nome_cupom = "FRETEBBF";
+  var selector_pop = "#light_fretegratis";
+ 
+  if(popup_com_acao)
+  {
+    selector_pop = "#light_fretegratis_b";
+    
+    if(window.location.href.includes("cupom="+nome_cupom))
+    {
+      alert("Cupom adicionado com sucesso! Adicione seus produtos no carrinho que o desconto estará aplicado! =)");
+      window.localStorage.setItem("btn_ganhe20_clicado", "sim");
+    }
+  }
+  
+  
+  if(screen.width <= 736)
+  {
+    var cores = [];
+    cores[0] = {"bg":"#dc087f","fontColor":"#fff","fontBColor":"#fff900"};
+    cores[1] = {"bg":"#870BFF","fontColor":"#fff","fontBColor":"#fff900"};
+    cores[2] = {"bg":"#FFB839","fontColor":"#000","fontBColor":"#000"};
+    cores[3] = {"bg":"#FF532E","fontColor":"#fff","fontBColor":"#fff900"};
+    cores[4] = {"bg":"#008AE1","fontColor":"#fff","fontBColor":"#fff900"};
+    cores[5] = {"bg":"#009F0C","fontColor":"#fff","fontBColor":"#fff"};
+
+    const d = new Date();
+    var dia = d.getDate();
+
+    var r = dia%6;
+
+    $(".cupomPrimeiraCompra").css("background-color",cores[r]["bg"]);
+    $(".cupomPrimeiraCompra").css("color",cores[r]["fontColor"]);
+    $(".cupomPrimeiraCompra b").css("color",cores[r]["fontBColor"]);
+    
+    $("#cupomPrimeiraCompraMobile").show();
+
+  }
+  
+
+  var pagina_carregada = false;
+  $(document).ready(function() {
+    setTimeout(function () {
+      pagina_carregada = true;
+    }, 300);
+    
+    
+    
+  });
+
+  //POPUP FRETE
+  function mostrar_popup_frete()
+  {
+    if(mostrar_popup)
+    {
+      if($("#cookie-law").is(":hidden") == true)
+      {
+        $("#fade_fretegratis").show();
+        $(selector_pop).show();
+        $(selector_pop).css("left",(window.outerWidth-300)/2);
+        $(selector_pop).css("top",(window.outerHeight-500)/2);
+      }
+      else
+      {
+        window.localStorage.removeItem("data_popup_frete");
+        setTimeout(decisao_popup_frete, 10000);
+      }
+    }  
+    
+    
+  }
+  
+  function fechar_popup_frete()
+  {
+    $("#fade_fretegratis").hide();
+    $(selector_pop).hide();
+  }
+
+  
+  if(popup_com_acao)
+  {
+    $(selector_pop).click(function (e) {
+      var parentOffset = $(this).offset();
+      //or $(this).offset(); if you really just want the current element's offset
+      var relX = e.pageX - parentOffset.left;
+      var relY = e.pageY - parentOffset.top;
+      if(relX > 228 && relY < 68)
+      {
+        fechar_popup_frete();
+      }
+      else
+      {
+        window.location.href = window.location.href + "?cupom="+nome_cupom;
+      }
+    });
+  } 
+  
+  
+  function callPopupTimer()
+  {
+    setTimeout(mostrar_popup_frete, 4000);
+  }
+  
+  function decisao_popup_frete()
+  {
+    //remover localstorage de compra mais quando passar de 1 dia
+    var data_popup_frete = window.localStorage.data_popup_frete;
+
+    if(data_popup_frete)
+    {
+      data_popup_frete = new Date(window.localStorage.data_popup_frete);
+      var now = new Date();
+
+      var diff = Math.abs(now-data_popup_frete);
+
+      diff = diff/1000/24/60/60;
+
+      if(popup_com_acao)
+      {
+        if(diff > 1 || (FC$.Page == "Home" && !window.location.href.includes("cupom="+nome_cupom) && sempre_mostrar_popup_home))  
+        {
+          window.localStorage.removeItem("data_popup_frete");
+
+          window.localStorage.setItem("data_popup_frete", new Date());
+          document.addEventListener("scroll", callPopupTimer, {once: true})
+          
+        }
+
+      }
+      else
+      {
+        if(diff > 1 || (FC$.Page == "Home" && sempre_mostrar_popup_home))
+        {
+          window.localStorage.removeItem("data_popup_frete");
+
+          window.localStorage.setItem("data_popup_frete", new Date());
+          document.addEventListener("scroll", callPopupTimer, {once: true})
+        }
+      }  
+      
+      
+    }
+    else
+    {
+      window.localStorage.setItem("data_popup_frete", new Date());
+      document.addEventListener("scroll", callPopupTimer, {once: true})
+    }
+  }
+  
+  decisao_popup_frete();
+  
+  //FIM POPUP FRETE
+  
+  
+  var qtde_cesta = <QtdCesta>;
+  if(qtde_cesta > 99)
+  {
+	$(".topocart a").css("font-size","11px")
+  }
+  else
+  {
+	$(".topocart a").css("font-size","12px")
+  }
+  
+window.addEventListener("scroll",function(){
+  var target = document.getElementById('topogray');
+  var dark = document.getElementById('darknav');
+  if(window.pageYOffset > 200 && innerWidth < 1290 ){
+	target.style.display = "none";   
+	dark.style.top = "200px";
+  }
+  else if (window.pageYOffset < 200 && innerWidth < 1290){
+	target.style.display = "block";  
+	dark.style.top = "200px";
+  }
+  if (window.pageYOffset > 200 && innerWidth > 1360){
+	target.style.display = "none";   
+	dark.style.top = "215px";  
+  }
+  else if (window.pageYOffset < 200 && innerWidth > 1360){
+	target.style.display = "block";  
+	dark.style.top = "250px";  
+  }
+  
+  if(window.pageYOffset <= 0 || innerWidth > 735)
+  {
+    
+    $("#cupomPrimeiraCompraMobile_fixo").hide();
+    $("#cupomPrimeiraCompraMobile_fixo").css("position","static");
+    
+    
+  }
+  else if(pagina_carregada)
+  {
+    $("#cupomPrimeiraCompraMobile_fixo").css("position","fixed");
+    $("#cupomPrimeiraCompraMobile_fixo").show();
+  }
+},false);
+</script>
+
+<script>
+function blacksearch() {
+    var overlay = document.getElementById('searchblack');
+	overlay.style.display = "block";
+}
+
+function blackclose() {
+    var overlay = document.getElementById('searchblack');
+	overlay.style.display = "none";
+}
+
+if(screen.width <= 760)$("#faqDesktop").hide();
+
+
+$("#search_submit").click(function() {
+     localStorage.setItem("eh_busca", "true");
+
+});
+
+  $("#compraWhatsappDesktop a").click(function() {
+
+    gtag('event', 'conversion', {
+      'send_to': 'AW-882315225/LSwcCLCw98MCENmf3KQD'
+    });
+
+    gtag('event', 'Clique WhatsApp', {
+      'event_category' : 'Contato',
+      'event_label' : 'Topo'
+    });
+
+    return true;
+  });
+  
+  
+  
+
+
+</script>
