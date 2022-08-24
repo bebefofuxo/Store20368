@@ -1,0 +1,259 @@
+<p19>
+<div class="ProdDestHome">
+<a href='<URLProd>'>
+  <div id=DivProd<IDProduto> <DataAttribute>></div>
+  <div class="ImgProdDesk"><div id="DivImagemProdDouble<IDProduto>" class='ProdCapaDiv'></div></div>
+  <div class="ImgProdMobi"><div class='ProdCapaDiv'><img src='<ImagemProdPri>' alt='<NomeProd>' loading='lazy'></div></div>
+  <div class="EstNomeProdCapa"><NomeProd></div>
+  <div id="PrecoProd<IDProduto>" class="PrecoProdCapa"></div>
+  <div class="EstBotVerMais">Eu Quero</div>
+</a>
+</div>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+	changeImages("<ImagemProdPri>","<ImagemProdDet>","<URLProd>","<IDProduto>","<NomeProdUA>");
+  	fnShowProd(<PrecoNum>,<PrecoOri>,<IDProduto>,<MaxParcelasProdNum>);
+})
+  
+</script>
+</p19>
+
+<p20>
+<div class="ProdDestMenu">
+<a href='<URLProd>'>
+  <div class="ProdMenuBloco1">
+    <div id=DivProdMenu<IDProduto> <DataAttribute>></div>
+    <div class='ProdCapaDiv'><img src='<ImagemProdPri>' alt='<NomeProd>' loading='lazy'></div>
+  </div>
+  <div class="ProdMenuBloco2">
+    <div class='ProdTitMenu'>Aproveite!</div>
+    <div class="EstNomeProdCapa"><NomeProd></div>
+    <div id="PrecoProdMenu<IDProduto>" style="margin-top:10px;"></div>
+    <div class="EstBotVerMais">Eu Quero</div>
+  </div>
+</a>
+</div>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+                          fnShowProdMenu(<PrecoNum>,<PrecoOri>,<IDProduto>,<MaxParcelasProdNum>);
+  })
+  
+</script>
+</p20>
+
+<p21>  
+<div class="ProdDestListaC">
+<a href='<URLProd>'>
+  <div id=DivProd<IDProduto> <DataAttribute>></div>
+  <div id="lblEsgotado<IDProduto>" class="badgeEsgotado" title="Esgotado">ESGOTADO</div>
+  <div class="ImgProdDesk"><div id="DivImagemProdDouble<IDProduto>" class='ProdCapaDiv'></div></div>
+  <div class="ImgProdMobi"><div class='ProdCapaDiv'><img src='<ImagemProdPri>' alt='<NomeProd>' loading='lazy'></div></div>
+  <div style="background-color:transparent; width:100%; height: 30px; position: relative; display: none;" id=bolinhaCores<IDProduto>></div>
+  <div style="background-color:transparent; width:100%; height: 30px; position: relative; display: none;" id=tamanhos<IDProduto>></div>
+  <div class="EstNomeProdCapa"><NomeProd></div>
+  <div id="PrecoProd<IDProduto>" class="PrecoProdCapa"></div>
+  <div class="EstBotVerMais">Eu Quero</div>
+</a>
+</div>
+<script>
+  //label esgotado
+  if (<Estoque> == 0)
+  {
+     $("#lblEsgotado"+<IDProduto>).show();
+  }
+  
+  var containerProd = $("[class^='ProdDestLista']")[0];
+  
+  var espacoGeralBolinhas = 0.88*containerProd.offsetWidth;
+  
+  var espacoBolinha = Math.trunc(espacoGeralBolinhas/10);
+  
+  var margem = Math.trunc(0.16*espacoBolinha);
+  
+  var borda = 0.06*espacoBolinha;
+  
+  var tamanhoBolinha = Math.trunc(espacoBolinha - margem - 2*borda);
+  
+
+var prd_url_apoio = "<DescrURL>";
+
+if(prd_url_apoio.length > 3)
+{
+   $("#lblEsgotado"+<IDProduto>).parent().parent().css("min-height",parseInt($("#lblEsgotado"+<IDProduto>).parent().parent().css("min-height").replace(/[^-\d\.]/g, '')) + 30);
+    prd_url_apoio = replaceAll(prd_url_apoio,"'","\"")
+
+	//console.log(prd_url_apoio);
+	var obj = JSON.parse(prd_url_apoio);
+  	
+  	var htmlBolinhas = "<div style='background-color:transparent; width: auto; height: 100%; position: relative; margin: 0 auto;'>";
+  	
+  	var arrayCores = obj.c;
+  	
+  	if(obj.t == "liso")
+    {
+		for(var i = 0; i < arrayCores.length; i++)
+        {
+        	var cor = arrayCores[i];
+          
+          	htmlBolinhas = htmlBolinhas + "<div style='background-color:#"+cor+"; width:"+tamanhoBolinha+"px; height:"+tamanhoBolinha+"px; -ms-border-radius:"+tamanhoBolinha+"px; border-radius:"+tamanhoBolinha+"px; -webkit-border-radius:"+tamanhoBolinha+"px; margin-left:"+margem+"px; display:inline-block;border-style:solid;border-width:"+1+"px;border-color:#eeeeee;'></div>";
+        }
+    }/*
+  	else if(obj.t == "poa")
+    {
+		for(var i = 0; i < arrayCores.length; i++)
+        {
+        	var cor = arrayCores[i];
+          	
+          	var coresPoa = cor.split("-");
+          	var corBase = coresPoa[0];
+          	var corBolinha = coresPoa[1];
+          
+          	htmlBolinhas = htmlBolinhas + "<div style='background-color:#"+corBase+"; width:25px; height:25px; -ms-border-radius:25px; border-radius:25px; -webkit-border-radius:25px; margin-left:5px; display:inline-block;border-style:solid;border-width:3px;border-color:#eeeeee;'><div style='background-color:#"+corBolinha+"; width:7px; height:7px; -ms-border-radius:7px; border-radius:7px; -webkit-border-radius:7px; margin-left:9px;margin-top:9px;'></div></div>";
+        }
+    }
+  	else if(obj.t == "duo")
+    {
+		for(var i = 0; i < arrayCores.length; i++)
+        {
+        	var cor = arrayCores[i];
+          	
+          	var coresPoa = cor.split("-");
+          	var corBase = coresPoa[0];
+          	var corBolinha = coresPoa[1];
+          
+          	htmlBolinhas = htmlBolinhas + "<div style='background-color:#"+corBase+"; width:25px; height:25px; -ms-border-radius:25px; border-radius:25px; -webkit-border-radius:25px; margin-left:5px; display:inline-block;border-style:solid;border-width:3px;border-color:#eeeeee;'><div style='background-color:#"+corBolinha+"; width:7px; height:7px; -ms-border-radius:7px; border-radius:7px; -webkit-border-radius:7px; margin-left:9px;margin-top:9px;'></div></div>";
+        }
+    }*/
+
+  	var htmlBolinhas = htmlBolinhas + "</div></div>";
+ 
+  	$("#bolinhaCores"+<IDProduto>).html(htmlBolinhas);
+  	$("#bolinhaCores"+<IDProduto>).show();
+  
+  	
+}
+
+
+
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
+}
+
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+	changeImages("<ImagemProdPri>","<ImagemProdDet>","<URLProd>","<IDProduto>","<NomeProdUA>");
+  	fnShowProd(<PrecoNum>,<PrecoOri>,<IDProduto>,<MaxParcelasProdNum>);
+})
+  
+</script>
+</p21>
+
+
+<!-- remover -->
+<p28>
+<div><NomeCat></div>
+<script>
+var hrefNomeCat = document.getElementsByClassName('EstNomeCatCapa')[7];
+var IDProdutoBlocoCat = "<IDProduto>";
+</script>
+<div id="FotoCatHomeBloco<IDProduto>"></div>
+<script>document.getElementById("FotoCatHomeBloco"+IDProdutoBlocoCat+"").innerHTML="<a href='"+hrefNomeCat+"'><div class='ProdCapaDiv'><img src='<ImagemProdPri>' alt='<NomeProd>' loading='lazy'></div></a>";</script>
+</p28>
+<!-- remover - FIM -->
+
+<p30>
+  <div><NomeCat></div>
+  <textarea id="getCatName<IDProduto>" style="display:none"><NomeCat></textarea>
+  <div id="FotoCatHomeBloco<IDProduto>"></div>
+  <script>
+    var startLink=(document.getElementById("getCatName<IDProduto>").value).replace(/(\<.+?\>)([^\<]+)(\<.+?\>)/g,'$1');
+    document.getElementById("FotoCatHomeBloco<IDProduto>").innerHTML=startLink+"<div class='ProdCapaDiv'><img src='<ImagemProdPri>' alt='<NomeProd>' loading='lazy'></div></a>";
+  </script>
+</p30>
+
+<!-- criado para foto organico -->
+<p40>
+<div class="ProdDestListaC">
+<a href='<URLProd>'>
+  <div id=DivProd<IDProduto> <DataAttribute>></div>
+  <div class="ImgProdDesk"><div id="DivImagemProdDouble<IDProduto>" class='ProdCapaDiv'></div></div>
+  <div class="ImgProdMobi"><div class='ProdCapaDiv'><img src='../lojas/00020368/prod/<CodProd>_org.jpg' alt='<NomeProd>' loading='lazy'></div></div>
+  <div class="EstNomeProdCapa"><NomeProd></div>
+  <div id="PrecoProd<IDProduto>" class="PrecoProdCapa"></div>
+  <div class="EstBotVerMais">Eu Quero</div>
+</a>
+</div>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+	changeImages("../lojas/00020368/prod/<CodProd>_org.jpg","../lojas/00020368/prod/<CodProd>_org.jpg","<URLProd>","<IDProduto>","<NomeProdUA>");
+  	fnShowProd(<PrecoNum>,<PrecoOri>,<IDProduto>,<MaxParcelasProdNum>);
+})
+  
+</script>
+</p40>
+
+
+<!-- criado para hotsite -->
+<p22>
+<div class="ProdDestLista DivHotSiteProd smoothShow" id="DivProd<prodId>">
+<a href='<URLProd>'>
+  <div id=DivProd<IDProduto> <DataAttribute>></div>
+  <div id="lblEsgotado<IDProduto>" class="badgeEsgotado" title="Esgotado">ESGOTADO</div>
+  <div class="ImgProdDesk"><div id="DivImagemProdDouble<IDProduto>" class='ProdCapaDiv'></div></div>
+  <div class="ImgProdMobi"><div class='ProdCapaDiv'><img src='<ImagemProdPri>' alt='<NomeProd>' loading='lazy'></div></div>
+  <div style="background-color:transparent; width:100%; height: 30px; position: relative; display: block;" id=bolinhaCores<IDProduto>></div>
+  <div class="EstNomeProdCapa"><NomeProd></div>
+  <div id="PrecoProd<IDProduto>" class="PrecoProdCapa"></div>
+  <div class="EstBotVerMais">Eu Quero</div>
+</a>
+</div>
+<script>
+  //label esgotado
+  if (<Estoque> == 0)
+  {
+     $("#lblEsgotado"+<IDProduto>).show();
+  }
+  
+  var containerProd=$("[class^='ProdDestLista']")[0];
+  var espacoGeralBolinhas = 0.88*containerProd.offsetWidth;
+  var espacoBolinha = Math.trunc(espacoGeralBolinhas/10);
+  var margem = Math.trunc(0.16*espacoBolinha);
+  var borda = 0.06*espacoBolinha;
+  var tamanhoBolinha = Math.trunc(espacoBolinha - margem - 2*borda);
+  var prd_url_apoio = "<DescrURL>";
+
+  if(prd_url_apoio.length > 3)
+  {
+    prd_url_apoio = replaceAll(prd_url_apoio,"'","\"")
+    //console.log(prd_url_apoio);
+    var obj = JSON.parse(prd_url_apoio);
+    var htmlBolinhas = "<div style='background-color:transparent; width: auto; height: 100%; position: relative; margin: 0 auto;'>";
+    var arrayCores = obj.c;
+    if(obj.t == "liso")
+    {
+    for(var i = 0; i < arrayCores.length; i++)
+      {
+        var cor = arrayCores[i];
+        htmlBolinhas = htmlBolinhas + "<div style='background-color:#"+cor+"; width:"+tamanhoBolinha+"px; height:"+tamanhoBolinha+"px; -ms-border-radius:"+tamanhoBolinha+"px; border-radius:"+tamanhoBolinha+"px; -webkit-border-radius:"+tamanhoBolinha+"px; margin-left:"+margem+"px; display:inline-block;border-style:solid;border-width:"+1+"px;border-color:#eeeeee;'></div>";
+      }
+    }
+    var htmlBolinhas = htmlBolinhas + "</div></div>";
+    $("#bolinhaCores"+<IDProduto>).html(htmlBolinhas);
+  }
+
+  function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
+  }
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+	changeImages("<ImagemProdPri>","<ImagemProdDet>","<URLProd>","<IDProduto>","<NomeProdUA>");
+    fnShowProd(<PrecoNum>,<PrecoOri>,<IDProduto>,<MaxParcelasProdNum>);
+})
+  
+
+  LibHotSite$.aFiltersHotsite.push(<ProdFiltersJS>);
+  LibHotSite$.oDicCat[<IDProduto>]="<NomeCatSimples>";
+</script>
+</p22>
