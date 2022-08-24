@@ -1,0 +1,573 @@
+<style>
+div#topofixed {    display: none;}
+div#rodape_bg {   display: none;}
+</style>
+<script>
+  
+  var link_ver_mais = "";
+  var link_ver_mais_2 = "";
+  var scroll_atual = 0;
+  
+  var sessao_id = <Y>;
+  window.localStorage.setItem("sessao_id", sessao_id);
+  
+  var carrinho_faixa_etaria = -1; //0 - 3 a 12 meses; 1 - 1 a 3 anos
+  var carrinho_genero = 0; //0 - unissex, 1 - masc, 2 - fem
+
+  var mostrar_comprar_mais = window.localStorage.mostrar_comprar_mais;
+  var ja_apareceu = window.localStorage.ja_apareceu_comprar_mais;
+  
+  //produtos a serem mostrados no comprar mais - provisório
+  var produtos_comprar_mais = [];
+
+  //3 a 12 meses
+  produtos_comprar_mais[0] = [];
+  produtos_comprar_mais[1] = [];
+  
+  //1 a 5 anos
+  produtos_comprar_mais[2] = [];
+  produtos_comprar_mais[3] = [];
+  
+  
+  //3 a 12 - masculino
+  produtos_comprar_mais[0][0] = [];
+  produtos_comprar_mais[0][0]["link"] = "/banho-de-sol-bebe-manga-curta-vermelho-p-m-g-godoy";
+  produtos_comprar_mais[0][0]["id_produto"] = 7153363;
+  produtos_comprar_mais[0][0]["preco"] = 39.99;
+  produtos_comprar_mais[0][0]["preco_promocao"] = 19.99;
+  produtos_comprar_mais[0][0]["nome_imagem"] = ["14647_p"];
+  produtos_comprar_mais[0][0]["nome_produto"] = "Banho de Sol Bebê Meia Malha Manga Curta Vermelho (P/M/G) - Godoy";
+  produtos_comprar_mais[0][0]["cod_produto"] = "14647";
+
+  produtos_comprar_mais[0][1] = [];
+  produtos_comprar_mais[0][1]["link"] = "/kit-bebe-banho-de-sol-babador-amarelo-safari";
+  produtos_comprar_mais[0][1]["id_produto"] = 7733238;
+  produtos_comprar_mais[0][1]["preco"] = 59.99;
+  produtos_comprar_mais[0][1]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[0][1]["nome_imagem"] = ["16793_p"];
+  produtos_comprar_mais[0][1]["nome_produto"] = "Kit Bebê 2 Banhos de Sol e Babador Mescla e Amarelo Safari (P/M/G/GG) - Orango Kids";
+  produtos_comprar_mais[0][1]["cod_produto"] = "16793";
+
+  produtos_comprar_mais[0][2] = [];
+  produtos_comprar_mais[0][2]["link"] = "/banho-de-sol-bebe-masculino-suedine-com-ziper-cinza-monstrinhos-p-m-g-kappes";
+  produtos_comprar_mais[0][2]["id_produto"] = 7539509;
+  produtos_comprar_mais[0][2]["preco"] = 59.99;
+  produtos_comprar_mais[0][2]["preco_promocao"] = 31.99;
+  produtos_comprar_mais[0][2]["nome_imagem"] = ["15724_p"];
+  produtos_comprar_mais[0][2]["nome_produto"] = "Banho de Sol Bebê Masculino Suedine com Zíper Cinza Monstrinhos (P/M/G) - Kappes";
+  produtos_comprar_mais[0][2]["cod_produto"] = "15724";
+
+  produtos_comprar_mais[0][3] = [];
+  produtos_comprar_mais[0][3]["link"] = "/banho-de-sol-bebe-azul-monster-truck-p-m-g-gg-lucca-kids";
+  produtos_comprar_mais[0][3]["id_produto"] = 7606979;
+  produtos_comprar_mais[0][3]["preco"] = 34.99;
+  produtos_comprar_mais[0][3]["preco_promocao"] = 22.99;
+  produtos_comprar_mais[0][3]["nome_imagem"] = ["16283_p"];
+  produtos_comprar_mais[0][3]["nome_produto"] = "Banho de Sol Bebê Masculino Ribana Azul Monster Truck (P/M/G/GG) - Lucca Kids";
+  produtos_comprar_mais[0][3]["cod_produto"] = "16283";
+
+  produtos_comprar_mais[0][4] = [];
+  produtos_comprar_mais[0][4]["link"] = "/banho-de-sol-bebe-amarelo-dino-de-patinete-p-m-g-gg-lucca-kids";
+  produtos_comprar_mais[0][4]["id_produto"] = 7606987;
+  produtos_comprar_mais[0][4]["preco"] = 34.99;
+  produtos_comprar_mais[0][4]["preco_promocao"] = 22.99;
+  produtos_comprar_mais[0][4]["nome_imagem"] = ["16284_p"];
+  produtos_comprar_mais[0][4]["nome_produto"] = "Banho de Sol Bebê Masculino Ribana Amarelo Dino de Patinete (P/M/G/GG) - Lucca Kids";
+  produtos_comprar_mais[0][4]["cod_produto"] = "16284";
+
+  produtos_comprar_mais[0][5] = [];
+  produtos_comprar_mais[0][5]["link"] = "/banho-de-sol-bebe-suedine-com-ziper-azul-marinho-construcao-p-m-g-kappes";
+  produtos_comprar_mais[0][5]["id_produto"] = 7539521;
+  produtos_comprar_mais[0][5]["preco"] = 59.99;
+  produtos_comprar_mais[0][5]["preco_promocao"] = 31.99;
+  produtos_comprar_mais[0][5]["nome_imagem"] = ["15726_p"];
+  produtos_comprar_mais[0][5]["nome_produto"] = "Banho de Sol Bebê Suedine com Zíper Azul Marinho Construção (P/M/G) - Kappes";
+  produtos_comprar_mais[0][5]["cod_produto"] = "15726";
+  
+  produtos_comprar_mais[0][6] = [];
+  produtos_comprar_mais[0][6]["link"] = "/banho-de-sol-bebe-manga-curta-canelado-creme-urso-na-bike-p-m-g-top-chot";
+  produtos_comprar_mais[0][6]["id_produto"] = 7428288;
+  produtos_comprar_mais[0][6]["preco"] = 39.99;
+  produtos_comprar_mais[0][6]["preco_promocao"] = 20.99;
+  produtos_comprar_mais[0][6]["nome_imagem"] = ["453C_p"];
+  produtos_comprar_mais[0][6]["nome_produto"] = "Banho de Sol Bebê Manga Curta Canelado Creme Urso na Bike (P/M/G) - Top Chot";
+  produtos_comprar_mais[0][6]["cod_produto"] = "453C";
+ 
+  
+  //3 a 12 - feminino
+  produtos_comprar_mais[1][0] = [];
+  produtos_comprar_mais[1][0]["link"] = "/banho-de-sol-bebe-ribana-verde-girafinha-p-m-g-gg-lucca-kids";
+  produtos_comprar_mais[1][0]["id_produto"] = 7607014;
+  produtos_comprar_mais[1][0]["preco"] = 34.99;
+  produtos_comprar_mais[1][0]["preco_promocao"] = 22.99;
+  produtos_comprar_mais[1][0]["nome_imagem"] = ["16291_p"];
+  produtos_comprar_mais[1][0]["nome_produto"] = "Banho de Sol Bebê Ribana Verde Girafinha (P/M/G/GG) - Lucca Kids";
+  produtos_comprar_mais[1][0]["cod_produto"] = "16291";
+
+  produtos_comprar_mais[1][1] = [];
+  produtos_comprar_mais[1][1]["link"] = "/macacao-bebe-suedine-liso-manga-curta-p-m-g-mmd-baby";
+  produtos_comprar_mais[1][1]["id_produto"] = 6010978;
+  produtos_comprar_mais[1][1]["preco"] = 29.99;
+  produtos_comprar_mais[1][1]["preco_promocao"] = 15.99;
+  produtos_comprar_mais[1][1]["nome_imagem"] = ["2006_rosa_p"];
+  produtos_comprar_mais[1][1]["nome_produto"] = "Macacão Bebê Suedine Liso Manga Curta (P/M/G) - MMD Baby";
+  produtos_comprar_mais[1][1]["cod_produto"] = "2006";
+
+  produtos_comprar_mais[1][2] = [];
+  produtos_comprar_mais[1][2]["link"] = "/banho-de-sol-bebe-ribana-rosa-pirulito-p-m-g-gg-lucca-kids";
+  produtos_comprar_mais[1][2]["id_produto"] = 7607041;
+  produtos_comprar_mais[1][2]["preco"] = 34.99;
+  produtos_comprar_mais[1][2]["preco_promocao"] = 22.99;
+  produtos_comprar_mais[1][2]["nome_imagem"] = ["16288_p"];
+  produtos_comprar_mais[1][2]["nome_produto"] = "Banho de Sol Bebê Feminino Ribana Rosa Pirulito (P/M/G/GG) - Lucca Kids";
+  produtos_comprar_mais[1][2]["cod_produto"] = "16288";
+
+  produtos_comprar_mais[1][3] = [];
+  produtos_comprar_mais[1][3]["link"] = "/banho-de-sol-bebe-feminino-suedine-com-ziper-pink-panda-no-arco-iris-p-m-g-kappes";
+  produtos_comprar_mais[1][3]["id_produto"] = 7539281;
+  produtos_comprar_mais[1][3]["preco"] = 59.99;
+  produtos_comprar_mais[1][3]["preco_promocao"] = 31.99;
+  produtos_comprar_mais[1][3]["nome_imagem"] = ["15717_p"];
+  produtos_comprar_mais[1][3]["nome_produto"] = "Banho de Sol Bebê Feminino Suedine com Zíper Pink Panda no Arco-íris (P/M/G) - Kappes";
+  produtos_comprar_mais[1][3]["cod_produto"] = "15717";
+
+  produtos_comprar_mais[1][4] = [];
+  produtos_comprar_mais[1][4]["link"] = "/banho-de-sol-bebe-feminino-manga-curta-meia-malha-pink-coracoes-p-m-g-lanazu";
+  produtos_comprar_mais[1][4]["id_produto"] = 7571113;
+  produtos_comprar_mais[1][4]["preco"] = 34.99;
+  produtos_comprar_mais[1][4]["preco_promocao"] = 23.99;
+  produtos_comprar_mais[1][4]["nome_imagem"] = ["15882_p"];
+  produtos_comprar_mais[1][4]["nome_produto"] = "Banho de Sol Bebê Feminino Manga Curta Meia Malha Pink Coração (P/M/G) - Lanazu";
+  produtos_comprar_mais[1][4]["cod_produto"] = "15882";
+
+  produtos_comprar_mais[1][5] = [];
+  produtos_comprar_mais[1][5]["link"] = "/jardineira-bebe-feminina-longa-moletinho-pink-p-m-g-lanazu";
+  produtos_comprar_mais[1][5]["id_produto"] = 7551245;
+  produtos_comprar_mais[1][5]["preco"] = 49.99;
+  produtos_comprar_mais[1][5]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[1][5]["nome_imagem"] = ["15790_p"];
+  produtos_comprar_mais[1][5]["nome_produto"] = "Jardineira Bebê Feminina Longa Moletinho Pink (P/M/G) - Lanazu";
+  produtos_comprar_mais[1][5]["cod_produto"] = "15790";
+
+  produtos_comprar_mais[1][6] = [];
+  produtos_comprar_mais[1][6]["link"] = "/kit-bebe-banhos-de-sol-faixa-vermelho-arco-iris";
+  produtos_comprar_mais[1][6]["id_produto"] = 7733230;
+  produtos_comprar_mais[1][6]["preco"] = 59.99;
+  produtos_comprar_mais[1][6]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[1][6]["nome_imagem"] = ["16792_p"];
+  produtos_comprar_mais[1][6]["nome_produto"] = "Kit Bebê Feminino 2 Banhos de Sol e Faixinha Branco e Vermelho Arco-Íris (P/M/G/GG) - Orango Kids";
+  produtos_comprar_mais[1][6]["cod_produto"] = "16792";
+
+  //1 a 5 - masculino
+  produtos_comprar_mais[2][0] = [];
+  produtos_comprar_mais[2][0]["link"] = "/banho-de-sol-bebe-masculino-suedine-com-ziper-azul-marinho-construcao-1-2-3-kappes";
+  produtos_comprar_mais[2][0]["id_produto"] = 7540154;
+  produtos_comprar_mais[2][0]["preco"] = 59.99;
+  produtos_comprar_mais[2][0]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[2][0]["nome_imagem"] = ["15741_p"];
+  produtos_comprar_mais[2][0]["nome_produto"] = "Banho de Sol Bebê Masculino Suedine com Zíper Azul Marinho Construção (1/2/3) - Kappes";
+  produtos_comprar_mais[2][0]["cod_produto"] = "15741";
+
+  produtos_comprar_mais[2][1] = [];
+  produtos_comprar_mais[2][1]["link"] = "/jardineira-bebe-longa-moletinho-mescla-1-2-3-lanazu";
+  produtos_comprar_mais[2][1]["id_produto"] = 7551648;
+  produtos_comprar_mais[2][1]["preco"] = 49.99;
+  produtos_comprar_mais[2][1]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[2][1]["nome_imagem"] = ["15797_p"];
+  produtos_comprar_mais[2][1]["nome_produto"] = "Jardineira Bebê Longa Moletinho Mescla (1/2/3) - Lanazu";
+  produtos_comprar_mais[2][1]["cod_produto"] = "15797";
+
+  produtos_comprar_mais[2][2] = [];
+  produtos_comprar_mais[2][2]["link"] = "/banho-de-sol-bebe-masculino-suedine-com-ziper-cinza-monstrinhos-1-2-3-kappes";
+  produtos_comprar_mais[2][2]["id_produto"] = 7540144;
+  produtos_comprar_mais[2][2]["preco"] = 59.99;
+  produtos_comprar_mais[2][2]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[2][2]["nome_imagem"] = ["15739_p"];
+  produtos_comprar_mais[2][2]["nome_produto"] = "Banho de Sol Bebê Masculino Suedine com Zíper Cinza Monstrinhos (1/2/3) - Kappes";
+  produtos_comprar_mais[2][2]["cod_produto"] = "15739";
+
+  produtos_comprar_mais[2][3] = [];
+  produtos_comprar_mais[2][3]["link"] = "/banho-de-sol-bebe-masculino-suedine-com-ziper-off-white-rock-1-2-3-kappes";
+  produtos_comprar_mais[2][3]["id_produto"] = 7540122;
+  produtos_comprar_mais[2][3]["preco"] = 59.99;
+  produtos_comprar_mais[2][3]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[2][3]["nome_imagem"] = ["15737_p"];
+  produtos_comprar_mais[2][3]["nome_produto"] = "Banho de Sol Bebê Masculino Suedine com Zíper Off White Rock (1/2/3) - Kappes";
+  produtos_comprar_mais[2][3]["cod_produto"] = "15737";
+
+  produtos_comprar_mais[2][4] = [];
+  produtos_comprar_mais[2][4]["link"] = "/banho-de-sol-bebe-suedine-com-ziper-azul-estrelas-1-2-3-kappes";
+  produtos_comprar_mais[2][4]["id_produto"] = 7540140;
+  produtos_comprar_mais[2][4]["preco"] = 59.99;
+  produtos_comprar_mais[2][4]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[2][4]["nome_imagem"] = ["15738_p"];
+  produtos_comprar_mais[2][4]["nome_produto"] = "Banho de Sol Bebê Suedine com Zíper Azul Estrelas (1/2/3) - Kappes";
+  produtos_comprar_mais[2][4]["cod_produto"] = "15738";
+
+  //1 a 5 - feminino
+  produtos_comprar_mais[3][0] = [];
+  produtos_comprar_mais[3][0]["link"] = "/banho-de-sol-bebe-feminino-suedine-com-ziper-turquesa-flores-1-2-3-kappes";
+  produtos_comprar_mais[3][0]["id_produto"] = 7539763;
+  produtos_comprar_mais[3][0]["preco"] = 59.99;
+  produtos_comprar_mais[3][0]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[3][0]["nome_imagem"] = ["15735_p"];
+  produtos_comprar_mais[3][0]["nome_produto"] = "Banho de Sol Bebê Feminino Suedine com Zíper Turquesa Flores (1/2/3) - Kappes";
+  produtos_comprar_mais[3][0]["cod_produto"] = "15735";
+
+  produtos_comprar_mais[3][1] = [];
+  produtos_comprar_mais[3][1]["link"] = "/jardineira-bebe-longa-moletinho-mescla-1-2-3-lanazu";
+  produtos_comprar_mais[3][1]["id_produto"] = 7551648;
+  produtos_comprar_mais[3][1]["preco"] = 49.99;
+  produtos_comprar_mais[3][1]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[3][1]["nome_imagem"] = ["15797_p"];
+  produtos_comprar_mais[3][1]["nome_produto"] = "Jardineira Bebê Longa Moletinho Mescla (1/2/3) - Lanazu";
+  produtos_comprar_mais[3][1]["cod_produto"] = "15797";
+
+  produtos_comprar_mais[3][2] = [];
+  produtos_comprar_mais[3][2]["link"] = "/banho-de-sol-bebe-feminino-suedine-com-ziper-rosa-poa-branco-1-2-3-kappes";
+  produtos_comprar_mais[3][2]["id_produto"] = 7539728;
+  produtos_comprar_mais[3][2]["preco"] = 59.99;
+  produtos_comprar_mais[3][2]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[3][2]["nome_imagem"] = ["15733_p"];
+  produtos_comprar_mais[3][2]["nome_produto"] = "Banho de Sol Bebê Feminino Suedine com Zíper Rosa Poá Branco (1/2/3) - Kappes";
+  produtos_comprar_mais[3][2]["cod_produto"] = "15733";
+
+  produtos_comprar_mais[3][3] = [];
+  produtos_comprar_mais[3][3]["link"] = "/banho-de-sol-bebe-feminino-suedine-com-ziper-pink-panda-no-arco-iris-1-2-3-kappes";
+  produtos_comprar_mais[3][3]["id_produto"] = 7539724;
+  produtos_comprar_mais[3][3]["preco"] = 59.99;
+  produtos_comprar_mais[3][3]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[3][3]["nome_imagem"] = ["15732_p"];
+  produtos_comprar_mais[3][3]["nome_produto"] = "Banho de Sol Bebê Feminino Suedine com Zíper Pink Panda no Arco-íris (1/2/3) - Kappes";
+  produtos_comprar_mais[3][3]["cod_produto"] = "15732";
+
+  produtos_comprar_mais[3][4] = [];
+  produtos_comprar_mais[3][4]["link"] = "/jardineira-bebe-feminina-longa-moletinho-rosa-1-2-3-lanazu";
+  produtos_comprar_mais[3][4]["id_produto"] = 7551529;
+  produtos_comprar_mais[3][4]["preco"] = 49.99;
+  produtos_comprar_mais[3][4]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[3][4]["nome_imagem"] = ["15795_p"];
+  produtos_comprar_mais[3][4]["nome_produto"] = "Jardineira Bebê Feminina Longa Moletinho Rosa (1/2/3) - Lanazu";
+  produtos_comprar_mais[3][4]["cod_produto"] = "15795";
+
+  produtos_comprar_mais[3][5] = [];
+  produtos_comprar_mais[3][5]["link"] = "/banho-de-sol-bebe-feminino-suedine-com-ziper-branco-zebras-1-2-3-kappes";
+  produtos_comprar_mais[3][5]["id_produto"] = 7540105;
+  produtos_comprar_mais[3][5]["preco"] = 59.99;
+  produtos_comprar_mais[3][5]["preco_promocao"] = 34.99;
+  produtos_comprar_mais[3][5]["nome_imagem"] = ["15736_p"];
+  produtos_comprar_mais[3][5]["nome_produto"] = "Banho de Sol Bebê Feminino Suedine com Zíper Branco Zebras (1/2/3) - Kappes";
+  produtos_comprar_mais[3][5]["cod_produto"] = "15736";
+
+
+  //produtos a serem mostrados no comprar mais - provisório - FIM
+  
+  var frases_comprar_mais = [];
+  frases_comprar_mais[0] = ["Como está o guarda-roupa para o verão do seu bebê? Aproveite nossas novidades!","Vamos aproveitar para deixar seu fofuxo mais estiloso nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  frases_comprar_mais[1] = ["Como está o guarda-roupa para o verão da sua bebê? Aproveite nossas novidades!","Vamos aproveitar para deixar sua fofuxa mais estilosa nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  frases_comprar_mais[2] = ["Como está o guarda-roupa para o verão do seu filho? Aproveite nossas novidades!","Vamos aproveitar para deixar seu fofuxo mais estiloso nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  frases_comprar_mais[3] = ["Como está o guarda-roupa para o verão da sua filha? Aproveite nossas novidades!","Vamos aproveitar para deixar sua fofuxa mais estilosa nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  
+  frases_comprar_mais[4] = ["Como está o guarda-roupa para o verão do(a) seu(sua) bebê? Aproveite nossas novidades!","Vamos aproveitar para deixar seu(sua) fofuxo(a) mais estiloso(a) nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  frases_comprar_mais[5] = ["Como está o guarda-roupa para o verão do(a) seu(sua) filho(a)? Aproveite nossas novidades!","Vamos aproveitar para deixar seu(sua) fofuxo(a) mais estiloso(a) nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  
+  var id_frase = Math.round(Math.random()*100)%3;
+
+  if(mostrar_comprar_mais)
+  {
+    carrinho_faixa_etaria = window.localStorage.carrinho_faixa_etaria;
+    carrinho_genero = window.localStorage.carrinho_genero;
+    montar_comprar_mais();
+    
+    var txt_fe = "";
+    if(carrinho_faixa_etaria == 0)
+    {
+      txt_fe = "3 a 12 meses";
+    }
+    else if(carrinho_faixa_etaria == 1)
+    {
+      txt_fe = "1 a 3 anos";
+    }
+    
+    var txt_genero = "";
+    if(carrinho_genero == 0)
+    {
+      txt_genero = "unissex";
+    }
+    else if(carrinho_genero == 1)
+    {
+      txt_genero = "masculino";
+    }
+    else if(carrinho_genero == 2)
+    {
+      txt_genero = "feminino";
+    }
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&frase_id=" + id_frase + "&tema_apresentado=" + "banho de sol e jardineira" + "&genero_carrinho=" + txt_genero + "&frase_id=" + id_frase + "&faixa_etaria_carrinho=" + txt_fe,false,fnprocessRegistroAtividade);
+    
+    if(ja_apareceu)
+    {
+      fn_mostrar_comprar_mais_sem_animacao();
+    }
+    else
+    {
+      fn_mostrar_comprar_mais();
+    }
+    
+  }
+  else
+  {
+	window.location.href = "https://www.bebefofuxo.com.br";
+  }
+
+  
+
+  function montar_comprar_mais()
+  {
+    var div_comprar_mais = document.createElement("div");
+    div_comprar_mais.id = "id_comprar_mais";
+    var div_ref = document.getElementById("idFCLeftContentRight");
+    document.body.insertBefore(div_comprar_mais,div_ref);
+
+    $("#id_comprar_mais").css('top', window.innerHeight);
+
+    var altura_conteudo = window.innerHeight-100-70;
+
+    var content_comprar_mais = "<div class='titulo_cm'><span>ANTES DE COMPLETAR SEU PEDIDO</span></div>";
+    content_comprar_mais += "<div class='pergunta_cm'><span>Que tal uma dica?</span></div>";
+    content_comprar_mais += "<div class='linha_cm'></div>";
+    
+
+    var gen_fe = 0;
+    var array_produtos;
+    if(carrinho_faixa_etaria == 0)
+    {
+      if(carrinho_genero == 0)
+      {
+        array_produtos = produtos_comprar_mais[0].concat(produtos_comprar_mais[1]);
+        array_produtos = shuffleArray(array_produtos);
+        gen_fe=4;
+        link_ver_mais = "/categorias/macaquinho-e-banho-de-sol-para-bebe?fil=320218&avancada=true&tfil=3+a+12+meses";
+        link_ver_mais_2 = "/categorias/jardineira-para-bebe?fil=320218&avancada=true&tfil=3+a+12+meses";
+        
+      }
+      else if(carrinho_genero == 1)
+      {
+        array_produtos = produtos_comprar_mais[0];
+        gen_fe = 0;
+        link_ver_mais = "/categorias/macaquinho-e-banho-de-sol-para-bebe?fil=319942+320218&avancada=true&tfil=3+a+12+meses+Masculino";
+        link_ver_mais_2 = "/categorias/jardineira-para-bebe?fil=319942+320218&avancada=true&tfil=3+a+12+meses+Masculino";
+      }
+      else if(carrinho_genero == 2)
+      {
+        array_produtos = produtos_comprar_mais[1];
+        gen_fe = 1;
+        link_ver_mais = "/categorias/macaquinho-e-banho-de-sol-para-bebe?fil=319943+320218&avancada=true&tfil=3+a+12+meses+Feminino";
+        link_ver_mais_2 = "/categorias/jardineira-para-bebe?fil=319943+320218&avancada=true&tfil=3+a+12+meses+Feminino";
+      }
+    }
+    else if(carrinho_faixa_etaria == 1)
+    {
+      if(carrinho_genero == 0)
+      {
+        array_produtos = produtos_comprar_mais[2].concat(produtos_comprar_mais[3]);
+        array_produtos = shuffleArray(array_produtos);
+        gen_fe = 5;
+        link_ver_mais = "/categorias/macaquinho-e-banho-de-sol-para-bebe?fil=320219&avancada=true&tfil=1+a+3+anos";
+        link_ver_mais_2 = "/categorias/jardineira-para-bebe?fil=320219&avancada=true&tfil=1+a+3+anos";
+        
+      }
+      else if(carrinho_genero == 1)
+      {
+        array_produtos = produtos_comprar_mais[2];
+        gen_fe = 2;
+        link_ver_mais = "/categorias/macaquinho-e-banho-de-sol-para-bebe?fil=320219+319942&avancada=true&tfil=1+a+3+anos+Masculino";
+        link_ver_mais_2 = "/categorias/jardineira-para-bebe?fil=320219+319942&avancada=true&tfil=1+a+3+anos+Masculino";
+      }
+      else if(carrinho_genero == 2)
+      {
+        array_produtos = produtos_comprar_mais[3];
+        gen_fe = 3;
+        link_ver_mais = "/categorias/macaquinho-e-banho-de-sol-para-bebe?fil=320219+319943&avancada=true&tfil=1+a+3+anos+Feminino";
+        link_ver_mais_2 = "/categorias/jardineira-para-bebe?fil=319943+320219&avancada=true&tfil=1+a+3+anos+Feminino";
+      }
+    }
+    
+    content_comprar_mais += "<div class='conteudo_cm' style='height:"+altura_conteudo+"px'><div class='dica_cm'><span>"+frases_comprar_mais[gen_fe][id_frase]+"</span></div>";
+
+    content_comprar_mais += "<div id='TabListaProdutos'>";
+    
+    for(var i = 0; i < array_produtos.length; i++)
+    {
+		content_comprar_mais += montar_produto(array_produtos[i]["link"],array_produtos[i]["id_produto"],array_produtos[i]["preco"],array_produtos[i]["preco_promocao"],array_produtos[i]["nome_imagem"][0],array_produtos[i]["nome_produto"],array_produtos[i]["cod_produto"]);
+    }
+
+
+    content_comprar_mais += "</div>";
+    
+    content_comprar_mais += "<div class='btn_vermais_cm btn_vermais_cm_1'>Ver mais Banho de Sol</div>";
+    
+    content_comprar_mais += "<div class='btn_vermais_cm btn_vermais_cm_2'>Ver mais Jardineira</div>";
+    
+    content_comprar_mais += "</div>";
+    
+    content_comprar_mais += "<div class='btn_cm'><span class='obrigado_cm'>Não, obrigado</span><br><span>IR PARA O PAGAMENTO</span></div>";
+
+    $("#id_comprar_mais").html(content_comprar_mais);
+
+  }
+  
+  $(".btn_cm").click(function(){
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_nao_obrigado=" + "1",false,fnprocessRegistroAtividade_NaoObrigado);
+    
+    
+  });
+  
+  $(".btn_vermais_cm_1").click(function(){
+
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_mostrar_mais_produto=" + "1",false,fnprocessRegistroAtividade_VerMais_1);
+
+
+  });
+  
+  $(".btn_vermais_cm_2").click(function(){
+
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_mostrar_mais_produto=" + "1",false,fnprocessRegistroAtividade_VerMais_2);
+
+
+  });
+
+  $(".link-prod").click(function(e){
+	
+    e.preventDefault();
+    var link = this.href;
+    var codigo_modelo = $(this).data("id");
+    codigo_modelo = codigo_modelo.replace(/"/g, '');
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_produto=" + "1" + "&cod_modelo=" + codigo_modelo,false,fnprocessRegistroAtividade_CliqueProduto,link);
+
+
+  });
+  
+  var timeout;
+  $(".conteudo_cm").scroll(function() {
+
+    if($(".conteudo_cm").scrollTop() > scroll_atual)
+    {
+      scroll_atual = parseInt($(".conteudo_cm").scrollTop());
+
+      clearTimeout(timeout);
+      timeout = setTimeout(function(s) {
+
+        AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&scroll_y=" + scroll_atual,false,fnprocessRegistroAtividade_Scroll);
+
+      }, 2000);
+    }
+    
+    
+  });
+
+
+  function montar_produto(link,id_produto,preco,preco_promocao,nome_imagem,nome_produto,cod_produto)
+  {
+    var desconto = Math.round((1-(preco_promocao/preco))*100);
+    var preco_virgula = preco.toFixed(2).replace(".", ",");
+    var preco_promocao_virgula = preco_promocao.toFixed(2).replace(".", ",");
+
+    var preco_promocao_parcela = preco_promocao/6;
+    preco_promocao_parcela = preco_promocao_parcela.toFixed(2);
+    var preco_promocao_parcela_virgula = preco_promocao_parcela.replace(".", ",");
+
+    //var link = "https://www.bebefofuxo.com.br" + link;
+
+    var cod_prod = '"'+cod_produto+'"';
+    
+    var content_produto = "<div class='ProdDestLista'>";
+    content_produto += "<a class='link-prod' href='"+link+"' data-id='"+cod_prod+"'>";
+    content_produto += "<div id='DivProd"+id_produto+"' data-sale='true' data-release='true'><div class='badgesProd'><div class='badgeProm' title='Oferta'>-"+desconto+"%</div></div></div>";
+    content_produto += "<div class='ImgProdDesk'><div id='DivImagemProdDouble"+id_produto+"' class='ProdCapaDiv'><img src='../lojas/00020368/prod/"+nome_imagem+".jpg' alt='"+nome_produto+"' loading='lazy'></div></div>";
+    content_produto += "<div class='ImgProdMobi'><div class='ProdCapaDiv'><img src='../lojas/00020368/prod/"+nome_imagem+".jpg' alt='"+nome_produto+"' loading='lazy'></div></div>";
+    content_produto += "<div class='ProdListOrder'>";
+    content_produto += "<div class='EstNomeProdCapa'>"+nome_produto+"</div>";
+    content_produto += "<div id='PrecoProd"+id_produto+"' class='PrecoProdCapa'><span class='PrecoDeHome'>de <strike>R$&nbsp;"+preco_virgula+"</strike>&nbsp;&nbsp;</span><span class='PrecoPorHome'>por R$<b>&nbsp;"+preco_promocao_virgula+"</b></span><div class='EstParcHome'>6X de R$&nbsp;"+preco_promocao_parcela_virgula+" sem juros</div></div>";
+    content_produto += "</div>";
+    content_produto += "<div class='EstBotVerMais'>Eu Quero</div></a>";
+    content_produto += "</div>";
+
+
+    return content_produto;
+  }
+
+  function fn_mostrar_comprar_mais()
+  {
+    window.localStorage.setItem("ja_apareceu_comprar_mais", 1);
+    
+    $("#id_comprar_mais").animate({
+      top: 0
+    }, 500);
+  }
+  
+  function fn_mostrar_comprar_mais_sem_animacao()
+  {
+    $("#id_comprar_mais").css("top",0);
+  }
+  
+  function fnprocessRegistroAtividade_Scroll()
+  {
+    //console.log("Registrado scroll com sucesso");
+  }
+  
+  function fnprocessRegistroAtividade()
+  {
+    //console.log("Registrado entrada na página com sucesso");
+  }
+  
+  function fnprocessRegistroAtividade_NaoObrigado()
+  {
+    //console.log("Registrado Não Obrigado com sucesso");
+    
+    window.localStorage.removeItem("carrinho_genero");
+    window.localStorage.removeItem("carrinho_faixa_etaria");
+    window.localStorage.removeItem("mostrar_comprar_mais");
+    //window.localStorage.removeItem("ja_apareceu_comprar_mais");
+    //window.localStorage.removeItem("sessao_id");
+    
+    
+    window.location.href = "/checkout.asp?idloja=20368";
+  }
+  
+  
+  function fnprocessRegistroAtividade_VerMais_1()
+  {
+    //console.log("Registrado Ver Mais com sucesso");
+    
+    window.location.href = link_ver_mais;
+  }
+  
+  function fnprocessRegistroAtividade_VerMais_2()
+  {
+    //console.log("Registrado Ver Mais com sucesso");
+    
+    window.location.href = link_ver_mais_2;
+  }
+  
+  function fnprocessRegistroAtividade_CliqueProduto()
+  {
+    //console.log("Registrado Clique Produto com sucesso");
+    
+	window.location.href = arguments[1];
+  }
+  
+  function shuffleArray(arr) {
+        // Loop em todos os elementos
+    for (let i = arr.length - 1; i > 0; i--) {
+            // Escolhendo elemento aleatório
+        const j = Math.floor(Math.random() * (i + 1));
+        // Reposicionando elemento
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    // Retornando array com aleatoriedade
+    return arr;
+}
+</script>
