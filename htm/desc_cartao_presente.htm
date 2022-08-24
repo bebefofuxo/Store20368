@@ -1,0 +1,142 @@
+<script src="<baseloja>htm/js/vanillamaskermin.js"></script>
+<script src="<BaseLoja>htm/js/jqueryMask.js"></script>
+
+<style>
+
+.desc_cartao_presente .InputText{
+  font-family: 'Nunito', Arial, sans-serif;
+    font-size: 15px !important;
+    border: 1px solid #dedede;
+    background-color: #fff;
+    color: #685f52;
+    padding: 5px 5px 5px 5px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -ms-border-radius: 3px;
+    height: 32px;
+    width: 90% !important;
+    max-width: 300px;
+    -webkit-text-size-adjust: 100% !important;
+    -webkit-appearance: none;
+  
+  
+}
+
+</style>
+
+<div class="desc_cartao_presente">
+  <p>
+    Preencha abaixo o nome de quem vai dar o presente e de quem vai receber o presente &#129392;
+  </p>
+  <p>De:</p>
+  <p><input class="InputText" type="text" name="de" id="id_de" maxlength="13" placeholder="Nome de quem vai dar o presente"></p>
+  <p>Para:</p>
+  <p><input class="InputText" type="text" name="para" id="id_para" maxlength="13" placeholder="Nome de quem vai receber o presente"></p>
+  <p>
+  	<input type="checkbox" id="id_meuemail" name="meuemail">
+  	<label for="id_meuemail">Desejo receber o cartão em meu e-mail e irei reenviar para o presenteado</label>
+  </p>
+  <p>
+  	<input type="checkbox" id="id_emailpresenteado" name="emailpresenteado">
+  	<label for="id_emailpresenteado">Desejo que o cartão seja enviado no e-mail do presenteado</label>
+  </p>
+  <p id="p_email_presenteado" style="display:none;"><input class="InputText" type="text" id="input_email_presenteado" placeholder="Digite o e-mail do presenteado"></p>
+  <p>
+  	<input type="checkbox" id="id_whatspresenteado" name="whatspresenteado">
+  	<label for="id_whatspresenteado">Desejo que o cartão seja enviado no Whatsapp do presenteado</label>
+  </p>
+  <p id="p_whats_presenteado" style="display:none;"><input class="InputText" type="text" id="input_whats_presenteado" placeholder="(11) 99999-9999"></p>
+  <p>
+    <a href="/page,idloja,20368,arq,vale_presente.htm">Como utilizar e regras do Vale Presente</a>
+  </p>
+</div>
+
+<script>
+  var funcaoValidacao = function(e) {
+    var chr = String.fromCharCode(e.which);
+    if (">?&%*#@!+<$\/".indexOf(chr) >= 0)
+    {
+      alert(chr + " é um caracter inválido para esse campo");
+      this.focus();
+      return false;
+    }
+    
+    if ($(this).val().length > 12)
+    {
+      alert("Máximo de 12 letras para o nome");
+      this.focus();
+      return false;
+    }
+  };
+  
+  
+  
+  $(window).ready(function(){
+    
+    $(".FCStepGridTitle").html("Selecione a <strong>Mensagem</strong>");
+    $("[data-attr*='Mensagem 1']").text("Mensagem 1");
+    $("[data-attr*='Mensagem 2']").text("Mensagem 2");
+    $("[data-attr*='Mensagem 3']").text("Mensagem 3");
+    $(".FCDescritorContent").click(function(){$("#idDetailProduct").hide();})
+    
+    
+  });
+  
+  document.getElementById("id_de").onkeypress = funcaoValidacao;
+  document.getElementById("id_para").onkeypress = funcaoValidacao;
+  
+  $('#id_meuemail').click(function() {
+    $("#id_emailpresenteado")[0].checked = false;
+    $("#id_whatspresenteado")[0].checked = false;
+    $("#p_email_presenteado").hide();
+    $("#input_email_presenteado").val("");
+    $("#p_whats_presenteado").hide();
+    $("#input_whats_presenteado").val("");
+  });
+  
+  $('#id_emailpresenteado').click(function() {
+    $("#id_meuemail")[0].checked = false;
+    $("#id_whatspresenteado")[0].checked = false;
+    
+    $("#p_whats_presenteado").hide();
+    $("#input_whats_presenteado").val("");
+    $("#p_email_presenteado").show();
+    
+    if(!$('#id_emailpresenteado')[0].checked)
+    {
+      $("#p_email_presenteado").hide();
+      $("#input_email_presenteado").val("");
+    }
+  });
+  
+  $('#id_whatspresenteado').click(function() {
+    $("#id_emailpresenteado")[0].checked = false;
+    $("#id_meuemail")[0].checked = false;
+    
+    $("#p_email_presenteado").hide();
+    $("#input_email_presenteado").val("");
+    $("#p_whats_presenteado").show();
+    
+    if(!$('#id_whatspresenteado')[0].checked)
+    {
+      $("#p_whats_presenteado").hide();
+      $("#input_whats_presenteado").val("");
+    }
+
+  });
+  
+  function inputHandler(masks, max, event) {
+    var c = event.target;
+    var v = c.value.replace(/\D/g, '');
+    var m = c.value.length > max ? 1 : 0;
+    VMasker(c).unMask();
+    VMasker(c).maskPattern(masks[m]);
+    c.value = VMasker.toPattern(v, masks[m]);
+  }
+  
+  var telMask = ['(99) 9999-99999', '(99) 99999-9999'];
+  var tel = document.querySelector('#input_whats_presenteado');
+  VMasker(tel).maskPattern(telMask[0]);
+  tel.addEventListener('input', inputHandler.bind(undefined, telMask, 14), false);
+
+</script>
