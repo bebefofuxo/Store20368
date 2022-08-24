@@ -1,0 +1,62 @@
+.container {width:1002px; height:216px; overflow:hidden; position:relative; cursor:pointer;}
+
+.slides { position:relative; top:0; left:0; z-index:0;}
+.slides div { position:relative; top:0; width:1002px; height:216px; display:none;}
+
+#loopedSlider{font-size:11px;}
+
+	ul.pagination {list-style:none; padding:0; margin:0; margin-right:10px; float:right; font-family:Arial, Helvetica, sans-serif; font-weight:bold}
+	ul.pagination li  {
+	float:left;
+	direction:rtl;
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-top: 5px;
+	padding-bottom:0px;
+}
+	ul.pagination li a {
+	color:#000000;
+	font-size:11px;
+	width:29px;
+	height:29px;
+	line-height:20px;
+	text-align:center;
+	display:inline-block;
+	float:left;
+	text-decoration:none;
+	background-image: url(../images/button.png);
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+}
+	ul.pagination li.active a {
+	color:#000000;
+	border:none;
+	text-decoration:none;
+	background-image: url(../images/button_act.png);
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+}
+	ul.pagination li a:hover {
+	color:#000000;
+	border:none;
+	text-decoration:none;
+	background-image: url(../images/button_act.png);
+	background-repeat: no-repeat;
+	background-position: 3px 0px;
+}
+	
+.pagination-container {
+	position:relative;
+	width:1002px;
+	z-index:999;
+	padding-left:0px;
+	margin-top: -35px !important;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	overflow:hidden;
+}
+.pagination-container .bg {}
+/* *************************** */
+/* *************************** */
+/* *************************** */
