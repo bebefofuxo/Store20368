@@ -1,0 +1,830 @@
+body {
+}
+
+footer {
+  
+}
+
+#content_bf {
+  background-color: #000;
+  width:100%;
+  height:1100px;
+  position:relative;
+}
+
+.triang-invertido{
+  position:absolute;
+  top:0;
+  left:0;
+  height:24px;
+  width:24px;
+  
+}
+
+.triang-invertido img{
+  height:24px;
+  width:24px;
+}
+
+.triang-preenchido{
+  position:absolute;
+  top:0;
+  left:0;
+  height:24px;
+  width:24px;
+  
+}
+
+.triang-preenchido img{
+  height:24px;
+  width:24px;
+}
+
+.faltam_bf{
+  font-family: "Arial Black";
+  font-size:30px;
+  width:200px;
+  margin-left:auto;
+  margin-right:auto;
+  padding-top:60px;
+  color:#FFFFFF;
+  text-align:center;
+}
+
+.para_a{
+  margin-top: 80px;
+  margin-left:auto;
+  margin-right:auto;
+  width:112px;
+  height:32px;
+
+}
+
+.para_a img{
+  width:112px;
+  height:32px;
+}
+
+.logo_black_friday {
+  margin-top: 40px;
+  margin-left:auto;
+  margin-right:auto;
+  width:486px;
+  height:202px;
+  
+}
+
+
+.logo_black_friday img {
+  width:486px;
+  height:202px;
+  
+}
+
+.redes_sociais {
+  margin-top: 60px;
+  margin-left:auto;
+  margin-right:auto;
+  width:140px;
+  height:40px;
+}
+
+.facebook {
+  float:left;
+  width:40px;
+  height:40px;
+}
+
+.facebook img {
+  width:40px;
+  height:40px;
+}
+
+.instagram {
+  float:right;
+  width:40px;
+  height:40px;
+}
+
+.instagram img {
+  width:40px;
+  height:40px;
+}
+
+.countdown_black {
+  text-align: center;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Arial Black';
+  position: relative;
+}
+
+
+
+.countdown_black li {
+  margin-top:30px;
+  vertical-align: top;
+  border-radius: 9px;
+  margin-right: 7px;
+  background: #f9cc10;
+  font-size: 56px;
+  color: #000000;
+  width: 88px;
+  height: 68px;
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.ct-count_black {
+  display: block;
+  width: 100%;
+}
+.ct-count_black span {
+  position: relative;
+  top: 15px;
+}
+.ct-count_black p {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  color: #FFF;
+  font-size: 16px;
+  font-family: "Arial Black";
+  padding-bottom: 9px;
+  padding-top: 2px;
+  position: relative;
+  top: 34px;
+}
+
+.deixe_seu_email {
+  margin-top:70px;
+  margin-left:auto;
+  margin-right:auto;
+  width: 400px;
+  color: #FFF;
+  font-family:"Arial Black";
+  text-align:center;
+}
+
+.input {
+  margin-top:20px;
+  margin-left:auto;
+  margin-right:auto;
+  background:url(../../../../images/blackfriday/2021/CAMPO_EMAIL.png) no-repeat;
+  background-size: 500px;
+  width:500px;
+  height:72px;
+  border:0px solid #FFF;
+
+}
+
+
+#inputEmail{
+
+  border: none;
+  margin-top: 12px;
+  margin-left: 30px;
+  font-family: "Arial Black";
+  font-size: 25px;
+  height: 40px;
+  width: 430px;
+  text-align: center;
+
+}
+
+*:focus {
+    outline: none;
+}
+
+.formulario button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  float: right;
+  position: relative;
+  top: -53px;
+  right: -100px;
+}
+
+.formulario button span {
+  display: block;
+  width: 81px;
+  height: 67px;
+  background-size: 81px 67px !important;
+  background: url(../../../../images/blackfriday/2021/btn_.png) no-repeat;
+}
+.formulario button:active span {
+  background: url(../../../../images/blackfriday/2021/btn_on.png) no-repeat;
+}
+
+#infoAguarde{
+  display:none;
+  color:#FFF;
+  font-size:13px;
+  font-family: "Arial Black";
+  text-align:center;
+  margin-top:10px;
+  width:200px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@media screen and (min-width: 2200px) {
+  .faltam_bf{
+    font-size:80px;
+    padding-top:120px;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .faltam_bf{
+    font-size:60px;
+    width:400px;
+    padding-top:100px;
+  }
+  
+  .countdown_black li {
+    margin-top:20px;
+    border-radius: 9px;
+    margin-right: 7px;
+    font-size: 56px;
+    width: 88px;
+    height: 68px;
+  }
+
+  .ct-count_black span {
+    top: 15px;
+  }
+  
+  .ct-count_black p {
+    font-size: 16px;
+    top: 34px;
+  }
+
+}
+
+
+@media screen and (max-width: 1024px) {
+  .faltam_bf{
+    font-size:42px;
+    padding-top:85px;
+  }
+  
+  .countdown_black li {
+    margin-top:20px;
+    border-radius: 9px;
+    margin-right: 7px;
+    font-size: 44px;
+    width: 86px;
+    height: 65px;
+  }
+
+  .ct-count_black span {
+    top: 15px;
+  }
+  
+  .ct-count_black p {
+    font-size: 16px;
+    top: 34px;
+  }
+  
+  #inputEmail{
+    font-size: 25px !important;
+  }
+ 
+}
+
+@media screen and (max-width: 812px) {
+  .faltam_bf{
+    font-size:42px;
+    padding-top:80px;
+  }
+
+  .countdown_black li {
+    margin-top:20px;
+    border-radius: 9px;
+    margin-right: 7px;
+    font-size: 44px;
+    width: 86px;
+    height: 65px;
+  }
+
+  .ct-count_black span {
+    top: 15px;
+  }
+  
+  .ct-count_black p {
+    font-size: 16px;
+    top: 34px;
+  }
+
+  .deixe_seu_email {
+    margin-top:70px;
+    width: 400px;
+  }
+
+  .input {
+    margin-top:20px;
+    background-size: 500px;
+    width:500px;
+    height:72px;
+    position:relative;
+    left:-40px;
+
+  }
+
+  #inputEmail{
+    margin-top: 12px;
+    margin-left: 30px;
+    font-size: 25px !important;
+    height: 40px;
+    width: 430px;
+  }
+
+  .formulario button {
+    top: -53px;
+    right: -100px;
+  }
+
+  .formulario button span {
+    width: 81px;
+    height: 67px;
+    background-size: 81px 67px !important;
+  }
+  
+  
+  
+}
+
+@media screen and (max-width: 768px) {
+  .faltam_bf{
+    font-size:42px;
+    padding-top:75px;
+  }
+  
+  .countdown_black li {
+    margin-top:20px;
+    border-radius: 9px;
+    margin-right: 7px;
+    font-size: 44px;
+    width: 86px;
+    height: 65px;
+  }
+
+  .ct-count_black span {
+    top: 15px;
+  }
+
+  .ct-count_black p {
+    font-size: 16px;
+    top: 34px;
+  }
+
+  .logo_black_friday {
+    width:333px;
+    height:351px;
+
+  }
+
+
+  .logo_black_friday img {
+    width:333px;
+    height:351px;
+
+  }
+
+  .deixe_seu_email {
+    margin-top:70px;
+    width: 400px;
+    font-size:14px;
+  }
+
+  .input {
+    margin-top:20px;
+    background-size: 400px;
+    width:400px;
+    height:58px;
+    position:relative;
+    left:-40px;
+
+  }
+
+  #inputEmail{
+    margin-top: 11px;
+    margin-left: 30px;
+    font-size: 23px !important;
+    height: 30px;
+    width: 340px;
+  }
+
+  .formulario button {
+    top: -43px;
+    right: -90px;
+  }
+
+  .formulario button span {
+    width: 69px;
+    height: 57px;
+    background-size: 69px 57px !important;
+  }
+
+}
+
+@media screen and (max-width: 667px) {
+  
+  #content_bf {
+    height:1020px;
+  }
+  
+  
+  .faltam_bf{
+    font-size:40px;
+    padding-top:70px;
+  }
+  
+  .countdown_black li {
+    margin-top:20px;
+    border-radius: 9px;
+    margin-right: 7px;
+    font-size: 36px;
+    width: 71px;
+    height: 54px;
+  }
+
+  .ct-count_black span {
+    top: 15px;
+  }
+  
+  .ct-count_black p {
+    font-size: 15px;
+    top: 32px;
+  }
+  
+  .para_a{
+
+    width:92px;
+    height:27px;
+
+  }
+
+  .para_a img{
+    width:92px;
+    height:27px;
+  }
+
+  .logo_black_friday {
+    
+    width:275px;
+    height:290px;
+
+  }
+
+  .logo_black_friday img {
+    width:275px;
+    height:290px;
+
+  }
+  
+  .deixe_seu_email {
+    margin-top:70px;
+    width: 400px;
+    font-size:14px;
+  }
+
+  .input {
+    margin-top:20px;
+    background-size: 400px;
+    width:400px;
+    height:58px;
+    position:relative;
+    left:-40px;
+
+  }
+
+  #inputEmail{
+    margin-top: 11px;
+    margin-left: 30px;
+    font-size: 23px !important;
+    height: 30px;
+    width: 340px;
+  }
+
+  .formulario button {
+    top: -43px;
+    right: -90px;
+  }
+
+  .formulario button span {
+    width: 69px;
+    height: 57px;
+    background-size: 69px 57px !important;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  
+  
+  #content_bf {
+    height:900px;
+  }
+  
+  
+  .faltam_bf{
+    font-size:34px;
+    padding-top:65px;
+  }
+  
+  .countdown_black li {
+    margin-top:20px;
+    border-radius: 9px;
+    margin-right: 7px;
+    font-size: 30px;
+    width: 59px;
+    height: 45px;
+  }
+
+  .ct-count_black span {
+    top: 13px;
+  }
+  
+  .ct-count_black p {
+    font-size: 14px;
+    top: 29px;
+  }
+  
+  .para_a{
+	margin-top: 65px;
+    width:77px;
+    height:23px;
+
+  }
+
+  .para_a img{
+    width:77px;
+    height:23px;
+  }
+
+  .logo_black_friday {
+
+    width:229px;
+    height:241px;
+
+  }
+
+  .logo_black_friday img {
+
+    width:229px;
+    height:241px;
+  }
+  
+ 
+  .redes_sociais {
+    width:100px;
+  }
+  
+  .deixe_seu_email {
+    margin-top:70px;
+    width: 330px;
+    font-size:13px;
+  }
+
+  .input {
+    margin-top:20px;
+    background-size: 290px;
+    width:290px;
+    height:43px;
+    position:relative;
+    left:-30px;
+
+  }
+
+  #inputEmail{
+    margin-top: 5px;
+    margin-left: 18px;
+    font-size: 19px !important;
+    height: 25px;
+    width: 250px;
+  }
+
+  .formulario button {
+    top: -34px;
+    right: -68px;
+  }
+
+  .formulario button span {
+    width: 52px;
+    height: 42px;
+    background-size: 52px 42px !important;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  
+  
+  #content_bf {
+    height:830px;
+  }
+  
+  .faltam_bf{
+    font-size:26px;
+    padding-top:65px;
+  }
+  
+  .countdown_black li {
+    margin-top:20px;
+    border-radius: 8px;
+    margin-right: 7px;
+    font-size: 26px;
+    width: 51px;
+    height: 39px;
+  }
+
+  .ct-count_black span {
+    top: 12px;
+  }
+  
+  .ct-count_black p {
+    font-size: 12px;
+    top: 24px;
+  }
+  
+  .para_a{
+	margin-top: 55px;
+    width:67px;
+    height:20px;
+
+  }
+
+  .para_a img{
+    width:67px;
+    height:20px;
+  }
+
+  .logo_black_friday {
+    margin-top: 30px;
+
+    width:198px;
+    height:208px;
+
+  }
+
+  .logo_black_friday img {
+
+    width:198px;
+    height:208px;
+
+  }
+  
+  .deixe_seu_email {
+    margin-top:70px;
+    width: 290px;
+    font-size:12px;
+  }
+
+  .input {
+    margin-top:20px;
+    background-size: 250px;
+    width:250px;
+    height:37px;
+    position:relative;
+    left:-23px;
+
+  }
+
+  #inputEmail{
+    margin-top: 5px;
+    margin-left: 18px;
+    font-size: 16px !important;
+    height: 20px;
+    width: 215px;
+  }
+
+  .formulario button {
+    top: -29px;
+    right: -52px;
+  }
+
+  .formulario button span {
+    width: 42px;
+    height: 34px;
+    background-size: 42px 34px !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  
+  #content_bf {
+    height:820px;
+  }
+  
+  .faltam_bf{
+    font-size:23px;
+    padding-top:60px;
+  }
+  
+  .countdown_black li {
+    margin-top:20px;
+    border-radius: 8px;
+    margin-right: 7px;
+    font-size: 26px;
+    width: 51px;
+    height: 39px;
+  }
+
+  .ct-count_black span {
+    top: 12px;
+  }
+  
+  .ct-count_black p {
+    font-size: 12px;
+    top: 24px;
+  }
+  
+  .para_a{
+	margin-top: 55px;
+    width:67px;
+    height:20px;
+
+  }
+
+  .para_a img{
+    width:67px;
+    height:20px;
+  }
+
+  .logo_black_friday {
+    margin-top: 30px;
+    width:198px;
+    height:208px;
+
+  }
+
+  .logo_black_friday img {
+
+    width:198px;
+    height:208px;
+
+  }
+}
+
+@media screen and (max-width: 320px) {
+
+  #content_bf {
+    height:820px;
+  }
+  
+  .faltam_bf{
+    font-size:23px;
+    padding-top:60px;
+  }
+
+  .countdown_black li {
+    margin-top:20px;
+    border-radius: 8px;
+    margin-right: 7px;
+    font-size: 26px;
+    width: 51px;
+    height: 39px;
+  }
+
+  .ct-count_black span {
+    top: 12px;
+  }
+  
+  .ct-count_black p {
+    font-size: 12px;
+    top: 24px;
+  }
+  
+  .para_a{
+	margin-top: 55px;
+    width:67px;
+    height:20px;
+
+  }
+
+  .para_a img{
+    width:67px;
+    height:20px;
+  }
+
+  .logo_black_friday {
+    margin-top: 30px;
+
+    width:198px;
+    height:208px;
+
+  }
+
+  .logo_black_friday img {
+
+    width:198px;
+    height:208px;
+
+  }
+}
