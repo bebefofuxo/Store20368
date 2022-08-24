@@ -1,0 +1,457 @@
+/* topo */
+#topop {width: 100%; max-width: 1366px; margin:0 auto; padding:20px 0; border-bottom: 1px solid #dedede; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: space-between; -webkit-justify-content: space-between; -ms-justify-content: space-between; align-items:center; -webkit-align-items:center; -ms-align-items:center;}
+.topoespaco {margin-left:30px;}
+.topoespaco img {width:135px; height:5px;}
+.topologop img {height:84px;}
+.toposegp {font-size:16px; color:#685f52; margin-right:30px;}
+.toposegp img {height:30px; vertical-align:middle;}
+.toposegp span {margin-left:5px;}
+
+/* passos compra */
+#StepCheckout {font-size:12px; color:#666; margin:10px auto 30px auto;}
+#StepCheckout b {color:#333;}
+
+/* login */
+#idChkAllFC {width:100%; max-width:970px; margin-top:5px;}
+#idChkLoginIntFC {width:100%; max-width:558px; padding:20px; background-color:#FFFFFF;}
+#idChkLoginIntFC #idTxtLinkContinueFC {margin-left: 0 !important;}
+#idTabLoginFC #Email {font-size: 14px; padding: 3px 0 3px 3px; box-shadow: none; width:100% !important;} /* Observar em outras paginas */
+#idTabLoginFC #SenhaAtual {font-size: 14px; padding: 3px 0 3px 3px; box-shadow: none; width:100% !important;} /* Observar em outras paginas */
+#idCheckoutFC .EstChkOptSit {font-size: 14px;}
+#idChkMsgRemindPasswordFC {border-radius: 3px; -webkit-border-radius: 3px; -ms-border-radius: 3px; padding: 8px;}
+.EstChkMsg {background-color: #fbfbfb; padding: 3px;}
+.EstChkTxtMsg {color:#00ae7c; font-size: 12px;}
+.EstTxtErrField {color:#dc087f; background-color: #fff; padding: 3px; font-size: 12px;display: block;}
+
+/* cadastro */
+#idRegisterExtFC {width: 100%; max-width: 578px; margin:0 auto; padding:5px 15px 20px 15px;  border: 1px solid #dedede; border-radius: 4px; -webkit-border-radius: 4px; -ms-border-radius: 4px;}
+#idRegisterExtFC .EstTabTopo {font-size: 20px; font-weight:400; color:#685f52; background-color: #f8f8f8; padding:4px; border-top:5px solid #fff; border-bottom:10px solid #fff; }
+#idRegisterExtFC .EstNomeCampo {text-align:left}
+/* #idRegisterExtFC .InputText {outline: 0; border: 0; box-shadow: 0 1px 0 0 #e5e5e5; transition: box-shadow 150ms ease-out; border-top: 0px !important; border-left: 0px !important; border-right: 0px !important;} */
+#idRegisterExtFC p {text-align:center;}
+#idRegisterExtFC #idTabBotPreviousNextFC {margin-top:10px; }
+#idTabRegisterFC {width:100%}
+#idTxtCPFFC, #idTxtCEP1FC, #idTxtPhoneFC, #idTxtNascFC {font-family:Arial, Helvetica, sans-serif; font-size:11px !important}
+td.smtext label {font-size:14px;}
+.FCLabelForm { padding:5px 0 5px 0; margin-top:0px; }
+#idPreviousPageFC a, #idNextPageFC a {text-decoration:none; }
+#idRegisterFC #P2Mensagem {max-width:100%; height:100px; }
+#idChkFreightFC #idTxtNomeCEPFC {font-size:13px; font-weight:700; }
+#idChkFreightFC #idTxtCEPFreightFC {font-size:13px; font-weight:400; }
+#idChkFreightFC #idTxtPrecoCEPFC {font-size:13px; color:#685f52; font-weight:400; }
+#idTabRequiredFieldFC .smText {font-size:12px;}
+
+/* setup do botao voltar x continuar */
+#idPreviousPageFC a {border: none; border-radius: 5px; -webkit-border-radius: 5px; -ms-border-radius: 5px; padding: 12px 0 7px 0; background: #9f9f9f;}
+#idPreviousPageFC a .BotVerMais {font-size: 20px; font-weight: 700; padding: 0 15px 0 0; background:#9f9f9f;}
+#idNextPageFC a {border: none; border-radius: 5px; -webkit-border-radius: 5px; -ms-border-radius: 5px; padding: 12px 0 7px 0; background: #00ae7c;}
+#idNextPageFC a .BotVerMais {font-size: 20px; font-weight: 700; padding: 0 0 0 15px;}
+
+/* cadastro - nome do campo acima do formulario */
+.pass2 .EstTabQuadro td {display:block; }
+.pass2 .EstNomeCampo {margin-top: 15px; }
+.pass2 .InputText {font-size:14px; padding:5px 0 5px 5px; border-radius: 3px; -ms-border-radius: 3px; -webkit-border-radius: 3px; width:565px !important; height: 32px;}
+.pass2 .smSelect {font-size:14px; width:573px; height:36px;}
+.pass2 #P2SenhaCli, .pass2 #P2SenhaCliConfirma {width:555px !important;}
+.pass2 #idTxtNascFC {position:relative; top:-17px; left:20px;}
+.pass2 label[for=P2Boletins] {position:relative; top:-21px; left:17px; font-size:11px; font-family:Arial, Helvetica, sans-serif; }
+.pass2 #idTxtSenhaMinFC {text-align:center;}
+.pass2 #idTxtSenhaMinOriFC {font-size:11px !important; font-family:Arial, Helvetica, sans-serif; }
+.pass2 #idTxtLembreteFC {font-size:11px !important; font-family:Arial, Helvetica, sans-serif; }
+/* Retirar daqui caso queira colocar apenas na versao mobile */
+
+/* checkout */
+#idCheckoutFC div, #idCheckoutFC p, #idCheckoutFC td, #idCheckoutFC span, #idCheckoutFC em, #idCheckoutFC b, #idCheckoutFC li {font-family: 'Nunito', Arial, sans-serif !important;}
+#idChkTagsCol2FC, #idChkExtCartFC {position:relative !important; top:0 !important}
+#idCheckoutFC #idChkTopFC {height: 65px;}
+#idCheckoutFC td {text-align: left; vertical-align: middle;}
+#idCheckoutFC .smText {font-size: 12px; font-family:Arial, Helvetica, sans-serif; }
+#idChkCol1FC, #idChkCol2FC, #idChkCol3FC {display:block; float:left}
+#idCheckoutFC #idChkCol1FC {width: 48%; float: left; margin-right:4%}
+#idCheckoutFC #idChkCol2FC, #idCheckoutFC #idChkCol3FC {width: 48%;float: left;}
+#idChkRegisterIntFC, #idChkFreightIntFC, #idChkPaymentIntFC, #idChkCartIntFC {width: 93%; background-color: #fff;}
+#idChkPaymentIntFC p {font-size:14px;}
+.EstChkDiv {border: 1px solid #dedede; padding: 10px 15px; margin: 0px 0px 10px 0px;  border-radius: 3px; -webkit-border-radius: 3px; -ms-border-radius: 3px;}
+#idCheckoutFC .EstChkOrderConfirmationFC {left: 0px; width: 100%;}
+#idCheckoutFC .EstTitCheckoutFC {font-size: 20px; font-weight:400; color:#685f52;  background-color: #f8f8f8; border-radius: 0; text-align: left; margin-bottom: 15px; text-align:center;}
+#idCheckoutFC .EstChkTabTopo {font-size: 18px; font-weight:400; color:#685f52; background-color: #f8f8f8; padding: 5px 0px 5px 10px; border-radius: 0; border-bottom:10px solid #fff;}
+#idCheckoutFC .EstChkNomeCampo {font-size: 16px; font-weight:400; vertical-align: middle; text-align:left;}
+#idCheckoutFC .EstNomePagto {font-size: 14px; font-weight:400; padding-left: 10px;}
+#idCheckoutFC .EstTabPedidoRef, #idCheckoutFC .EstTabPedidoAdicItem, #idCheckoutFC .FCCartProdFilter {font-size:12px;}
+#idCheckoutFC .EstTabPedidoAdicNome {font-size:12px; font-weight:400}
+#idOptInFC .smText {padding-top: 9px;}
+#idChkFreightIntFC p {font-size: 14px; color:#685f52; margin:0; padding:0; border-bottom:10px solid #fff;}
+#idCheckoutFC #idLinkContinueFC {font-size: 24px; font-weight:400; color: #fff; text-decoration: none; text-transform:uppercase; padding: 0px;}
+#idCheckoutFC #idChkOrderConfirmationFloat {height: 70px; padding: 0px;}
+#idCheckoutFC #idDivLinkContinueFC {width:100%; height: 53px; max-width: 930px; margin: 0 auto; text-align:center; border: none; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: flex-end; -webkit-justify-content: flex-end; -moz-justify-content: flex-end; /* float: initial; */}
+#idCheckoutFC #idTabFreteOptFC {margin:0 auto;}
+#idCheckoutFC #idTxtExLocalFC {display: block;}
+#idCheckoutFC #idTableSenhaFC {width:100%;}
+#idCheckoutFC .EstChkLabelCat {display:none}
+#idCheckoutFC .EstChkValueCat {display:none}
+
+
+/* botao continuar / fechar pedido */
+#idCheckoutFC #idTxtLinkContinueFC {background-color: #00ae7c; padding:10px; border-radius: 3px; -webkit-border-radius: 3px; -ms-border-radius: 3px; width:100%; max-width:250px; cursor: pointer; }
+#idCheckoutFC #idTxtLinkContinueFC:hover {background-color: #16c18c;}
+
+#idTxtPaymentOpenFC {text-align:center;}
+
+/* tabela carrinho checkout */
+#TabItens {margin-top:15px; width:99%;}
+#TabItens #idCartItemsFC {background:#fafafa;}
+#TabItens .EstTabPedido {border-right:1px solid #fff;}
+#TabItens td.EstTabPedidoTit {font-family: 'Nunito', Arial, sans-serif; font-size:14px; font-weight:700; color:#685f52; border-radius:0; background:#f1f1f1; text-align:left; border-right:1px solid #fff;}
+#TabItens td.EstTabPedidoNome {text-decoration:none;}
+#TabItens td.EstTabPedidoTotal {border-radius:0; border-top:2px solid #fff; background:#fafafa;}
+#TabItens td.EstTabPedidoFrete {border-radius:0; background:#fafafa;}
+#TabItens #idColTotalPedidoVistaFC {border-radius:0; background:#f1f1f1; color:#685f52; font-weight:700; font-size:14px;}
+#TabItens #idTotalPedidoVistaFC {border-radius:0; background:#f1f1f1; color:#685f52; font-weight:700; font-size:14px;}
+#TabItens p {font-family: 'Nunito', Arial, sans-serif}
+#TabItens td {font-family: 'Nunito', Arial, sans-serif; font-size:14px;}
+#TabItens td td {padding:5px 0 5px 5px}
+#idCupomFC + tr + tr td {color:#960; font-weight:400; font-size:20px}
+#TabItens .FCCartQtyInput {text-align: right; width: 30px; height:14px; font-size:12px; font-family: 'Nunito', Arial, sans-serif; border-radius: 0;}
+#TabItens input[type="text"] {border:1px solid #d4d4d4; border-radius: 3px; -webkit-border-radius:3px; -ms-border-radius: 3px; color:#685f52; padding:3px;}
+#TabItens input:focus {border:1px solid #333}
+#TabItens #idTxtCupomFC {display:inline-block}
+#TabItens .FCPrice {font-size:14px;color:#685f52;}
+#TabItens .FCCartSubtotalsLabel {font-weight:400; color:#685f52;}
+#TabItens .FCCartItemsQty {font-weight:400; color:#685f52;}
+#TabItens .FCCartItemsPrice .FCPrice {font-weight:400; color:#685f52; font-size:16px;}
+#TabItens .FCCartCupomLabel {font-size:12px; font-family: 'Nunito', Arial, sans-serif; text-transform:uppercase;}
+
+/* ajustes e posicionamento dos campos dos Formularios - 24/04/2018 */
+#idChkTabRegisterFC .EstChkNomeCampo {text-align: left!important; margin-top:15px;}
+#idChkTabRegisterFC td {display: block;}
+#idTxtComentsFC br {content: ' '}
+#idTxtComentsFC br:after {content: ' '}
+/*.EstPedidoPrecoUnit, .EstPedidoQtd {display:none;}*/
+.EstPedidoPrecoUnit, .EstPedidoQtd {font-size:12px; font-weight:400}
+#idCheckoutFC .EstChkValorCampo {width: 100%; max-width:420px;}
+#idCheckoutFC .InputText {font-family: 'Nunito', Arial, sans-serif; font-size: 14px; border:1px solid #dedede; background-color: #fff; color:#685f52; padding:5px 0 5px 5px; border-radius: 3px;  -webkit-border-radius: 3px; -ms-border-radius: 3px; height:32px; width:100% !important;}
+#idChkRegisterFC .InputText {width:370px !important;}
+#idCheckoutFC .smSelect {font-family: 'Nunito', Arial, sans-serif; font-size: 14px; border:1px solid #dedede; background-color: #fff; color:#685f52;  padding:5px 0 5px 5px; border-radius: 3px;  -webkit-border-radius: 3px; -ms-border-radius: 3px; height:40px;}
+#idCheckoutFC  #P2Pais, #idCheckoutFC  #P2SexoFeminino, #idCheckoutFC #P2Mensagem {width:425px !important;}
+#idCheckoutFC  #P2SenhaCli, #idCheckoutFC  #P2SenhaCliConfirma  {width:350px !important;}
+#idCheckoutFC  #P2CPF, #idCheckoutFC  #P2CEP, #idCheckoutFC  #P2Telefone, #idCheckoutFC  #P2Celular, #idCheckoutFC  #P2DataNasc, #idCheckoutFC  #P2LembreteSenhaCli,  #idCheckoutFC  #P2PCEP, #idCheckoutFC  #P2PTelefone {width:420px !important;}
+#idChkRegisterFC  #P2CPF, #idCheckoutFC  #P2CEP, #idCheckoutFC  #P2Telefone, #idCheckoutFC  #P2Celular, #idCheckoutFC  #P2DataNasc, #idCheckoutFC  #P2LembreteSenhaCli,  #idCheckoutFC  #P2PCEP, #idCheckoutFC  #P2PTelefone {width:370px !important;}
+#idCheckoutFC #idDadosEntregaFC {width:100%;}
+#idCheckoutFC #idTxtDadosEntregaFC {position: relative; top: -18px; left: 18px;}
+#idCheckoutFC label[for=P2Boletins], #idCheckoutFC label[for=P2Presente] {position: relative; top: -18px; left: 18px;}
+#idCheckoutFC #idTabFreteOptFC input {position: relative; top: -9px; margin-right: 8px;}
+#idCheckoutFC #idTxtNomeCEPFC {font-size: 14px; font-weight:700;}
+
+/* cupom de desconto - 28/08/2018 */
+.FCCartCupomLabel-checkout {margin-top:10px;}
+.FCCartCupomInputCheckout {margin:10px 0;}
+#TabItens input#Cupom {width:140px; height:18px; font-size:14px; border-radius: 3px; -ms-border-radius: 3px; -webkit-border-radius:3px; padding: 3px 6px 4px 6px; -webkit-appearance: none;}
+#FCCartCupomButCheckout {margin-left: 8px; margin-top: 10px; background-color: #e5f3fc; color:#008ae1; border-radius: 3px; -webkit-border-radius: 3px; -ms-border-radius: 3px; border: 1px solid #008ae1; padding: 3px 20px; font-family: 'Nunito', Arial, sans-serif; font-size: 14px; font-weight:400; cursor: pointer;}
+#idTxtCupomFC {font-weight:400;}
+#idLegValorCupomFC {font-weight:400; color:#00ae7c;}
+
+/* cartao de credito */
+#idChkCCIntFC {width: 92%; margin: 10px auto; background: #fff;}
+#idCheckoutFC .EstDivParcels{margin-left: auto;margin-right: auto;width: 92%;}
+.EstSelParcels {height: 40px !important;}
+#idCheckoutFC .EstSelParcels {width: 100% !important;}
+
+/*new card's layout*/
+div#idChkCCIntFC {border: 0;padding: 0;margin-top: -3px;}
+td.EstChkTabTopo {display:none;}
+div#idChkCCIntFC .InputText{height: 32px !important; width:98% !important;}
+div#idChkCCIntFC select{height: 40px !important; width: 90px !important; font-size: 16px !important;}
+.EstSelParcels {margin-bottom: 10px;}
+.EstDivParcels {margin-bottom: 7px;}
+.EstSelParcels {font-size: 1em !important;}
+
+.EstSelParcels {-webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  user-select: none;}
+.EstSelParcels:focus {
+    outline: none !important;
+}
+
+#idChkCCIntFC td {display:block;}
+#idChkCCIntFC .EstChkTabTopo {display:none;}
+
+#idChkCCIntFC .P2ccMesExp {font-size: 16px !important;}
+#idChkCCIntFC .P2ccAnoExp {font-size: 16px !important;}
+
+#idTRccExpFC .smText {font-size: 16px !important;}
+
+
+/* rodape */
+.rodlinha2 {max-width:1306px; padding:40px 30px 30px 30px; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content:space-between; -webkit-justify-content:space-between; -ms-justify-content:space-between; flex-wrap:wrap; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap; margin: auto}
+.rod4p .rodt1 a {text-decoration:none; color:#685f52;}
+.rod4p img {height: 22px; margin: 0 5px 0 0;}
+.rod5pi {margin: 4px 0 0 0; width: 100%;}
+.rod5pi img {height: 32px; margin: 0 5px 2px 0;}
+.rod6pi img {height: 40px; margin: 0 5px 0 0;}
+.rodtxt3 {font-size:12px; line-height: 14px; font-weight:400; color:#685f52;}
+.rodtxt3 a {color:#685f52; text-decoration:none;}
+
+
+/* personalizacao formularios */
+.FCCheckout .inputsContainer input[type="text"],
+.FCCheckout .inputsContainer input[type="email"],
+.FCCheckout .inputsContainer input[type="password"],
+.FCCheckout .inputsContainer textarea,
+.FCCheckout .inputsContainer select{outline: 0; border: 0; box-shadow: 0 1px 0 0 #e5e5e5; transition: box-shadow 150ms ease-out; border-top: 0px; border-left: 0px; border-right: 0px; border-bottom:1px solid #e5e5e5; -webkit-appearance:none;}
+
+/* iOS */
+input[type='text'], input[type='number'], input[type='email'], input[type='password'], select:focus, textarea {font-size: 16px !important; -webkit-text-size-adjust: 100% !important;}
+input[type="text"]:focus, textarea:focus {-webkit-text-size-adjust: 100% !important; font-size: 16px !important;}
+
+
+@media screen and (max-width: 1024px) {
+/* topo */
+#topop {padding:15px 0;}
+.topologop img {height:50px;}
+}
+
+@media screen and (max-width: 980px) {
+#idCheckoutFC #idDivLinkContinueFC {max-width: 93%;}	
+}
+
+@media screen and (max-width:960px) {
+#idCheckoutFC #idChkCol1FC {width: 50%; margin-right: 2%;}
+}
+
+@media screen and (max-width: 812px) {
+#idCheckoutFC #idDivLinkContinueFC {max-width: 728px;}	
+#idCheckoutFC #idChkCol1FC {width: 100%; margin-right: 0%;}
+#idCheckoutFC #idChkCol2FC, #idCheckoutFC #idChkCol3FC {width: 100%;}
+/* rodape */
+.rod6p {margin-top: 30px; width: 100%; text-align: center;}
+}
+
+@media screen and (max-width:810px) {
+#idCheckoutFC #idDivLinkContinueFC {max-width: 92%;}	
+}
+
+@media screen and (max-width: 768px) {
+.topoespaco {margin-left:15px;}
+.toposegp   {margin-right:15px;}	
+#idCheckoutFC #idDivLinkContinueFC {max-width: 680px;}
+}
+
+@media screen and (max-width:767px) {
+#idCheckoutFC #idDivLinkContinueFC {max-width: 91%;}	
+}
+
+@media screen and (max-width: 736px) {
+#idCheckoutFC #idDivLinkContinueFC {max-width: 650px;}
+}
+
+@media screen and (max-width:735px) {
+#idCheckoutFC #idDivLinkContinueFC {max-width: 90%;}	
+}
+
+@media screen and (max-width: 667px) {
+#idCheckoutFC #idDivLinkContinueFC {max-width: 590px;}	
+/* rodape */
+.rod5pi img {height: 28px; margin: 0 5px 2px 0;}
+}
+
+@media screen and (max-width:666px) {
+#idCheckoutFC #idDivLinkContinueFC {max-width: 89%;}	
+}
+
+@media screen and (max-width: 640px) {
+.topoespaco img {width: 30px; height: 5px;}
+.toposegp span {display:none;}
+/* cadastro */
+#idRegisterExtFC {max-width: 590px; padding: 5px 10px 20px 10px;}
+/* checkout */
+#idCheckoutFC #idDivLinkContinueFC {max-width: 565px;}
+}
+
+@media screen and (max-width:639px) {
+/* cadastro */
+#idRegisterExtFC {max-width: 510px;}
+.pass2 .InputText {width:495px !important;}
+.pass2 .smSelect {width: 502px;}
+.pass2 #P2SenhaCli, .pass2 #P2SenhaCliConfirma {width: 475px !important;}
+td.smtext label {font-size:12px;}
+/* checkout */
+#idCheckoutFC #idDivLinkContinueFC {max-width: 88%;}	
+}
+
+@media screen and (max-width: 568px) {
+/* topo */
+.topoespaco {width:29px;}
+/* checkout */
+.FCCheckout #idFCContent {width: 90%;}	
+.FCCheckout #idChkLoginIntFC {width: 90%;}	
+#idCheckoutFC #idChkLoginIntFC {padding:15px 13px;}
+#idCheckoutFC #idDivLinkContinueFC {max-width: 472px;}
+/* rodape */
+.rod5p {margin-top:30px; width:100%;}
+.rod6p {margin-top:30px; text-align:left;}
+}
+
+@media screen and (max-width:567px) {
+/* cadastro */
+#idRegisterExtFC {max-width: 367px;}
+#idRegisterExtFC .EstNomeCampo {font-size: 13px;}
+#idRegisterExtFC .smText {font-size: 13px;}
+.pass2 .InputText {width:352px !important; font-size:13px;}
+.pass2 .smSelect {width: 360px; font-size:13px;}
+.pass2 #P2SenhaCli, .pass2 #P2SenhaCliConfirma {width: 350px !important;}
+.pass2 #idTxtSenhaMinOriFC {position: absolute; margin: 45px 0 0 0;}
+.pass2 label[for=P2Boletins] {top:-19px; left:17px;}
+/* checkout */
+#idCheckoutFC #idDivLinkContinueFC {max-width: 87%;}	
+}
+
+@media screen and (max-width: 560px) {
+/* checkout */	
+#idChkAllFC {width: 100%; max-width: 370px; margin-top: 0px;}	
+#idChkOrderConfirmationFC {position: fixed !important; top: initial !important; bottom: 0px !important; left: 0px; width: 100% !important; z-index: 1000; padding: 20px 0 30px 0; background: #f8f8f8;}
+#idCheckoutFC #idChkTopFC {text-align: center; height: 0px;}
+#idCheckoutFC #idChkOrderConfirmationFloat {width: 100%; padding: 0px;}
+#idCheckoutFC .EstChkOrderConfirmationFC {width: 100%; text-align: center;}
+/* botao continuar / finalizar pedido */
+#idRegisterFC #idTxtLinkContinueFC {margin-left: -45px !important; padding: 10px 45px !important;}
+#idCheckoutFC #idTxtLinkContinueFC {width: 100%; margin: 0 0 0 -18px; padding: 10px 55px;}	
+#idCheckoutFC #idDivLinkContinueFC {justify-content: center; -webkit-justify-content: center; -moz-justify-content: center;}
+#idCheckoutFC #idChkRegisterFC {text-align:left;}
+.EstChkDiv {padding: 10px 10px;}
+#idCheckoutFC .EstChkValorCampo {max-width:95%;}
+#idCheckoutFC  #P2Pais, #idCheckoutFC  #P2SexoFeminino, #idCheckoutFC #P2Mensagem {width:340px !important;}
+#idCheckoutFC  #P2SenhaCli, #idCheckoutFC  #P2SenhaCliConfirma  {width:74% !important;}
+#idCheckoutFC  #P2CPF, #idCheckoutFC  #P2CEP, #idCheckoutFC  #P2Telefone, #idCheckoutFC  #P2Celular, #idCheckoutFC  #P2DataNasc, #idCheckoutFC  #P2LembreteSenhaCli,  #idCheckoutFC  #P2PCEP, #idCheckoutFC  #P2PTelefone, #idCheckoutFC #P2Email, #idCheckoutFC #P2Nome, #idCheckoutFC #P2Endereco, #idCheckoutFC #P2EnderecoNum, #idCheckoutFC #P2EnderecoCompl, #idCheckoutFC #P2Bairro, #idCheckoutFC #P2Cidade, #idCheckoutFC #P2Estado, #idCheckoutFC #P2NomeLocal, #idCheckoutFC #P2PEndereco, #idCheckoutFC #P2PEnderecoNum, #idCheckoutFC #P2PEnderecoCompl, #idCheckoutFC #P2PBairro, #idCheckoutFC #P2PCidade, #idCheckoutFC #P2PEstado, #idCheckoutFC #P2Profissao {width:313px !important;}
+/* rodape */
+.rodlinha2 {padding: 30px 20px 30px 20px;}
+}
+
+@media screen and (min-width: 376px) and (max-width: 405px) {
+#idCheckoutFC .InputText {width:292px !important;}
+#idCheckoutFC  #P2CPF, #idCheckoutFC  #P2CEP, #idCheckoutFC  #P2Telefone, #idCheckoutFC  #P2Celular, #idCheckoutFC  #P2DataNasc, #idCheckoutFC  #P2LembreteSenhaCli,  #idCheckoutFC  #P2PCEP, #idCheckoutFC  #P2PTelefone {width:292px !important;}
+
+}
+
+@media screen and (max-width: 375px) {
+/* cadastro */
+#idRegisterExtFC {max-width: 330px;}
+.pass2 .InputText {width:315px !important;}
+.pass2 .smSelect {width: 323px;}
+.pass2 #P2SenhaCli, .pass2 #P2SenhaCliConfirma {width: 310px !important;}
+#idPreviousPageFC a {padding: 10px 0 7px 0;}
+#idPreviousPageFC a .BotVerMais {font-size:18px; font-weight: 400; padding: 0 10px 0 0;}
+#idPreviousPageFC img {height:22px !important;}
+#idNextPageFC a {padding: 10px 0 7px 0;}
+#idNextPageFC a .BotVerMais {font-size:18px; font-weight: 400; padding: 0 0 0 10px;}
+#idNextPageFC img {height:22px !important;}
+/* checkout */
+#idCheckoutFC .InputText {width:279px !important;}
+#idCheckoutFC  #P2Pais, #idCheckoutFC  #P2SexoFeminino, #idCheckoutFC #P2Mensagem {width:303px !important;}
+#idCheckoutFC  #P2SenhaCli, #idCheckoutFC  #P2SenhaCliConfirma  {width:70% !important;}
+#idCheckoutFC  #P2CPF, #idCheckoutFC  #P2CEP, #idCheckoutFC  #P2Telefone, #idCheckoutFC  #P2Celular, #idCheckoutFC  #P2DataNasc, #idCheckoutFC  #P2LembreteSenhaCli,  #idCheckoutFC  #P2PCEP, #idCheckoutFC  #P2PTelefone {width:279px !important;}
+#idCheckoutFC #P2Mensagem {width: 295px !important;}
+#idChkCCIntFC .InputText {width: 98% !important;}
+/* botao continuar / finalizar pedido */
+#idRegisterFC #idTxtLinkContinueFC {margin-left: -30px !important; padding: 10px 30px !important;}
+#idCheckoutFC #idTxtLinkContinueFC {padding: 10px 35px;}	
+}
+
+@media screen and (max-width: 360px) {
+/* topo */
+.topoespaco {width:26px;}
+.toposegp img {height: 26px;}	
+/* cadastro */
+#idRegisterExtFC {max-width: 305px;}
+.pass2 .InputText {width:290px !important;}
+.pass2 .smSelect {width: 300px;}
+.pass2 #P2SenhaCli, .pass2 #P2SenhaCliConfirma {width: 280px !important;}
+/* checkout */
+#idCheckoutFC .InputText {width:268px !important;}
+#idCheckoutFC  #P2Pais, #idCheckoutFC  #P2SexoFeminino, #idCheckoutFC #P2Mensagem {width:290px !important;}
+#idCheckoutFC  #P2SenhaCli, #idCheckoutFC  #P2SenhaCliConfirma  {width:70% !important;}
+#idCheckoutFC  #P2CPF, #idCheckoutFC  #P2CEP, #idCheckoutFC  #P2Telefone, #idCheckoutFC  #P2Celular, #idCheckoutFC  #P2DataNasc, #idCheckoutFC  #P2LembreteSenhaCli,  #idCheckoutFC  #P2PCEP, #idCheckoutFC  #P2PTelefone {width:268px !important;}
+#idCheckoutFC #P2Mensagem {width: 285px !important;}
+#idChkCCIntFC {width: 92%;}
+/* botao continuar / finalizar pedido */
+#idRegisterFC #idTxtLinkContinueFC {margin-left: -25px !important; padding: 10px 25px !important;}
+/* rodape */
+.rod5pi img {height: 28px;}
+}
+
+
+@media screen and (max-width: 350px) {
+#idCheckoutFC .InputText {width:250px !important;}
+#idCheckoutFC  #P2CPF, #idCheckoutFC  #P2CEP, #idCheckoutFC  #P2Telefone, #idCheckoutFC  #P2Celular, #idCheckoutFC  #P2DataNasc, #idCheckoutFC  #P2LembreteSenhaCli,  #idCheckoutFC  #P2PCEP, #idCheckoutFC  #P2PTelefone {width:250px !important;}
+}
+
+@media screen and (max-width: 320px) {
+/* cadastro */
+#idRegisterExtFC {max-width: 270px;}
+#idRegisterExtFC .EstTabTopo {font-size: 18px;}
+.pass2 .InputText {width:255px !important;}
+.pass2 .smSelect {width: 263px;}
+.pass2 #P2SenhaCli, .pass2 #P2SenhaCliConfirma {width: 242px !important;}
+#idRegisterExtFC #idTabBotPreviousNextFC #idImgBotNextPageFC {display:none; }
+#idPreviousPageFC a .BotVerMais {padding: 0 15px 0 15px;}
+#idRegisterExtFC #idTabBotPreviousNextFC #idImgBotPreviousPageFC {display:none; }
+#idNextPageFC a .BotVerMais {padding: 0 15px 0 15px;}
+/* checkout */
+#idCheckoutFC .InputText {width:247px !important;}
+#idChkAllFC {margin-left: -3px;}	
+#idCheckoutFC  #P2Pais, #idCheckoutFC  #P2SexoFeminino {width:262px !important;}
+#idCheckoutFC  #P2SenhaCli, #idCheckoutFC  #P2SenhaCliConfirma  {width:68% !important;}
+#idCheckoutFC  #P2CPF, #idCheckoutFC  #P2CEP, #idCheckoutFC  #P2Telefone, #idCheckoutFC  #P2Celular, #idCheckoutFC  #P2DataNasc, #idCheckoutFC  #P2LembreteSenhaCli,  #idCheckoutFC  #P2PCEP, #idCheckoutFC  #P2PTelefone {width:247px !important;}
+#idCheckoutFC #P2Mensagem {width:265px !important;}
+#TabItens .FCPrice, #idTotalItensFC, #idTxtItemFC, #idTxtTotalPedidoFC, #idColTotalPedidoVistaFC {font-size: 12px;}
+/* botao continuar / finalizar pedido */
+#idRegisterFC #idTxtLinkContinueFC {padding: 10px 9px !important; margin-left: -8px !important;}
+#idCheckoutFC #idTxtLinkContinueFC {width:220px; padding: 10px 18px;}
+#idChkOrderConfirmationFC #idTxtLinkContinueFC {width:100%; padding: 10px 18px;}
+/*#idCheckoutFC .smSelect {max-width:84%;}*/
+#idChkCCIntFC .InputText {width: 98% !important;}
+/* rodape */
+.rod5pi img {height: 25px;}
+  
+.EstSelParcels {font-size: 0.95em !important;}
+.EstChkRequiredField {color: #434343 !important}
+}
+
+@media screen and (min-width: 320px) {
+.EstChkRequiredField {color: #434343 !important}
+/*.EstDivParcels {width: 50%;float: right;margin-top: -38px;}*/
+
+}
+@media screen and (min-width: 375px) and (max-width: 410px) {
+.EstNomePagto {padding-left: 3px !important;font-size: 0.8em !important;}
+}
+@media screen and (min-width: 1025px) {
+	input[type='text'], input[type='number'], input[type='email'], input[type='password'], select:focus, textarea, {font-size: 14px !important;}
+}
+.EstTabPagto .EstChkNomeCampo {font-size: 16px !important; margin-top: 8px;}
+.EstNomePagto {padding: 14px 0;}
+#idCheckoutFC #P2ccSeg{width: 55px !important;margin-right: 10px;}
+#idTRccSegFC a, #idTRccSegFC a:visited{color:#434c54 !important;}
+
+#idCheckoutFC .BotChkPaymentContinue {background-color: #029302 !important; border-width:0 !important; border-radius: 5px !important; -webkit-border-radius: 5px !important; min-width: 200px !important; text-transform: uppercase !important; font-size: 14px !important; min-height: 50px !important; font-weight:normal !important; -webkit-appearance: none;}
+
+/* Discount Badges - Side Cart, Cart, Checkout, Track FERNANDO */
+.fc-cart-discount-badge-free{background:#8bc34a;border-radius:6px;color:#ffffff;font-size:1rem;min-width:30px;padding:5px;text-align:center;width:90%;margin:0 15px 10px 15px;}
+.fc-cart-discount-badge-discount{background:#44ac55;border-radius:6px;color:#ffffff;font-size:1rem;min-width:30px;padding:5px;text-align:center;width:90%;margin:0 15px 10px 15px;}
+
+/*Tiny Checkout*/
+#newContactDataDIV,#newAddressDataDIV,#newDeliveryDataDIV,#newContactPJDataDIV{border:1px solid lightgray;}
+#newAddressDataDIV,#newDeliveryDataDIV{margin-top:10px}
+#newAddressDataDIV div,#newDeliveryDataDIV div{overflow:hidden;}
+#newContactDataDIVSub2 p,#newAddressDataDIVSub2 p,#newDeliveryDataDIVSub2 p,#newContactPJDataDIVSub2 p{font-size: 0.9em;  margin: 9px 0;}
+#newContactDataDIV tr,#newAddressDataDIV tr,#newDeliveryDataDIV tr,#newDeliveryDataDIV tbody,#newContactPJDataDIV tr {display: block;}
+#newContactDataDIVSub1,#newContactDataDIVSub2,#newAddressDataDIVSub1,#newAddressDataDIVSub2,#newDeliveryDataDIVSub1,#newDeliveryDataDIVSub2,#newContactPJDataDIVSub1,#newContactPJDataDIVSub2 {margin:10px 0;padding:0 5px;}
+#newAddressDataDIVAlert,#newDeliveryDataDIVAlert{text-align: center;margin: 25px 5px;padding: 10px 0;}
+.hideFieldsConfig{display:none!important;}
+#idChkTabRegisterFC button{padding:8px 15px;background:#444;font-size:0.8rem;font-weight:700;color:#fff;border:none;outline:none;cursor:pointer;border-radius:3px;margin:5px 0 0 0;}
+#idChkULPlacesFC td {font-size:0.9em;line-height:18px;font-family:unset;}
+#newAddressDataDIV .EstTxtErrField,#newDeliveryDataDIV .EstTxtErrField{top:0;display:inline-block;}
+#idCheckoutFC #idChkCol3FC{float:right;}
