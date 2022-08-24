@@ -1,0 +1,15 @@
+/* Banner A Jato Home */
+.banner_ajato {display:none; width: 100%; max-width:1306px; margin: 30px auto 0 auto;}
+.banner_ajato img {width:100%; max-width:100%; }
+@media screen and (max-width: 1280px) {
+.banner_ajato {width: 96%;}
+}
+@media screen and (max-width: 768px) {
+.banner_ajato {width: 95%;}
+}
+@media screen and (max-width: 560px) {
+.banner_ajato {width: 94%;}
+}
+@media screen and (max-width: 360px) {
+.banner_ajato {width: 92%;}
+}
