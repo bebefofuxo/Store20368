@@ -1,0 +1,142 @@
+<script>
+var jahVerificado = false;
+var xhr = new XMLHttpRequest();
+var timerResposta;
+  
+function tratarResposta () {
+  			
+    	if (xhr.readyState == 4 && xhr.status == 200) {
+              	
+        	
+              
+            if (xhr.responseText == "1")
+            {
+              	
+             	var divResposta = document.getElementById('lblRetornoCupom');
+          		timerResposta = setTimeout(esconderResposta, 4000);
+            	divResposta.innerHTML = "Você já está cadastrado!";
+                jahVerificado=false;
+            }
+            else if (xhr.responseText == "2")
+            {
+              	var divResposta = document.getElementById('lblRetornoCupom');
+          		timerResposta = setTimeout(esconderResposta, 4000);
+            	divResposta.innerHTML = "Por favor, tente novamente.";
+                jahVerificado=false;
+            }
+            else
+            {
+               jahVerificado=true;
+               var divResposta = document.getElementById('lblRetornoCupom');
+  			   divResposta.innerHTML = "";
+               alert("Eba! =) <br><br> Você recebeu o cupom de primeira compra em seu e-mail!")
+            }
+         }
+         else
+         {
+         	jahVerificado=false;
+         }
+
+}
+  
+function validacaoEmail(field) {
+var usuario = field.value.substring(0, field.value.indexOf("@"));
+var dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+ 
+if ((usuario.length >=1) &&
+    (dominio.length >=3) &&
+    (usuario.search("@")==-1) &&
+    (dominio.search("@")==-1) &&
+    (usuario.search(" ")==-1) &&
+    (dominio.search(" ")==-1) &&
+    (dominio.search(".")!=-1) &&
+    (dominio.indexOf(".") >=1)&&
+    (dominio.lastIndexOf(".") < dominio.length - 1)) {
+return true;
+}
+else{
+return false;
+}
+}
+  
+function verificarUsuarioCadastrado() {
+  	
+  
+  //função desativada devido entrada da Mailbiz
+  
+    var txtField = document.querySelector(".zfnewsinput").children[0];
+  
+  
+  
+    if(validacaoEmail(txtField))
+    {
+      /*
+        var divResposta = document.getElementById('lblRetornoCupom');
+    	divResposta.innerHTML = "Gerando cupom. Aguarde...";
+  
+  	
+  
+		if(jahVerificado==true)
+		{
+			return true;
+   		}
+  	
+  		xhr.onreadystatechange = tratarResposta;
+    	xhr.open("GET","https://bebefofuxo.net/scripts/cupom_primeira_compra/enviarEmail.php?emailUsuario="+txtField.value,true);
+  
+  	
+    
+    	xhr.send();
+        */
+      	alert("Eba! =) <br><br> Você foi cadastado e recebeu um e-mail com o código do cupom! Seu cupom de primeira compra é: <br><br>20BEMVINDO<br><br> Clique em OK e comece a usar o seu cupom!");
+      	window.location= "https://www.bebefofuxo.com.br/home.asp?IDLoja=20368&cupom=20BEMVINDO";
+  		return false;
+    }
+    else
+    {
+    	var divResposta = document.getElementById('lblRetornoCupom');
+    	divResposta.innerHTML = "E-mail inválido. Corrija-o e tente novamente.";
+      
+        return false;
+    }
+  
+  
+    
+}
+
+function esconderResposta(){
+  var divResposta = document.getElementById('lblRetornoCupom');
+  divResposta.innerHTML = "";
+  clearTimeout(timerResposta);
+}
+  
+function mostrarInfo(){
+  var divResposta = document.getElementById('lblRetornoCupom');
+  divResposta.innerHTML = "Gerando cupom. Aguarde...";
+  
+  
+}    
+    
+</script>
+
+<link href="../lojas/00020368/htm/css/home.css" rel="stylesheet" type="text/css">
+<div class="zfnewsletter">
+<form name="FormCadNewsletter" method="GET" action="" onSubmit="return verificarUsuarioCadastrado();" class="formCupom" novalidate>
+<input type="hidden" name="IDLoja" value="<IDLojaNum>">
+<input type="hidden" name="Y" value="<Y>">
+<input type="hidden" name="FormatoHTML" value="True">
+<div class="zfnewscont">
+  <div class="zfnewsbloco1"><img src="<PathTo file="images/selo_ganhe_20.svg">" alt="Ganhe R$ 20" title="Ganhe R$ 20"></div>
+  <div class="zfnewsbloco2">
+    <div class="zfnewstit">GANHE R$ 20,00 NA 1<span class="ordinal">a</span> COMPRA!</div>
+    <div class="zfnewstxt">Cadastre seu email e receba o cupom de desconto.&nbsp;<br>(Insira o código diretamente no carrinho de compras)<div class="mntext">Válido para compras acima de R$ 250,00.&nbsp;<br>Cupom de uso único e não cumulativo com outras promoções.</div></div>
+  </div>
+  <div class="zfnewsbloco3">
+    <div class="zfnewsinput"><input type="email" name="Email" placeholder="Digite aqui o seu E-mail"></div>
+    <div class="zfnewsbutton"><button type="submit" name="ok" value="Enviar">Obter Cupom</button></div>
+  </div>
+  
+</div>
+  </form>
+  <div id="lblRetornoCupom" style="text-align:center;"></div>
+</div>
