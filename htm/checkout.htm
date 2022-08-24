@@ -1,0 +1,1634 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="<baseloja>htm/js/vanillamaskermin.js"></script>
+<script src="<BaseLoja>htm/js/jqueryMask.js"></script>
+<style>
+.escondePais{display: none !important;}
+#idTxtCPFFC {display: none !important;}
+</style>
+<div id=StepCheckout></div>
+<div class="FCCheckoutLogin"><Login></div>
+<div class="FCCheckoutMain">  
+  <div id="idChkTopFC" class="FCChkOrderConfirmationFloat"><OrderConfirmation></div>  
+  <div id="idChkCol1FC" class="FCRegisterChk"><Register></div>
+  <div id="idChkCol2FC" class="FCFreightChk">
+    <span id="idChkIniCol2FC"></span>
+    <div id="idChkTagsCol2FC"><OrderCompletion><Freight><Payment></div>
+  </div>
+  <div id="idChkCol3FC" class="FCCartChk"><Cart></div>
+  <div id="idChkBottomFC"></div>
+</div>
+
+<script>
+
+var primeiraTentativaPesquisarCEP = true;
+  
+//======================================================== AJUSTE DE INFO DE FRETE NO CHECKOUT
+//se não fizer esse ajuste aparecem dados divergentes na seção de escolher o frete e no resumo da compra no fim do checkout
+//isso ocorre porque adicionamos dias no prazo dado pelos Correios via código e também porque mudamos os nomes das transportadoras cadastradas via código
+function ajusteInfoFreteResumoCompra()
+{
+  
+  //verificando se tem algum checkbox de frete selecionado
+  var count_checked = $("#idTabFreteOptFC input[type='radio']:checked").length;
+  
+  //se não tiver nada selecionado, apagar texto descritivo do frete no detalhamento da compra
+  if(count_checked == 0)
+  {
+     var ac = $(".EstTabPedidoFrete");
+     ac[0].innerHTML = "";
+  }
+  
+  //verificando quantas opções de frete aparece para o cliente - se for apenas uma opção de frete não vai ter input type radio
+  var count_elements = $("#idTabFreteOptFC input[type='radio']").length;
+  
+  
+  if(count_elements > 0)
+  {
+      //executando função para todo checkbox selecionado
+      $("#idTabFreteOptFC input[type='radio']:checked").each(function() {
+        
+        //guardar id do checkbox selecionado
+        var idVal = $(this).attr("id");
+    
+        //guardando os textos que são apresentados para o usuário na parte de escolher o frete
+        var textosFrete = $("label[for='"+idVal+"']").children();
+      
+        
+        //tratar apenas se for SEDEX ou PAC. Essas duas formas de envio tem tamanho do array igual a 4
+        if(textosFrete.length>2)
+        {
+          
+           //div onde a informação vai ser colocada, fica no fim do checkout, na parte de resumo do pedido
+           var ac = $(".EstTabPedidoFrete");
+          
+           //zerando a informação que está nessa div
+           ac[0].innerHTML = "";
+        
+        
+           var ac = $(".EstTabPedidoFrete");
+    
+           //tipo de frete
+           var tipoFrete = textosFrete[0].innerHTML.replace(":", "");
+           localStorage.setItem("formaEntrega",tipoFrete);
+    
+           //montagem do texto
+           var s1 = "Envio: CEP ";
+           var s2 = F$.CEPEnvio;
+           var s3 = "<br>(";
+           var s4 = tipoFrete;
+           var s5 = ")<br><span class='smText'>";
+          
+          var s6 = "";
+          
+          if(tipoFrete != 'ENTREGA A JATO')
+          {
+            /*ajuste no texto devido ao ENVIANDO NORMALMENTE colocado no site durante greve dos Correios*/
+      	   s6 = textosFrete[3].innerText.substring(0, 13)
+           if (s6.slice(-1)=="E") s6 = s6.substring(0,12);
+           
+          }
+          
+          var s7 = "</span> &nbsp; Frete:";
+           var textFreteFinal = s1 + s2 + s3 + s4 + s5 + s6 + s7;
+    
+           ac[0].innerHTML = textFreteFinal;
+    
+        }
+        
+      
+    
+    
+    });
+  }
+  else
+  {
+      //se for apenas uma opção de frete
+    
+      //obtendo o elemento onde ficam as informações sobre frete apresentada para o cliente
+      $("#idTabFreteOptFC label").each(function() {
+      var textosFrete = $(this).children();
+      
+      //div onde a informação vai ser colocada, fica no fim do checkout, na parte de resumo do pedido
+      var ac = $(".EstTabPedidoFrete");
+    
+      //tipo do frete
+      var tipoFrete = textosFrete[0].innerHTML.replace(":", "");
+      localStorage.setItem("formaEntrega",tipoFrete);
+    
+      //montagem do texto
+      var s1 = "Envio: CEP ";
+      var s2 = F$.CEPEnvio;
+      var s3 = "<br>(";
+      var s4 = tipoFrete;
+      var s5 = ")<br><span class='smText'>";
+      /*ajuste no texto devido ao ENVIANDO NORMALMENTE colocado no site durante greve dos Correios*/
+      var s6 = textosFrete[3].innerText.substring(0, 13)
+      if (s6.slice(-1)=="E") s6 = s6.substring(0,12);
+      var s7 = "</span> &nbsp; Frete:";
+    
+      var textFreteFinal = s1 + s2 + s3 + s4 + s5 + s6 + s7;
+    
+      ac[0].innerHTML = textFreteFinal;
+    
+    
+    
+    
+    });
+  }
+
+}
+
+//======================================================== AJUSTE DE DADOS DE NOME DA TRANSPORTADORA e PRAZO DOS CORREIOS
+function ajustePrazo_Dados_Frete()
+{
+	//primeiraTentativaPesquisarCEP = false;
+  	//calcula prazo pre-venda prevenda
+    //var prazoPreVenda = calcularPrazoPreVenda();
+	prazoPreVenda = 0;
+  
+ 	if(prazoPreVenda != 0)
+    {
+      
+      	$("#idTitFreightFC").after("<div style='color:red;font-size:13px;padding-bottom:10px;'>Prazo diferenciado: seu pedido contém item em pré-venda</div>");
+    }
+
+
+  
+  //variável para guardar se é area restrita ou não
+  //var areaRestrita = false;
+
+  var tem_retirar_loja = false;
+  
+  //executar função para cada label de observação contida nas informações do frete
+  $("[id=idTxtObsCEPFC]").each(function( index ) {
+    
+    
+    //obtendo a label em questão
+    var array = $("[id=idTxtNomeCEPFC]").toArray();
+    
+    //extraindo o nome do serviço de entrega
+    var nomeServico = array[index].innerText;
+    
+    
+    if(nomeServico == "DIRETALOG:" || nomeServico == "REDE SUL:" || nomeServico == "CARRIERS:" || nomeServico == "FM Transportes:" || nomeServico == "JT Express:")
+    {
+      	array[index].innerText = "Entrega Expressa:";
+      
+      
+      	var textoLabel = $(this).text();
+    	
+      	var array = textoLabel.split(" ");
+        
+        var dias;
+      	if(array.length == 6)
+        {
+          //prazo retornado pelos Correios + qtde extra de dias adicionado pela loja
+    	  dias = parseInt(array[3]) + prazoPreVenda;
+        }
+      	else if(array.length == 3)
+        {
+          //prazo retornado pelos Correios + qtde extra de dias adicionado pela loja
+    	  dias = parseInt(array[0]) + prazoPreVenda;
+        }
+          
+        //definindo o texto com "dias úteis"
+    	var diasUteis = dias+" dias úteis";
+      
+      	$(this).text(diasUteis);
+      
+      	//comentar após fim da greve dos Correios
+      	//$(this).html($(this).html() + "<div style='margin-left:5px;font-size:11px;margin-top:5px;display:inline;margin-top:5px;padding-left:5px;padding-right:5px;width:158px;background-color:#008ae1;color:white'>ENVIANDO NORMALMENTE</div>");
+    }
+    
+    if(nomeServico == "PEX:")
+    {
+      
+      	array[index].innerText = "ENTREGA A JATO:";
+      
+      	if(window.localStorage.getItem('entrega_jato') == 1)
+        {
+        	var idInputPEX = "#" + $(this).parent().prop("for");
+      		$(idInputPEX).prop("checked",true).trigger("click");
+      	  
+        }
+      	
+      	texto_entrega = "Você receberá seu pedido <span style='color:#008ae1'><b>" + qual_dia() + "!</b></span> &#x1F680;";
+      	
+      
+      	$(this).html(texto_entrega);
+      
+      	//comentar após fim da greve dos Correios
+      	//$(this).html($(this).html() + "<div style='margin-left:5px;font-size:11px;margin-top:5px;display:inline;margin-top:5px;padding-left:5px;padding-right:5px;width:158px;background-color:#008ae1;color:white'>ENVIANDO NORMALMENTE</div>");
+    }
+    
+    if(nomeServico == "Retirar na loja:")
+    {
+      
+      var textoLabel = $(this).text();
+    	
+      var array = textoLabel.split(" ");
+        
+      var dias;
+      if(array.length == 6)
+      {
+         //prazo retornado pelos Correios + qtde extra de dias adicionado pela loja
+    	 dias = parseInt(array[3]) + prazoPreVenda;
+      }
+      else if(array.length == 3)
+      {
+         //prazo retornado pelos Correios + qtde extra de dias adicionado pela loja
+    	 dias = parseInt(array[0]) + prazoPreVenda;
+      }
+          
+      //definindo o texto com "dias úteis"
+      var diasUteis = dias+" dias úteis";
+      
+      
+      $(this).html("Prazo para separação do pedido: "+diasUteis+".<br> Endereço: <strong>Av. Líder, 3158 - Cidade Líder - São Paulo, SP</strong> <br> Horário de funcionamento: 8:30 às 17:00 (segunda a sexta)");
+      
+      tem_retirar_loja = true;
+      
+    }
+    
+    //tratamento de prazo para quando for PAC ou SEDEX
+    if(nomeServico == "Encomenda PAC:" || nomeServico == "SEDEX:")
+    {
+    
+        //Extraindo a informação contida na label, normalmente é obs do frete cadastrada na loja + (x dias úteis) - Manaus (15 dias úteis)
+        //Quando é area de entrega restrita o websevice dos Correios não retorna prazo de entrega, ficando apenas a obs do frete cadastrada na loja
+    	var textoLabel = $( this ).text();
+      
+      	var array = textoLabel.split(" ");
+        
+        var dias;
+      	if(array.length == 6)
+        {
+          //prazo retornado pelos Correios + qtde extra de dias adicionado pela loja
+    	  dias = parseInt(array[3]) + prazoPreVenda;
+        }
+      	else if(array.length == 3)
+        {
+          //prazo retornado pelos Correios + qtde extra de dias adicionado pela loja
+    	  dias = parseInt(array[0]) + prazoPreVenda;
+        }
+        
+
+      	//definindo o texto com "dias úteis" - REATIVAR DEPOIS QUE PRAZOS NORMALIZAREM
+    	var diasUteis = dias+" dias úteis";
+      
+      	$(this).text(diasUteis);
+    }
+    
+  });
+  
+  //jogar o retirar na loja para última opção
+  if(tem_retirar_loja)
+  {
+    $("[id=idTxtObsCEPFC]").each(function( index ) {
+
+      //obtendo a label em questão
+      var array = $("[id=idTxtNomeCEPFC]").toArray();
+
+      //extraindo o nome do serviço de entrega
+      var nomeServico = array[index].innerText;
+
+      if(nomeServico == "Retirar na loja:")
+      {
+        var elemento_retirar = $(this).parent().parent().parent();
+        elemento_retirar.insertAfter(elemento_retirar.parent().find("tr").last());
+        elemento_retirar.css("height",elemento_retirar.height()+40);
+        return false;
+      }
+    });
+  }
+  
+  
+  
+  $("#idTabFreteOptFC label:contains('_')").parent().parent().hide();
+  
+  //AJUSTE PROBLEMA CONEXAO COM SERVICO EXTERNO DE FRETE
+  var array = $("[id=idTxtNomeCEPFC]").toArray();
+ 
+  
+  //se tem muitas opções de frete é que deu problema na consulta externa
+  if(array.length >= 5)
+  {
+    var sCEP = $("#P2CEP").val();
+    //AjaxExecFC("https://bebefofuxo.net/scripts/calculo_frete/falhaComunicacaoServicoFrete.php","cep="+ sCEP,false,fnprocessErroConsultaFrete);
+    
+    if(primeiraTentativaPesquisarCEP == false)
+  	{
+      var temPAC = false;
+      var elementoSEDEX;
+
+      for(var i = 0; i < array.length; i++)
+      {
+        if(array[i].innerText == "Entrega Expressa:" || array[i].innerText == "ENTREGA A JATO:" || array[i].innerText == "Retirar na loja:" || array[i].innerText == "Enviado virtualmente:")
+        {
+          array[i].parentNode.parentNode.parentNode.remove();
+        }
+        else if (array[i].innerText == "Encomenda PAC:")
+        {
+          temPAC = true;
+        }
+        else if (array[i].innerText == "SEDEX:")
+        {
+          elementoSEDEX = array[i];
+        }
+      }
+
+      //permitir que o cliente escolha apenas PAC, visto que deu problema na busca pelo frete
+      if(temPAC == true)
+      {
+        elementoSEDEX.parentNode.parentNode.parentNode.remove();
+      }
+    }
+    else
+    {
+      	primeiraTentativaPesquisarCEP = false;
+      
+      	$("#idTxtFreightFC").remove();
+        $("#idTabFreteOptFC").remove();
+        
+        var oEntrega=document.getElementById("idTitFreightFC");
+        var oNewElement=document.createElement("div");
+      	oNewElement.id = "idTxtErrFreightFC";
+    	oNewElement.innerHTML="<p>Aguarde um pouco</p>";
+    	fnInsertAfter(oNewElement,oEntrega);
+      
+      	var pesoTotal = 1000;
+    
+        pesoTotal = pesoTotal/1000;
+
+        var valorCarrinho = $("#idTotalItensFC .FCPriceValue")[0].innerText;
+        valorCarrinho = valorCarrinho.replace(",",".");
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = fnprocessExisteTransportadora;
+        xhr.open("GET","https://bebefofuxo.net.br/scripts/calculo_frete/existe_transportadora.php?cep="+sCEP+"&peso="+pesoTotal+"&valor="+valorCarrinho,true);
+        xhr.send();
+    }
+    
+  }
+  
+  var temCorreios = false;
+  var temTransportadora = false
+  for(var i = 0; i < array.length; i++)
+  {
+    if(array[i].innerText == "Entrega Expressa:")
+    {
+      temTransportadora = true;
+    }
+    else if(array[i].innerText == "Encomenda PAC:" || array[i].innerText == "SEDEX:")
+    {
+      temCorreios = true;
+    }
+  }
+  
+  if(temCorreios == true && temTransportadora == true)
+  {
+    for(var i = 0; i < array.length; i++)
+    {
+      if(array[i].innerText == "Entrega Expressa:")
+      {
+        array[i].innerText = "Transportadora:";
+      }
+    }
+  }
+  
+  
+  /*
+  if(areaRestrita == true){
+    avisoAreaRestrita();
+  }
+  */
+  
+  var opcoesFrete = $("#idTabFreteOptFC label");
+  
+  //console.log(opcoesFrete.length);
+
+}
+  
+function fnprocessExisteTransportadora(obj)
+{
+  
+  if (this.readyState == 4 && this.status == 200)
+  {
+
+    
+    if(this.responseText != "null" && this.responseText != null)
+    {
+		var obj = JSON.parse(this.responseText);
+      
+      	if(obj["tem_transportadora"] == true)
+        {
+          	var cep;
+          
+          	if($("#P2DadosEntrega")[0].checked)
+            {
+              cep = "'"+$("#P2PCEP").val()+"'";
+            }
+          	else
+            {
+              cep = "'"+$("#P2CEP").val()+"'";
+            }
+
+          	
+          	F$.fnUpdateCEP(cep,true);
+          	
+        }
+      	else
+        {
+          	$("#idTxtErrFreightFC")[0].innerText = "CEP INVÁLIDO";
+          
+          	if($("#P2DadosEntrega")[0].checked)
+            {
+              	$("#idTxtErrFieldP2PCEPFC").text("CEP inválido");
+          		$("#idErrFieldP2PCEPFC").show();
+            }
+          	else
+            {
+              	$("#idTxtErrFieldP2CEPFC").text("CEP inválido");
+          		$("#idErrFieldP2CEPFC").show();
+            } 
+          	
+          	
+          
+          
+          
+        }
+    }
+  }
+  else if (this.readyState == 4 && this.status == 0)
+  {
+    var cep;
+
+    if($("#P2DadosEntrega")[0].checked)
+    {
+      cep = "'"+$("#P2PCEP").val()+"'";
+    }
+    else
+    {
+      cep = "'"+$("#P2CEP").val()+"'";
+    }
+
+
+    F$.fnUpdateCEP(cep,true);
+  }
+}
+
+  
+//alerta avisando sobre entrega restrita - não está ativo atualmente
+function alertaEntregaRestrita()
+{
+  alert("Pode ser que seu pedido demore um pouquinho mais para ser entregue ou pode ser necessário você ir retirar o seu pedido na agência dos Correios mais próxima.\n\nPara maiores explicações entre em contato conosco: atendimento@bebefofuxo.com.br");
+}
+  
+  
+//aviso de area restrita apresentado no layout da loja - não está ativo atualmente
+function avisoAreaRestrita()
+{
+  var elemAviso = document.createElement('div');
+  //elemAviso.innerHTML = "<strong>ATENÇÃO: </strong> No momento, seu CEP está como área de entrega restrita pelos os Correios e isso pode ocasionar atraso na entrega do seu pedido. Para maiores explicações entre em contato conosco: atendimento@bebefofuxo.com.br";
+  elemAviso.innerHTML = "*área com entrega restrita - <a href='javascript:alertaEntregaRestrita();'>saiba mais</a>";
+  elemAviso.style.backgroundColor = "#fff5d5";
+  elemAviso.style.color = "#976b00";
+  elemAviso.style.padding = "1px 1px 1px 1px";
+  elemAviso.style.margin = "0px 0px 3px 0px";
+  elemAviso.style.lineHeight = "1.5";
+  elemAviso.style.fontSize  = "11px";
+  
+  var elemTabelaFrete = document.getElementById('idTabFreteOptFC');
+  
+  var superTD = elemTabelaFrete.parentNode;
+  //superTD.insertBefore(elemAviso,elemTabelaFrete);
+  superTD.appendChild(elemAviso);
+}
+  
+  var bShowCupomCheckout=true;
+  function FuncChkRegisterEnd(){
+  
+    fnShowStep(F$.Step);
+
+    if(F$.Step==1){
+
+      fnShowBadgeCartCheckout();
+      
+      function hideCountry(){
+        var hideCountry = F$.GetID("P2Pais");
+        var hideCountryEntrega = F$.GetID("P2PPais");
+        (hideCountry.parentNode.parentNode).setAttribute("style", "display:none;");
+        (hideCountryEntrega.parentNode.parentNode).setAttribute("class", "escondePais");
+        /*cupom*/
+        if(bShowCupomCheckout)fnShowCupom();
+        /*cupom*/
+      }
+      hideCountry();
+      /*masks*/
+      function inputHandler(masks, max, event) {
+        var c = event.target;
+        var v = c.value.replace(/\D/g, '');
+        var m = c.value.length > max ? 1 : 0;
+        VMasker(c).unMask();
+        VMasker(c).maskPattern(masks[m]);
+        c.value = VMasker.toPattern(v, masks[m]);
+      }
+
+      var telMask = ['(99) 9999-99999', '(99) 99999-9999'];
+      var tel = document.querySelector('#P2Telefone');
+      VMasker(tel).maskPattern(telMask[0]);
+      tel.addEventListener('input', inputHandler.bind(undefined, telMask, 14), false);
+      
+      var telp = document.querySelector('#P2PTelefone');
+      VMasker(telp).maskPattern(telMask[0]);
+      telp.addEventListener('input', inputHandler.bind(undefined, telMask, 14), false);
+
+      var docMask = ['999.999.999-999', '99.999.999/9999-99'];
+      var doc = document.querySelector('#P2CPF');
+      VMasker(doc).maskPattern(docMask[0]);
+      doc.addEventListener('input', inputHandler.bind(undefined, docMask, 14), false);
+
+
+      document.querySelector('#P2Celular').maxLength='15';
+      document.querySelector('#P2EnderecoNum').maxLength='10';
+      document.querySelector('#P2PEnderecoNum').maxLength='10';
+      
+      if(window.localStorage.vales)
+      {
+        var vales = JSON.parse(window.localStorage.vales);
+        
+        for(var i = 0; i < vales.length; i++)
+        {
+          var vale = vales[i];
+          var index = i+1;
+          $("#P2Mensagem").text($("#P2Mensagem").text()+index+"*Tipo: "+vale["tipo"]+"*De: "+vale["De"]+"*Para: "+vale["Para"]+"*Envio: "+vale["forma_envio"]+"*Dados: "+vale["dados_envio"]+"--------");
+        }
+        
+        
+      }
+         
+      
+      //sumir com campo comentário
+      $("#P2Mensagem").parent().parent().hide();
+      $("#idCommentsConfirmation").parent().hide();
+      $("#idTxtComentsFC").parent().hide();
+      $("#idForcaSenhaFC").hide();
+      
+      
+
+      $("#P2CEP").keydown(function(){
+        $("#idErrFieldP2CEPFC").hide();
+      });
+
+      $("#P2PCEP").keydown(function(){
+        $("#idErrFieldP2PCEPFC").hide();
+      });
+
+      $("#idTxtCEP2FC .smText").html("<a href='#1' onclick='MostraPesquisaCEP()'>Clique se não souber</a>");
+      $("#idTxtPhoneFC").hide();
+      $("#idTxtPhone2FC").hide();
+      
+      /*
+      var cepMask = ['99999-999'];
+      var cep = document.querySelector('#P2CEP');
+      VMasker(cep).maskPattern(cepMask[0]);
+      cep.addEventListener('input', inputHandler.bind(undefined, cepMask, 9), false);
+      
+      
+      cep = document.querySelector('#P2PCEP');
+      VMasker(cep).maskPattern(cepMask[0]);
+      cep.addEventListener('input', inputHandler.bind(undefined, cepMask, 9), false);
+      */
+      
+      var nascMask = ['99/99/9999'];
+      var nasc = document.querySelector('#P2DataNasc');
+      VMasker(nasc).maskPattern(nascMask[0]);
+      nasc.addEventListener('input', inputHandler.bind(undefined, nascMask, 10), false);
+      
+      var celMask = ['(99) 9999-99999', '(99) 99999-9999'];
+      var cel = document.querySelector('#P2Celular');
+      if(cel)
+      {
+        VMasker(cel).maskPattern(celMask[0]);
+        cel.addEventListener('input', inputHandler.bind(undefined, celMask, 14), false);
+      }
+      
+
+      var ehCNPJ = false;
+      if($("#idCPFFC")[0].children[0].innerHTML == "CNPJ:")
+      {
+        ehCNPJ = true;
+      }
+
+      //evitar caracter especial em campos de nome e endereço
+      var funcaoCaracteres1 = function(e) {
+        var chr = String.fromCharCode(e.which);
+        if (">?&%*#@!+<$\/".indexOf(chr) >= 0)
+        {
+          alert(chr + " é um caracter inválido para esse campo");
+          this.focus();
+          return false;
+        }
+      };
+
+      var funcaoCaracteres2 = function(e) {
+        var chr = String.fromCharCode(e.which);
+        if (">?<$".indexOf(chr) >= 0)
+        {
+          alert(chr + " é um caracter inválido para esse campo");
+          this.focus();
+          return false;
+        }
+      };
+      
+      var funcaoTamanhoNumero1 = function(e) {
+        var num_txt = document.querySelector('#P2EnderecoNum').value;
+        if (num_txt.length >= 10)
+        {
+          alert("Para adicionar mais informações, utilize o campo Complemento");
+          this.focus();
+          return false;
+        }
+      };
+      
+      var funcaoTamanhoNumero2 = function(e) {
+        var num_txt = document.querySelector('#P2PEnderecoNum').value;
+        if (num_txt.length >= 10)
+        {
+          alert("Para adicionar mais informações, utilize o campo Complemento");
+          this.focus();
+          return false;
+        }
+      };
+
+
+      document.getElementById("P2Nome").onkeypress = funcaoCaracteres1;
+      document.getElementById("P2Endereco").onkeypress = funcaoCaracteres2;
+      document.getElementById("P2EnderecoCompl").onkeypress = funcaoCaracteres2;
+      document.getElementById("P2Bairro").onkeypress = funcaoCaracteres2;
+      document.getElementById("P2Cidade").onkeypress = funcaoCaracteres2;
+      document.getElementById("P2EnderecoNum").onkeypress = funcaoTamanhoNumero1;
+
+      document.getElementById("P2Para").onkeypress = funcaoCaracteres1;
+      document.getElementById("P2PEndereco").onkeypress = funcaoCaracteres2;
+      document.getElementById("P2PEnderecoCompl").onkeypress = funcaoCaracteres2;
+      document.getElementById("P2PBairro").onkeypress = funcaoCaracteres2;
+      document.getElementById("P2PCidade").onkeypress = funcaoCaracteres2;
+      document.getElementById("P2PEnderecoNum").onkeypress = funcaoTamanhoNumero2;
+
+
+      //caso campos do CC estejam abertos e não tenha valor nos campos CPF, Data de Nascimento e Telefone, estamos fazendo com que os dados sejam copiados para lá depois que o campo do cadastro perder o foco
+      $("#P2CPF").focusout(function(){
+
+        if($("#P2TitularCPF").length > 0)
+        {
+          var oP2CPF=F$.GetID("P2CPF");
+          if(oP2CPF){
+            var oP2TitularCPF=F$.GetID("P2TitularCPF");
+            if(oP2TitularCPF && !ehCNPJ)oP2TitularCPF.value=oP2CPF.value;
+          }
+        }
+      });
+
+      $("#P2DataNasc").focusout(function(){
+
+        if($("#P2TitularNasc").length > 0)
+        {
+          var oP2DataNasc=F$.GetID("P2DataNasc");
+          if(oP2DataNasc){
+            var oP2TitularNasc=F$.GetID("P2TitularNasc");
+            if(oP2TitularNasc)oP2TitularNasc.value=oP2DataNasc.value;
+          }
+        }
+      });
+
+      $("#P2Telefone").focusout(function(){
+		coletar_dados_wa();
+        verificar_wa_cadastrado();
+        if($("#P2TitularFone").length > 0)
+        {
+          var oP2TitularFone=F$.GetID("P2TitularFone");
+
+          if(oP2TitularFone.value == "")
+          {
+            var oP2Telefone=F$.GetID("P2Telefone");
+            if(oP2Telefone){
+              if(oP2TitularFone)oP2TitularFone.value=oP2Telefone.value;
+            }
+          }
+
+        }
+      });
+
+
+      $("#P2Celular").focusout(function(){
+
+        if($("#P2TitularFone").length > 0)
+        {
+          var oP2Celular=F$.GetID("P2Celular");
+          if(oP2Celular){
+            var oP2TitularFone=F$.GetID("P2TitularFone");
+            if(oP2TitularFone)oP2TitularFone.value=oP2Celular.value;
+          }
+        }
+      });
+
+      $("#P2Nome").focusout(function(){
+        coletar_dados_wa();
+
+      });
+      
+      $("#P2Email").focusout(function(){
+        coletar_dados_wa();
+
+      });
+
+
+      /*-----Tiny Checkout-----*/
+      //if(FC$.ClientID == 4141467 || FC$.ClientID == 11206651)
+      //{
+        FCLib$.fnLoadScript(FC$.PathHtm+'js/tinycheckout.js?cccfc=5',true);
+      if(idChkExtRegisterFC&&oStoreConfig$.Show_TinyCheckout[0]&&window.innerWidth<=812)window.onscroll='';
+      if(idChkExtRegisterFC&&oStoreConfig$.Show_TinyCheckout[0]&&window.innerWidth>812){
+        window.document.addEventListener('scroll',function(){
+          idChkExtRegisterFC.style.minHeight=idChkCol2FC.offsetHeight+idChkCol3FC.offsetHeight+'px';
+        });
+      }
+      //}
+      
+      /*-----FIM Tiny Checkout-----*/
+
+
+    }
+    else if(F$.Step==2){
+      window.onscroll=null;
+      document.getElementById('idChkTagsCol2FC').style.position='relative';
+      document.getElementById('idChkExtCartFC').style.position='relative';
+      /*cupom*/
+      window.onscroll=null;
+      document.getElementById('idChkTagsCol2FC').style.position='relative';
+      document.getElementById('idChkExtCartFC').style.position='relative';
+      jQuery('#idTitCartFC').css({'background':'none', 'color' : '#4d4d4d', 'text-transform': 'inherit', 'padding-left': '0px'});
+      /*cupom*/
+      
+      /* No Tiny Checkout, remove fixed da primeira coluna no passo final */
+      function removeFixedDivStep2(){
+        var idChkExtRegisterFC=document.getElementById("idChkExtRegisterFC");
+        if(idChkExtRegisterFC&&idChkExtRegisterFC.style.position=="fixed")idChkExtRegisterFC.style.position="relative";
+      }
+      //if(FC$.ClientID == 4141467 || FC$.ClientID == 11206651  || FC$.ClientID == 6693681)
+      //{
+      if(oStoreConfig$.Show_TinyCheckout[0])removeFixedDivStep2();
+
+      if(idChkExtRegisterFC&&oStoreConfig$.Show_TinyCheckout[0]&&window.innerWidth>812){
+        idChkExtRegisterFC.style.minHeight='0px'
+        window.document.addEventListener('scroll',function(){
+          idChkExtRegisterFC.style.minHeight='0px';
+        });
+      }
+      //}
+      /* FIM - No Tiny Checkout, remove fixed da primeira coluna no passo final */
+    }
+
+    //=============== AJUSTE FRETE
+    ajustePrazo_Dados_Frete();
+
+  }
+  
+  function fnShowBadgeCartCheckout(){
+
+    /* Discount Badges */
+    var showBadgeFree=document.querySelectorAll('[rulename*="free"] .EstTabPedido');
+    var showBadgeDiscount=document.querySelectorAll('[rulename*="discount"] .EstTabPedido');
+    var createDivElemFree=document.createElement("div");
+    createDivElemFree.className="fc-cart-discount-badge-free";
+    createDivElemFree.innerHTML="GRÁTIS";
+    
+    for(var i=0;i<showBadgeFree.length;i++){showBadgeFree[i].appendChild(createDivElemFree);}
+    for(var i=0;i<showBadgeDiscount.length;i++)
+    {
+      var createDivElemDiscount=document.createElement("div");
+      createDivElemDiscount.className="fc-cart-discount-badge-discount";
+      createDivElemDiscount.innerHTML="DESCONTO";
+      showBadgeDiscount[i].appendChild(createDivElemDiscount);
+    }
+  }
+
+function FuncChkFreightEnd(){
+
+  //=============== AJUSTE FRETE
+  ajusteInfoFreteResumoCompra();
+  ajustePrazo_Dados_Frete();
+ 
+  
+
+}
+
+function FuncChkPaymentBegin(){
+
+  //=============== AJUSTE FRETE
+  ajusteInfoFreteResumoCompra();
+  
+}
+
+
+function FuncChkPaymentEnd(){
+  
+  coletar_dados_wa();
+  verificar_wa_cadastrado();
+  
+  //ajuste layout
+  $("[id*='idPagto']").each(function(index,item) {
+  
+    item.children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0].style.marginLeft = "30px";
+    item.children[0].children[0].children[0].children[0].style.marginTop = "7px";
+    item.children[0].children[0].children[0].children[0].style.marginBottom = "7px";
+});
+  
+  
+  
+  //mudança de texto das formas de pagamento
+  
+  //FuncChkChangeTxtPagto("16","<label for=Pagto16>VISA Electron (débito - à vista)</label>"); 
+  //FuncChkChangeTxtPagto("25","<label for=Pagto25>MasterCard Maestro (débito - à vista)</label>"); 
+  /*
+  FuncChkChangeTxtPagto("3_2","<label for=Pagto3_2>Diners - até 6x sem juros</label>"); 
+  FuncChkChangeTxtPagto("3_7","<label for=Pagto3_7>Elo - até 6x sem juros</label>"); 
+  FuncChkChangeTxtPagto("3_3","<label for=Pagto3_3>MasterCard - até 6x sem juros</label>"); 
+  FuncChkChangeTxtPagto("3_4","<label for=Pagto3_4>VISA - até 6x sem juros</label>"); 
+  FuncChkChangeTxtPagto("3_1","<label for=Pagto3_1>American Express - até 6x sem juros</label>"); 
+  FuncChkChangeTxtPagto("3_5","<label for=Pagto3_5>Hipercard - até 6x sem juros</label>");
+  */
+  
+  /*
+  //troca de posição
+  var elemMaestro = document.getElementById('idPagto25FC');
+  var tdPai = elemMaestro.parentNode;
+  tdPai.removeChild(elemMaestro);
+  tdPai.appendChild(elemMaestro);
+  
+  var elemVisaElectron = document.getElementById('idPagto16FC');
+  tdPai.removeChild(elemVisaElectron);
+  tdPai.appendChild(elemVisaElectron);
+  */
+  
+  //alterando posições das formas de pagamento
+  
+  
+  var elemElo = document.getElementById('idPagtoCC7FC');
+  var tdPai = elemElo.parentNode;
+  
+  
+  //var elemElo = document.getElementById('idPagtoCC7FC');
+  tdPai.removeChild(elemElo);
+  tdPai.appendChild(elemElo);
+  
+  var elemHipercard = document.getElementById('idPagtoCC5FC');
+  tdPai.removeChild(elemHipercard);
+  tdPai.appendChild(elemHipercard);
+  
+  /*
+  var elemDinners = document.getElementById('idPagtoCC2FC');
+  tdPai.removeChild(elemDinners);
+  tdPai.appendChild(elemDinners);
+  */
+  
+  var elemAmex = document.getElementById('idPagtoCC1FC');
+  tdPai.removeChild(elemAmex);
+  tdPai.appendChild(elemAmex);
+
+  
+  
+  var elemTroca = document.getElementById('idPagto9FC');
+  
+  
+  if (elemTroca != null)
+  {
+      tdPai.removeChild(elemTroca);
+      tdPai.appendChild(elemTroca);
+  }
+  
+  var elemCupom = document.getElementById('idPagto10FC');
+  
+  if (elemCupom != null)
+  {
+      tdPai.removeChild(elemCupom);
+      tdPai.appendChild(elemCupom);
+  }
+  
+  
+  
+  
+  
+  //nome do grupo de forma de pagamento
+  //CREDITO
+  var elemTituloCredito = document.createElement('div');
+  elemTituloCredito.innerHTML = "<div style='width: 60%; float:left;'>Cartão de Crédito<div>";
+  elemTituloCredito.style.backgroundColor = "#f2f2f2";
+  elemTituloCredito.style.color = "#666666";
+  elemTituloCredito.style.padding = "5px 0px 5px 8px";
+  elemTituloCredito.style.margin = "10px 0px 10px 0px";
+  elemTituloCredito.style.height = "24px";
+  elemTituloCredito.style.lineHeight = "24px";
+  
+  //adicionar logo da cielo
+  /*
+  var logoCielo = document.createElement('img');
+  logoCielo.style.height = "18px";
+  logoCielo.style.width = "53px";
+  logoCielo.style.margin = "3px 8px 3px";
+  logoCielo.src = "<baseloja>images/logoCielo.png";
+  logoCielo.style.float = "right";
+  
+  elemTituloCredito.appendChild(logoCielo);
+  */
+  
+  
+  var elemMastercard = document.getElementById('idPagtoCC3FC');
+  tdPai.insertBefore(elemTituloCredito,elemMastercard);
+  
+  
+  
+  
+  /*
+  //DEBITO
+  var elemTituloDebito = document.createElement('div');
+  elemTituloDebito.innerHTML = "<div style='width: 50%; float:left;'><strong>CARTÃO DE DÉBITO</strong></div>";
+  elemTituloDebito.style.backgroundColor = "#f2f2f2";
+  elemTituloDebito.style.color = "#666666";
+  elemTituloDebito.style.padding = "5px 0px 5px 8px";
+  elemTituloDebito.style.margin = "10px 0px 10px 0px";
+  elemTituloDebito.style.height = "24px";
+  elemTituloDebito.style.lineHeight = "24px";
+  
+  var logoCieloDois = document.createElement('img');
+  logoCieloDois.style.height = "18px";
+  logoCieloDois.style.width = "53px";
+  logoCieloDois.style.margin = "3px 8px 3px";
+  logoCieloDois.src = "<baseloja>images/logoCielo.png";
+  logoCieloDois.style.float = "right";
+  
+  elemTituloDebito.appendChild(logoCieloDois);
+   
+  tdPai.insertBefore(elemTituloDebito,elemMaestro);
+  */
+  
+  if (elemTroca != null)
+  {
+      var elemTituloTroca = document.createElement('div');
+      elemTituloTroca.innerHTML = "Troca";
+      elemTituloTroca.style.backgroundColor = "#f2f2f2";
+      elemTituloTroca.style.color = "#666666";
+      elemTituloTroca.style.padding = "5px 0px 5px 8px";
+      elemTituloTroca.style.margin = "10px 0px 10px 0px";
+   
+      tdPai.insertBefore(elemTituloTroca,elemTroca);
+  }
+  
+  if (elemCupom != null)
+  {
+      var elemTituloCupom = document.createElement('div');
+      elemTituloCupom.innerHTML = "Cupom";
+      elemTituloCupom.style.backgroundColor = "#f2f2f2";
+      elemTituloCupom.style.color = "#666666";
+      elemTituloCupom.style.padding = "5px 0px 5px 8px";
+      elemTituloCupom.style.margin = "10px 0px 10px 0px";
+   
+      tdPai.insertBefore(elemTituloCupom,elemCupom);
+  }
+  
+  //remover desconto automático da FAST
+  
+  if($(".EstTabPagtoTit").length > 0)
+  {
+    var textoDesconto = $( ".EstTabPagtoTit" ).text();
+  
+  	var n = textoDesconto.indexOf("(");
+  	var m = textoDesconto.indexOf(")");
+  	var desconto = textoDesconto.substring(n+1, m);
+  
+  	//colocar a informação de desconto junto ao nome da forma de pagamento Boleto Bancário
+ 	FuncChkChangeTxtPagto("1","<label for=Pagto1>Boleto bancário <br><span id='descontoGreen'><font color='#2ab837'><b>" + desconto + " de DESCONTO</b></font></span></label>");
+  
+  	$( ".EstTabPagtoTit" ).remove();
+  }
+  else
+  {
+    //nome do grupo de forma de pagamento
+    //BOLETO
+    var elemBoleto = document.getElementById('idPagto1FC');
+
+    if(elemBoleto)
+    {
+      var elemTituloBoleto = document.createElement('div');
+      elemTituloBoleto.innerHTML = "<div style='width: 60%; float:left;'>Boleto Bancário<div>";
+      elemTituloBoleto.style.backgroundColor = "#f2f2f2";
+      elemTituloBoleto.style.color = "#666666";
+      elemTituloBoleto.style.padding = "5px 0px 5px 8px";
+      elemTituloBoleto.style.margin = "10px 0px 10px 0px";
+      elemTituloBoleto.style.height = "24px";
+      elemTituloBoleto.style.lineHeight = "24px";
+      elemTituloBoleto.id = "idTituloBoleto";
+
+
+      tdPai.appendChild(elemTituloBoleto);
+
+
+      tdPai.removeChild(elemBoleto);
+      tdPai.appendChild(elemBoleto);
+    }
+
+
+  }
+  
+  
+  //REMOVER BOLETO E FOR A JATO
+  //verificando se tem algum checkbox de frete selecionado
+  var count_checked = $("#idTabFreteOptFC input[type='radio']:checked").length;
+  
+  //se não tiver algo selecionado
+  if(count_checked == 1)
+  {
+    var idVal = $("#idTabFreteOptFC input[type='radio']:checked").attr("id")
+
+    //guardando os textos que são apresentados para o usuário na parte de escolher o frete
+    var textosFrete = $("label[for='"+idVal+"']").children();
+    
+    if(textosFrete[0].innerHTML.includes("JATO"))
+    {
+      var elemBoleto = document.getElementById('idPagto1FC');
+  	  tdPai.removeChild(elemBoleto);
+      
+      $('#idTituloBoleto').remove();
+    }
+  }
+  
+  
+  
+  
+  
+  
+  //verificando quantas opções de frete aparece para o cliente - se for apenas uma opção de frete não vai ter input type radio
+  var count_elements = $("#idTabFreteOptFC input[type='radio']").length;
+  
+  
+  
+  
+
+}
+
+  function cvv_oque()
+  {
+    alert('CVV é um código de segurança de 3 dígitos, impresso no verso de cartões de crédito.<br><br>Em cartões American Express você encontra o CVV com 4 dígitos e na frente.<br><br>Informar o código de segurança é uma exigência das administradoras de cartões para tornar suas compras on-line ainda mais seguras.');
+
+    $(".vex-theme-default").css("padding-top","80px");
+    $(".vex-theme-default").css("padding-bottom","0px");
+    
+    if(window.innerWidth < 470)
+    {
+      $(".vex-theme-default").css("padding-left","15px");
+      $(".vex-theme-default").css("padding-right","15px");
+    }
+
+  }
+
+function FuncChkCCEnd()
+{
+  
+  $("#idTRccSegFC a").attr("onclick","cvv_oque()");
+  $("#idTRccNumFC td").removeAttr("width");
+  $("#idTRccNumFC .EstChkNomeCampo").text("Número do cartão:");
+  
+  $('#idTRccNomeFC').insertBefore('#idTRccExpFC');
+  
+  $("#idTRccNomeFC .EstChkNomeCampo").text("Titular (impresso no cartão):");
+  $("#idTRccSegFC .EstChkNomeCampo").text("Código de segurança (CVV):");
+  
+
+  var selectParcelas = $("#idChkExtPaymentFC input[type='radio']:checked").parent().parent().parent().parent().parent()[0].getElementsByClassName("EstDivParcels")[0].children[0];
+  if(selectParcelas) selectParcelas.focus();
+  
+  var ehCNPJ = false;
+  if($("#idCPFFC")[0].children[0].innerHTML != "CNPJ:")
+  {
+      $("#idTRTitularCPFFC").hide();
+      $("#idTRTitularNascFC").hide();
+    
+      
+  }
+  else
+  {
+      ehCNPJ = true;
+  }
+  
+  
+  
+  $("#idTRTitularFoneFC").hide();
+  
+  var oP2CPF=F$.GetID("P2CPF");
+  if(oP2CPF){
+    var oP2TitularCPF=F$.GetID("P2TitularCPF");
+    if(oP2TitularCPF && !ehCNPJ)oP2TitularCPF.value=oP2CPF.value;
+  }
+  
+  var oP2Telefone=F$.GetID("P2Telefone");
+  var oP2Celular=F$.GetID("P2Celular");
+  if(oP2Celular && oP2Celular.value != ""){
+    var oP2TitularFone=F$.GetID("P2TitularFone");
+    if(oP2TitularFone)oP2TitularFone.value=oP2Celular.value;
+  }
+  else if(oP2Telefone)
+  {
+    var oP2TitularFone=F$.GetID("P2TitularFone");
+    if(oP2TitularFone)oP2TitularFone.value=oP2Telefone.value;
+  }
+  
+  var oP2DataNasc=F$.GetID("P2DataNasc");
+  if(oP2DataNasc){
+    var oP2TitularNasc=F$.GetID("P2TitularNasc");
+    if(oP2TitularNasc)oP2TitularNasc.value=oP2DataNasc.value;
+  }
+  
+  
+}
+
+//função que muda o nome da forma de pagamento
+function FuncChkChangeTxtPagto(sPagto,sTxt){
+var oPagto=F$.GetID("idTxtPagto"+ sPagto +"FC");
+if(oPagto){oPagto.innerHTML=sTxt;}
+}
+
+window.onload = function replaceTD() {
+  var matches = document.querySelectorAll("td");
+  for(var index in matches) {
+    if (matches[index].textContent === "Dados para contato") {
+    matches[index].textContent = "Dados Pessoais";}
+    }
+  }
+ 
+function fnShowStep(iStep){
+  console.log("iStep="+ iStep);
+  var oSteps=F$.GetID("StepCheckout");
+  if(oSteps){
+    var sContStep="";
+    if(iStep==0)sContStep="<img src='"+ FC$.PathImg +"ident_on.svg' alt='Identificação'><img src='"+ FC$.PathImg +"dados_off.svg' alt='Dados da Compra'><img src='"+ FC$.PathImg +"conf_off.svg' alt='Confirmação'><style>#idChkOrderConfirmationFC {display:none;}</style>";
+    else if(iStep==1)sContStep="<img src='"+ FC$.PathImg +"ident_off.svg' alt='Identificação'><img src='"+ FC$.PathImg +"dados_on.svg' alt='Dados da Compra'><img src='"+ FC$.PathImg +"conf_off.svg' alt='Confirmação'>";
+    else if(iStep==2)sContStep="<img src='"+ FC$.PathImg +"ident_off.svg' alt='Identificação'><img src='"+ FC$.PathImg +"dados_off.svg' alt='Dados da Compra'><img src='"+ FC$.PathImg +"conf_on.svg' alt='Confirmação'>";
+    oSteps.innerHTML=sContStep;
+  }
+}
+
+/*cupom*/
+function FuncChkRegisterBegin(){
+  if(F$.Step==1 && (F$.FreightValue=='' || F$.FreightValue==null)){
+    F$.GetID("idChkPaymentFC").innerHTML="<div id=idChkPaymentIntFC class=EstChkDiv><div id=idTitPaymentFC class=EstTitCheckoutFC>Pagamento</div><p>As op&ccedil;&otilde;es de pagamento ser&atilde;o exibidas ap&oacute;s a etapa da escolha do frete.</p></div>";
+  }
+  
+}
+
+  //TESTE DE ERRO
+  var valorFreteSelecinado = -1;
+
+  // Cupom Checkout
+  function FuncChkCartEnd(){
+
+    /*masks*/
+    function inputHandler(masks, max, event) {
+      var c = event.target;
+      var v = c.value.replace(/\D/g, '');
+      var m = c.value.length > max ? 1 : 0;
+      VMasker(c).unMask();
+      VMasker(c).maskPattern(masks[m]);
+      c.value = VMasker.toPattern(v, masks[m]);
+    }
+
+    var docMask = ['999.999.999-999'];
+    var docTitular = document.querySelector('#P2TitularCPF');
+    if(docTitular)
+    {
+      VMasker(docTitular).maskPattern(docMask[0]);
+      docTitular.addEventListener('input', inputHandler.bind(undefined, docMask, 14), false);
+      document.querySelector('#P2TitularCPF').maxLength='14';
+    }
+    
+    var nascMask = ['99/99/9999'];
+    var titularNasc = document.querySelector('#P2TitularNasc');
+    if(titularNasc)
+    {
+      VMasker(titularNasc).maskPattern(nascMask[0]);
+      titularNasc.addEventListener('input', inputHandler.bind(undefined, nascMask, 10), false);
+    }
+      
+    var titularFoneMask = ['(99) 9999-99999', '(99) 99999-9999'];
+    var titularFone = document.querySelector('#P2TitularFone');
+    if(titularFone)
+    {
+      VMasker(titularFone).maskPattern(titularFoneMask[0]);
+      titularFone.addEventListener('input', inputHandler.bind(undefined, titularFoneMask, 14), false);
+
+    }
+    
+    if(bShowCupomCheckout && F$.Step==1)fnShowCupom();  //Chama função que exibe campo para cupom
+    ajusteInfoFreteResumoCompra();
+
+    //TESTE DE ERRO
+    //verificar se existe o campo de frete no resumo do pedido - se existir, verificar se é igual ao frete selecionado - TESTE DE ERRO
+    var resumoPedidoFrete = $(".EstTabPedidoFrete");
+
+    if (resumoPedidoFrete)
+    {
+
+      //pegar valor do frete selecionado - TESTE DE ERRO
+      var valoresFrete = $("#idTabFreteOptFC label");
+
+      if(valoresFrete)
+      {
+
+        if(valoresFrete.length == 1)
+        {
+          var freteSelecionado = $("#idTabFreteOptFC .FCPrice")[0].innerText;
+          freteSelecionado = freteSelecionado.replace("R$ ","");
+          freteSelecionado = freteSelecionado.replace(" ","");
+          valorFreteSelecinado = freteSelecionado;
+        }
+        else
+        {
+          var freteSelecionado = $("#idTabFreteOptFC input[type='radio']:checked");
+
+          if(freteSelecionado.length > 0)
+          {
+            var dadosFreteSelecionado = freteSelecionado[0].defaultValue;
+            var strArray = dadosFreteSelecionado.split("|");
+            var valor = strArray[1];
+            valor = valor.replace(".",",");
+            valorFreteSelecinado = valor;
+          }
+
+        }
+      }
+
+
+      if(resumoPedidoFrete.length == 3)
+      {//console.log("2.1");
+        valorFreteResumo = $(".EstTabPedidoFrete")[1].innerText;
+
+        valorFreteResumo = valorFreteResumo.replace("R$ ","");
+        valorFreteResumo = valorFreteResumo.replace(" ","");
+
+        valorFreteResumo = valorFreteResumo.replace(",",".");
+        valorFreteSelecinado = valorFreteSelecinado.replace(",",".");
+
+        if(parseFloat(valorFreteResumo) != parseFloat(valorFreteSelecinado))
+        {
+          var sCEP = $("#P2CEP").val();
+          sCEP = sCEP + " *** Resumo: " + valorFreteResumo + "Frete Selecionado: " + valorFreteSelecinado;
+          //AjaxExecFC("https://bebefofuxo.net/scripts/calculo_frete/falhaComunicacaoServicoFrete.php","cep="+ sCEP,false,fnprocessErroConsultaFrete);
+        }
+
+      }
+    }
+
+  //================================= TESTE DE ERRO - FIM
+  
+}
+function fnShowCupom(){
+  var oCupom=document.getElementById("idCupom");
+  
+  if(oCupom)
+  {
+    oCupom.noWrap = false;
+    var a = $("#idValorCupomFC")[0]
+    var b = document.getElementById("FCCartCupomButCheckout");
+    if(a.childElementCount == 0 && !b)
+    {
+      $("#idTxtMsgCupomFC").after("<button id='FCCartCupomButCheckout' onclick='fnCupomDisapply()'>Trocar Cupom</button>");
+      $("#idTxtMsgCupomFC").after("<button id='FCCartCupomButCheckout' onclick='location.href=\"https://www.bebefofuxo.com.br\"'>Continuar Comprando</button>");
+            
+    }
+  }
+  
+  if(!oCupom && F$.Step==1){ //Se já tem cupom no cálculo não exibe campo de cupom. Só exibe no passo 1
+    var oInsert=document.getElementById("idCartItemsFC");
+    if(oInsert){
+      var oNewElement=document.createElement("tr");
+      oNewElement.setAttribute("id","CupomCheckout");
+      oNewElement.innerHTML="<td colspan='2' class='EstTabPedidoTotal'><div id='DivCupom'><div class='FCCartCupomLabel-checkout'>Informe seu Cupom (opcional):</div><div class='FCCartCupomInputCheckout'><input type='text' name='Cupom' id='Cupom' maxlength='30' class='FCCartCupomInput'><button id='FCCartCupomButCheckout' onclick='fnCupomApply()'>Aplicar Cupom</button></div></div></td>";
+      fnInsertAfter(oNewElement,oInsert);
+    }
+  }
+}
+function fnCupomApply(){
+  var oCupom=document.getElementById("Cupom");
+  if(oCupom){
+    ajusteInfoFreteResumoCompra();
+    var sCupom=oCupom.value;
+    if(sCupom!=""){AjaxExecFC("/faleconosco.asp","idloja="+ FC$.IDLoja+"&cupom="+ sCupom,false,fnCallBackCupom);}
+  }
+}
+
+function fnCupomDisapply(){
+
+   AjaxExecFC("/faleconosco.asp","idloja="+ FC$.IDLoja+"&cupom=''",false,fnCallBackCupomDisapply);
+
+}
+
+function fnCallBackCupomDisapply()
+{
+  F$.fnUpdateCart(); //Atualiza cart
+
+  setTimeout(
+    function(){
+      var oCupom=document.getElementById("idCupom");
+      if(oCupom)
+      {
+        oCupom.noWrap = false;
+        var a = $("#idValorCupomFC")[0]
+        var b = document.getElementById("FCCartCupomButCheckout");
+    	if(a.childElementCount == 0 && !b)
+        {
+          $("#idTxtMsgCupomFC").after("<button id='FCCartCupomButCheckout' onclick='fnCupomDisapply()'>Trocar Cupom</button>");
+          $("#idTxtMsgCupomFC").after("<button id='FCCartCupomButCheckout' onclick='location.href=\"https://www.bebefofuxo.com.br\"'>Continuar Comprando</button>");
+
+        }
+      }
+
+    }
+  ,500);
+}
+  
+function fnCallBackCupom(){
+  F$.fnUpdateCart(); //Atualiza cart
+  
+  setTimeout(
+    function(){
+      var oCupom=document.getElementById("idCupom");
+      if(oCupom)
+      {
+        oCupom.noWrap = false;
+        var a = $("#idValorCupomFC")[0]
+        var b = document.getElementById("FCCartCupomButCheckout");
+    	if(a.childElementCount == 0 && !b)
+        {
+          $("#idTxtMsgCupomFC").after("<button id='FCCartCupomButCheckout' onclick='fnCupomDisapply()'>Trocar Cupom</button>");
+          $("#idTxtMsgCupomFC").after("<button id='FCCartCupomButCheckout' onclick='location.href=\"https://www.bebefofuxo.com.br\"'>Continuar Comprando</button>");
+            
+        }
+      }
+      
+      if(!oCupom){
+        //Se atualizou cart e não tem cupom no cálculo é porque o cupom era inválido
+        var oDivCupom=document.getElementById("DivCupom");
+        if(oDivCupom){
+          var oNewElement=document.createElement("div");
+          oNewElement.setAttribute("id","MsgErrCupom");
+          oNewElement.innerHTML="<div style='color:#dc087f;padding:5px;font-size:13px;'>Cupom Inválido</div>";
+          fnInsertAfter(oNewElement,oDivCupom);
+        }
+      }
+    }
+  ,500);
+}
+
+function fnInsertAfter(newNode,referenceNode) {
+  referenceNode.parentNode.insertBefore(newNode,referenceNode.nextSibling);
+}
+/*cupom*/
+  
+  //verificar dia que a entreega a jato vai entregar
+  function qual_dia()
+  {
+	var achouDia = false;
+    
+    var hoje = new Date();
+    
+    var incremento = 0;
+    
+    var texto_dia = "";
+    
+    while(!achouDia)
+    {
+      
+      	if(incremento == 0 && hoje.getHours() < 11)
+        {
+          	if(!eh_feriado(hoje) && hoje.getDay() != 6 && hoje.getDay() != 0)
+            {
+              	texto_dia = "HOJE";
+              	break;
+            }
+          	else
+            {
+            	incremento++;
+            }
+            
+        }
+      	else
+        {
+        	incremento++;
+        }
+      
+      	var data_analisada = new Date();
+		data_analisada.setDate(hoje.getDate() + incremento);
+      
+      	if(!eh_feriado(data_analisada) && data_analisada.getDay() != 6 && data_analisada.getDay() != 0)
+        {
+        	achouDia = true;
+          	
+          	if(incremento == 1)
+            {
+            	texto_dia = "AMANHÃ";
+            }
+          	else
+            {
+              	if(data_analisada.getDay() == 1) texto_dia = "segunda-feira";
+              	else if(data_analisada.getDay() == 2) texto_dia = "terça-feira";
+              	else if(data_analisada.getDay() == 3) texto_dia = "quarta-feira";
+              	else if(data_analisada.getDay() == 4) texto_dia = "quinta-feira";
+              	else if(data_analisada.getDay() == 5) texto_dia = "sexta-feira";
+              
+            }
+        }
+
+    }
+
+    return texto_dia;
+
+
+  }
+  
+  //lista dde feriados deve ser atualizada anualmente
+  function eh_feriado(data)
+  {
+    var feriados = ["01/01","25/01","01/03","15/04","21/04","01/05","16/06","09/07","07/09","12/10","02/11","15/11","20/11","23/12","24/12","25/12","30/12","31/12"];
+
+    var dia = data.getDate();
+    var mes = data.getMonth() + 1;
+
+    var sDia = "";
+    var sMes = "";
+
+    if(dia < 10)
+    {
+      sDia = "0" + dia;
+    }
+    else
+    {
+      sDia = dia;
+    }
+
+    if(mes < 10)
+    {
+      sMes = "0" + mes;
+    }
+    else
+    {
+      sMes = mes;
+    }
+
+    var sData = sDia + "/" + sMes;
+
+    return feriados.includes(sData);
+  }
+  
+  function coletar_dados_wa()
+  {
+    var oP2Email=F$.GetID("P2Email");
+    if(oP2Email){
+      window.localStorage.setItem("email_wa", oP2Email.value);
+    }
+    
+    var oP2Nome=F$.GetID("P2Nome");
+    if(oP2Nome){
+      window.localStorage.setItem("nome_wa", oP2Nome.value);
+      
+      var nomes = oP2Nome.value.split(" ");
+      if(nomes.length > 1)
+      {
+          if(nomes[0] != "" && nomes[0] != " " && nomes[nomes.length-1] != "" && nomes[nomes.length-1] != " ")
+          {
+              	window.localStorage.setItem("primeiro_nome", nomes[0]);
+            	window.localStorage.setItem("ultimo_nome", nomes[nomes.length-1]);
+          }
+      }
+      
+    }
+    
+    var oP2DtNasc=F$.GetID("P2DataNasc");
+    if(oP2DtNasc){
+      window.localStorage.setItem("data_nasc", oP2DtNasc.value);
+    }
+    
+    var oP2Cidade=F$.GetID("P2Cidade");
+    if(oP2Cidade){
+      window.localStorage.setItem("cidade", oP2Cidade.value);
+    }
+    
+    var oP2Estado=F$.GetID("P2Estado");
+    if(oP2Estado){
+      window.localStorage.setItem("estado", oP2Estado.value);
+    }
+    
+    
+    
+    var oP2Celular=F$.GetID("P2Telefone");
+    if(oP2Celular){
+
+      var numero_tratado = "";
+      var numero = oP2Celular.value;
+      
+      numero = numero.replace(/ /g,'');
+      numero = numero.replace("(", "");
+      numero = numero.replace("(", "");
+      numero = numero.replace(")", "");
+      numero = numero.replace(")", "");
+      numero = numero.replace("-", "");
+      numero = numero.replace("-", "");
+      numero = numero.replace("-", "");
+      numero = numero.replace("-", "");
+      numero = numero.replace("+", "");
+      numero = numero.replace("+", "");
+      numero = numero.replace("+", "");
+      numero = numero.replace("+", "");
+      
+      if(numero.length == 11)
+      {
+        if(numero.substring(2, 3) == "9")
+        {
+          //telefone com 11 digitos e que começa com 9, celular válido
+          numero_tratado = "55" + numero;
+        }
+      }
+      else if(numero.length == 10)
+      {
+        if(numero.substring(2, 3) == "9" || numero.substring(2, 3) == "8" || numero.substring(2, 3) == "7")
+        {
+          //telefone com 10 digitos e que começa com 9,8 ou 7, celular válido após adicionar o 9 no inicio
+          numero_tratado = "55" + numero.substring(0, 2) + "9" + numero.substring(2);
+        }
+      }
+      
+      window.localStorage.setItem("celular_wa", numero_tratado);
+    }
+    
+  }
+  
+  function verificar_wa_cadastrado(){
+
+    var num_celular = window.localStorage.celular_wa;
+    
+    if(num_celular)
+    {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200)
+        {
+          if(this.responseText=="0")
+          {
+			window.localStorage.setItem("mostrar_wa", "sim");
+          }
+          else
+          {
+			window.localStorage.setItem("mostrar_wa", "nao");
+          }
+        }
+      };
+      xhttp.open("GET", "https://www.bebefofuxo.net/scripts/clientes_wa/consultar_registro.php?num_celular="+num_celular, true);
+      xhttp.send();
+    }
+    
+    
+
+
+  }
+  
+</script>
+
+<style>
+.EstChkValorCampo {
+  position:relative;  
+
+  & + .EstChkValorCampo {
+    margin-top: 30px;
+  }
+}
+.formLabels {
+  font-size: 16px;
+  pointer-events: none;
+  position: absolute;
+  left: 6px;
+  top: 13px;
+  color: #999;
+  background-color: #fff;
+  z-index: 10;
+  transition: transform 300ms ease-out, font-size 300ms ease-out;
+  width: 98%;
+}
+.focused .formLabels {
+  transform: translateY(-125%);
+  font-size: 1em;
+    border-radius: 3px;
+}
+
+#P2Mensagem {
+  border: 1px solid lightgray !important;
+}
+</style>
