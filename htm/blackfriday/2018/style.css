@@ -1,0 +1,284 @@
+.bootstrap-iso .esquenta h2,
+.bootstrap-iso .header-esquerda h1,
+.bootstrap-iso .oferta h2,
+.bootstrap-iso .produtos-buscados h2 {
+  text-shadow: #00054 54 0.1em 0.1em 0.2em;
+}
+@font-face {
+  font-family: dk-garden-gnome;
+  src: url('https://fernandopastor.websiteseguro.com/dk-garden-gnome.otf');
+}
+@font-face {
+  font-family: plump-mt;
+  src: url('https://fernandopastor.websiteseguro.com/plump-mt.ttf');
+}
+.bootstrap-iso .pagina {
+  font-family: Ubuntu, sans-serif;
+  padding: 0background: #d2d6de;
+  width: 1024px;
+  margin: 0 auto;
+}
+.bootstrap-iso .container,
+.bootstrap-iso header,
+.bootstrap-iso section {
+  width: 100%;
+}
+.bootstrap-iso h2,
+.bootstrap-iso h3 {
+  margin: 0;
+  color: #fff;
+}
+.bootstrap-iso .gtco-loader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(../../images/blackfriday/loader.gif) center no-repeat rgba(255, 255, 255, 0.92);
+}
+.bootstrap-iso .contagem-regressiva-item,
+.bootstrap-iso .header-esquerda h1,
+.bootstrap-iso .produtos-buscados,
+.bootstrap-iso header {
+  background-repeat: no-repeat;
+}
+.bootstrap-iso h2 {
+  font-family: plump-mt;
+  font-size: 36px;
+}
+.bootstrap-iso p {
+  margin: 0 0 6px;
+  line-height: 27px;
+  font-size: 23px;
+  color: #fff;
+}
+.bootstrap-iso p span {
+  line-height: 27px;
+  font-size: 27px;
+}
+.bootstrap-iso section {
+  padding: 20px 0;
+  display: table;
+}
+.bootstrap-iso header {
+  display: table;
+  background-image: url(../../images/blackfriday/bg-header.png);
+}
+.bootstrap-iso .header-esquerda {
+  padding-top: 40px;
+  display: table;
+  width: 374px;
+  float: left;
+  text-align: center;
+}
+.bootstrap-iso .header-esquerda h1 {
+  background-image: url(../../images/blackfriday/bg-h1.png);
+  width: 374px;
+  height: 237px;
+  font-family: plump-mt;
+  font-size: 70px;
+  padding-top: 40px;
+  color: #fff;
+  margin: 0;
+}
+.bootstrap-iso .header-esquerda img {
+  margin-top: -40px;
+}
+.bootstrap-iso .header-esquerda h2 {
+  width: 210px;
+  margin: 20px auto 0;
+  text-align: center;
+  font-family: dk-garden-gnome;
+  color: #fff;
+  font-size: 28px;
+}
+.bootstrap-iso .header-esquerda h2 span {
+  display: inline-block;
+  font-size: 34px;
+  color: #f59fbc;
+}
+.bootstrap-iso .header-centro {
+  padding-top: 10px;
+  position: relative;
+  z-index: 2;
+  width: 100px;
+  float: left;
+}
+.bootstrap-iso .header-direita,
+.bootstrap-iso .header-direita .formulario {
+  float: right;
+  position: relative;
+  display: table;
+}
+.bootstrap-iso .header-centro img {
+  margin-left: -140px;
+}
+.bootstrap-iso .header-direita {
+  padding-top: 35px;
+  padding-right: 40px;
+  z-index: 1;
+  width: 440px;
+  height: 491px;
+  background-image: url(../../images/blackfriday/bg-form.png);
+}
+.bootstrap-iso .header-direita .formulario {
+  padding: 45px 20px;
+  width: 267px;
+  border-radius: 35px;
+  background-color: #474444;
+}
+.bootstrap-iso .contagem-regressiva,
+.bootstrap-iso .produtos-buscados {
+  background-color: #ffc700;
+}
+.bootstrap-iso .header-direita .formulario:after {
+  top: 30px;
+  left: 40px;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  width: 267px;
+  height: 413px;
+  background-image: url(../../images/blackfriday/shadow-form.png);
+}
+.bootstrap-iso .header-direita .formulario p {
+  padding-top: 20px;
+  text-align: center;
+}
+.bootstrap-iso .header-direita .formulario input {
+  color: #000;
+  font-size: 22px;
+  text-align: center;
+  height: 50px;
+  width: 100%;
+  border: none;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+.bootstrap-iso .header-direita .formulario button {
+  height: 50px;
+  width: 100%;
+  border: none;
+  background-image: url(../../images/blackfriday/cadastrar.gif);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-family: plump-mt;
+  font-size: 26px;
+}
+.bootstrap-iso .esquenta,
+.bootstrap-iso .oferta {
+  background-size: cover;
+}
+.bootstrap-iso .produtos {
+  padding: 0;
+}
+.bootstrap-iso .produtos > img {
+  width: 100%;
+}
+.bootstrap-iso .relogio {
+  width: 125px;
+}
+.bootstrap-iso .contagem-regressiva .container {
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.bootstrap-iso .contagem-regressiva-item {
+  height: 111px;
+  line-height: 111px;
+  font-size: 35px;
+  font-weight: 700;
+  color: #fff;
+  float: left;
+}
+.bootstrap-iso .contagem-regressiva-item-ativo {
+  position: relative;
+  margin: 0 25px;
+}
+.bootstrap-iso .contagem-regressiva-item .cr {
+  margin-top: -110px;
+  margin-left: 20px;
+}
+.bootstrap-iso .oferta {
+  padding: 0;
+  background-image: url(../../images/blackfriday/bg-oferta.jpg);
+}
+.bootstrap-iso .oferta h2 {
+  padding: 30px 20px;
+  font-size: 48px;
+  float: left;
+}
+.bootstrap-iso .oferta img {
+  margin: 13px 20px;
+  float: right;
+}
+.bootstrap-iso .produtos-buscados {
+  background-image: url(../../images/blackfriday/lupa.png);
+  background-position: bottom right;
+}
+.bootstrap-iso .produtos-buscados h2 {
+  padding: 11px 20px;
+  display: table;
+  background-color: #dd2c53;
+  position: relative;
+}
+.bootstrap-iso .produtos-buscados h2:after {
+  content: '';
+  position: absolute;
+  right: -35px;
+  top: 0;
+  border-bottom: 61px solid transparent;
+  border-left: 35px solid #ffc700;
+}
+.bootstrap-iso .produtos-buscados .container {
+  width: 850px;
+  margin: 0 auto;
+}
+.bootstrap-iso .categoria {
+  padding: 15px 0;
+}
+.bootstrap-iso .categoria a:hover,
+.bootstrap-iso .categoria a:hover h3 {
+  text-decoration: none!important;
+  color: #d96881;
+}
+.bootstrap-iso .categoria img {
+  float: left;
+}
+.bootstrap-iso .categoria h3 {
+  float: left;
+  font-size: 20px;
+  color: #fff;
+  line-height: 48px;
+  margin-left: 10px;
+}
+.bootstrap-iso .esquenta {
+  padding: 0;
+  background-image: url(../../images/blackfriday/bg-oferta.jpg);
+}
+.bootstrap-iso .esquenta h2 {
+  padding: 30px 20px;
+  font-size: 48px;
+  float: left;
+}
+.bootstrap-iso .esquenta img {
+  float: right;
+}
+.bootstrap-iso .contagem-regressiva-rodape {
+  padding: 69.5px 150px;
+  background-image: url(../../images/blackfriday/bg-rodape.jpg);
+}
+.bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item {
+  height: 73px;
+  font-size: 24px;
+  line-height: 73px;
+}
+.bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item-ativo {
+  margin: 19px 15px;
+}
+.bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item-ativo .cr {
+  margin-top: -70px;
+  margin-left: 17px;
+}
