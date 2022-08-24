@@ -1,0 +1,95 @@
+/* Configuracao Geral Menu Desktop */
+.topnav {overflow: hidden;  margin:0 auto; width:100%; max-width:1366px;}
+.topnav button {border:none; cursor:pointer;}
+#darknav {display:none; position: fixed; width: 100%; height: 100%; z-index: -1; top: 253px; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.5);}
+.dropdown {float: left;  border:none;}
+.dropdown #dropbtn1, .dropdown #dropbtn2, .dropdown #dropbtn3, .dropdown #dropbtn4, .dropdown #dropbtn5, .dropdown #dropbtn6, .dropdown #dropbtn7, .dropdown #dropbtn8, .dropdown #dropbtn9, .dropdown #dropbtn10, .dropdown #dropbtn11  {font-family: 'Nunito', Arial, sans-serif; font-size: 18px; font-weight:400; border:none; outline: none; color: #685f52; margin: 0; background:#f5f5f5; padding:20px 1.040rem;}
+.dropdown #dropbtn12  {font-family: 'Nunito', Arial, sans-serif; font-size: 18px; font-weight:400; border:none; outline: none; color: #da187f; margin: 0; background:#f5f5f5; padding:20px 1.040rem;}
+.dropdown-menu1, .dropdown-menu2, .dropdown-menu3, .dropdown-menu4, .dropdown-menu5, .dropdown-menu6, .dropdown-menu7, .dropdown-menu8, .dropdown-menu9, .dropdown-menu10, .dropdown-menu11 {display: none; width: 100%; max-width:984px; padding:0px 20px 20px 20px; position: absolute; z-index: 5; background:#fff; border-bottom:2px solid #e4e4e4;}
+.dropdown-menu1, .dropdown-menu2, .dropdown-menu3, .dropdown-menu4 {margin: 0 0 0 0;}
+.dropdown-menu5 {margin: 0 0 0 -4px;}
+.dropdown-menu6 {margin: 0 0 0 -81px;}
+.dropdown-menu7 {margin: 0 0 0 -185px;}
+.dropdown-menu8 {margin: 0 0 0 -355px;}
+.dropdown-menu9 {margin: 0 0 0 -442px;}
+.dropdown-menu10 {margin: 0 0 0 -626px;}	
+.dropdown-menu11 {margin: 0 0 0 -781px;}
+.drop-column {width:26%; float:left;}
+.drop-column-prod {width:48%; float:left;}
+.drop-column-prod .drop-ad img {margin:20px 0 0 0; width:100%; max-width:470px;}
+.drop-column b {float: none; font-size: 20px; font-weight:700; font-family: 'Nunito', Arial, sans-serif; color: #008ae1; padding: 20px 0 0 0; text-decoration: none; display: block;} 
+.drop-column a {float: none; padding: 10px 0; font-size: 16px; font-weight:400; font-family: 'Nunito', Arial, sans-serif; color: #685f52; text-decoration: none; display: block;}
+.drop-column a:hover {text-decoration:underline;}
+.drop-blue {float:left; text-decoration: none; display: block;}
+.drop-blue a {color: #008ae1 !important; font-size: 16px !important; font-weight: 700 !important;}
+.dropdown #dropbtn1:hover, .dropdown #dropbtn2:hover, .dropdown #dropbtn3:hover, .dropdown #dropbtn4:hover, .dropdown #dropbtn5:hover, .dropdown #dropbtn6:hover, .dropdown #dropbtn7:hover, .dropdown #dropbtn8:hover, .dropdown #dropbtn9:hover, .dropdown #dropbtn10:hover, .dropdown #dropbtn11:hover {color:#ffffff !important; background:#008ae1 !important;}
+.dropdown #dropbtn12:hover {color:#ffffff !important; background:#dc087f !important;}
+.dropdown:hover .dropdown-menu1, .dropdown:hover .dropdown-menu2, .dropdown:hover .dropdown-menu3, .dropdown:hover .dropdown-menu4, .dropdown:hover .dropdown-menu5, .dropdown:hover .dropdown-menu6, .dropdown:hover .dropdown-menu7, .dropdown:hover .dropdown-menu8, .dropdown:hover .dropdown-menu9, .dropdown:hover .dropdown-menu10, .dropdown:hover .dropdown-menu11 {display: block;}
+div.topnav .dropdown:hover ~ #darknav {display:block;}
+
+/* setas abaixo do hover */
+#arrow-down1, #arrow-down2, #arrow-down3, #arrow-down4, #arrow-down5, #arrow-down6, #arrow-down7, #arrow-down8, #arrow-down9, #arrow-down10, #arrow-down11 {display:none; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #008ae1; position: absolute;}
+.dropdown-menu1 #arrow-down1 {left: 3%;}
+.dropdown-menu2 #arrow-down2 {left: 3%;}
+.dropdown-menu3 #arrow-down3 {left: 5%;}
+.dropdown-menu4 #arrow-down4 {left: 3.5%;}
+.dropdown-menu5 #arrow-down5 {left: 3.5%;}
+.dropdown-menu6 #arrow-down6 {left: 12.5%;}
+.dropdown-menu7 #arrow-down7 {left: 25%;}
+.dropdown-menu8 #arrow-down8 {left: 38.5%;}
+.dropdown-menu9 #arrow-down9 {left: 51%;}
+.dropdown-menu10 #arrow-down10 {left: 68%;}
+.dropdown-menu11 #arrow-down11 {left: 81.5%;}
+
+
+@media screen and (max-width: 1365px) {
+.topnav {max-width:1280px;}	
+.dropdown #dropbtn1, .dropdown #dropbtn2, .dropdown #dropbtn3, .dropdown #dropbtn4, .dropdown #dropbtn5, .dropdown #dropbtn6, .dropdown #dropbtn7, .dropdown #dropbtn8, .dropdown #dropbtn9, .dropdown #dropbtn10, .dropdown #dropbtn11, .dropdown #dropbtn12 {font-size:16px;  padding:15px 18px;}
+.dropdown-menu3 #arrow-down3 {left: 4.5%;}
+.dropdown-menu5 {margin: 0 0 0 -77px;}
+.dropdown-menu5 #arrow-down5 {left: 10.5%;}
+.dropdown-menu6 {margin: 0 0 0 -152px;}
+.dropdown-menu6 #arrow-down6 {left: 19.5%;}
+.dropdown-menu7 {margin: 0 0 0 -251px;}
+.dropdown-menu7 #arrow-down7 {left: 31%;}
+.dropdown-menu8 {margin: 0 0 0 -408px;}
+.dropdown-menu8 #arrow-down8 {left: 43.5%;}
+.dropdown-menu9 {margin: 0 0 0 -493px;}
+.dropdown-menu9 #arrow-down9 {left: 55.5%;}
+.dropdown-menu10 {margin: 0 0 0 -662px;}
+.dropdown-menu10 #arrow-down10 {left: 71%;}
+.dropdown-menu11 {margin: 0 0 0 -806px;}
+.dropdown-menu11 #arrow-down11 {left: 83.5%;}
+#darknav {top: 240px;}
+}
+
+@media screen and (max-width: 1275px) {
+.topnav {max-width:1024px;}	
+.dropdown #dropbtn1, .dropdown #dropbtn2, .dropdown #dropbtn3, .dropdown #dropbtn4, .dropdown #dropbtn5, .dropdown #dropbtn6, .dropdown #dropbtn7, .dropdown #dropbtn8, .dropdown #dropbtn9, .dropdown #dropbtn10, .dropdown #dropbtn11, .dropdown #dropbtn12 {font-size:14px; padding:15px 0.74rem;}
+.dropdown-menu1 #arrow-down1 {left: 2.5%;}
+.dropdown-menu2 {margin: 0 0 0 -57px;}
+.dropdown-menu2 #arrow-down2 {left: 8%;}
+.dropdown-menu3 {margin: 0 0 0 -113px;}
+.dropdown-menu3 #arrow-down3 {left: 14.5%;}
+.dropdown-menu4 {margin: 0 0 0 -195px;}
+.dropdown-menu4 #arrow-down4 {left: 21.5%;}
+.dropdown-menu5 {margin: 0 0 0 -260px;}
+.dropdown-menu5 #arrow-down5 {left: 27.5%;}
+.dropdown-menu6 {margin: 0 0 0 -318px;}
+.dropdown-menu6 #arrow-down6 {left: 34.5%;}
+.dropdown-menu7 {margin: 0 0 0 -397px;}
+.dropdown-menu7 #arrow-down7 {left: 44.5%;}
+.dropdown-menu8 {margin: 0 0 0 -526px;}
+.dropdown-menu8 #arrow-down8 {left: 54%;}
+.dropdown-menu9 {margin: 0 0 0 -592px;}
+.dropdown-menu9 #arrow-down9 {left: 64%;}
+.dropdown-menu10 {margin: 0 0 0 -733px;}
+.dropdown-menu10 #arrow-down10 {left: 77%;}
+.dropdown-menu11 {margin: 0 0 0 -851px;}
+.dropdown-menu11 #arrow-down11 {left: 87%;}
+#darknav {top: 235px;}
+}
+
+@media screen and (max-width: 1023px) {
+.topnav {display:none}
+}
