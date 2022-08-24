@@ -1,0 +1,538 @@
+/* Estilos CSS Home - 2018 */
+
+/* Estrutura Home */
+.FCHome #idFCContent {width:100%; max-width:1366px; margin:0 auto; padding:0 0 0 0;}
+
+/* Banner Full Home */
+.zfbannerdesktop {display:block; max-height:490px;}
+.zfbannermobile {display:none}
+
+/* Filete Full Home */
+.zfhomefilete {order:1; width: 100%; max-width:1366px; margin: 0 auto; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: space-between; -webkit-justify-content: space-between; -ms-justify-content: space-between; color:#fff; text-transform:uppercase;}
+
+/*ALTERACAO BLACK FRIDAY - segunda linha comentada refere ao black friday*/
+
+.zfhomefilete b {font-size:26px; line-height: 21px; font-weight:700; padding:0 8px;}
+/*.zfhomefilete b {font-size:26px; line-height: 21px; font-weight:700; padding:0 8px; color: #f9cc10;}*/
+
+.zfhomefilete1 {width: 30%; background: #008cde; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:11px;}
+/*.zfhomefilete1 {width: 30%; background: #000000; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:11px;}*/
+/*filete de natal
+.zfhomefilete1 {width: 30%; background: #a21b00; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:11px;}*/
+
+.zfhomefiletediv1 {width:5%; background:url('../../images/filete_bg1.png?cccfc=11') left center no-repeat scroll; background-color: #dc087f;}
+/*.zfhomefiletediv1 {width:4%; background:url('../../images/filete_bg1.png?cccfc=11') left center no-repeat scroll; background-color: #000000;}*/
+/*filete de natal
+.zfhomefiletediv1 {width:5%; background:url('../../images/filete_bg1.png') left center no-repeat scroll; background-color: #a21b00;}*/
+
+.zfhomefilete2 {width: 32%; background-color: #dc087f; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:16px;}
+/*.zfhomefilete2 {width: 32%; background-color: #000000; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:16px;}*/
+/* filete de natal
+.zfhomefilete2 {width: 32%; background-color: #a21b00; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:16px;}*/
+
+.zfhomefiletediv2 {width:5%; background:url('../../images/filete_bg2.png?cccfc=11') left center no-repeat scroll;  background-color: #23d4c5;}
+/*.zfhomefiletediv2 {width:4%; background:url('../../images/filete_bg2.png?cccfc=11') left center no-repeat scroll;  background-color: #000000;}*/
+/* filete de natal
+.zfhomefiletediv2 {width:5%; background:url('../../images/filete_bg2.png') left center no-repeat scroll;  background-color: #a21b00;}*/
+
+.zfhomefilete3 {width: 30%; background-color: #23d4c5; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:16px;}
+/*.zfhomefilete3 {width: 30%; background-color: #000000; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:16px;}*/
+/* filete de natal
+.zfhomefilete3 {width: 30%; background-color: #a21b00; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:16px;}*/
+
+.zfhomefilete3b {width: 30%; background-color: #23d4c5; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:16px;}
+/*.zfhomefilete3b {width: 30%; background-color: #000000; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:16px;}*/
+/* filete de natal
+.zfhomefilete3b {width: 30%; background-color: #a21b00; text-align:center; padding:14px 0 9px 0; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; font-size:12px; line-height:16px;}*/
+
+
+.zfhomefilete3 a {text-decoration:none; color:#fff; position:relative; top:-3px;}
+
+.zfhomefilete3b a {text-decoration:none; color:#fff; position:relative;}
+
+/*.zfhomefilete3 img {vertical-align:bottom;} nao voltar pos black friday*/
+
+.zfhomefilete1 a, .zfhomefilete2 a {text-decoration:none; color:#fff;}
+
+.zfhomefilete4, .zfhomefilete5, .zfhomefilete6 {display:none;}
+
+/*FIM - alteracao BLACK FRIDAY*/
+
+
+/* Banner Half Home */
+.zfbannermeio {order:2; width: 100%; max-width:1306px; margin: 30px auto 0 auto; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: space-between; -webkit-justify-content: space-between; -ms-justify-content: space-between;}
+.zfbannermeio1, .zfbannermeio2 {min-height:150px;}
+.zfbannermeio1 img, .zfbannermeio2 img {width:100%; max-width:100%; height:100%;}
+.zfbannerspace {width:30px;}
+.zfbannerspacev {height:30px;}
+
+/* Home Order */
+.zfhomeorder {display: -ms-flexbox; display: -webkit-flex; display: flex; flex-direction: column; -webkit-flex-direction: column; -ms-flex-direction: column; }
+.zfhomeprod1 {order:3}
+.zfhomeprod2 {order:4}
+.zfhomeprod3 {order:5}
+
+/* Titulos de Destaque */
+.Destaques {width: 100%; max-width:1306px; margin: 40px auto 0 auto; text-align: left; }
+
+/*ALTERACAO BLACK FRIDAY - segunda linha comentada refere ao black friday*/
+.Destaques .TitulosDest {color:#008ae1; font-size:28px; font-weight:700; text-transform:uppercase; line-height:24px;}
+/*.Destaques .TitulosDest {color:#000000; font-size:28px; font-weight:700; text-transform:uppercase; line-height:24px; }*/
+/*FIM - alteracao BLACK FRIDAY*/
+
+/* Produtos Home */
+.ProdDestHome {cursor:pointer; padding: 0 10px 15px 10px; text-align:center; border:1px solid #e4e4e4; border-radius: 3px; -webkit-border-radius: 3px; -ms-border-radius: 3px; width:100%; height: 420px;}
+.ProdDestHome a {text-decoration:none; color:#685f52;}
+.ProdDestHome:visited {border:1px solid #e4e4e4;}
+.ProdDestHome:active {border:1px solid #e4e4e4;}
+.ProdDestHome:hover {border:1px solid #008ae1;}
+.ProdDestHome .badgesProd {position: absolute; top: 2px; right: 0; text-align: center;}
+.ProdDestHome .EstBotVerMais {bottom:15px; width:90.5%;}
+
+/* Destaques Categorias */
+.zfhomecatgeral {order:6; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: space-between; -webkit-justify-content: space-between; -ms-justify-content: space-between; flex-wrap: wrap; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; margin:20px auto 0 auto; width:100%;  max-width: 1306px;}
+.zfhomecat {width: 23.1%; margin: 30px 0 0 0; padding: 20px 0; border: 1px solid #e4e4e4; border-radius: 12px; -ms-border-radius: 12px; -webkit-border-radius: 12px; text-align: center;}
+
+.zfhomecat a {font-size:24px; line-height:18px; color:#008ae1; text-decoration:none; text-transform:lowercase;}
+.zfhomecat a:visited {color:#008ae1;}
+.zfhomecat a:active {color:#008ae1;}
+.zfhomecat a:hover {color:#008ae1;}
+.zfhomecat .ProdCapaDiv img {min-height: 220px; max-height: 220px;}
+
+/* 3 Box Diferenciais */
+.zfhomeboxgeral {order:7; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: space-between; -webkit-justify-content: space-between; -ms-justify-content: space-between; flex-wrap: wrap; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; margin:50px auto 0 auto; width:100%;  max-width: 1306px;}
+.zfhomebox1, .zfhomebox2, .zfhomebox3 {width: 29.4%; margin: 30px 0 0 0; padding:0 15px; border: 1px solid #e4e4e4; border-radius: 12px; -ms-border-radius: 12px; -webkit-border-radius: 12px; text-align: center;}
+.zfhomebox1 a, .zfhomebox2 a, .zfhomebox3 a {text-decoration:none; color:#685f52;}
+.zfhomeboxic {position:relative; top:-42px;}
+.zfhomeboxtit {font-size: 30px; font-weight:700; position: relative; top: -38px;}
+.zfhomeboxtxt {font-size: 14px; font-weight:400; position: relative; top: -28px;}
+.zfhomeboxtxt b {font-weight:700;}
+.zfhomeboxtxt img {height:29px; margin:3px 3px 0 3px;}
+.zfhomeboxganhe {font-size: 18px; font-weight:700;}
+
+/* Newsletter Home */
+.zfnewsletter {order:8; width:100%; margin:0 auto;}
+.zfnewsletter .zfnewscont {width:100%; max-width:1306px; padding:15px 0; margin:50px auto 0 auto; background:#fff068; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: flex-start; -webkit-justify-content:flex-start; -ms-justify-content:flex-start; border-radius: 15px; -webkit-border-radius: 15px; -ms-border-radius: 15px; border:none;}
+.zfnewsletter .zfnewsbloco1 {width:15%; text-align:center;}
+.zfnewsletter .zfnewsbloco2 {width:35%;}
+.zfnewsletter .zfnewsbloco3 {width:50%; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content: flex-start; -webkit-justify-content:flex-start; -ms-justify-content:flex-start; align-items:center; -webkit-align-items:center; -ms-align-items:center;}
+
+/*ALTERACAO BLACK FRIDAY - segunda linha comentada refere ao black friday*/
+.zfnewsletter .zfnewstit {width: 100%; font-weight:700; font-size:28px; color:#482e77;}
+/*.zfnewsletter .zfnewstit {width: 100%; font-weight:700; font-size:28px; color:#000000;}*/
+.zfnewsletter .zfnewsbutton button {width:85%; font-size:16px; font-weight:400; color:#fff; text-decoration:none; text-align:center; background-color:#482e77; border: 0; border-radius: 12px; -ms-border-radius: 12px; -webkit-border-radius: 12px; padding: 12px 0;  cursor: pointer;}
+/*.zfnewsletter .zfnewsbutton button {width:85%; font-size:16px; font-weight:400; color:#fff; text-decoration:none; text-align:center; background-color:#000000; border: 0; border-radius: 12px; -ms-border-radius: 12px; -webkit-border-radius: 12px; padding: 12px 0;  cursor: pointer;}*/
+/*FIM - alteracao BLACK FRIDAY*/
+
+.zfnewsletter .zfnewstit .ordinal {vertical-align:super; text-decoration:underline; font-size:16px; font-weight:400;}
+.zfnewsletter .zfnewstxt {width: 100%; font-weight:400; font-size:16px; line-height:18px; }
+.zfnewsletter .zfnewsbloco2 .mntext {margin-top:20px;}
+.zfnewsletter .zfnewsinput {width:75%;}
+.zfnewsletter .zfnewsinput input {width:92%; border:none; border-radius: 12px; -ms-border-radius: 12px; -webkit-border-radius: 12px; -webkit-appearance: none; background-color:#fff; font-family: 'Nunito', Arial, sans-serif; font-weight:400; font-size:17px; color:#685f52; height:34px; padding:6px 0 6px 14px;}
+.zfnewsletter .zfnewsbutton {width:25%;}
+
+
+/* Texto Final Home */
+.zfhometxt {display:none; font-family: 'Nunito', Arial, sans-serif; font-weight:400; font-size:14px; color:#685f52; line-height:18px; margin: 50px 20px 20px 20px;}
+
+
+/* Menu Rotativo */
+.menu-scroll{
+
+  height:110px;
+  width:100%;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  display: none;
+  position: relative;
+
+}
+
+.internal_menu_scroll{
+  position: absolute;
+  top:0;
+  left:0;
+}
+
+.menu-scroll::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}
+
+.menu-scrol-item{
+  width:60px;
+  height:90px;
+  display:inline-block;
+  margin: 10px 10px 15px 10px;
+
+
+}
+
+.maior{
+  width:73px !important;
+  margin: 0px 0px 10px 0px;
+
+}
+
+.menu-scrol-item .icon{
+  width:58px;
+  height:58px;
+  border-radius:29px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+
+}
+
+
+.menu-scrol-item .text{
+  width:100%;
+  height:30px;
+  text-align:center;
+  font-size:10px;
+  font-family: 'Nunito', Arial, sans-serif;
+  text-decoration:none;
+  display:block;
+  margin-top:5px;
+  white-space: pre-line;
+  background-color: white !important;
+
+
+}
+
+.cor-um{
+  background-color:#442cea;
+  color: #442cea !important;
+}
+
+.cor-dois{
+  background-color:#e57ce5;
+  color: #e57ce5 !important;
+}
+
+.cor-tres{
+  background-color:#8000ec;
+  color: #8000ec !important;
+}
+
+.cor-quatro{
+  background-color:#e01423;
+  color: #e01423 !important;
+}
+
+.cor-cinco{
+  background-color:#38c1bd;
+  color: #38c1bd !important;
+}
+
+.cor-seis{
+  background-color:#f28d20;
+  color: #f28d20 !important;
+}
+
+.cor-sete{
+  background-color:#f36170;
+  color: #f36170 !important;
+}
+
+.cor-oito{
+  background-color:#2c59a8;
+  color: #2c59a8 !important;
+}
+
+.cor-nove{
+  background-color:#ca2d7e;
+  color: #ca2d7e !important;
+}
+
+.cor-black{
+  background-color:#000000;
+  color: #000000 !important;
+}
+
+.cor-dez{
+  background-color:#d31400;
+  color: #d31400 !important;
+}
+
+.cor-onze{
+  background-color: #514c46;
+  color: #514c46 !important;
+}
+
+@media screen and (max-width: 1350px) {
+/* titulos */
+.Destaques {width: 98%;}	
+}
+
+@media screen and (max-width: 1280px) {
+/* titulos */
+.Destaques {width: 96%;}
+/* banner half */
+.zfbannermeio {width: 96%;}
+/* destaques categorias */
+.zfhomecatgeral {width: 96%;}
+/* 3 box diferenciais */
+.zfhomeboxgeral {width: 96%;}
+/* newsletter */
+.zfnewsletter {width: 96%;}
+.zfnewsletter .zfnewsbloco2 {width: 40%;}
+.zfnewsletter .zfnewsbloco3 {width: 45%;}
+/* produto home */
+.ProdDestHome .badgesProd {top: 3px; right: -5px;}
+.ProdDestHome .EstBotVerMais {width: 93%;}
+}
+
+@media screen and (max-width: 1160px) {
+/* produto home */
+.ProdDestHome .EstBotVerMais {width: 91%;}
+}
+
+@media screen and (max-width: 1024px) {
+/* titulos */
+.Destaques {width: 96%;}
+/* filete */
+.zfhomefiletediv1, .zfhomefiletediv2 {width: 6%;}
+.zfhomefilete1 {width: 28%;}
+.zfhomefilete2 {width: 28%;}
+.zfhomefilete3 {width: 32%;}
+
+.zfhomefilete3b {width: 32%;}
+  
+/* destaques categorias */
+.zfhomecat {width: 48%;}
+/* 3 box diferenciais */
+.zfhomebox1, .zfhomebox2, .zfhomebox3 {width: 27.5%; padding: 0 20px;}
+/* newsletter */
+.zfnewsletter .zfnewscont {flex-wrap: wrap; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; justify-content:flex-end; -webkit-justify-content:flex-end; -ms-justify-content:flex-end;}
+.zfnewsletter .zfnewsbloco1 {width: 20%;}
+.zfnewsletter .zfnewsbloco2 {width: 80%;}
+.zfnewsletter .zfnewsbloco2 .mntext br {display:none;}
+.zfnewsletter .zfnewsbloco3 {width: 80%; margin-bottom: 10px;}
+/* produto home */
+.ProdDestHome .EstBotVerMais {width: 93%;}
+}
+
+
+@media screen and (max-width: 812px) {
+/* filete */
+.zfhomefiletediv1, .zfhomefiletediv2 {width: 7%;}
+.zfhomefilete1 {width: 26%;}
+.zfhomefilete2 {width: 26%;}
+.zfhomefilete3 {width: 34%;}
+.zfhomefilete3b {width: 34%;}
+  
+  
+.zfhomefilete b {font-size: 21px;}
+/* 3 box diferenciais */
+.zfhomebox1, .zfhomebox2, .zfhomebox3 {width: 100%;}
+.zfhomebox2, .zfhomebox3 {margin: 65px 0 0 0;}
+/* newsletter */
+.zfnewsletter .zfnewsbloco1 {width: 26%;}
+.zfnewsletter .zfnewsbloco2 {width: 74%;}
+.zfnewsletter .zfnewsbloco3 {width: 74%;}
+.zfnewsletter .zfnewsinput {width: 70%;}
+.zfnewsletter .zfnewsbutton {width: 30%;}
+/* produto home */
+.ProdDestHome {height: 350px;}
+.ProdDestHome:hover {border:1px solid #e4e4e4;}
+.ProdDestHome .ProdCapaDiv img {min-height: 180px; max-height: 180px;}
+.ProdDestHome .EstBotVerMais {width: 91%;}
+}
+
+@media screen and (max-width: 768px) {
+/* filete */
+.zfhomefilete1 {width: 24%;}
+.zfhomefilete2 {width: 26%;}
+.zfhomefilete3 {width: 36%;}
+
+.zfhomefilete3b {width: 36%;}
+/* banner half */
+.zfbannermeio {width: 95%;}
+/* destaques categorias */
+.zfhomecatgeral {width: 95%;}
+/* 3 box diferenciais */
+.zfhomeboxgeral {width: 95%;}
+/* newsletter */
+.zfnewsletter {width: 95%;}
+/* produto home */
+.ProdDestHome {height: 360px;}
+  
+
+}
+
+@media screen and (max-width: 736px) {
+/* filete */
+.zfhomefilete b {font-size: 20px; padding: 0 6px;}
+.zfhomefilete1 {width: 24%;}
+.zfhomefilete2 {width: 26%;}
+.zfhomefilete3 {width: 36%;}
+.zfhomefilete3b {width: 36%;}
+
+/* produto home */
+.ProdDestHome {height: 340px;}
+.ProdDestHome .EstBotVerMais {width: 94%; bottom: 13px;}
+}
+
+@media screen and (max-width: 667px) {
+/* filete */
+.zfhomefilete {margin: 30px auto 0 auto; justify-content: space-around; -webkit-justify-content: space-around; -ms-justify-content: center; color: #685f52; text-transform:none;}
+.zfhomefilete1, .zfhomefiletediv1, .zfhomefilete2, .zfhomefiletediv2, .zfhomefilete3, .zfhomefilete3b {display:none;}
+.zfhomefilete4, .zfhomefilete5, .zfhomefilete6 {display:block; width:25%; text-align:center;}
+.zfhomefilete4 a, .zfhomefilete5 a, .zfhomefilete6 a {text-decoration:none; color:#685f52;}
+.zfhomefiltit {margin-top:10px; font-size:18px; font-weight:400;}
+/* banner half */
+.zfbannermeio {margin: 30px auto 0 auto;}
+/* newsletter */
+.zfnewsbloco1 img {width:75%;}
+.zfnewsletter .zfnewsinput {width: 65%; margin-top:10px;}
+.zfnewsletter .zfnewsbutton {width: 35%; margin-top:10px;}
+/* Texto Final Home */
+.zfhometxt {display:block;}
+/* produto home */
+.ProdDestHome {height: 345px;}
+.ProdDestHome .EstBotVerMais {width: 93%;}
+}
+
+@media screen and (max-width: 640px) {
+/* newsletter */
+.zfnewsletter .zfnewstit {font-size: 27px;}	
+.zfnewsletter .zfnewsinput input {width: 90%;}
+/* produto home */
+.ProdDestHome {height: 335px;}
+}
+
+@media screen and (max-width: 630px) {
+/* titulos */
+.Destaques {width: 95%;}
+/* Banner Full Home */
+.zfbannerdesktop {display:none;}
+.zfbannermobile {display:block;min-height: 212px;}
+/* baner half */
+.zfbannermeio {flex-wrap:wrap; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap; }
+/* newsletter */
+.zfnewsletter .zfnewstit {font-size: 24px;}
+/* produto home */
+.ProdDestHome {height: 338px;}
+.ProdDestHome .ProdCapaDiv img {min-height: 142px; max-height: 142px;}
+.ProdDestHome .EstBotVerMais {width: 92%;}
+/* Menu Rotativo */
+.menu-scroll{display: block;}
+}
+
+@media screen and (max-width: 568px) {
+/* produto home */
+.ProdDestHome {height: 300px;}
+}
+
+@media screen and (max-width: 560px) {
+/* titulos */
+.Destaques {width: 94%; flex-wrap:wrap; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap;}
+/* filete */
+.zfhomefilic img {height:60px;}
+.zfhomefiltit {font-size: 16px; line-height: 20px;}
+
+/* banner half */
+.zfbannermeio {width: 94%;}
+/* destaques categorias */
+.zfhomecatgeral {width: 94%;}
+.zfhomecat {width: 47%;}
+.zfhomecat a {font-size: 18px; line-height: 18px;}
+.zfhomecat .ProdCapaDiv img {min-height: 140px; max-height: 140px;}
+/* 3 box diferenciais */
+.zfhomeboxgeral {width: 94%;}
+/* newsletter */
+.zfnewsletter {width: 94%;}
+.zfnewsletter .zfnewsbloco1 {width: 92%; margin:0 auto;}
+.zfnewsbloco1 img {width: 100%; max-width:140px;}
+.zfnewsletter .zfnewsbloco2 {width: 92%; margin:10px auto 0 auto;}
+.zfnewsletter .zfnewstit {font-size: 22px;}
+.zfnewsletter .zfnewstxt {margin-top:10px;}
+.zfnewsletter .zfnewsbloco3 {width: 92%; margin:10px auto 0 auto; display: -ms-flexbox; display: -webkit-flex; display: flex; flex-wrap:wrap; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap; justify-content:flex-end; -webkit-justify-content:flex-end; -ms-justify-content:flex-end;}
+.zfnewsletter .zfnewsinput {width: 100%; margin-top:0;}
+.zfnewsletter .zfnewsinput input {width: 96%;}
+.zfnewsletter .zfnewsbutton {width: 50%; margin-top: 15px;}
+.zfnewsletter .zfnewsbutton button {width: 100%;}
+/* produto home */
+.ProdDestHome .EstNomeProdCapa {font-size: 14px; height: 48px;}
+.ProdDestHome .EstParcHome {font-size: 12px;}
+.ProdDestHome .badgesProd {top: 1px; right: 0px;}
+.ProdDestHome .EstBotVerMais {bottom: 11px;}
+}
+
+@media screen and (max-width: 500px) {
+/* produto home */
+.ProdDestHome .EstBotVerMais {width: 100%;}
+}
+
+
+@media screen and (max-width: 414px) {
+/* produto home */
+.ProdDestHome .badgesProd {top: 1px; right: -15px;}
+}
+
+@media screen and (min-width: 414px) and (max-width: 500px)  {
+	.ProdDestHome .EstBotVerMais {width: 90%;}
+	.ProdDestHome {height: 314px;}
+}
+
+/*
+@media screen and (min-width: 414px) and (max-width: 415px)  {
+	.ProdDestHome .EstBotVerMais {width: 100%;}
+}
+*/
+
+@media screen and (max-width: 413px) {
+
+.ProdDestHome {height: 325px;}
+}
+
+@media screen and (max-width: 400px) {
+/* titulos */
+.Destaques {margin: 40px auto 0px auto;}
+/* filete */
+.zfhomefiltit {font-size: 16px; line-height: 20px;}
+/* destaques categorias */
+.zfhomecat {width: 100%;}
+.zfhomecat a {font-size: 22px;}
+.zfhomecat .ProdCapaDiv img {min-height: 180px; max-height: 180px;}
+/* 3 box diferenciais */
+.zfhomebox1, .zfhomebox2, .zfhomebox3 {padding: 0 15px;}
+/* home */
+.ProdDestHome {height: 340px;}
+.ProdDestHome .PrecoProdCapa {margin-top: 5px;}
+.ProdDestHome .EstParcHome {font-size: 11px;}
+}
+
+@media screen and (max-width: 360px) {
+/* titulos */
+.Destaques {width: 92%;}
+/* banner half */
+.zfbannermeio {width: 92%;}
+/* home */
+.ProdDestHome .ProdCapaDiv img {min-height: 180px; max-height: 180px;}
+.ProdDestHome .EstParcHome {font-size: 14px;}
+/* destaques categorias */
+.zfhomecatgeral {width: 92%;}
+/* 3 box diferenciais */
+.zfhomeboxgeral {width: 92%;}
+/* newsletter */
+.zfnewsletter {width: 92%;}
+.zfnewsletter .zfnewstit {font-size: 27px; line-height: 27px;}
+}
+
+@media screen and (max-width: 350px) {
+/* filete */
+.zfhomefilic img {height:50px;}
+.zfhomefiltit {margin-top: 7px; font-size: 14px; line-height: 16px;}	
+/* newsletter */
+.zfnewsletter .zfnewsinput input {width: 94%;}	
+/* produto home */
+.ProdDestHome {height: 340px;}
+.ProdDestHome .EstNomeProdCapa {font-size: 16px;}
+.ProdDestHome .EstParcHome {font-size: 12px;}
+}
