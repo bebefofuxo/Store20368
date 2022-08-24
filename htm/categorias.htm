@@ -1,0 +1,44 @@
+<!-- Includes Javascript -->
+<script src='<PathTo file="htm/js/jquerymixitupmin.js">'></script>
+
+<!-- Categories -->
+<div class="zFCatPageContainer">
+  <ListPathCat out="13" id="-1">
+</div>
+
+<style>
+.zFCatPageContainer .CatContainerFC {min-width:260px;height:350px;box-sizing:border-box;padding:5px 0 0;margin:25px 10px 25px 0;float:left;position:relative;background:no-repeat right top scroll;border:1px solid #dedede; cursor:pointer;}
+.zFCatPageContainer .zfCatLinks {width:100%; text-align:center;}
+.zFCatPageContainer .CatListFC {width:100%;height:72%;margin:0;padding:42px 0 0 0; overflow-x: hidden; overflow-y: scroll;}
+.zFCatPageContainer .CatListFC li {list-style:none;padding:5px 5px 5px 15px;box-sizing:border-box;text-align:left}
+.zFCatPageContainer .CatListFC li a {text-decoration:none}
+.zFCatPageContainer .Cat0FC {font-size:18px;font-weight:700; color:#008ae1; text-transform:uppercase}
+.zFCatPageContainer .Cat0FC a {color:#008ae1;}
+.zFCatPageContainer .Cat0FC a:hover {color:#008ae1; text-decoration:underline;}
+.zFCatPageContainer .Cat1FC {font-size:14px; font-weight:400; color:#685f52}
+.zFCatPageContainer .Cat1FC a {display:block; color:#685f52}
+.zFCatPageContainer .Cat1FC a:hover {text-decoration:underline;}
+.zFCatPageContainer .CatSeeMoreFC {position:absolute;bottom:0;width:100%;height:30px;box-sizing:border-box;padding:3px 10px 5px 15px;text-align:left; background:#008ae1}
+.zFCatPageContainer .CatSeeMoreFC a {color:#fff; text-decoration:none; text-transform:lowercase; }
+.zFCatPageContainer .FCBtnMixit {background:#f2f2f2;color:#685f52;font-size:14px;font-weight:400;display:inline-block;vertical-align:middle;margin:5px;padding:8px;box-sizing:border-box;border-radius: 4px; -webkit-border-radius: 4px; border:none;cursor:pointer}
+.zFCatPageContainer .FCBtnMixit:hover {background:#008ae1;color:#fff;}
+.zFCatPageContainer .sort {cursor:pointer}
+</style>
+
+<script>
+function execMixClasses(){
+  var catBlock = jQuery('.CatContainerFC');
+  jQuery(catBlock).each(function(){
+    jQuery(this).addClass('mix');
+  });
+  jQuery('.CatBlockFC').attr('id', 'Container');
+  jQuery(function(){jQuery('#Container').mixItUp();});
+  FCLib$.onReady(
+    function(){
+    var elCat = document.querySelectorAll('.FCBtnMixit');
+    elCat[0].setAttribute("class", "FCBtnMixit sort active");
+  });  
+
+execMixClasses();
+}
+</script>
