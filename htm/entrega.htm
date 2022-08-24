@@ -1,0 +1,60 @@
+<script>
+var link = window.location.href;
+var dadosLink = link.split(",");
+
+  
+var xhrequest = new XMLHttpRequest();
+  
+$(window).load(function() {
+  
+  
+    document.getElementById("numeroPedido").innerText = dadosLink[5];
+  
+    xhrequest.onreadystatechange = tratarRetorno;
+    xhrequest.open("GET","https://fernandopastor.websiteseguro.com/dadosEntrega.php?pedido="+dadosLink[5],true);
+    xhrequest.send();
+    
+    
+    
+});  
+
+function tratarRetorno () {
+  			
+    	if (xhrequest.readyState == 4 && xhrequest.status == 200) {
+              	
+            
+          
+          var obj = JSON.parse(xhrequest.responseText);
+          console.log(obj["data"][0]);
+          var dadosPedido = obj["data"][0];
+          
+          document.getElementById("infos").style.visibility = "hidden";
+          document.getElementById("data").innerHTML = "<b>Feito em:</b> " + dadosPedido[0];
+           
+  
+         
+         }
+         else
+         {
+         	console.log("Recebendo dados do pedido...");
+         }
+
+}
+  
+
+
+</script>
+
+<article id="idFCContent">
+<span class="Titulos" id="idTitTextoFC"></span><br>
+<div class="FCTrack">
+<div id="idTxtIntroTrackFC">Informações sobre o pedido <span id="numeroPedido" class="OrderNumberTrack"></span>
+  
+  <div id="infos" style="margin-top: 20px; font-size: 15px; color: black; display: block;">Buscando informações, aguarde...</div>
+  <div id="data" style="margin-top: 20px; font-size: 15px; color: black; display: block;"></div>
+  
+  <!-- Prazo estimado de entrega: <strong>4 dias úteis</strong> a partir da postagem do pedido (o serviço de entrega é realizado pelos Correios e está sujeito a atrasos) -->
+
+</div></div>
+</article>
+
