@@ -1,0 +1,508 @@
+<style>
+div#topofixed {    display: none;}
+div#rodape_bg {   display: none;}
+</style>
+<script>
+  
+  var link_ver_mais = "/categorias/conjunto-curto-para-bebe";
+  var scroll_atual = 0;
+  
+  var sessao_id = <Y>;
+  window.localStorage.setItem("sessao_id", sessao_id);
+  
+  var carrinho_faixa_etaria = -1; //0 - 3 a 12 meses; 1 - 1 a 3 anos
+  var carrinho_genero = 0; //0 - unissex, 1 - masc, 2 - fem
+
+  var mostrar_comprar_mais = window.localStorage.mostrar_comprar_mais;
+  var ja_apareceu = window.localStorage.ja_apareceu_comprar_mais;
+  
+  //produtos a serem mostrados no comprar mais - provisório
+  var produtos_comprar_mais = [];
+
+  //3 a 12 meses
+  produtos_comprar_mais[0] = [];
+  produtos_comprar_mais[1] = [];
+  
+  //1 a 5 anos
+  produtos_comprar_mais[2] = [];
+  produtos_comprar_mais[3] = [];
+  
+  
+  //3 a 12 - masculino
+  produtos_comprar_mais[0][0] = [];
+  produtos_comprar_mais[0][0]["link"] = "/conjunto-bebe-masculino-camiseta-manga-curta-azul-marinho-e-bermuda-caranguejo-p-m-g-viston";
+  produtos_comprar_mais[0][0]["id_produto"] = 7624572;
+  produtos_comprar_mais[0][0]["preco"] = 49.99;
+  produtos_comprar_mais[0][0]["preco_promocao"] = 26.99;
+  produtos_comprar_mais[0][0]["nome_imagem"] = ["16307_p"];
+  produtos_comprar_mais[0][0]["nome_produto"] = "Conjunto Bebê Masculino Camiseta Manga Curta Azul Marinho e Bermuda Caranguejo (P/M/G) - Viston";
+  produtos_comprar_mais[0][0]["cod_produto"] = "16307";
+
+  produtos_comprar_mais[0][1] = [];
+  produtos_comprar_mais[0][1]["link"] = "/conjunto-bebe-camiseta-branca-fundo-do-mar-e-bermuda-p-m-g-viston";
+  produtos_comprar_mais[0][1]["id_produto"] = 7594379;
+  produtos_comprar_mais[0][1]["preco"] = 49.99;
+  produtos_comprar_mais[0][1]["preco_promocao"] = 28.99;
+  produtos_comprar_mais[0][1]["nome_imagem"] = ["16069_p"];
+  produtos_comprar_mais[0][1]["nome_produto"] = "Conjunto Bebê Masculino Camiseta Manga Curta Branca Fundo do Mar e Bermuda (P/M/G) - Viston";
+  produtos_comprar_mais[0][1]["cod_produto"] = "16069";
+
+  produtos_comprar_mais[0][2] = [];
+  produtos_comprar_mais[0][2]["link"] = "/conjunto-bebe-camiseta-royal-mickey-bermuda-grafite-p-m-g-brandili";
+  produtos_comprar_mais[0][2]["id_produto"] = 7062368;
+  produtos_comprar_mais[0][2]["preco"] = 69.99;
+  produtos_comprar_mais[0][2]["preco_promocao"] = 44.99;
+  produtos_comprar_mais[0][2]["nome_imagem"] = ["14214_p"];
+  produtos_comprar_mais[0][2]["nome_produto"] = "Conjunto Bebê Masculino Camiseta Regata Royal Mickey e Bermuda Grafite (P/M) - Brandili";
+  produtos_comprar_mais[0][2]["cod_produto"] = "14214";
+
+  produtos_comprar_mais[0][3] = [];
+  produtos_comprar_mais[0][3]["link"] = "/conjunto-bebe-masculino-camiseta-manga-curta-vermelha-tubaroes-e-bermuda-p-m-g-gg-gueda-kids";
+  produtos_comprar_mais[0][3]["id_produto"] = 7622218;
+  produtos_comprar_mais[0][3]["preco"] = 69.99;
+  produtos_comprar_mais[0][3]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[0][3]["nome_imagem"] = ["16257_p"];
+  produtos_comprar_mais[0][3]["nome_produto"] = "Conjunto Bebê Masculino Camiseta Manga Curta Vermelha Tubarões e Bermuda (P/M/G/GG) - Gueda Kids";
+  produtos_comprar_mais[0][3]["cod_produto"] = "16257";
+
+  produtos_comprar_mais[0][4] = [];
+  produtos_comprar_mais[0][4]["link"] = "/conjunto-bebe-body-vermelho-piloto-e-bermuda-p-m-g-gg-gueda-kids";
+  produtos_comprar_mais[0][4]["id_produto"] = 7622875;
+  produtos_comprar_mais[0][4]["preco"] = 79.99;
+  produtos_comprar_mais[0][4]["preco_promocao"] = 48.99;
+  produtos_comprar_mais[0][4]["nome_imagem"] = ["16252_p"];
+  produtos_comprar_mais[0][4]["nome_produto"] = "Conjunto Bebê Masculino Body Manga Curta Vermelho Piloto e Bermuda Moletinho (P/M/G/GG) - Gueda Kids";
+  produtos_comprar_mais[0][4]["cod_produto"] = "16252";
+
+  
+  
+  //3 a 12 - feminino
+  produtos_comprar_mais[1][0] = [];
+  produtos_comprar_mais[1][0]["link"] = "/conjunto-bebe-regata-branca-picole-e-shorts-p-m-g-jidi-kids";
+  produtos_comprar_mais[1][0]["id_produto"] = 7599074;
+  produtos_comprar_mais[1][0]["preco"] = 49.99;
+  produtos_comprar_mais[1][0]["preco_promocao"] = 24.99;
+  produtos_comprar_mais[1][0]["nome_imagem"] = ["16158_p"];
+  produtos_comprar_mais[1][0]["nome_produto"] = "Conjunto Bebê Feminino Camiseta Regata Branca Picolé e Shorts Moletinho (P/M/G) - Jidi Kids";
+  produtos_comprar_mais[1][0]["cod_produto"] = "16158";
+
+  produtos_comprar_mais[1][1] = [];
+  produtos_comprar_mais[1][1]["link"] = "/conjunto-bebe-camiseta-vermelha-gata-e-legging-cotton-p-m-g-jidi-kids";
+  produtos_comprar_mais[1][1]["id_produto"] = 7598975;
+  produtos_comprar_mais[1][1]["preco"] = 49.99;
+  produtos_comprar_mais[1][1]["preco_promocao"] = 31.99;
+  produtos_comprar_mais[1][1]["nome_imagem"] = ["16152_p"];
+  produtos_comprar_mais[1][1]["nome_produto"] = "Conjunto Bebê Feminino Camiseta Manga Curta Vermelha Gatinha e Legging Cotton (P/M/G) - Jidi Kids";
+  produtos_comprar_mais[1][1]["cod_produto"] = "16152";
+
+  produtos_comprar_mais[1][2] = [];
+  produtos_comprar_mais[1][2]["link"] = "/conjunto-bebe-body-off-white-coracao-e-shorts-piquet-p-m-g-gg-gueda-kids";
+  produtos_comprar_mais[1][2]["id_produto"] = 7622467;
+  produtos_comprar_mais[1][2]["preco"] = 79.99;
+  produtos_comprar_mais[1][2]["preco_promocao"] = 48.99;
+  produtos_comprar_mais[1][2]["nome_imagem"] = ["16230_p"];
+  produtos_comprar_mais[1][2]["nome_produto"] = "Conjunto Bebê Feminino Body Manga Curta Off White Coração e Shorts Piquet (P/M/G/GG) - Gueda Kids";
+  produtos_comprar_mais[1][2]["cod_produto"] = "16230";
+
+  produtos_comprar_mais[1][3] = [];
+  produtos_comprar_mais[1][3]["link"] = "/conjunto-bebe-feminino-camiseta-manga-curta-pink-polvo-de-laco-e-shorts-mescla-p-m-g-viston";
+  produtos_comprar_mais[1][3]["id_produto"] = 7594074;
+  produtos_comprar_mais[1][3]["preco"] = 49.99;
+  produtos_comprar_mais[1][3]["preco_promocao"] = 28.99;
+  produtos_comprar_mais[1][3]["nome_imagem"] = ["16035_p"];
+  produtos_comprar_mais[1][3]["nome_produto"] = "Conjunto Bebê Feminino Camiseta Manga Curta Pink Polvo de Laço e Shorts Mescla (P/M/G) - Viston";
+  produtos_comprar_mais[1][3]["cod_produto"] = "16035";
+
+  produtos_comprar_mais[1][4] = [];
+  produtos_comprar_mais[1][4]["link"] = "/conjunto-bebe-camiseta-branca-fundo-mar-e-shorts-p-m-g-kappes";
+  produtos_comprar_mais[1][4]["id_produto"] = 7589348;
+  produtos_comprar_mais[1][4]["preco"] = 49.99;
+  produtos_comprar_mais[1][4]["preco_promocao"] = 28.99;
+  produtos_comprar_mais[1][4]["nome_imagem"] = ["15981_p"];
+  produtos_comprar_mais[1][4]["nome_produto"] = "Conjunto Bebê Feminino Camiseta Manga Curta Branca Fundo do Mar e Shorts (P/M/G) - Kappes";
+  produtos_comprar_mais[1][4]["cod_produto"] = "15981";
+
+
+  //1 a 5 - masculino
+  produtos_comprar_mais[2][0] = [];
+  produtos_comprar_mais[2][0]["link"] = "/conjunto-bebe-camiseta-verde-monstro-e-bermuda-estampada-1-2-3-cleomara";
+  produtos_comprar_mais[2][0]["id_produto"] = 7592557;
+  produtos_comprar_mais[2][0]["preco"] = 39.99;
+  produtos_comprar_mais[2][0]["preco_promocao"] = 24.99;
+  produtos_comprar_mais[2][0]["nome_imagem"] = ["16108_p"];
+  produtos_comprar_mais[2][0]["nome_produto"] = "Conjunto Bebê Masculino Camiseta Manga Curta Verde Monstro e Bermuda Estampada (1/2/3) - Cleomara";
+  produtos_comprar_mais[2][0]["cod_produto"] = "16108";
+
+  produtos_comprar_mais[2][1] = [];
+  produtos_comprar_mais[2][1]["link"] = "/conjunto-bebe-camiseta-branca-polvo-e-bermuda-lisa-1-2-3-cleomara";
+  produtos_comprar_mais[2][1]["id_produto"] = 7590876;
+  produtos_comprar_mais[2][1]["preco"] = 39.99;
+  produtos_comprar_mais[2][1]["preco_promocao"] = 24.99;
+  produtos_comprar_mais[2][1]["nome_imagem"] = ["16085_p"];
+  produtos_comprar_mais[2][1]["nome_produto"] = "Conjunto Bebê Masculino Camiseta Manga Curta Branca Polvo Skatista e Bermuda Lisa (1/2/3) - Cleomara";
+  produtos_comprar_mais[2][1]["cod_produto"] = "16085";
+
+  produtos_comprar_mais[2][2] = [];
+  produtos_comprar_mais[2][2]["link"] = "/conjunto-bebe-masculino-camiseta-manga-curta-verde-e-bermuda-dinossauros-1-2-3-viston";
+  produtos_comprar_mais[2][2]["id_produto"] = 7624752;
+  produtos_comprar_mais[2][2]["preco"] = 49.99;
+  produtos_comprar_mais[2][2]["preco_promocao"] = 29.99;
+  produtos_comprar_mais[2][2]["nome_imagem"] = ["16317_p"];
+  produtos_comprar_mais[2][2]["nome_produto"] = "Conjunto Bebê Masculino Camiseta Manga Curta Verde e Bermuda Dinossauros (1/2/3) - Viston";
+  produtos_comprar_mais[2][2]["cod_produto"] = "16317";
+
+  produtos_comprar_mais[2][3] = [];
+  produtos_comprar_mais[2][3]["link"] = "/conjunto-bebe-camiseta-branca-dude-e-bermuda-1-2-3-jidi-kids";
+  produtos_comprar_mais[2][3]["id_produto"] = 7599096;
+  produtos_comprar_mais[2][3]["preco"] = 49.99;
+  produtos_comprar_mais[2][3]["preco_promocao"] = 29.99;
+  produtos_comprar_mais[2][3]["nome_imagem"] = ["16162_p"];
+  produtos_comprar_mais[2][3]["nome_produto"] = "Conjunto Bebê Masculino Camiseta Manga Curta Branca Dude e Bermuda Moletinho (1/2/3) - Jidi Kids";
+  produtos_comprar_mais[2][3]["cod_produto"] = "16162";
+
+  produtos_comprar_mais[2][4] = [];
+  produtos_comprar_mais[2][4]["link"] = "/conjunto-bebe-camiseta-amarela-dude-e-bermuda-1-2-3-jidi-kids";
+  produtos_comprar_mais[2][4]["id_produto"] = 7599083;
+  produtos_comprar_mais[2][4]["preco"] = 49.99;
+  produtos_comprar_mais[2][4]["preco_promocao"] = 29.99;
+  produtos_comprar_mais[2][4]["nome_imagem"] = ["16161_p"];
+  produtos_comprar_mais[2][4]["nome_produto"] = "Conjunto Bebê Masculino Camiseta Manga Curta Amarela Dude e Bermuda Moletinho (1/2/3) - Jidi Kids";
+  produtos_comprar_mais[2][4]["cod_produto"] = "16161";
+  
+  
+  //1 a 5 - feminino
+  produtos_comprar_mais[3][0] = [];
+  produtos_comprar_mais[3][0]["link"] = "/macaquinho-bebe-feminino-regata-cotton-azul-marinho-lhama-1-2-3-kappes";
+  produtos_comprar_mais[3][0]["id_produto"] = 7586048;
+  produtos_comprar_mais[3][0]["preco"] = 39.99;
+  produtos_comprar_mais[3][0]["preco_promocao"] = 19.99;
+  produtos_comprar_mais[3][0]["nome_imagem"] = ["15897_p"];
+  produtos_comprar_mais[3][0]["nome_produto"] = "Macaquinho Bebê Feminino Regata Cotton Azul Marinho Lhama (1/2/3) - Kappes";
+  produtos_comprar_mais[3][0]["cod_produto"] = "15897";
+
+  produtos_comprar_mais[3][1] = [];
+  produtos_comprar_mais[3][1]["link"] = "/conjunto-bebe-feminino-camiseta-manga-curta-off-white-frutas-e-shorts-pink-1-2-3-viston";
+  produtos_comprar_mais[3][1]["id_produto"] = 7594355;
+  produtos_comprar_mais[3][1]["preco"] = 49.99;
+  produtos_comprar_mais[3][1]["preco_promocao"] = 29.99;
+  produtos_comprar_mais[3][1]["nome_imagem"] = ["16081_p"];
+  produtos_comprar_mais[3][1]["nome_produto"] = "Conjunto Bebê Feminino Camiseta Manga Curta Off White Frutas e Shorts Pink (1/2/3) - Viston";
+  produtos_comprar_mais[3][1]["cod_produto"] = "16081";
+
+  produtos_comprar_mais[3][2] = [];
+  produtos_comprar_mais[3][2]["link"] = "/conjunto-bebe-feminino-camiseta-manga-curta-branca-unicornio-e-shorts-vermelho-1-2-3-viston";
+  produtos_comprar_mais[3][2]["id_produto"] = 7594209;
+  produtos_comprar_mais[3][2]["preco"] = 49.99;
+  produtos_comprar_mais[3][2]["preco_promocao"] = 29.99;
+  produtos_comprar_mais[3][2]["nome_imagem"] = ["16044_p"];
+  produtos_comprar_mais[3][2]["nome_produto"] = "Conjunto Bebê Feminino Camiseta Manga Curta Branca Unicórnio e Shorts Vermelho (1/2/3) - Viston";
+  produtos_comprar_mais[3][2]["cod_produto"] = "16044";
+  
+  produtos_comprar_mais[3][3] = [];
+  produtos_comprar_mais[3][3]["link"] = "/conjunto-bebe-camiseta-rosa-sereia-e-legging-cotton-1-2-3-jidi-kids";
+  produtos_comprar_mais[3][3]["id_produto"] = 7600053;
+  produtos_comprar_mais[3][3]["preco"] = 59.99;
+  produtos_comprar_mais[3][3]["preco_promocao"] = 30.99;
+  produtos_comprar_mais[3][3]["nome_imagem"] = ["16182_p"];
+  produtos_comprar_mais[3][3]["nome_produto"] = "Conjunto Bebê Feminino Camiseta Manga Curta Rosa Sereia e Legging Cotton (1/2/3) - Jidi Kids";
+  produtos_comprar_mais[3][3]["cod_produto"] = "16182";
+
+  produtos_comprar_mais[3][4] = [];
+  produtos_comprar_mais[3][4]["link"] = "/conjunto-bebe-camiseta-branca-frutinhas-e-shorts-1-2-3-viston";
+  produtos_comprar_mais[3][4]["id_produto"] = 7594468;
+  produtos_comprar_mais[3][4]["preco"] = 49.99;
+  produtos_comprar_mais[3][4]["preco_promocao"] = 29.99;
+  produtos_comprar_mais[3][4]["nome_imagem"] = ["16075_p"];
+  produtos_comprar_mais[3][4]["nome_produto"] = "Conjunto Bebê Feminino Camiseta Regata Branca Frutinhas e Shorts Estampado (1/2/3) - Viston";
+  produtos_comprar_mais[3][4]["cod_produto"] = "16075";
+
+
+  //produtos a serem mostrados no comprar mais - provisório - FIM
+  
+  var frases_comprar_mais = [];
+  frases_comprar_mais[0] = ["Como está o guarda-roupa para o verão do seu bebê? Aproveite nossas novidades!","Vamos aproveitar para deixar seu fofuxo mais estiloso nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  frases_comprar_mais[1] = ["Como está o guarda-roupa para o verão da sua bebê? Aproveite nossas novidades!","Vamos aproveitar para deixar sua fofuxa mais estilosa nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  frases_comprar_mais[2] = ["Como está o guarda-roupa para o verão do seu filho? Aproveite nossas novidades!","Vamos aproveitar para deixar seu fofuxo mais estiloso nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  frases_comprar_mais[3] = ["Como está o guarda-roupa para o verão da sua filha? Aproveite nossas novidades!","Vamos aproveitar para deixar sua fofuxa mais estilosa nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  
+  frases_comprar_mais[4] = ["Como está o guarda-roupa para o verão do(a) seu(sua) bebê? Aproveite nossas novidades!","Vamos aproveitar para deixar seu(sua) fofuxo(a) mais estiloso(a) nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  frases_comprar_mais[5] = ["Como está o guarda-roupa para o verão do(a) seu(sua) filho(a)? Aproveite nossas novidades!","Vamos aproveitar para deixar seu(sua) fofuxo(a) mais estiloso(a) nesse verão?","Está procurando roupinha leve, fresca e com muito estilo para o verão? Olha o que temos aqui!"];
+  
+  var id_frase = Math.round(Math.random()*100)%3;
+
+  if(mostrar_comprar_mais)
+  {
+    carrinho_faixa_etaria = window.localStorage.carrinho_faixa_etaria;
+    carrinho_genero = window.localStorage.carrinho_genero;
+    montar_comprar_mais();
+    
+    var txt_fe = "";
+    if(carrinho_faixa_etaria == 0)
+    {
+      txt_fe = "3 a 12 meses";
+    }
+    else if(carrinho_faixa_etaria == 1)
+    {
+      txt_fe = "1 a 3 anos";
+    }
+    
+    var txt_genero = "";
+    if(carrinho_genero == 0)
+    {
+      txt_genero = "unissex";
+    }
+    else if(carrinho_genero == 1)
+    {
+      txt_genero = "masculino";
+    }
+    else if(carrinho_genero == 2)
+    {
+      txt_genero = "feminino";
+    }
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&frase_id=" + id_frase + "&tema_apresentado=" + "verao" + "&genero_carrinho=" + txt_genero + "&frase_id=" + id_frase + "&faixa_etaria_carrinho=" + txt_fe,false,fnprocessRegistroAtividade);
+    
+    if(ja_apareceu)
+    {
+      fn_mostrar_comprar_mais_sem_animacao();
+    }
+    else
+    {
+      fn_mostrar_comprar_mais();
+    }
+    
+  }
+  else
+  {
+	window.location.href = "https://www.bebefofuxo.com.br";
+  }
+
+  
+
+  function montar_comprar_mais()
+  {
+    var div_comprar_mais = document.createElement("div");
+    div_comprar_mais.id = "id_comprar_mais";
+    var div_ref = document.getElementById("idFCLeftContentRight");
+    document.body.insertBefore(div_comprar_mais,div_ref);
+
+    $("#id_comprar_mais").css('top', window.innerHeight);
+
+    var altura_conteudo = window.innerHeight-100-70;
+
+    var content_comprar_mais = "<div class='titulo_cm'><span>ANTES DE COMPLETAR SEU PEDIDO</span></div>";
+    content_comprar_mais += "<div class='pergunta_cm'><span>Que tal uma dica?</span></div>";
+    content_comprar_mais += "<div class='linha_cm'></div>";
+    
+
+    var gen_fe = 0;
+    var array_produtos;
+    if(carrinho_faixa_etaria == 0)
+    {
+      if(carrinho_genero == 0)
+      {
+        array_produtos = produtos_comprar_mais[0].concat(produtos_comprar_mais[1]);
+        array_produtos = shuffleArray(array_produtos);
+        gen_fe=4;
+        link_ver_mais = "/categorias/conjunto-curto-para-bebe?fil=320218&avancada=true&tfil=3+a+12+meses";
+        
+      }
+      else if(carrinho_genero == 1)
+      {
+        array_produtos = produtos_comprar_mais[0];
+        gen_fe = 0;
+        link_ver_mais = "/categorias/conjunto-curto-para-bebe?fil=319942+320218&avancada=true&tfil=3+a+12+meses+Masculino";
+      }
+      else if(carrinho_genero == 2)
+      {
+        array_produtos = produtos_comprar_mais[1];
+        gen_fe = 1;
+        link_ver_mais = "/categorias/conjunto-curto-para-bebe?fil=319943+320218&avancada=true&tfil=3+a+12+meses+Feminino";
+      }
+    }
+    else if(carrinho_faixa_etaria == 1)
+    {
+      if(carrinho_genero == 0)
+      {
+        array_produtos = produtos_comprar_mais[2].concat(produtos_comprar_mais[3]);
+        array_produtos = shuffleArray(array_produtos);
+        gen_fe = 5;
+        link_ver_mais = "/categorias/conjunto-curto-para-bebe?fil=320219+320220&avancada=true&tfil=1+a+3+anos+4+a+6+anos";
+        
+      }
+      else if(carrinho_genero == 1)
+      {
+        array_produtos = produtos_comprar_mais[2];
+        gen_fe = 2;
+        link_ver_mais = "/categorias/conjunto-curto-para-bebe?fil=319942+320219+320220&avancada=true&tfil=1+a+3+anos+4+a+6+anos+Masculino";
+      }
+      else if(carrinho_genero == 2)
+      {
+        array_produtos = produtos_comprar_mais[3];
+        gen_fe = 3;
+        link_ver_mais = "/categorias/conjunto-curto-para-bebe?fil=319943+320219+320220&avancada=true&tfil=1+a+3+anos+4+a+6+anos+Feminino";
+      }
+    }
+    
+    content_comprar_mais += "<div class='conteudo_cm' style='height:"+altura_conteudo+"px'><div class='dica_cm'><span>"+frases_comprar_mais[gen_fe][id_frase]+"</span></div>";
+
+    content_comprar_mais += "<div id='TabListaProdutos'>";
+    
+    for(var i = 0; i < array_produtos.length; i++)
+    {
+		content_comprar_mais += montar_produto(array_produtos[i]["link"],array_produtos[i]["id_produto"],array_produtos[i]["preco"],array_produtos[i]["preco_promocao"],array_produtos[i]["nome_imagem"][0],array_produtos[i]["nome_produto"],array_produtos[i]["cod_produto"]);
+    }
+
+
+    content_comprar_mais += "</div>";
+    
+    content_comprar_mais += "<div class='btn_vermais_cm'>Ver mais itens de verão</div>";
+    
+    content_comprar_mais += "</div>";
+    
+    content_comprar_mais += "<div class='btn_cm'><span class='obrigado_cm'>Não, obrigado</span><br><span>IR PARA O PAGAMENTO</span></div>";
+
+    $("#id_comprar_mais").html(content_comprar_mais);
+
+  }
+  
+  $(".btn_cm").click(function(){
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_nao_obrigado=" + "1",false,fnprocessRegistroAtividade_NaoObrigado);
+    
+    
+  });
+  
+  $(".btn_vermais_cm").click(function(){
+
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_mostrar_mais_produto=" + "1",false,fnprocessRegistroAtividade_VerMais);
+
+
+  });
+
+  $(".link-prod").click(function(e){
+	
+    e.preventDefault();
+    var link = this.href;
+    var codigo_modelo = $(this).data("id");
+    codigo_modelo = codigo_modelo.replace(/"/g, '');
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_produto=" + "1" + "&cod_modelo=" + codigo_modelo,false,fnprocessRegistroAtividade_CliqueProduto,link);
+
+
+  });
+  
+  var timeout;
+  $(".conteudo_cm").scroll(function() {
+
+    if($(".conteudo_cm").scrollTop() > scroll_atual)
+    {
+      scroll_atual = parseInt($(".conteudo_cm").scrollTop());
+
+      clearTimeout(timeout);
+      timeout = setTimeout(function(s) {
+
+        AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&scroll_y=" + scroll_atual,false,fnprocessRegistroAtividade_Scroll);
+
+      }, 2000);
+    }
+    
+    
+  });
+
+
+  function montar_produto(link,id_produto,preco,preco_promocao,nome_imagem,nome_produto,cod_produto)
+  {
+    var desconto = Math.round((1-(preco_promocao/preco))*100);
+    var preco_virgula = preco.toFixed(2).replace(".", ",");
+    var preco_promocao_virgula = preco_promocao.toFixed(2).replace(".", ",");
+
+    var preco_promocao_parcela = preco_promocao/6;
+    preco_promocao_parcela = preco_promocao_parcela.toFixed(2);
+    var preco_promocao_parcela_virgula = preco_promocao_parcela.replace(".", ",");
+
+    //var link = "https://www.bebefofuxo.com.br" + link;
+
+    var cod_prod = '"'+cod_produto+'"';
+    
+    var content_produto = "<div class='ProdDestLista'>";
+    content_produto += "<a class='link-prod' href='"+link+"' data-id='"+cod_prod+"'>";
+    content_produto += "<div id='DivProd"+id_produto+"' data-sale='true' data-release='true'><div class='badgesProd'><div class='badgeProm' title='Oferta'>-"+desconto+"%</div></div></div>";
+    content_produto += "<div class='ImgProdDesk'><div id='DivImagemProdDouble"+id_produto+"' class='ProdCapaDiv'><img src='../lojas/00020368/prod/"+nome_imagem+".jpg' alt='"+nome_produto+"' loading='lazy'></div></div>";
+    content_produto += "<div class='ImgProdMobi'><div class='ProdCapaDiv'><img src='../lojas/00020368/prod/"+nome_imagem+".jpg' alt='"+nome_produto+"' loading='lazy'></div></div>";
+    content_produto += "<div class='ProdListOrder'>";
+    content_produto += "<div class='EstNomeProdCapa'>"+nome_produto+"</div>";
+    content_produto += "<div id='PrecoProd"+id_produto+"' class='PrecoProdCapa'><span class='PrecoDeHome'>de <strike>R$&nbsp;"+preco_virgula+"</strike>&nbsp;&nbsp;</span><span class='PrecoPorHome'>por R$<b>&nbsp;"+preco_promocao_virgula+"</b></span><div class='EstParcHome'>6X de R$&nbsp;"+preco_promocao_parcela_virgula+" sem juros</div></div>";
+    content_produto += "</div>";
+    content_produto += "<div class='EstBotVerMais'>Eu Quero</div></a>";
+    content_produto += "</div>";
+
+
+    return content_produto;
+  }
+
+  function fn_mostrar_comprar_mais()
+  {
+    window.localStorage.setItem("ja_apareceu_comprar_mais", 1);
+    
+    $("#id_comprar_mais").animate({
+      top: 0
+    }, 500);
+  }
+  
+  function fn_mostrar_comprar_mais_sem_animacao()
+  {
+    $("#id_comprar_mais").css("top",0);
+  }
+  
+  function fnprocessRegistroAtividade_Scroll()
+  {
+    //console.log("Registrado scroll com sucesso");
+  }
+  
+  function fnprocessRegistroAtividade()
+  {
+    //console.log("Registrado entrada na página com sucesso");
+  }
+  
+  function fnprocessRegistroAtividade_NaoObrigado()
+  {
+    //console.log("Registrado Não Obrigado com sucesso");
+    
+    window.localStorage.removeItem("carrinho_genero");
+    window.localStorage.removeItem("carrinho_faixa_etaria");
+    window.localStorage.removeItem("mostrar_comprar_mais");
+    //window.localStorage.removeItem("ja_apareceu_comprar_mais");
+    //window.localStorage.removeItem("sessao_id");
+    
+    
+    window.location.href = "/checkout.asp?idloja=20368";
+  }
+  
+  
+  function fnprocessRegistroAtividade_VerMais()
+  {
+    //console.log("Registrado Ver Mais com sucesso");
+    
+    window.location.href = link_ver_mais;
+  }
+  
+  function fnprocessRegistroAtividade_CliqueProduto()
+  {
+    //console.log("Registrado Clique Produto com sucesso");
+    
+	window.location.href = arguments[1];
+  }
+  
+  function shuffleArray(arr) {
+        // Loop em todos os elementos
+    for (let i = arr.length - 1; i > 0; i--) {
+            // Escolhendo elemento aleatório
+        const j = Math.floor(Math.random() * (i + 1));
+        // Reposicionando elemento
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    // Retornando array com aleatoriedade
+    return arr;
+}
+</script>
