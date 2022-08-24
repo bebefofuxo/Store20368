@@ -1,0 +1,1382 @@
+<style>
+
+.headerDetalhePedido{font-size:18px;}
+.linhaPrazoEntrega{font-size:15px;}
+.linhaRetirarLoja{font-size:15px;}
+.botaoBoleto{-webkit-border-radius: 5px !important;}
+.botaoBoleto a {color: white;text-decoration:none;display:inline-block;padding-top:5px;font-size:15px;}
+.botaoRastreio a {color: white;text-decoration:none;display:inline-block;padding-top:5px;font-size:15px;}
+  
+@media screen and (max-width: 800px) {
+.headerDetalhePedido{font-size:16px;}
+.linhaPrazoEntrega{font-size:14px;}
+.linhaRetirarLoja{font-size:14px;}
+.botaoBoleto a {font-size:14px;}
+.botaoRastreio a {font-size:14px;}
+}
+@media screen and (max-width: 400px) {
+.headerDetalhePedido{font-size:13px;}
+.linhaPrazoEntrega{font-size:13px;}
+.linhaRetirarLoja{font-size:13px;}
+.botaoBoleto a {font-size:13px;padding-top:6px}
+.botaoRastreio a {font-size:13px;padding-top:6px}
+}
+
+</style>
+
+<div id='rodape_alinha'>
+  <div id='rodape_bg'>
+  
+  <div class='rodlinha1'>
+
+  <div class='rod1'>
+    <div class="rodt1">Institucional</div>
+    <div class="rodmenu1"><a href="/page,idloja,<IDLoja>,arq,cSobre.htm,quem-somos">Quem Somos</a></div>
+    <div class="rodmenu1"><a href="/page,idloja,<IDLoja>,arq,cPrivacidade.htm,politica-de-privacidade">Política de Privacidade</a></div>
+    <div class="rodmenu1"><a href="/page,idloja,<IDLoja>,arq,cSeguranca.htm,seguranca">Política de Segurança</a></div>
+    <div class="rodmenu1"><a href="/page,idloja,<IDLoja>,arq,cTrocas.htm,trocas-e-devolucoes">Trocas e Devoluções</a></div>
+    <div class="rodmenu1"><a href="/page,idloja,<IDLoja>,arq,cPagamento.htm,formas-de-pagamento">Formas de Pagamento</a></div>
+  </div>
+
+  <div class='rod2'>
+    <div class="rodt1">Serviços</div>
+    <div class="rodmenu1"><a href="/cadastro.asp?IDLoja=<IDLoja>">Meu Cadastro</a></div>
+    <div class="rodmenu1"><a href="/track.asp?idloja=<IDLoja>">Meus Pedidos</a></div>
+    <div class="rodmenu1"><a href="/addproduto.asp?idloja=<IDLoja>">Meu Carrinho</a></div>
+    <div class="rodmenu1"><a href="/faleconosco.asp?idloja=<IDLoja>">Fale Conosco</a></div>
+  </div>
+  
+  <div class='rod3'>
+    <div class="rodt1">Atendimento</div>
+    <div class="rodt1"><img src="<PathTo file="images/ic_telefone.svg">" alt="Telefone" title="Telefone">(11) 93320-9186</div>
+    <!--<div class="rodt1"><img src="<PathTo file="images/ic_telefone.svg">" alt="Telefone" title="Telefone">(11) 4515-7761</div>-->
+    <div class="rodt1" id="id_whatsapp_rodape"><a href='https://api.whatsapp.com/send?phone=5511933209186' target='_blank'><img src="<PathTo file="images/ic_whatsapp2.svg">" alt="WhatsApp" title="WhatsApp">(11) 93320-9186</a></div>
+    <div class="rodtxt2">De Segunda à Sexta<br> das 9h às 18h <span class="rod3email1"><a href="mailto:atendimento@bebefofuxo.com.br">atendimento@bebefofuxo.com.br</a></span><span class="rod3email2"><a href="mailto:atendimento@bebefofuxo.com.br">&#8250; Envie um E-mail</a></span></div>
+  </div>
+
+  <div class="rod4">
+    <div class="rodt1">Siga-nos</div>
+    <div class="rod4A"><a href="https://www.facebook.com/bebefofuxo/" target="_blank" rel="noopener"><img src="<PathTo file="images/ic_facebook.svg">" alt="Facebook" title="Facebook" />Facebook</a></div>
+    <div class="rod4A"><a href="https://www.instagram.com/bebe_fofuxo/" target="_blank" rel="noopener"><img src="<PathTo file="images/ic_instagram2.svg">" alt="Instagram" title="Instagram" />Instagram</a></div>
+    <div class="rod4A"><a href="https://www.blog.bebefofuxo.com.br" target="_blank" rel="noopener"><img src="<PathTo file="images/blog.svg">" alt="Blog" title="Blog" />Blog</a></div>
+  </div>
+
+  <div class='rod5'>
+    <div class="rodt1">Pagamentos</div>
+    <div class="rodtxt1">Pague em até 6X sem juros nos cartões</div>
+    <div class="rod5A"><img src="<PathTo file="images/ic_mastercard2.svg">" alt="MasterCard" title="MasterCard"><img src="<PathTo file="images/ic_visa1.svg">" alt="Visa" title="Visa"><img src="<PathTo file="images/ic_hipercard1.svg">" alt="Hipercard" title="Hipercard"><img src="<PathTo file="images/ic_elo1.svg">" alt="Elo" title="Elo"><img src="<PathTo file="images/ic_amex2.svg">" alt="American Express" title="American Express"><!--<img src="<PathTo file="images/ic_diners2.svg">" alt="Dinners" title="Dinners">--><img src="<PathTo file="images/ic_pix.svg">" alt="Pix" title="Pix"><img src="<PathTo file="images/ic_boleto1.svg">" alt="Boleto Bancário" title="Boleto Bancário"></div>
+  </div>
+  
+  <div class='rod6'>
+    <div class="rodt1">Segurança</div>
+    <div class="rod6A">
+    <a href="https://www.fastcommerce.com.br/security-badge.ehc?url=<StoreDomain>" target="_blank" rel="noopener"><img src="/security-badge.ehc" alt="Safe Site" title="Safe Site"></a>
+    <a href="https://www.google.com/transparencyreport/safebrowsing/diagnostic/?hl=pt-BR#url=<StoreDomain>" target="_blank" rel="noopener"><img src="<PathTo file="images/Google_Loja_Segura.svg">" alt="Google Loja Segura" title="Google Loja Segura"></a>
+    </div>
+  </div>
+
+  <div class='rod7'><a href="https://www.bebefofuxo.com.br"><picture><source media="(max-width:1023px)" srcset="<baseLoja>images/logomobile.png"><img src="<PathTo file="images/logotopo.png">" alt="Bebê Fofuxo" title="Bebê Fofuxo"></picture></a></div>
+  <div class='rod8 rodtxt0'>BEBE FOFUXO COMERCIO DE ROUPAS INFANTIS LTDA. &nbsp;|&nbsp; CNPJ 13.043.380/0001-93 &nbsp;|&nbsp; Telefone: (11) 93320-9186 &nbsp;|&nbsp; Email: <a href="mailto:atendimento@bebefofuxo.com.br">atendimento@bebefofuxo.com.br</a></div>
+  <!--<div class='rod8 rodtxt0'>BEBE FOFUXO COMERCIO DE ROUPAS INFANTIS LTDA. &nbsp;|&nbsp; CNPJ 13.043.380/0001-93 &nbsp;|&nbsp; Telefone: (11) 4515-7761 &nbsp;|&nbsp; Email: <a href="mailto:atendimento@bebefofuxo.com.br">atendimento@bebefofuxo.com.br</a></div>-->
+  <div class='rod9 rodtxt0'>A Bebê Fofuxo é uma loja online especializada em roupas, calçados e acessórios para bebês e crianças de até 6 anos. Temos tudo para o enxoval do seu bebê pelo menor preço do Brasil. Conheça nossas linhas de body, mijão (culote), macacão e tudo mais o que seu bebê precisa para estar sempre fofo e confortável!</div>  
+
+  <div id="compraWhatsappBotao">
+    <a id="compra_whatsapp" href='https://api.whatsapp.com/send?phone=5511933209186' target='_blank'><img src="<PathTo file="images/compre_whatsapp.svg">" alt="WhatsApp" title="WhatsApp"></a>
+  </div>
+    
+  <div id="btn_ganhe20">
+    <a id="cupom_ganhe20" href='?cupom=GANHOU50'><img src="<PathTo file="images/btn_250_v2.png">" alt="Ganhe50" title="Ganhe50"></a>
+  </div>
+    
+   <div id="maos_bebe">
+    <a id="cupom_maos_bebe" href='?cupom=GANHOU50'><img src="<PathTo file="images/maos.png">" alt="Ganhe50" title="Ganhe50"></a>
+  </div>
+    
+  <div id="cabeca_bebe">
+    <a id="cupom_cabeca_bebe" href='?cupom=GANHOU50'><img src="<PathTo file="images/cabeca.png">" alt="Ganhe20" title="Ganhe50"></a>
+  </div>
+  </div>
+    
+  </div>
+</div>
+
+<!-- scripts do autosuggest -->
+<script defer language="JavaScript" src="/jquery-1.8.2.min.js"></script>
+<script defer language="JavaScript" src="/jquery-ui-1.9.2.custom.min.js"></script>
+<link rel="stylesheet" href="<baseloja>htm/css/jquery_ui.css">
+<script defer type="text/javascript" src='<baseloja>htm/js/autosuggest.js'></script>
+<!--[if IE]>
+<style type="text/css">.ui-autocomplete-category{margin-top: -2px}</style>
+<![endif]-->
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+                          // Global Signin
+                          sF$.fnLoginUserName("<NomeCliente>","<FotoCliente>");
+  })
+
+</script>
+
+<!-- Quantidade de Itens no Carrinho -->
+<script defer type="text/javascript" src='<baseloja>htm/js/calculate-qty-cart.js'></script>
+
+<!-- Calculo do Frete no Carrinho -->
+<script>
+var mostrar_label_promocao = false;
+var mostrar_bebe_animado = false;
+  
+
+if(FC$.Page=="Cart" && (FC$.TypeFrt==3 || FC$.TypeFrt==4)){
+
+  /*
+  //mensagem produto pre-venda prevenda
+  //essa mensagem é adicionada no arquivo lojalib.js, porém não conseguimos retirar ela por lá quando o usuário remove o item do carrinho
+  $(document).ready(function() {
+
+    verificarPreVenda(dataLayerGTM[0].prodSKU);
+
+  });
+  */
+
+var iValorCesta=<ValorCesta>;
+window.addEventListener('DOMContentLoaded', () => {
+                        fnCustomizeCart();
+})
+
+//botões acima - INICIO
+var table=jQuery('#TabItens');
+  jQuery('#FCCartButtons').clone().insertBefore(table).addClass('firstFCCartButtons');
+  jQuery('#FCCartRightBuyBut').clone().insertBefore('#FCCartRightSummary');
+  function ComprarImg(){document.getElementsByName("Comprar")[1].click();}
+  
+  
+  //mostrar erro do carrinho - quando o cliente coloca uma quantidade que n„o tem em estoque, por padr„o, a loja n„o avisava qual a linha do carrinho com problema. O script abaixo faz scroll atÈ o input em quest„o e o deixa na cor vermelha
+  $(document).ready(function(){
+    
+  var arrayScripts = $("script:contains('setTimeout'):contains('document.Lista'):not(:contains('arrayScripts'))");
+  
+  if (arrayScripts.length > 0)
+  {
+    var textFieldErro = arrayScripts[0].innerHTML;
+    if(screen.width < 480) {textFieldErro = textFieldErro.replace("q","s");}
+    textFieldErro = textFieldErro.replace('.focus();",500);',"");
+    textFieldErro = textFieldErro.replace('setTimeout("document.Lista.',"");
+    $("#"+textFieldErro).css("background-color","red");
+    $("#"+textFieldErro).css("color","white");
+    
+    $("#"+textFieldErro).on("change paste keyup", function(){
+      
+      $("#"+textFieldErro).css("background-color","white");
+      $("#"+textFieldErro).css("color","#000000");
+      
+    })
+    
+    $('html, body').animate({
+        scrollTop: $("#"+textFieldErro).offset().top - 100
+ 	}, 500);
+  }
+
+  });
+
+
+}
+//botões acima - FIM 
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+            fnFooter();
+  			fn_mostrar_label_promocao();
+  })
+
+</script>
+
+<script>
+  function insertAfter(referenceNode, newNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+  }
+  
+  if(FC$.Page=='Home' && screen.width <= 567)
+  {
+    $("#compraWhatsappBotao").show();
+  }
+  
+  function fn_mostrar_label_promocao()
+  {
+
+    
+    if(FC$.Page=='Products' && $(".FCBoxGrid").length == 0 && screen.width <= 567 && mostrar_label_promocao)
+    {
+      /*
+    var imagens = [];
+
+
+    //189 
+    imagens[0] = "../lojas/00020368/images/btn_ganhe20_azul.png";
+    imagens[1] = "../lojas/00020368/images/btn_ganhe20_rosa.png";
+    imagens[2] = "../lojas/00020368/images/btn_ganhe20_roxo.png";
+    imagens[3] = "../lojas/00020368/images/btn_ganhe20_verde.png";
+    */
+
+      /*
+    //169
+    imagens[0] = "../lojas/00020368/images/btn_azul169.png";
+    imagens[1] = "../lojas/00020368/images/btn_rosa169.png";
+    imagens[2] = "../lojas/00020368/images/btn_roxo169.png";
+    imagens[3] = "../lojas/00020368/images/btn_verde169.png";
+    */
+
+      /*
+    //179
+    imagens[0] = "../lojas/00020368/images/btn_179_azul.png";
+    imagens[1] = "../lojas/00020368/images/btn_179_rosa.png";
+    imagens[2] = "../lojas/00020368/images/btn_179_roxo.png";
+    imagens[3] = "../lojas/00020368/images/btn_179_verde.png";
+    */
+
+
+      /*
+    var index = Math.floor((Math.random() * 4));
+    $("#cupom_ganhe20 img").attr("src", imagens[index]);
+    */
+
+      //if(window.localStorage.btn_ganhe20_clicado != "sim" && FC$.ClientID == "4141467")
+      if(window.localStorage.btn_ganhe20_clicado != "sim")
+      {
+        $("#btn_ganhe20").show();
+      }
+
+
+    }
+  }
+  
+  
+  if(FC$.Page=='RateProd')
+  {
+    $(".EstPoliticaOpiniao").hide();
+  }
+   
+  //fernando - 11/09/19
+  //evitar que o tamanho do filtro quebre o layout para quando ele for maior que o conteudo
+  if(FC$.Page=='Products' && document.body.className=='FCProduct ProductList')
+  {
+    var divFiltro = FCLib$.GetID("ProductsFilterFC");
+    var alturaFiltro = divFiltro.offsetHeight;
+    var divConteudo = FCLib$.GetID("idFCContent");
+    var alturaConteudo = divConteudo.offsetHeight;
+    
+    if(alturaFiltro > alturaConteudo)
+    {
+      divConteudo.style.minHeight = alturaFiltro + "px";
+    }
+    
+
+  }
+  //fernando - 11/09/19
+  
+  if(FC$.Page=='Products' && document.body.className=='FCProduct ProductDet'){
+
+    var gridArea = document.querySelector('div[id^="idMainGridFC_"]');
+    var gridBuyButton = document.getElementById('idButtonBuyFC');
+    var divGuiaMedidas = document.getElementById('showGuiaMedidas');
+    if(gridArea && gridBuyButton &&divGuiaMedidas){
+      gridArea.insertBefore(divGuiaMedidas,gridBuyButton);
+    };
+
+    var getLinkContent = document.getElementById('os_imglight');
+    var lightBox3 = document.getElementById('light3');
+    if(getLinkContent != null){
+      if((getLinkContent.href).match(/\.(jpeg|jpg|gif|png)$/) != null){
+        lightBox3.innerHTML += '<img src="'+getLinkContent.href+'" style="max-width:100%" />';
+        getLinkContent.addEventListener('click', function(e) {
+          e.preventDefault();
+          lightbox_open3();
+        });
+      }
+    }
+  }
+  
+  
+  
+  var xhr = new XMLHttpRequest();
+
+  var dataPostagem;
+  function customizandoDetalhesPedido()
+  {
+    //esconder info sobre cupom
+    if($("#idTxtCupomFC").length == 1)
+    {
+      var valorDesconto = $("#idTxtCupomFC").parent().text().substring($("#idTxtCupomFC").parent().text().indexOf("Desconto de ")+13,$("#idTxtCupomFC").parent().text().indexOf("Desconto de ")+17);
+      valorDesconto.replace(":","");
+
+      $("#idTxtCupomFC").parent().html("<span id='idTxtCupomFC'>Desconto de " + valorDesconto + ":</span>");
+    }
+
+    if ($("#LinkTrack").length == 1)
+    {
+      $("#LinkTrack").parent().parent().parent().parent().hide();
+    }
+
+    
+    //buscar informações sobre o pedido no servidor bebefofuxo.net
+    var numPedido = $(".OrderNumberTrack")[0].innerText;
+    
+    xhr.onreadystatechange = fnprocessDetalhesPedido;
+    xhr.open("GET","https://www.bebefofuxo.net/scripts/data_aprovacao_pedidos/obter_dados_pedido.php?numero_pedido="+numPedido,true);
+  	xhr.send();
+
+    //verifica se existe item em pre-venda prevenda no pedido
+    //var dataPostagem = verificarPreVendaDetalhePedido(); //se voltar a ter pre-venda, reativar essa chamada e verificar se o defer dado na tag script não vai afetar
+    dataPostagem = -1;
+
+    var prazoNoMomentoDoPedido = $("#ObsFreteFC")[0].innerText
+    prazoNoMomentoDoPedido = prazoNoMomentoDoPedido.replace("Obs: ","");
+
+    //retirar observação de prazo default da página
+	$("#ObsFreteFC").remove();
+
+    var dataPedido = $("td.EstNomeCampo:contains(Feito em)").parent().children()[1].innerText;
+    var mesString = dataPedido.split(" ")[0].split("/")[1]
+    var mesPedido = parseInt(mesString);
+
+    var textoEnvio = $(".EstTabPedidoFrete:contains(CEP)").text();
+  	var n = textoEnvio.indexOf("(");
+  	var m = textoEnvio.indexOf(")");
+
+  	var tipoEntrega = textoEnvio.substring(n+1, m);
+
+	
+    /*
+    //TESTE
+    if(numPedido == "297535")
+    {
+        dataPostagem = "20/06/2020";
+      	tipoEntrega = "Retirar na loja";
+    }
+    */
+
+    var divInfoPedido = document.createElement("div");
+    divInfoPedido.classList.add("infoPedido");
+    $("#idFCContent").prepend(divInfoPedido);
+
+    //header
+
+    //sumir com header antigo
+    $("#idTxtIntroTrackFC").hide();
+    $("#idTitTextoFC").hide();
+
+    //sumir com historico
+    $("#idTabHistOrderFC").hide();
+
+    //criar novo
+    var divHeader = document.createElement("div");
+  	divHeader.style.marginTop = "0px";
+    divHeader.style.padding = "5px";
+  	divHeader.style.height = "auto";
+    divHeader.style.textAlign = "center";
+  	divHeader.style.color = "white";
+    divHeader.style.backgroundColor = "#008ae1";
+  	divHeader.innerHTML = "Pedido " + numPedido + " - Feito em " + dataPedido;
+    divHeader.classList.add("headerDetalhePedido");
+  	$(".infoPedido").prepend(divHeader);
+
+    //reposicionar imagem de status
+    $("#idOrderStatusFC").insertAfter($(".headerDetalhePedido"));
+    $("#idOrderStatusFC").css("margin-top","30px");
+
+    var divPrazoEntrega;
+
+/////////CASO NÃO ESTEJA CANCELADO ========================================================================================
+    if ($("#idRecoverOrderFC").length && $("#idTxtSit2OrderFC").text() != "Cancelado")
+    {
+
+      /////// ATENCAO: AQUI TEMOS QUE FALAR SOBRE PRE-VENDA. PODE SER QUE A DATA DE POSTAGEM DA PRE-VENDA SEJA MENOR DO QUE O TEMPO DE ESPERA NA FILA DE SEPARACAO //////////////////////
+
+      	//prazo de entrega total ou retirada a partir da aprovação do pedido
+    	divPrazoEntrega = document.createElement("div");
+      	divPrazoEntrega.style.marginTop = "0px";
+    	divPrazoEntrega.style.padding = "5px";
+  		divPrazoEntrega.style.height = "auto";
+    	divPrazoEntrega.style.textAlign = "center";
+  		divPrazoEntrega.style.color = "#5f5f5f";
+    	divPrazoEntrega.style.backgroundColor = "#eeeeee";
+    	divPrazoEntrega.classList.add("linhaPrazoEntrega");
+      	divPrazoEntrega.id = "divPrazoEntrega";
+    	insertAfter(divHeader,divPrazoEntrega);
+
+      	var formaPagamento = $("td.EstNomeCampo:contains(Pagamento)").parent().children()[1].innerText;
+      	var textoPagamento = "";
+
+      	if (formaPagamento == "Cupom" || formaPagamento == "Troca")
+        {
+          	textoPagamento = "aprovação";
+        }
+      	else
+        {
+          	textoPagamento = "confirmação do pagamento";
+        }
+
+      	///=====> PROVISORIAMENTE IREMOS DEIXAR APENAS A DATA DE POSTAGEM PREVISTA DO PEDIDO QUANDO FOR PRE-VENDA. FUTURAMENTE BUSCAR A INFORMAÇÃO EXATA DO SERVIDOR COM O CALCULO EXATO CONSIDERANDO FERIADOS
+
+      	//se tiver pré-venda
+      	if(dataPostagem != -1)
+        {
+
+          	if (($("#idRecoverOrderFC").length && $("#idTxtSit1OrderFC").text() == "Recebido pela loja") || ($("#idRecoverOrderFC").length && $("#idTxtSit3OrderFC").text() == "Aguardando pagamento do boleto") || ($("#idRecoverOrderFC").length && $("#idTxtSit3OrderFC").text() == "Aguardando aprovação do cartão"))
+        	{
+          		if(tipoEntrega == "Retirar na loja")
+          		{
+            		divPrazoEntrega.innerHTML = "Seu pedido contém <strong>item em pré-venda</strong>. Após a " + textoPagamento + ", seu pedido será separado a partir de: <strong>" + dataPostagem + "</strong>";
+          		}
+          		else
+          		{
+           			divPrazoEntrega.innerHTML = "Seu pedido contém <strong>item em pré-venda</strong>. Após a " + textoPagamento + ", seu pedido será postado a partir de: <strong>" + dataPostagem + "</strong>";
+          		}
+            }
+          	else if (($("#idRecoverOrderFC").length && $("#idTxtSit4OrderFC").text() == "Com pendências") || ($("#idRecoverOrderFC").length && $("#idTxtSit5OrderFC").text() == "Pagamento verificado"))
+        	{
+          		if(tipoEntrega == "Retirar na loja")
+          		{
+            		divPrazoEntrega.innerHTML = "Seu pedido contém <strong>item em pré-venda</strong>. Ele será separado a partir de: <strong>" + dataPostagem + "</strong>";
+          		}
+          		else
+          		{
+           			divPrazoEntrega.innerHTML = "Seu pedido contém <strong>item em pré-venda</strong>. Ele será postado a partir de: <strong>" + dataPostagem + "</strong>";
+          		}
+
+        	}
+
+        }
+      	else
+        {
+			if(tipoEntrega == "Retirar na loja")
+  			{
+          		divPrazoEntrega.innerHTML = "Prazo estimado para retirada: <strong>" + prazoNoMomentoDoPedido + "</strong> a partir da data de " + textoPagamento + " do seu pedido";
+
+ 			}
+  			else
+  			{
+    			divPrazoEntrega.innerHTML = "Prazo estimado de entrega: <strong>" + prazoNoMomentoDoPedido + "</strong> a partir da data de " + textoPagamento + " do seu pedido";
+  			}
+        }
+
+    }
+    else
+    {
+      	//se estiver cancelado, avisar e mostrar o botão para refazer o pedido
+      	var divCancelado = document.createElement("div");
+
+    	divCancelado.style.textAlign = "center";
+    	divCancelado.style.margin = "auto";
+    	divCancelado.style.width = "100%";
+    	divCancelado.style.maxWidth = "545px";
+		divCancelado.style.marginTop = "20px";
+  		divCancelado.style.fontSize = "15px";
+  		divCancelado.style.color = "#008ae1";
+      	divCancelado.innerHTML = "Seu pedido está com status <strong>CANCELADO</strong>. Possivelmente é por falta de pagamento. Caso tenha alguma dúvida, entre em contato com <strong>atendimento@bebefofuxo.com.br</strong>";
+      	insertAfter(divHeader,divCancelado);
+
+      	$("#idRecoverOrderFC a").css('text-decoration','none');
+      	$("#idRecoverOrderFC a").text("CLIQUE AQUI PARA REFAZER SEU PEDIDO");
+      	insertAfter(divCancelado,$("#idRecoverOrderFC")[0]);
+
+    }
+/////////CASO NÃO ESTEJA CANCELADO - FIM ========================================================================================
+
+    var divStatusPagamento = document.createElement("div");
+
+    divStatusPagamento.style.textAlign = "center";
+    divStatusPagamento.style.margin = "auto";
+    divStatusPagamento.style.width = "100%";
+    divStatusPagamento.style.maxWidth = "545px";
+	divStatusPagamento.style.marginTop = "20px";
+  	divStatusPagamento.style.fontSize = "15px";
+  	divStatusPagamento.style.color = "#008ae1";
+    divStatusPagamento.id = "txtStatusPagamento";
+
+    $(".infoPedido").append(divStatusPagamento);
+
+/////////STATUS NOVO ============================================================================================================
+    if ($("#idRecoverOrderFC").length && $("#idTxtSit1OrderFC").text() == "Recebido pela loja")
+    {
+      	//trocar imagem status pedido
+      	$("#idOrderStatusFC").html("<img src='../lojas/00020368/images/msg_status_0_01.svg'>");
+
+      	var formaPagamento = $("td.EstNomeCampo:contains(Pagamento)").parent().children()[1].innerText;
+
+      	//cartão de crédito
+      	if (formaPagamento == "Cartão de crédito")
+      	{
+
+  			divStatusPagamento.innerHTML = "Recebemos seu pedido com sucesso e, para a sua segurança, no momento seu pedido está passando por uma análise anti-fraude. Esse processo é padrão para todos os pedidos da loja visando a segurança dos nossos clientes.<p style='color:orange'><strong>O prazo para a análise é de 24 horas úteis a partir do momento da compra.</strong></p>";
+
+        	$("#idLinkBoletoFC").remove();
+
+      	}//boleto bancário
+      	else if (formaPagamento == "Boleto bancário")
+      	{
+
+  			divStatusPagamento.innerHTML = "Estamos aguardando o pagamento do seu boleto bancário. Caso já tenha pago, não se preocupe, <span style='color:orange'><strong>o banco demora até 48 horas úteis</strong></span> para nos enviar a confirmação do pagamento. Assim que recebermos a confirmação, seu pedido será aprovado.";
+
+        	$("#idLinkBoletoFC").remove();
+
+        	var divBotaoBoleto = document.createElement("div");
+        	divBotaoBoleto.style.textAlign = "center";
+        	divBotaoBoleto.style.margin = "auto";
+        	divBotaoBoleto.style.width = "100%";
+        	divBotaoBoleto.style.height = "30px";
+       		divBotaoBoleto.style.maxWidth = "345px";
+  			divBotaoBoleto.style.marginTop = "20px";
+  			divBotaoBoleto.style.fontSize = "15px";
+  			divBotaoBoleto.style.backgroundColor = "#008ae1";
+        	divBotaoBoleto.classList.add("botaoBoleto");
+        	divBotaoBoleto.innerHTML = "<a href='https://www.bebefofuxo.com.br/yp.asp?IDLoja=20368&B=1&N="+numPedido+"'>Clique aqui para imprimir o boleto desse pedido</a>";
+        	$(".infoPedido").append(divBotaoBoleto);
+          
+          	var divInfoPix = document.createElement("div");
+
+            divInfoPix.style.textAlign = "center";
+            divInfoPix.style.margin = "auto";
+            divInfoPix.style.width = "100%";
+            divInfoPix.style.maxWidth = "545px";
+            divInfoPix.style.marginTop = "20px";
+            divInfoPix.style.fontSize = "15px";
+            divInfoPix.style.color = "#008ae1";
+            divInfoPix.id = "divInfoPix";
+			divInfoPix.innerHTML = "Sabia que você também pode efetuar o pagamento do pedido via PIX? É rápido e prático! Clique abaixo:";
+            $(".infoPedido").append(divInfoPix);
+          
+          	var divBotaoPix = document.createElement("div");
+        	divBotaoPix.style.textAlign = "center";
+        	divBotaoPix.style.margin = "auto";
+        	divBotaoPix.style.width = "100%";
+        	divBotaoPix.style.height = "30px";
+        	divBotaoPix.style.maxWidth = "345px";
+  			divBotaoPix.style.marginTop = "20px";
+  			divBotaoPix.style.fontSize = "15px";
+  			divBotaoPix.style.backgroundColor = "#00ae7c";
+        	divBotaoPix.classList.add("botaoBoleto");
+          	divBotaoPix.innerHTML = "<a href='https://www.bebefofuxo.com.br/pix.ehc?n="+numPedido+"'>QUERO PAGAR ESSE PEDIDO COM PIX!</a>";
+        	$(".infoPedido").append(divBotaoPix);
+          
+      	}
+      	else if (formaPagamento == "Pix")
+      	{
+
+          	divStatusPagamento.innerHTML = "Caso você já tenha feito o seu PIX para pagamento do pedido, pedimos que aguarde, pois seu pedido será aprovado em breve. =)<br><br><div style='color:#444444;background:#ececec;padding:6px;'>Caso não tenha conseguido fazer o PIX, clique no botão abaixo para ver o QRCode ou copiar o código de pagamento:";
+          
+        	$("#idLinkBoletoFC").remove();
+          
+          
+          	divStatusPagamento.innerHTML = "Caso você já tenha feito o seu PIX para pagamento do pedido, pedimos que aguarde, pois seu pedido será aprovado em breve. =)<br><br><div style='color:#444444;background:#ececec;padding:6px;'>Caso não tenha conseguido fazer o PIX, clique no botão abaixo para ver o QRCode ou copiar o código de pagamento:<div class='botaoBoleto' style='text-align:center; margin:auto; width:100%; height: 30px; max-width:345px; margin-top: 20px; margin-bottom: 8px; font-size: 15px; background-color: #bfbfbf'>" + "<a href='https://www.bebefofuxo.com.br/pix.ehc?n="+numPedido+"'>Clique aqui para pagar o pedido com PIX</a>" + "</div>";
+
+      	}
+
+    }
+/////////STATUS NOVO - FIM ====================================================================================
+
+/////////STATUS EM APROVACAO ====================================================================================
+    if ($("#idRecoverOrderFC").length && $("#idTxtSit3OrderFC").text() == "Aguardando pagamento do boleto" || $("#idRecoverOrderFC").length && $("#idTxtSit3OrderFC").text() == "Aguardando aprovação do cartão" || $("#idRecoverOrderFC").length && $("#idTxtSit3OrderFC").text() == "Aguardando pagamento do Pix")
+    {
+		//trocar imagem status pedido
+      	$("#idOrderStatusFC").html("<img src='../lojas/00020368/images/msg_status_0_01.svg'>");
+      
+      	var formaPagamento = $("td.EstNomeCampo:contains(Pagamento)").parent().children()[1].innerText;
+      
+      	if(screen.width < 370)
+      	{
+        
+        	if (formaPagamento == "Boleto bancário")
+        	{
+          		$("#idTxtSit3OrderFC").html("<b>Aguardando pagamento<br>do boleto</b>");
+        	}
+        	else if (formaPagamento == "Cartão de crédito")
+        	{
+          		$("#idTxtSit3OrderFC").html("<b>Aguardando aprovação<br>do cartão</b>");
+        	}
+        
+      	}
+      
+      	//cartão de crédito
+      	if (formaPagamento == "Cartão de crédito")
+      	{
+        	
+  			divStatusPagamento.innerHTML = "Verificamos que o pagamento através do seu cartão de crédito <span style='color:red'><strong>não foi autorizado</strong></span>. Não se preocupe, isso pode acontecer. Você recebeu em seu e-mail um link para tentar efetuar o pagamento novamente.<br><br><div style='color:#444444;background:#ececec;padding:6px;'>Caso você já tenha efetuado o pagamento novamente, aguarde, pois a transação está em análise.<br><br><strong>O prazo para a análise é de 24 horas úteis a partir do momento do pagamento.</strong></div><br>Caso não tenha conseguido efetuar o pagamento no cartão de crédito, no mesmo e-mail enviado tem um link para tentar efetuar o pagamento via PIX.";
+          
+          	$("#idRecoverOrderFC a").css('text-decoration','none');
+      		$("#idRecoverOrderFC a").text("CLIQUE AQUI PARA REFAZER SEU PEDIDO");
+      		insertAfter(divStatusPagamento,$("#idRecoverOrderFC")[0]);
+          
+          	$("#idLinkBoletoFC").remove();
+          
+      	}//boleto bancário
+      	else if (formaPagamento == "Boleto bancário")
+      	{
+  			divStatusPagamento.innerHTML = "Estamos aguardando o pagamento do seu boleto bancário. Caso já tenha pago, não se preocupe, <span style='color:orange'><strong>o banco demora até 48 horas úteis</strong></span> para nos enviar a confirmação do pagamento. Assim que recebermos a confirmação, seu pedido será aprovado.";
+        
+        	$("#idLinkBoletoFC").remove();
+
+        	var divBotaoBoleto = document.createElement("div");
+        	divBotaoBoleto.style.textAlign = "center";
+        	divBotaoBoleto.style.margin = "auto";
+        	divBotaoBoleto.style.width = "100%";
+        	divBotaoBoleto.style.height = "30px";
+        	divBotaoBoleto.style.maxWidth = "345px";
+  			divBotaoBoleto.style.marginTop = "20px";
+  			divBotaoBoleto.style.fontSize = "15px";
+  			divBotaoBoleto.style.backgroundColor = "#008ae1";
+        	divBotaoBoleto.classList.add("botaoBoleto");
+        	divBotaoBoleto.innerHTML = "<a href='https://www.bebefofuxo.com.br/yp.asp?IDLoja=20368&B=1&N="+numPedido+"'>Clique aqui para imprimir o boleto desse pedido</a>";
+        	$(".infoPedido").append(divBotaoBoleto);
+          
+          	var divInfoPix = document.createElement("div");
+
+            divInfoPix.style.textAlign = "center";
+            divInfoPix.style.margin = "auto";
+            divInfoPix.style.width = "100%";
+            divInfoPix.style.maxWidth = "545px";
+            divInfoPix.style.marginTop = "20px";
+            divInfoPix.style.fontSize = "15px";
+            divInfoPix.style.color = "#008ae1";
+            divInfoPix.id = "divInfoPix";
+			divInfoPix.innerHTML = "Sabia que você também pode efetuar o pagamento do pedido via PIX? É rápido e prático! Clique abaixo:";
+            $(".infoPedido").append(divInfoPix);
+          
+          	var divBotaoPix = document.createElement("div");
+        	divBotaoPix.style.textAlign = "center";
+        	divBotaoPix.style.margin = "auto";
+        	divBotaoPix.style.width = "100%";
+        	divBotaoPix.style.height = "30px";
+        	divBotaoPix.style.maxWidth = "345px";
+  			divBotaoPix.style.marginTop = "20px";
+  			divBotaoPix.style.fontSize = "15px";
+  			divBotaoPix.style.backgroundColor = "#00ae7c";
+        	divBotaoPix.classList.add("botaoBoleto");
+          	divBotaoPix.innerHTML = "<a href='https://www.bebefofuxo.com.br/pix.ehc?n="+numPedido+"'>QUERO PAGAR ESSE PEDIDO COM PIX!</a>";
+        	$(".infoPedido").append(divBotaoPix);
+      	}
+      	else if (formaPagamento == "Pix")
+      	{
+
+          	divStatusPagamento.innerHTML = "Caso você já tenha feito o seu PIX para pagamento do pedido, pedimos que aguarde, pois seu pedido será aprovado em breve. =)<br><br><div style='color:#444444;background:#ececec;padding:6px;'>Caso não tenha conseguido fazer o PIX, clique no botão abaixo para ver o QRCode ou copiar o código de pagamento:";
+          
+        	$("#idLinkBoletoFC").remove();
+          
+          
+          	divStatusPagamento.innerHTML = "Caso você já tenha feito o seu PIX para pagamento do pedido, pedimos que aguarde, pois seu pedido será aprovado em breve. =)<br><br><div style='color:#444444;background:#ececec;padding:6px;'>Caso não tenha conseguido fazer o PIX, clique no botão abaixo para ver o QRCode ou copiar o código de pagamento:<div class='botaoBoleto' style='text-align:center; margin:auto; width:100%; height: 30px; max-width:345px; margin-top: 20px; margin-bottom: 8px; font-size: 15px; background-color: #00ae7c'>" + "<a href='https://www.bebefofuxo.com.br/pix.ehc?n="+numPedido+"'>Clique aqui para pagar o pedido com PIX</a>" + "</div>";
+
+      	}
+	}
+    //FORMATO NOVO - ============================ STATUS EM APROVACAO - FIM
+    
+    
+    var tabelaDatas, linha, celula;
+    tabelaDatas = document.createElement("table");
+    tabelaDatas.style.marginLeft = "auto";
+    tabelaDatas.style.marginRight = "auto";
+    tabelaDatas.style.marginTop = "30px"
+    tabelaDatas.style.width = "100%";
+    tabelaDatas.style.maxWidth = "345px";;
+    tabelaDatas.id = "tabelaPrazos";
+    tabelaDatas.style.display = "none";
+          
+    linha = tabelaDatas.insertRow(0);
+    linha.style.height = "50px";
+    linha.id = "linhaSeparacao";
+          
+          
+    celula = linha.insertCell(0);
+    celula.style.width = "50%";
+    celula.style.backgroundColor = "#008ae1";
+    celula.style.color = "white";
+    celula.style.fontSize = "15px";
+    celula.style.textAlign = "center";
+    celula.style.borderBottom = "solid #ffffff";
+    celula.innerHTML = "Data prevista para<br><strong>separação</strong>";
+          
+    celula = linha.insertCell(1);
+    celula.style.width = "50%";
+    celula.style.backgroundColor = "#eeeeee";
+    celula.style.color = "#5f5f5f";
+    celula.style.fontSize = "17px";
+    celula.style.textAlign = "center";
+    celula.style.borderBottom = "solid #ffffff";
+    celula.style.fontWeight = "bold";
+    celula.id = "celulaSeparacao";
+          
+    linha = tabelaDatas.insertRow(1);
+    linha.style.height = "50px";
+    linha.id = "linhaEntrega";
+          
+    celula = linha.insertCell(0);
+    celula.style.width = "50%";
+    celula.style.backgroundColor = "#008ae1";
+    celula.style.color = "white";
+    celula.style.fontSize = "15px";
+    celula.style.textAlign = "center";
+    celula.innerHTML = "Data prevista para<br><strong>entrega</strong>";
+          
+    celula = linha.insertCell(1);
+    celula.style.width = "50%";
+    celula.style.backgroundColor = "#eeeeee";
+    celula.style.color = "#5f5f5f";
+    celula.style.fontSize = "17px";
+    celula.style.textAlign = "center";
+    celula.style.fontWeight = "bold";
+    celula.id = "celulaEntrega";
+    
+    tabelaDatas.style.display = "none";
+    $(".infoPedido").append(tabelaDatas);
+    
+    var divFeriadoRegional = document.createElement("div");
+  
+    divFeriadoRegional.style.textAlign = "center";
+    divFeriadoRegional.style.margin = "auto";
+    divFeriadoRegional.style.width = "100%";
+    divFeriadoRegional.style.maxWidth = "545px";
+	divFeriadoRegional.style.marginTop = "5px";
+  	divFeriadoRegional.style.fontSize = "10px";
+  	divFeriadoRegional.style.color = "darkgray";
+    divFeriadoRegional.style.display = "none";
+    divFeriadoRegional.id = "feriado_regional";
+    divFeriadoRegional.innerHTML = "A data de entrega pode sofrer alteração devido a feriados regionais";
+    
+    $(".infoPedido").append(divFeriadoRegional);
+          
+    
+    
+    //FORMATO NOVO - ============================ STATUS APROVADO
+    if ($("#idRecoverOrderFC").length && $("#idTxtSit5OrderFC").text() == "Pagamento verificado")
+    {
+      	//trocar imagem status pedido
+      	$("#idOrderStatusFC").html("<img src='../lojas/00020368/images/msg_status_0_02.svg'>");
+      	
+      
+      	$("#txtStatusPagamento").hide();
+      
+      	//mostrar apenas se não tiver pre-venda
+      	if(dataPostagem == -1)
+        {
+			if(tipoEntrega == "Retirar na loja")
+      		{
+          	
+          		divStatusPagamento.innerHTML = "Seu pagamento foi aprovado na data: <span id='data_confirmacao_pagamento' style='font-weight:bold;'></span><br>Veja abaixo a data prevista de separação do seu pedido. <span style='color:orange'><strong>ATENÇÃO: Assim que seu pedido estiver pronto, você receberá um e-mail informando sobre a retirada em nossa loja.</strong></span>";
+          
+          		$("#linhaSeparacao").show();
+          		$("#linhaEntrega").hide();
+          
+      		}
+      		else
+        	{
+          
+          		divStatusPagamento.innerHTML = "Seu pagamento foi aprovado na data: <span id='data_confirmacao_pagamento' style='font-weight:bold;'></span><br>Veja abaixo as datas previstas de separação e entrega do seu pedido.";
+          
+          		$("#linhaSeparacao").show();
+          		$("#linhaEntrega").show();
+            
+        	}
+        }
+      	else
+        {
+          	$("#linhaSeparacao").hide();
+          	$("#linhaEntrega").hide();
+        }
+      	
+      
+      
+      
+    }
+    //FORMATO NOVO - ============================ STATUS APROVADO - FIM
+    
+    var divDataPagamento = document.createElement("div");
+  
+    divDataPagamento.style.textAlign = "center";
+    divDataPagamento.style.margin = "auto";
+    divDataPagamento.style.width = "100%";
+    divDataPagamento.style.maxWidth = "545px";
+	divDataPagamento.style.marginTop = "20px";
+  	divDataPagamento.style.fontSize = "15px";
+  	divDataPagamento.style.color = "#008ae1";
+    divDataPagamento.style.display = "none";
+    divDataPagamento.id = "data_confirmacao_pagamento_2";
+    
+    $(".infoPedido").append(divDataPagamento);
+    
+    //FORMATO NOVO - ============================ STATUS LIBERADO
+    if ($("#idRecoverOrderFC").length && $("#idTxtSit6OrderFC").text() == "Liberado para envio")
+    {
+      
+      	//trocar imagem status pedido
+      	$("#idOrderStatusFC").html("<img src='../lojas/00020368/images/msg_status_0_03.svg'>");
+      	$("#data_confirmacao_pagamento_2").hide();
+      
+      	//mostrar apenas se não tiver pre-venda
+      	if(dataPostagem == -1)
+        {
+			if(tipoEntrega == "Retirar na loja")
+      		{
+          	
+          		divStatusPagamento.innerHTML = "Seu pedido já está pronto e pode ser retirado em nossa loja! Não esqueça de levar um <b>documento com foto</b> para retirar seu pedido!<br><br><span style='color:black'>Endereço: <strong>Av. Líder, 3158 - Cidade Líder - São Paulo, SP (tocar campainha do lado direito)</strong></span> (<a href='https://goo.gl/maps/Q8rzTWWaTmeUDLK98' target='_blank'>veja o mapa</a>)<br><br><span style='color:black'>Horário de funcionamento: 08h30 às 20h (segunda a sexta) - 08h30 às 17h (sábado)</span>";
+          
+          		$("#linhaSeparacao").hide();
+          		$("#linhaEntrega").hide();
+          
+      		}
+      		else
+        	{
+          
+          		divStatusPagamento.innerHTML = "Seu pedido já está pronto e estamos esperando a transportadora vir retirá-lo em nossa loja.<br>Veja abaixo a data prevista de entrega do seu pedido.";
+          
+          		$("#linhaSeparacao").hide();
+          		$("#linhaEntrega").show();
+            
+        	}
+        }
+      	else
+        {
+          	if(tipoEntrega == "Retirar na loja")
+      		{
+          	
+          		divStatusPagamento.innerHTML = "Seu pedido já está pronto e pode ser retirado em nossa loja! Não esqueça de levar um <b>documento com foto</b> para retirar seu pedido!<br><br><span style='color:black'>Endereço: <strong>Av. Líder, 3158 - Cidade Líder - São Paulo, SP (tocar campainha do lado direito)</strong></span> (<a href='https://goo.gl/maps/Q8rzTWWaTmeUDLK98' target='_blank'>veja o mapa</a>)<br><br><span style='color:black'>Horário de funcionamento: 08h30 às 20h (segunda a sexta) - 08h30 às 17h (sábado)</span>";
+          
+                $("#divPrazoEntrega").hide();
+          		$("#linhaSeparacao").hide();
+          		$("#linhaEntrega").hide();
+          
+      		}
+      		else
+        	{
+          
+          		divStatusPagamento.innerHTML = "Seu pedido já está pronto e estamos esperando a transportadora vir retirá-lo em nossa loja."
+          		$("#linhaSeparacao").hide();
+          		$("#linhaEntrega").hide();
+            
+        	}
+          	
+        }
+      
+    }
+    //FORMATO NOVO - ============================ STATUS LIBERADO - FIM
+    
+    
+    
+    
+    //FORMATO NOVO - ============================ STATUS REMETIDO
+    if ($("#idRecoverOrderFC").length && $("#idTxtSit7OrderFC").text() == "Remetido")
+    {
+      	//trocar imagem status pedido
+      
+      	$("#idOrderStatusFC").html("<img src='../lojas/00020368/images/msg_status_0_04.svg'>");
+      
+      	$("#data_confirmacao_pagamento_2").hide();
+      
+      	//mostrar apenas se não tiver pre-venda
+      	if(dataPostagem == -1)
+        {
+			if(tipoEntrega == "Retirar na loja")
+      		{
+          	
+          		divStatusPagamento.innerHTML = "Seu pedido já foi retirado em nossa loja.<br>Qualquer dúvida, entre em contato em <b>atendimento@bebefofuxo.com.br</b>";
+          
+          		$("#linhaSeparacao").hide();
+          		$("#linhaEntrega").hide();
+          
+      		}
+      		else
+        	{
+          		
+          		divStatusPagamento.innerHTML = "Seu pedido já foi enviado para você!<br>Estamos enviando ele pela transportadora <span id='transportadora' style='font-weight:bold;'></span>";
+          
+              	var divBotaoRastreio = document.createElement("div");
+        		divBotaoRastreio.style.textAlign = "center";
+        		divBotaoRastreio.style.margin = "auto";
+        		divBotaoRastreio.style.width = "100%";
+        		divBotaoRastreio.style.height = "auto";
+        		divBotaoRastreio.style.maxWidth = "420px";
+              	divBotaoRastreio.style.paddingBottom = "5px";
+  				divBotaoRastreio.style.marginTop = "20px";
+  				divBotaoRastreio.style.fontSize = "15px";
+  				divBotaoRastreio.style.backgroundColor = "#00ae7c";
+        		divBotaoRastreio.classList.add("botaoRastreio");
+        		divBotaoRastreio.innerHTML = "<a id='link_rastreio' href='' target='_blank'>CLIQUE AQUI PARA ACOMPANHAR SEU PEDIDO</a>";
+              	divBotaoRastreio.style.display = "none";
+              	divBotaoRastreio.id = "btnRastreio";
+        		insertAfter(divStatusPagamento,divBotaoRastreio);
+
+          		$("#linhaSeparacao").hide();
+          		$("#linhaEntrega").show();
+            
+        	}
+        }
+      	else
+        {
+          	if(tipoEntrega == "Retirar na loja")
+      		{
+          	
+          		divStatusPagamento.innerHTML = "Seu pedido já foi retirado em nossa loja.<br>Qualquer dúvida, entre em contato em <b>atendimento@bebefofuxo.com.br</b>";
+          
+                $("#divPrazoEntrega").hide();
+          		$("#linhaSeparacao").hide();
+          		$("#linhaEntrega").hide();
+          
+      		}
+      		else
+        	{
+          
+          		divStatusPagamento.innerHTML = "Seu pedido já foi enviado para você!<br>Estamos enviando ele pela transportadora <span id='transportadora' style='font-weight:bold;'></span>";
+          
+              	var divBotaoRastreio = document.createElement("div");
+        		divBotaoRastreio.style.textAlign = "center";
+        		divBotaoRastreio.style.margin = "auto";
+        		divBotaoRastreio.style.width = "100%";
+        		divBotaoRastreio.style.height = "auto";
+        		divBotaoRastreio.style.maxWidth = "420px";
+              	divBotaoRastreio.style.paddingBottom = "5px";
+  				divBotaoRastreio.style.marginTop = "20px";
+  				divBotaoRastreio.style.fontSize = "15px";
+  				divBotaoRastreio.style.backgroundColor = "#00ae7c";
+        		divBotaoRastreio.classList.add("botaoRastreio");
+        		divBotaoRastreio.innerHTML = "<a id='link_rastreio' href='' target='_blank'>CLIQUE AQUI PARA ACOMPANHAR SEU PEDIDO</a>";
+              	divBotaoRastreio.style.display = "none";
+              	divBotaoRastreio.id = "btnRastreio";
+        		insertAfter(divStatusPagamento,divBotaoRastreio);
+              
+          		$("#linhaSeparacao").hide();
+          		$("#linhaEntrega").hide();
+            
+        	}
+          	
+        }
+      
+      if(tipoEntrega == "Retirar na loja")
+        {
+          texto = "O seu pedido está com status <b>REMETIDO</b>. Isso significa que você já veio retirá-lo em nossa loja! Qualquer dúvida, entre em contato em <b>atendimento@bebefofuxo.com.br</b>";
+        }
+        else
+        {
+          texto = "O seu pedido está com status <b>REMETIDO</b>. Isso significa que ele <b>já foi enviado para você!</b> Enviamos para o seu e-mail o link de rastreio, verifique se recebeu. Qualquer dúvida, entre em contato em <b>atendimento@bebefofuxo.com.br</b>";
+        }
+      
+    }
+    //FORMATO NOVO - ============================ STATUS REMETIDO - FIM
+    
+    
+    
+    //FORMATO NOVO - ============================ STATUS PENDENTE
+    if ($("#idRecoverOrderFC").length && $("#idTxtSit4OrderFC").text() == "Com pendências")
+    {
+      	//trocar imagem status pedido
+      	$("#idOrderStatusFC").html("<img src='../lojas/00020368/images/msg_status_0_02.svg'>");
+      
+      
+      	if(dataPostagem != -1)
+        {
+			var divPendente = document.createElement("div");
+  
+    		divPendente.style.textAlign = "center";
+    		divPendente.style.margin = "auto";
+    		divPendente.style.width = "100%";
+    		divPendente.style.maxWidth = "545px";
+			divPendente.style.marginTop = "20px";
+  			divPendente.style.fontSize = "15px";
+  			divPendente.style.color = "#008ae1";
+      		divPendente.innerHTML = "Seu pedido está com status <strong>PENDENTE</strong>. Mas não precisa se preocupar, está tudo certo com o pagamento! O pedido está nesse status apenas porque você comprou um item em pré-venda. Caso tenha alguma dúvida, entre em contato com <strong>atendimento@bebefofuxo.com.br</strong>";
+      		insertAfter(divPrazoEntrega,divPendente);
+        }
+      
+     	
+      
+      
+    }
+    //FORMATO NOVO - ============================ STATUS PENDENTE - FIM
+    
+    
+    
+    
+    //COISAS PARA FAZER NO FORMATO NOVO
+    //ver se o pagamento cupom ou troca interfere em algo na apresentação dos dados
+    
+    //se o pagamento ainda não consta, informar que estamos aguardando
+    
+    //verificar quando aparece o botão de reimprimir boleto
+    
+    //verificar diferentes formas de pagamento
+    
+    //retirada em loja
+    
+    //informação sobre pre-venda
+    
+    //informação sobre separação e entrega
+    
+    //COISAS PARA FAZER NO FORMATO NOVO - FIM
+  }
+  
+///////// CODIGO DE DETALHES DO PEDIDO =======================================================
+  if(FC$.Page=='Track')
+  {
+
+    window.addEventListener('DOMContentLoaded', () => {
+                            customizandoDetalhesPedido();
+  	})
+
+  }
+
+
+
+//funcão acionada ao receber os dados do pedido vindo do bebefofuxo.net
+function fnprocessDetalhesPedido(){
+  
+  
+	if (xhr.readyState == 4 && xhr.status == 200)
+    {
+      console.log(xhr.responseText);
+    	if(xhr.responseText != "null" && xhr.responseText != null)
+    	{
+      		var obj = JSON.parse(xhr.responseText);
+
+      		if(obj["sucesso"] == true)
+        	{
+                if(obj["entregue"] == "sim")
+                {
+                  $("#idOrderStatusFC").html("<img src='../lojas/00020368/images/msg_status_0_05.svg'>");
+                  $("#link_rastreio").text("CLIQUE AQUI PARA VER DETALHES DA ENTREGA");
+                  $("#txtStatusPagamento").html("Seu pedido já foi entregue!<br>Ele foi enviado pela transportadora " + obj["forma_entrega"] + "<br><br>Caso tenha ocorrido algum problema com a entrega do seu pedido, entre em contato conosco para que possamos ajudar: <b>atendimento@bebefofuxo.com.br</b>");
+                }
+              
+              	var dataAprovacao = obj["data_aprovacao"];
+          		var array = dataAprovacao.split(" ");
+          		var array2 = array[0].split("-");
+          		dataAprovacao = array2[2] + "/" + array2[1] + "/" + array2[0];
+          		var dias_separacao = obj["dias_separacao"];
+    
+    			if(dataPostagem != -1 && tipoEntrega != "Retirar na loja")
+    			{
+      				var prazoTotal = prazoNoMomentoDoPedido.replace(" dias úteis","");
+        			var prazoEntrega = prazoTotal - dias_separacao;
+      				if(divPrazoEntrega.innerHTML == "")
+                    {
+                      	divPrazoEntrega.innerHTML = "Prazo de entrega após postagem: <strong>" + prazoEntrega + " dias úteis</strong>";
+                    }
+                  	else
+                    {
+                      	divPrazoEntrega.innerHTML = divPrazoEntrega.innerHTML + "<br><br> Prazo de entrega após postagem: <strong>" + prazoEntrega + " dias úteis</strong>";
+                    }
+                  
+      
+    			}
+              	else if(dataPostagem == -1)
+                {
+                    if(obj["data_aprovacao"] != "" && obj["data_aprovacao"].substring(0,4) != "0000")
+                    {
+                      	if ($("#idRecoverOrderFC").length && $("#idTxtSit6OrderFC").text() == "Liberado para envio" || $("#idRecoverOrderFC").length && $("#idTxtSit7OrderFC").text() == "Remetido")
+                        {
+              				$("#data_confirmacao_pagamento_2").html("Seu pagamento foi aprovado na data: <strong>" + dataAprovacao + "</strong>");
+                      		$("#data_confirmacao_pagamento_2").show();
+                        }
+                      	
+                    }
+                }
+              	
+              	if ($("#idRecoverOrderFC").length && $("#idTxtSit6OrderFC").text() == "Liberado para envio" || $("#idRecoverOrderFC").length && $("#idTxtSit7OrderFC").text() == "Remetido" || $("#idRecoverOrderFC").length && $("#idTxtSit5OrderFC").text() == "Pagamento verificado")
+                {  
+                  
+                  	if(obj["data_aprovacao"] != "" && obj["data_aprovacao"].substring(0,4) != "0000")
+                    {
+              			$("#data_confirmacao_pagamento").text(dataAprovacao);
+              			$("#txtStatusPagamento").show();
+                    }
+                  	
+                  	if(obj["data_aprovacao"] != "" && obj["data_aprovacao"].substring(0,4) != "0000" && obj["data_separacao"] != "" && obj["data_entrega"] != "")
+                    {
+                      	$("#celulaSeparacao").text(obj["data_separacao"]);
+              			$("#celulaEntrega").text(obj["data_entrega"]);
+              	
+              			$("#tabelaPrazos").show();
+                      	$("#feriado_regional").show();
+                      
+                    }
+              
+              		
+              
+              		if(obj["link_rastreio"] != "")
+        			{
+                  		$("#link_rastreio").attr("href", obj["link_rastreio"]);
+                  		$("#btnRastreio").show();
+                	}
+              	
+              		if(obj["forma_entrega"] != "")
+        			{
+                  		$("#transportadora").text(obj["forma_entrega"]);
+                	}
+              		else
+                	{
+                  		$("#txtStatusPagamento").html("Seu pedido já foi enviado para você!");
+                	}
+                }
+
+        	}
+      		else
+            {
+              	$("#data_confirmacao_pagamento_2").hide();
+              	$("#data_confirmacao_pagamento").hide();
+
+              	$("#tabelaPrazos").hide();
+              
+              	if (!($("#idRecoverOrderFC").length && $("#idTxtSit3OrderFC").text() == "Aguardando pagamento do boleto" || $("#idRecoverOrderFC").length && $("#idTxtSit3OrderFC").text() == "Aguardando aprovação do cartão" || $("#idRecoverOrderFC").length && $("#idTxtSit3OrderFC").text() == "Aguardando pagamento do Pix" || $("#idRecoverOrderFC").length && $("#idTxtSit1OrderFC").text() == "Recebido pela loja"))
+              	{
+					$("#txtStatusPagamento").hide();
+              	}
+              
+              	
+            }
+
+    }
+
+  }
+
+}
+
+
+  var searchInput = document.getElementById('autocomplete');
+  searchInput.oninput = function(){
+    var divAutoSuggest = document.getElementById('ui-id-1');
+    var divBusca = document.getElementById('buscawhite');
+    if(divAutoSuggest && divBusca){
+      divBusca.appendChild(divAutoSuggest)
+    }
+  }
+</script>
+
+<!-- Mailbiz -->
+<script>(function(m, a, i, l, b, z, j, s) {
+    m['MailbizIntegration'] = {
+      id: b,
+      ready: 0
+    };
+    z = a.createElement(i);
+    j = a.getElementsByTagName(i)[0];
+    z.async = 1;
+    z.src = l;
+    j.parentNode.insertBefore(z, j);
+  })(window, document, 'script', 'https://integration-hub.mailclick.me/static/scripts/integration.min.js', '5e5d68322663346c073d877d');
+  </script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+                          fnBadgeDiscount();
+  })
+
+</script> 
+
+<script>
+var d = new Date();
+var horaAtual = d.getUTCHours();
+var difMinutos = d.getTimezoneOffset();
+var difHoras = difMinutos/60;
+var diaSemana = d.getDay();
+horaAtual = horaAtual - difHoras;
+if(horaAtual<0)horaAtual=horaAtual+24;
+
+  
+if(horaAtual < 9 || horaAtual > 17 || diaSemana == 6 || diaSemana == 0)
+{
+  $("#compraWhatsappBotao").hide();
+  $("#compraWhatsappDesktop").hide();
+}
+
+$( window ).scroll(function() {
+  	var botao = document.querySelector('#compraWhatsappBotao');
+	if(FC$.Page=='Home' && screen.width <= 375 && botao.style.width != "54px" && !$("#compraWhatsappBotao").is(":hidden")) {
+      $('#compraWhatsappBotao img').animate({"objectPosition" : "63%"}, 200);
+      $('#compraWhatsappBotao img').animate({"width" : "54px"/*, "height" : "44px"*/}, 200);
+      $('#compraWhatsappBotao').css({"width" : "54px", "height" : "44px"});
+     
+    }
+    else if (FC$.Page=='Home' && screen.width > 375 && botao.style.width != "58px" && !$("#compraWhatsappBotao").is(":hidden")){
+      $('#compraWhatsappBotao img').animate({"objectPosition" : "65%"}, 200);
+      $('#compraWhatsappBotao img').animate({"width" : "58px", "height" : "54px"}, 200);
+      $('#compraWhatsappBotao').css({"width" : "58px","height" : "54px"}, 200);
+    }
+  
+  var btn_ganhe = document.querySelector('#btn_ganhe20');
+  if(btn_ganhe.style.width != "86px" && FC$.Page=='Products' && $(".FCBoxGrid").length == 0 && screen.width <= 567 && !$("#btn_ganhe20").is(":hidden") && window.localStorage.btn_ganhe20_clicado != "sim" && mostrar_label_promocao)
+  {
+  	$('#btn_ganhe20 img').animate({"objectPosition" : "100%"}, 200);
+  	$('#btn_ganhe20 img').animate({"width" : "86px"}, 200);
+    $('#btn_ganhe20').css({"width" : "86px"});
+
+    //if(FC$.ClientID == "4141467")
+    //{
+		mostrar_bebe();
+    //}
+    
+    
+    
+  }
+  
+  var scroll = $(window).scrollTop();
+  setTimeout(function() {
+    var scrollAtual = $(window).scrollTop();
+    if (scroll == scrollAtual){
+      if(FC$.Page=='Home' && screen.width <= 375 && botao.style.width != "134px" && !$("#compraWhatsappBotao").is(":hidden")) {
+        $('#compraWhatsappBotao img').animate({"width" : "134px", "height" : "44px"}, 200);
+        $('#compraWhatsappBotao img').animate({"objectPosition" : "0%"}, 200);
+        $('#compraWhatsappBotao').css({"width" : "134px", "height" : "44px"});
+      }
+      else if (FC$.Page=='Home' && screen.width > 375 && botao.style.width != "165px" && !$("#compraWhatsappBotao").is(":hidden")){
+        $('#compraWhatsappBotao img').animate({"width" : "165px", "height" : "54px"}, 200);
+        $('#compraWhatsappBotao img').animate({"objectPosition" : "0%"}, 200);
+        $('#compraWhatsappBotao').css({"width" : "165px","height" : "54px"}, 200);
+      }
+
+
+      if(btn_ganhe.style.width != "231px" && $("#cabeca_bebe").is(":hidden") && $("#maos_bebe").is(":hidden") && FC$.Page=='Products' && $(".FCBoxGrid").length == 0 && !$("#btn_ganhe20").is(":hidden") && mostrar_label_promocao) {
+        $('#btn_ganhe20 img').animate({"width" : "231px"}, 200);
+        $('#btn_ganhe20 img').animate({"objectPosition" : "0%"}, 200);
+        $('#btn_ganhe20').css({"width" : "231px"});
+      }
+    }
+
+  }, 2000);
+
+  });
+  
+  $("#compraWhatsappBotao a").click(function() {
+
+
+    gtag('event', 'conversion', {
+      'send_to': 'AW-882315225/LSwcCLCw98MCENmf3KQD'
+    });
+    
+    gtag('event', 'Clique WhatsApp', {
+      'event_category' : 'Contato',
+      'event_label' : 'Mobile'
+    });
+
+    
+    return true;
+  });
+  
+  var timeout_cabeca;
+  var timeout_mao;
+  function mostrar_bebe()
+  {
+    if(mostrar_bebe_animado)
+    {
+      var tempo_aleatorio = Math.floor((Math.random() * 7) + 4);
+      tempo_aleatorio = tempo_aleatorio * 1000;
+
+      if (timeout_cabeca) clearTimeout(timeout_cabeca);
+      if (timeout_mao) clearTimeout(timeout_mao);
+
+      timeout_mao = setTimeout(function() {
+
+        var btn_ganhe = document.querySelector('#btn_ganhe20');
+        if(btn_ganhe.style.width == "97px") {
+          $("#maos_bebe").show();
+          timeout_cabeca = setTimeout(function() {
+            $("#cabeca_bebe").show();
+            $('#cabeca_bebe').animate({"bottom" : "7.5rem","margin-left" : "-5px"}, 300);
+            $('#cabeca_bebe').delay(1400);
+            $('#cabeca_bebe').animate({"bottom" : "3.5rem","margin-left" : "-15px"}, 300,function(){$("#maos_bebe").hide();$("#cabeca_bebe").hide();});
+
+
+          },300);
+
+
+        }
+
+      },tempo_aleatorio);
+    }  
+
+
+  }
+  
+  if(FC$.Page=='MyAccount')
+  {
+    if(window.location.href.includes("Register"))
+    {
+        retirarCamposCadastro();
+    }
+    
+    $("#MyAccRegister").click(function(){
+      
+      setTimeout(retirarCamposCadastro,200);
+      
+    })
+    
+    
+  }
+  
+  function retirarCamposCadastro()
+  {
+    if($(".FCDivRegister2DocMyAcc").length == 1)
+    {
+      $(".FCDivRegister2JobMyAcc").remove();
+      $(".FCDivRegister2CellPhoneMyAcc").remove();
+    }
+    else
+    {
+		setTimeout(retirarCamposCadastro,200);
+    }
+
+
+  }
+  
+  
+</script>
+
+<!-- Cookie Policy alert -->
+<div class="cookiewarning bg-warning" id="cookie-law">
+<div class="cookiewarning-position" id ="cookiewarning-mobile">
+  <h4>Política de cookies</h4>
+  <p>Utilizamos cookies próprios e de terceiros para melhorar nossos serviços analisando seus hábitos de navegação. <a href="#" id="cookie-url">Ver mais</a></p>
+  <div class="cookiewarning-position-btn"><span class="cookiewarning-btn">ACEITAR</span></div>
+</div>
+<div class="cookiewarning-position" id ="cookiewarning-desktop">
+  <h4>Política de cookies</h4>
+  <p>Utilizamos cookies próprios e de terceiros para melhorar nossos serviços analisando seus hábitos de navegação. <a href="#" id="cookie-url">Ver mais</a> <span class="cookiewarning-btn">ACEITAR</span></p>
+</div>
+</div>
+<script>fnCookieWarning();
+
+/* Cookie Policy Footer Warning */
+function fnCookieWarning(){
+function createCookie(name, value, days){
+if(days){
+var date=new Date();
+date.setTime(date.getTime()+(days*24*60*60*1000));
+var expires="; expires="+ date.toGMTString();
+}else var expires="";
+document.cookie=name +"="+ value + expires +"; path=/";
+}
+function readCookie(name){
+var nameEQ=name +"=",
+ca=document.cookie.split(';');
+for(var i=0;i<ca.length;i++){
+var c=ca[i];
+while(c.charAt(0)==' ')c=c.substring(1,c.length);
+if(c.indexOf(nameEQ)==0)return c.substring(nameEQ.length,c.length);
+}
+return null;
+}
+function eraseCookie(name){createCookie(name,"",-1);}
+var cookieBody=document.getElementsByTagName("BODY")[0],
+cookieLaw=document.getElementById("cookie-law"),
+cookieURL=document.getElementById("cookie-url"),
+cookieName="cookiewarning",
+cookieWarning=document.createElement("div."+ cookieName);
+function setCookieWarning(active){(!!active)?cookieBody.classList.add(cookieName):cookieBody.classList.remove(cookieName);}
+cookieURL.href="/page,arq,cookie-policy-"+ ("0"+FC$.Language).slice(-2) +".htm,cookie";
+cookieLaw.addEventListener("click", function(){
+createCookie(cookieName,1,365)
+setCookieWarning(false);
+});
+if(readCookie(cookieName)!=1)setCookieWarning(true);
+function removeMe(){
+eraseCookie(cookieName);
+setCookieWarning(false);
+}
+}
+  </script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "89256c0fbdef4b0d934dfae215be4387"}'></script><!-- End Cloudflare Web Analytics -->
