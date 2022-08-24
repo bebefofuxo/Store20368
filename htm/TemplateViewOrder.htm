@@ -1,0 +1,1598 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<style>
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  .container{
+    text-align: center;
+  }
+
+  .botoesForm{
+    width: 300px;
+    height: 50px;
+    text-align: center;
+    margin: 0.4em 0;
+  }
+
+  .botao {
+    background-color: #3498DB;
+    color: white;
+    border: none;
+    font-family: "Arial";
+    display: flex;
+    margin-top: 3em;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .botao h2{
+    font-size: 16px;
+  }
+
+  .senha{
+    width: 296px;
+  }
+
+  .formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3em 0;
+  }
+
+  .formulario h1{
+    font-family: 'Courier New';
+    font-size: 48px;
+  }
+
+  .pedidos{
+    background-color: rgb(58, 58, 250);
+    border: 1px solid rgb(80, 80, 80);
+    color: #FFFFFF;
+    padding: 1.2em;
+  }
+
+  .master{
+    display: inline-flex;
+  }
+
+  .divTela{
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .tela{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+  }
+
+  .esquerda{
+    justify-self: flex-end;
+    align-self: center;
+    z-index: 4;
+  }
+
+  .direita{
+    grid-column: 3;
+    justify-self: flex-start;
+    align-self: center;
+    z-index: 4;
+  }
+
+  .atributos{
+    margin: 1em 0;
+  }
+
+  .divBotoes{
+    display: flex;
+    justify-content: center;
+  }
+
+  .botoes{
+    width: 100px;
+    height: 100px;
+  }
+
+  .divImgProd{
+    display: flex;
+    justify-content: center;
+  }
+
+  .imgProd{
+    border: solid 3px;
+    width: 300px;
+    margin: 3em 0;
+  }
+
+  .divBtLogout{
+    display: flex;
+    width: 100vw;
+    top: 750px;
+  }
+
+  .btLogout{
+    width: 150px;
+    height: 55px;
+    display: none;
+    margin: 0 auto;
+  }
+
+  .icones{
+
+    margin: 0 5em;
+
+  }
+
+  @media screen and (max-width: 500px) {
+    .imgProd{
+      width: 255px;
+      margin: 4em 0;
+    }
+
+    .esquerda{
+    justify-self: flex-start;
+  }
+
+  .direita{
+    justify-self: flex-end;
+   }
+  }
+
+  @media screen and (max-width: 397px) {
+    .imgProd{
+      width: 195px;
+      margin: 3em 0;
+    }
+
+    .btLogout{
+      margin-top: 0;
+    }
+
+    .container2{
+    	width: 100vw;
+  	}
+  }
+
+  @media screen and (max-width: 329px) {
+    .imgProd{
+      width: 150px;
+    }
+
+    .botoes{
+      width: 75px;
+      height: 75px;
+    }
+
+    .container2{
+    	width: 100vw;
+  	}
+  }
+
+  @media screen and (max-width: 285px) {
+    .imgProd{
+      width: 100px;
+      margin: 5em 0;
+    }
+
+    .botoes{
+      width: 75px;
+      height: 75px;
+    }
+
+    .container2{
+    	width: 100vw;
+  	}
+  }
+
+  @media screen and (max-width: 530px){
+
+	.icones{
+
+      margin: 0 2em;
+
+    }
+
+  }
+</style>
+
+<section class="login">
+  <div class="container">
+    <img class="imgLogin" src="https://www.bebefofuxo.com.br/lojas/00020368/images/logotopo.png">
+    <div class="formulario">
+      <h1>Pedido: <orderNumber></h1>
+      <div class="botoesForm botao" id="botao_drop"><h2>Escolha um usuário</h2></div>
+      <input type="password" class="botoesForm senha" id="senha" name="senha" placeholder="Senha" maxlength="4">
+      <button class="botoesForm" onclick="clique_enviar()">Enviar</button>
+    </div>
+  </div>
+</section>
+
+  <div class="pedidos" id="pedido">
+    <h1 class="ppedidos">Pedido: <label id="fala"></label> - <label id="itens"></label> itens</h1>
+  </div>
+
+<main class="master" id="a"></main>
+
+<label class="nPedido"><orderNumber></label>
+
+<orderData>
+
+  <script>
+//criando arrays e variáveis
+let numPedido = <orderNumber>;
+let con; //variavel usada para verificar se o usuario entrou em um pedido com falta, desmarcou um item e tentou passar para outro
+let control = 2;
+let strings = "";
+let array = [];
+let arrAcoes = [];
+let arrAcoesF = [];
+let acoes = "";
+let array_acoes = [];
+let array_itens = [];
+let cod = [];
+let acoes2 = "";
+let array_acoes2 = [];
+let cod2 = [];
+let quantidadesTotais = [];
+let htmlElements = "";
+let imagem = "imagem_template.png";
+let xhttp7 = new XMLHttpRequest();
+let array_imagens = [];
+let codigos_modelos = [];
+let container = document.querySelector(".master");
+let a = document.querySelector("#a");
+let cor = [];
+
+//escondendo a tela de picking para mostrar a de login
+$("#pedido").hide();
+$("#a").hide();
+
+//Criando o botão de logout e outras funções assim que a página é carregada
+document.addEventListener("DOMContentLoaded", () => {
+
+    criaBotaoLogout();
+    buscarNome();
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            con = this.responseText;
+        }
+    }
+
+    xhr.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/consultaFalta.php?pedido="+numPedido, true);
+    xhr.send();
+
+    document.getElementById("fala").innerText = numPedido;
+    document.title = "Sistema Picking";
+
+    //Pegando total de itens do pedido
+    $("tr td:nth-child(3)[class*='EstTabPedidosSemFrete']").each(function(i){
+        quantidadesTotais.push(parseInt(this.innerText));
+    });
+
+    document.getElementById("itens").innerText = quantidadesTotais;
+
+    //INICIO - parte nova de coleta de dados e ordenaçao geral
+
+    $("tr td:first-child[class*='Lista']").each(function(i){
+        if(i > 0){
+
+            let codigo = this.innerText;
+            let codigo_num = parseInt(codigo);
+            let x = $(this.parentElement).find("div[class*='itemProd']");
+            let nome = x[0].innerText;
+            let tamanho = "";
+            let elemento_tamanho = $(this.parentElement).find("div[class*='itemProd_a1']")[0];
+
+            if(elemento_tamanho)tamanho = elemento_tamanho.innerText;
+
+            let cor = "";
+            let elemento_cor = $(this.parentElement).find("div[class*='itemProd_color']")[0];
+
+            if(elemento_cor)cor = elemento_cor.innerText;
+
+            let quantidade = $(this.parentElement).find("td:nth-child(3)[class*='Lista']").text();
+            let item = {"codigo_num":codigo_num,"codigo":codigo,"nome":nome,"tamanho":tamanho,"cor":cor,"quantidade":quantidade};
+
+            array_itens.push(item);
+
+            let funcao_ordenacao = function(a, b){
+
+                return a["codigo_num"]-b["codigo_num"];
+            }
+
+            array_itens.sort(funcao_ordenacao);
+
+        }
+    });
+
+    //FIM - parte nova de coleta de dados e ordenação geral
+
+    imagemProd();
+    criaTelas();
+    verificaCliqueEmFalta();
+
+    $("div[class*='itemProd_color']").each(function(i){
+        cor.push(this.innerText);
+    });
+
+    for(let i = 0; i < array_itens.length; i++){
+        if(array_itens[i].quantidade > 1){
+            document.getElementById("qtd_" + i).style.color = 'red';
+        }
+    }
+
+    if(cor.length == 0){
+        for(let i = 0; i < array_itens.length; i++){
+            document.getElementById("cor_" + i).style.display = 'none';
+            document.getElementById("h3cor_" + i).style.display = 'none';
+        }
+    }
+
+    insereTextos();
+
+    $("table[class='TabItensOrder']").remove();
+
+	$("label[class='nPedido']").remove();
+});
+
+window.setTimeout(()  => { insereImagens(); },2000); //Função para colocar as imagens dos itens
+
+//Função para quando clicar no botão pegar
+function verde(botao) {
+
+	let qtd = parseInt(botao.dataset.qtd);
+    let idBotao = botao.id;
+    let array = idBotao.split("_");
+    let index = array[1];
+    let usuario = document.getElementById("botao_drop").innerText;
+    let codigo_modelo = $("#codProd_"+index).html();
+    let cor = $("#cor_"+index).html();
+    let tamanho = $("#tamanho_"+index).html();
+    let qtdTotal = botao.dataset.qtd;
+
+    if(botao.style.backgroundColor != "green"){
+
+      if(qtd == 1){
+
+          let acao = "pegou o produto";
+          let data_completa = data_atual();
+
+          document.getElementById("botaoEmFalta_"+index).style.visibility = 'hidden';
+          botao.style.backgroundColor = "green";
+
+          arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": acao, "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": 1}];
+
+		  enviarAcoes(arrAcoes);
+
+          if(con == 1){
+              habilitar();
+          }
+    	}else{
+
+            if(document.querySelector("#fundo")){
+
+              abreTela(botao.dataset.pegou, botao.parentNode.parentNode.parentNode.firstChild.lastChild.innerText, 0, botao);
+
+            }else{
+
+			  criaTelaQtd(botao);
+			  abreTela(botao.dataset.pegou, botao.parentNode.parentNode.parentNode.firstChild.lastChild.innerText, 0, botao);
+
+            }
+
+        }
+    }else if(botao.style.backgroundColor == "green"){
+
+      	let qtd = parseInt(botao.dataset.qtd);
+
+        if(qtd == 1){
+
+          let acao = "devolveu o produto";
+          let data_completa = data_atual();
+
+          botao.style.backgroundColor = "";
+          document.getElementById("botaoEmFalta_"+index).style.visibility = '';
+
+          arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": acao, "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": 1}];
+
+		  enviarAcoes(arrAcoes);
+
+          if(con == 1){
+              desabilitar();
+          }
+		}else{
+
+          let acao = "devolveu todos";
+          let data_completa = data_atual();
+
+          if(document.querySelector("#fundo")){
+
+              abreTela(botao.dataset.pegou, botao.parentNode.parentNode.parentNode.firstChild.lastChild.innerText, 2, botao);
+
+          }else{
+
+			  criaTelaQtd(botao);
+			  abreTela(botao.dataset.pegou, botao.parentNode.parentNode.parentNode.firstChild.lastChild.innerText, 2, botao);
+
+          }
+
+        }
+    }
+}
+
+//Função para quando clicar no botão em falta
+function vermelho(botao) {
+
+    let text = "Tem certeza que está em falta?";
+    let qtd = parseInt(botao.dataset.qtd);
+    let idBotao = botao.id;
+    let array = idBotao.split("_");
+    let index = array[1];
+    let usuario = document.getElementById("botao_drop").innerText;
+    let codigo_modelo = $("#codProd_"+index).html();
+    let cor = $("#cor_"+index).html();
+    let tamanho = $("#tamanho_"+index).html();
+    let qtdTotal = botao.dataset.qtd;
+
+    if(botao.style.backgroundColor != "red"){
+
+      if(qtd == 1){
+
+        if(confirm(text) == true){
+
+            let acao = "produto em falta";
+            let data_completa = data_atual();
+
+            document.getElementById("botaoPeguei_"+index).style.visibility = 'hidden';
+            botao.style.backgroundColor = "red";
+
+			arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": acao, "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": 1}];
+
+		  	enviarAcoes(arrAcoes);
+
+            if(con == 1){
+                habilitar();
+            }
+        }
+      }else{
+
+        if(document.querySelector("#fundo")){
+
+          abreTela(botao.dataset.pegou, botao.parentNode.parentNode.parentNode.firstChild.lastChild.innerText, 1, botao);
+
+        }else{
+
+          criaTelaQtd(botao);
+          abreTela(botao.dataset.pegou, botao.parentNode.parentNode.parentNode.firstChild.lastChild.innerText, 1, botao);
+
+        }
+
+      }
+    }else{
+
+      if(qtd == 1){
+
+        let acao = "desmarcou opcao em falta";
+        let data_completa = data_atual();
+
+        botao.style.backgroundColor = "";
+        document.getElementById("botaoPeguei_"+index).style.visibility = '';
+
+		arrAcoesF = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": acao, "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": 1}];
+
+        if(con == 1){
+            desabilitar();
+        }
+
+      }else{
+
+        let acao = "desmarcou falta de todos";
+        let data_completa = data_atual();
+
+        if(document.querySelector("#fundo")){
+
+			abreTela(botao.dataset.pegou, botao.parentNode.parentNode.parentNode.firstChild.lastChild.innerText, 3, botao);
+
+        }else{
+
+			criaTelaQtd(botao);
+			abreTela(botao.dataset.pegou, botao.parentNode.parentNode.parentNode.firstChild.lastChild.innerText, 3, botao);
+
+        }
+
+      }
+    }
+}
+
+//Função para fazer logout
+function clique_logout(){
+
+  	let usuario = document.getElementById("botao_drop").innerText;
+    let xhttp2 = new XMLHttpRequest();
+    //funcao acionada quando o servidor responde para o nosso sistema, cada nova conexao deve ter um novo objeto xhttp, com uma nova função de retorno definida
+    xhttp2.onreadystatechange = function() {
+    //readystate = 4 e status = 200 indica que a requisição foi respondida com sucesso
+        if (this.readyState == 4 && this.status == 200) {
+            //o retorno do servidor encontra-se dentro do responseText
+            let resposta = this.responseText;
+
+            if(resposta.length > 0){
+
+                let funcao = new Function(resposta);
+                funcao();
+                console.log(funcao);
+
+            }else{
+
+                $("#pedido").hide();
+                $("#a").hide();
+                $(".container").show();
+                $("#logo").show();
+
+                document.getElementById("senha").value = "";
+                document.querySelector(".btLogout").style.display = "none";
+              	enviarAcoes(arrAcoesF);
+
+               //window.location.href = "https://bebefofuxo.net/scripts/sistema_picking/tela_inicial/index.html";
+            }
+        }
+    };
+
+    let data_completa = data_atual();
+    let arrayBg = [];
+    let arrayControl = [];
+
+    const element = document.querySelectorAll(".botao1");
+    const element2 = document.querySelectorAll(".botao2");
+
+    arrayControl = arrayControl.concat(element,element2);
+
+    for(let i = 0; i < arrayControl[0].length; i++){
+        if(arrayControl[0][i].style.backgroundColor != "green" && arrayControl[1][i].style.backgroundColor != "red"){
+            arrayBg.push("none");
+        }else if(arrayControl[0][i].style.backgroundColor == "green" && arrayControl[1][i].style.backgroundColor != "red"){
+            arrayBg.push("green");
+        }else if(arrayControl[0][i].style.backgroundColor != "green" && arrayControl[1][i].style.backgroundColor == "red"){
+            arrayBg.push("red");
+        }
+    }
+  
+  console.log(arrayBg);
+
+    xhttp2.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/registro_logout.php?nome="+usuario+"&data="+data_completa+"&numPedido="+numPedido+"&bg="+arrayBg, true);//Enviando registros do logout para o banco de dados
+    xhttp2.send();
+
+}
+
+function buscarNome(){
+
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            document.querySelector("#botao_drop").children[0].innerText = this.responseText.toString();
+        }
+    }
+
+    xhttp.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/nome_atual.php?num_pedido="+numPedido, true);
+    xhttp.send();
+}
+
+function habilitar(){
+    let setaDireita = document.querySelectorAll(".direita");
+    let setaEsquerda = document.querySelectorAll(".esquerda");
+
+    setaDireita.forEach((element) => {
+        element.href = element.dataset.redirect;
+        element.onclick = "";
+    });
+
+    setaEsquerda.forEach((element) => {
+        element.href = element.dataset.redirect2;
+        element.onclick = "";
+    });
+}
+
+function desabilitar(){
+    let setaDireita = document.querySelectorAll(".direita");
+    let setaEsquerda = document.querySelectorAll(".esquerda");
+
+    setaDireita.forEach((element) => {
+        element.href = "#"+element.parentNode.id;
+        element.onclick = function(){ alert("Marque uma opção!"); };
+    });
+
+    setaEsquerda.forEach((element) => {
+        element.href = "#"+element.parentNode.id;
+        element.onclick = function(){ alert("Marque uma opção!"); };
+    });
+}
+
+function criaBotaoLogout(){
+    document.body.style.overflowX = "hidden";
+    document.querySelector(".ButPrint").style.display = "none";
+
+    let divBtLogout = document.createElement("div");
+    divBtLogout.className = "divBtLogout";
+
+    let btLogout = document.createElement("button");
+    btLogout.innerText = "Logout";
+    btLogout.className = "btLogout";
+
+    btLogout.addEventListener("click", () => { //Atribuindo função para fazer logout para o botão
+        clique_logout();
+    });
+
+    divBtLogout.appendChild(btLogout);
+    document.body.appendChild(divBtLogout);
+}
+
+function imagemProd(){
+    //código para fazer aparecer as imagens dos produtos
+    array_itens.forEach(codigo => {
+        let corT = codigo.cor;
+        let corCorrigida = corT.replace(/Cor: /g, '');
+        let tamanho = codigo.tamanho;
+
+        if(codigo.cor != "" && codigo.tamanho != ""){
+            codigos_modelos.push(codigo.codigo+tamanho.replace("Tamanho: ", "-")+"-"+corCorrigida);
+        }else if(codigo.cor == "" && codigo.tamanho != ""){
+            codigos_modelos.push(codigo.codigo+tamanho.replace("Tamanho: ", "-")+"-");
+        }else{
+            codigos_modelos.push(codigo.codigo+"--"+corCorrigida);
+        }
+    });
+
+    xhttp7.onreadystatechange = function(){ //Função para receber todas as imagens de produtos do banco de dados
+        if(this.readyState == 4 && this.status == 200){
+            array_imagens = eval(this.responseText);
+        }
+    }
+
+    xhttp7.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/imagens.php?codigos="+codigos_modelos, true);
+    xhttp7.send();
+}
+
+function criaTelas(){
+
+	let htmlElements = document.createElement("div");
+    htmlElements.style.display = "inline-flex";
+
+    //criação da tela de picking para cada item do pedido
+    for (let i = 0; i < array_itens.length; i++) {
+
+        let divTela = document.createElement("div");
+    	divTela.className = "tela";
+    	divTela.id = "tela_" + i;
+
+        let setaEsquerda = document.createElement("a");
+        setaEsquerda.className = "esquerda";
+        setaEsquerda.href = "#tela_" + (i - 1);
+        setaEsquerda.dataset.redirect2 = "#tela_" + (i - 1);
+
+        let imgSetaEsquerda = document.createElement("img");
+        imgSetaEsquerda.className = "setalogo2";
+        imgSetaEsquerda.src = "https://www.bebefofuxo.com.br/lojas/00020368/images/seta_logo2.png";
+
+        let setaDireita = document.createElement("a");
+        setaDireita.className = "direita";
+        setaDireita.href = "#tela_" + (i + 1);
+        setaDireita.dataset.redirect = "#tela_" + (i + 1);
+
+        let imgSetaDireita = document.createElement("img");
+        imgSetaDireita.className = "setalogo";
+        imgSetaDireita.src = "https://www.bebefofuxo.com.br/lojas/00020368/images/seta_logo.png";
+
+        let telaAtributos = document.createElement("div");
+        telaAtributos.className = "divTela";
+
+        let atributos = document.createElement("div");
+        atributos.className = "atributos";
+
+        let tituloNome = document.createElement("h3");
+        tituloNome.innerText = "Nome do item: ";
+
+        let nomeItem = document.createElement("label");
+        nomeItem.id = "nomeItem_" + i;
+
+        let tituloCod = document.createElement("h3");
+        tituloCod.innerText = "Código Modelo: ";
+
+        let codProd = document.createElement("label");
+        codProd.id = "codProd_" + i;
+
+        let div = document.createElement("div");
+
+        let tituloCor = document.createElement("h3");
+        tituloCor.id = "h3cor_" + i;
+        tituloCor.innerText = "Cor: ";
+
+        let cor = document.createElement("label");
+        cor.id = "cor_" + i;
+        cor.innerText = "-";
+
+        let tituloTamanho = document.createElement("h3");
+        tituloTamanho.innerText = "Tamanho: ";
+
+        let tamanho = document.createElement("label");
+        tamanho.id = "tamanho_" + i;
+      	tamanho.innerText = "-";
+
+        let tituloQtd = document.createElement("h3");
+        tituloQtd.innerText = "Quantidade: ";
+
+        let qtd = document.createElement("label");
+        qtd.id = "qtd_" + i;
+        qtd.value = "a";
+
+        let divImg = document.createElement("div");
+        divImg.className = "divImgProd";
+
+        let img = document.createElement("img");
+        img.className = "imgProd";
+        img.src = "https://www.bebefofuxo.com.br/lojas/00020368/prod/" + imagem;
+
+        let divBotoes = document.createElement("div");
+        divBotoes.className = "divBotoes";
+
+        let botaoPeguei = document.createElement("input");
+        botaoPeguei.type = "button";
+        botaoPeguei.className = "botoes botao1";
+        botaoPeguei.id = "botaoPeguei_" + i;
+        botaoPeguei.value = "Peguei";
+        botaoPeguei.addEventListener("click", (e) => { verde(e.target); });
+        botaoPeguei.dataset.qtd = array_itens[i].quantidade;
+
+        let botaoFalta = document.createElement("input");
+        botaoFalta.type = "button";
+        botaoFalta.className = "botoes botao2";
+        botaoFalta.id = "botaoEmFalta_" + i;
+        botaoFalta.value = "Em Falta";
+        botaoFalta.dataset.qtd = array_itens[i].quantidade;
+        botaoFalta.addEventListener("click", () => { vermelho(botaoFalta); });
+
+  		let mostraQtdPeguei = document.createElement("label");
+  		mostraQtdPeguei.id = "mostraQtdP_" + i;
+  		mostraQtdPeguei.style.color = "green";
+  		mostraQtdPeguei.style.display = "none";
+  		mostraQtdPeguei.innerText = "teste";
+
+  		let mostraQtdNeutro = document.createElement("label");
+  		mostraQtdNeutro.id = "mostraQtdN_" + i;
+  		mostraQtdNeutro.style.color = "black";
+  		mostraQtdNeutro.style.display = "none";
+   		mostraQtdNeutro.innerText = "Você pegou 0/" + array_itens[i].quantidade + " itens";
+
+  		let mostraQtdFalta = document.createElement("label");
+  		mostraQtdFalta.id = "mostraQtdF_" + i;
+  		mostraQtdFalta.style.color = "red";
+  		mostraQtdFalta.style.display = "none";
+   		mostraQtdFalta.innerText = "teste";
+
+        divTela.appendChild(setaEsquerda);
+        setaEsquerda.appendChild(imgSetaEsquerda);
+        divTela.appendChild(setaDireita);
+        setaDireita.appendChild(imgSetaDireita);
+        divTela.appendChild(telaAtributos);
+        telaAtributos.appendChild(atributos);
+        atributos.appendChild(tituloNome);
+        tituloNome.appendChild(nomeItem);
+        atributos.appendChild(tituloCod);
+        tituloCod.appendChild(codProd);
+        atributos.appendChild(div);
+        div.appendChild(tituloCor);
+        tituloCor.appendChild(cor);
+        div.appendChild(tituloTamanho);
+        tituloTamanho.appendChild(tamanho);
+        div.appendChild(tituloQtd);
+        tituloQtd.appendChild(qtd);
+  		tituloQtd.appendChild(mostraQtdPeguei);
+  		tituloQtd.appendChild(mostraQtdFalta);
+  		tituloQtd.appendChild(mostraQtdNeutro);
+        div.appendChild(divImg);
+        divImg.appendChild(img);
+        div.appendChild(divBotoes);
+        divBotoes.appendChild(botaoPeguei);
+        divBotoes.appendChild(botaoFalta);
+
+        htmlElements.appendChild(divTela);
+
+    }
+
+    container.appendChild(htmlElements);
+    a.appendChild(htmlElements);
+}
+
+function insereImagens(){
+    for (let i = 0; i < array_itens.length; i++) {
+
+        let corT = array_itens[i].cor;
+        let corCorrigida = corT.replace(/Cor: /g, '');
+        let tamanho = array_itens[i].tamanho;
+
+        if(array_itens[i].cor != "" && array_itens[i].tamanho != ""){
+
+            let obterImagem = [];
+
+            obterImagem[0] = array_imagens.filter(e => e.codigo_tamanho_cor === array_itens[i].codigo+tamanho.replace("Tamanho: ", "-")+"-"+corCorrigida);
+            imagem = obterImagem[0][0].imagem_prod;
+            document.querySelectorAll(".imgProd")[i].src = "https://www.bebefofuxo.com.br/lojas/00020368/prod/"+imagem;
+
+        }else if(array_itens[i].cor == "" && array_itens[i].tamanho != ""){
+
+            let obterImagem = [];
+
+            obterImagem[0] = array_imagens.filter(e => e.codigo_tamanho_cor === array_itens[i].codigo+tamanho.replace("Tamanho: ", "-")+"-");
+            imagem = obterImagem[0][0].imagem_prod;
+            document.querySelectorAll(".imgProd")[i].src = "https://www.bebefofuxo.com.br/lojas/00020368/prod/"+imagem;
+
+        }else{
+
+            let obterImagem = [];
+
+            obterImagem[0] = array_imagens.filter(e => e.codigo_tamanho_cor === array_itens[i].codigo+"--"+corCorrigida);
+            imagem = obterImagem[0][0].imagem_prod;
+            document.querySelectorAll(".imgProd")[i].src = "https://www.bebefofuxo.com.br/lojas/00020368/prod/"+imagem;
+
+        }
+
+        if(imagem == undefined){
+
+            imagem = "imagem_template.png";
+            document.querySelectorAll(".imgProd")[i].src = "https://www.bebefofuxo.com.br/lojas/00020368/prod/"+imagem;
+
+        }
+
+    }
+}
+
+//funcão para realizar o login
+function clique_enviar(){
+
+  let usuario = document.getElementById("botao_drop").innerText;
+
+  let xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function (){
+    if(this.readyState == 4 && this.status == 200){
+
+      let resposta = this.response.toString().split(",");
+
+      if(resposta[0] == "1"){
+
+        alert("Este pedido está em andamento por " + resposta[1] + "!");
+
+      }else if(resposta[0] == "2"){
+
+        alert("Este pedido já foi finalizado!");
+
+      }else{
+
+        let xhttp = new XMLHttpRequest();
+        //funcao acionada quando o servidor responde para o nosso sistema, cada nova conexao deve ter um novo objeto xhttp, com uma nova função de retorno definida
+        xhttp.onreadystatechange = function() {
+            //readystate = 4 e status = 200 indica que a requisição foi respondida com sucesso
+            if(this.readyState == 4 && this.status == 200) {
+                //o retorno do servidor encontra-se dentro do responseText
+                control = parseInt(this.responseText);
+
+                if(control == 1){ //caso usuario e senha estejam corretos, esconde a tela de login e mostra a tela de picking, além de mandar o pedido para impressão
+
+                    $.get( "https://bebefofuxo.net/scripts/sistema_picking/enviarDadosImpressao.php", {num_pedido: numPedido} )
+                    .done(function( data ) {
+                        let row = parseInt(data);
+                        if(row == 1){
+                            let nome = document.querySelector("#botao_drop").innerText;
+                            $.get( "https://bebefofuxo.net/scripts/sistema_picking/impressao_numero_pedido/enviar_impressao.php", { numero_pedido: numPedido, usuario: nome } )
+                        }
+                    });
+
+                    $("#pedido").show();
+                    $("#a").show();
+                    $(".container").hide();
+                    $("#logo").hide();
+
+                    document.querySelector(".btLogout").style.display = "block";
+
+                    let xhttp2 = new XMLHttpRequest();
+
+                    xhttp2.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            //console.log(this.responseText);
+                        }
+                    };
+
+                    let usuario = document.getElementById("botao_drop").innerText;
+                    let data_completa = data_atual();
+
+                    xhttp2.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/registro_login.php?nome="+usuario+"&data="+data_completa+"&numPedido="+numPedido, true); //Enviando registros de login, nome da pessoa, e a data para o banco de dados
+                    xhttp2.send();
+
+                    const largura = document.querySelector(".master").clientWidth;
+
+                    document.querySelector(".pedidos").style.width = largura + "px";
+
+                }else if(control == 0){// caso a senha seja incorreta
+
+                    alert("Senha informada é incorreta!");
+
+                }
+            }
+        };
+
+        let usuario = document.querySelectorAll("#botao_drop")[0].firstChild.innerText;
+        let senha = $("#senha").val();
+
+        xhttp.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/login.php?usuario="+usuario+"&senha="+senha, true);
+        xhttp.send();
+    		}
+  		}
+	}
+
+  	xhr.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/tela_inicial/verificarUsuarioLogado.php?pedido="+numPedido+"&usuario="+usuario, true);
+    xhr.send();
+}
+
+function verificaCliquePeguei(){
+
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            acoes = this.responseText.toString();
+            array_acoes = acoes.split(',');
+            array_acoes.pop();
+
+            for(let i = 0; i < array_itens.length; i++){
+
+                let corT = "";
+                let corCorrigida = "";
+
+                if(!array_itens[i].cor == ''){
+
+                    corT = array_itens[i].cor;
+                    corCorrigida = corT.replace(/Cor: /g, '');
+
+                }else{
+
+                    corCorrigida = "-";
+
+                }
+
+                let tamanhoT = array_itens[i].tamanho;
+                let tamanhoCorrigido = tamanhoT.replace(/Tamanho: /g, '');
+
+                cod[i] = array_itens[i].codigo+"-"+corCorrigida+"-"+tamanhoCorrigido;
+
+                if(array_acoes.includes(cod[i])){
+
+                    document.getElementById("botaoPeguei_"+i).style.backgroundColor = "green";
+                    document.getElementById("botaoEmFalta_"+i).style.visibility = 'hidden';
+
+                }
+            }
+        }
+    };
+
+    xhttp.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/verificarCliquePeguei.php?numPedido="+numPedido, true);
+    xhttp.send();
+
+    let xhr = new XMLHttpRequest();
+
+  	xhr.onreadystatechange = function(){
+      if(this.readyState == 4 && this.status == 200){
+
+        if(this.response == 1){
+
+          const botoes = document.querySelectorAll("input[value=Peguei]");
+
+          botoes.forEach((element) => {
+            if(element.style.backgroundColor == "green"){
+            	element.disabled = true;
+            }
+          });
+
+        }
+
+      }
+    }
+
+    xhr.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/verificaFinalizado.php?pedido="+numPedido, true);
+  	xhr.send();
+}
+
+function verificaCliqueEmFalta(){
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            acoes2 = this.responseText.toString();
+            array_acoes2 = acoes2.split(',');
+            array_acoes2.pop();
+
+            for(let i = 0; i < array_itens.length; i++){
+
+                let corT = "";
+                let corCorrigida = "";
+
+                if(!array_itens[i].cor == ''){
+
+                    corT = array_itens[i].cor;
+                    corCorrigida = corT.replace(/Cor: /g, '');
+
+                }else{
+
+                    corCorrigida = "-";
+
+                }
+
+                let tamanhoT = array_itens[i].tamanho;
+                let tamanhoCorrigido = tamanhoT.replace(/Tamanho: /g, '');
+
+                cod2[i] = array_itens[i].codigo+"-"+corCorrigida+"-"+tamanhoCorrigido;
+
+                if(array_acoes2.includes(cod2[i]) && array_itens[i].quantidade == 1){
+                    document.getElementById("botaoEmFalta_"+i).style.backgroundColor = "red";
+                    document.getElementById("botaoPeguei_"+i).style.visibility = 'hidden';
+                }
+            }
+        }
+    };
+
+    xhttp.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/verificarCliqueEmFalta.php?numPedido="+numPedido, true);
+    xhttp.send();
+}
+
+function insereTextos(){
+
+    for(let i = 0; i < array_itens.length; i++){
+
+        let tamanhoT = array_itens[i].tamanho;
+        let tamanhoCorrigido = tamanhoT.replace(/Tamanho: /g, '');
+
+      	if(tamanhoCorrigido != ""){
+        	document.getElementById("tamanho_" + i).innerText = tamanhoCorrigido;
+        }
+
+        document.getElementById("nomeItem_" + i).innerText = array_itens[i].nome;
+        document.getElementById("qtd_" + i).innerText = array_itens[i].quantidade;
+        document.getElementById("codProd_" + i).innerText = array_itens[i].codigo;
+
+      	let corCorrigida = "";
+
+		if(array_itens[i].cor != ""){
+
+            let corT = array_itens[i].cor;
+            corCorrigida = corT.replace(/Cor: /g, '');
+
+            document.getElementById("cor_" + i).innerText = corCorrigida;
+
+        }
+
+      if(array_itens[i].quantidade > 1){
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function(){
+
+          if(this.readyState == 4 && this.status == 200){
+			console.log(this.response);
+            let acao = eval(this.response)[0];
+
+            if(acao){
+
+              document.querySelector("#botaoPeguei_"+i).dataset.pegou = acao.qtd;
+              document.querySelector("#botaoEmFalta_"+i).dataset.pegou = acao.qtd;
+
+              if(acao.acao == "devolveu todos" || acao.acao == "desmarcou falta de todos"){
+
+                document.querySelector("#mostraQtdN_"+i).style.display = "block";
+                document.querySelector("#botaoPeguei_"+i).style.visibility = "";
+                document.querySelector("#botaoEmFalta_"+i).style.visibility = "";
+                document.querySelector("#botaoPeguei_"+i).style.backgroundColor = "";
+                document.querySelector("#botaoEmFalta_"+i).style.backgroundColor = "";
+                document.querySelector("#botaoPeguei_"+i).dataset.pegou = 0;
+                document.querySelector("#botaoEmFalta_"+i).dataset.pegou = 0;
+
+              }else if(acao.acao == "pegou todos" || acao.acao == "pegou parcialmente"){
+
+                document.querySelector("#mostraQtdP_"+i).style.display = "block";
+                document.querySelector("#mostraQtdP_"+i).innerText = "Você pegou " + acao.qtd + "/" + array_itens[i].quantidade + " itens";
+                document.querySelector("#botaoPeguei_"+i).style.backgroundColor = "green";
+
+                if(acao.acao == "pegou todos"){
+
+                  document.querySelector("#botaoPeguei_"+i).style.backgroundColor = "green";
+                  document.querySelector("#botaoEmFalta_"+i).style.visibility = "hidden";
+
+                }
+
+              }else if(acao.acao == "todos em falta" || acao.acao == "falta parcial" || acao.acao == "desmarcou opcao em falta"){
+
+                document.querySelector("#mostraQtdF_"+i).style.display = "block";
+                document.querySelector("#mostraQtdF_"+i).innerText = "Há " + acao.qtd + "/" + array_itens[i].quantidade + " itens em falta";
+
+                if(acao.acao == "todos em falta"){
+
+                  document.querySelector("#botaoPeguei_"+i).style.visibility = "hidden";
+                  document.querySelector("#botaoEmFalta_"+i).style.visibility = "";
+                  document.querySelector("#botaoPeguei_"+i).style.backgroundColor = "";
+                  document.querySelector("#botaoEmFalta_"+i).style.backgroundColor = "red";
+                  document.querySelector("#botaoPeguei_"+i).dataset.pegou = acao.qtd;
+                  document.querySelector("#botaoEmFalta_"+i).dataset.pegou = acao.qtd;
+
+                }else if(acao.acao == "falta parcial"){
+
+                  document.querySelector("#botaoPeguei_"+i).style.visibility = "hidden";
+                  document.querySelector("#botaoEmFalta_"+i).style.backgroundColor = "red";
+
+                }
+
+              }
+
+            }else{
+
+              if(array_itens[i].quantidade > 1){
+
+                document.querySelector("#mostraQtdN_"+i).style.display = "block";
+                document.querySelector("#botaoPeguei_"+i).dataset.pegou = 0;
+                document.querySelector("#botaoEmFalta_"+i).dataset.pegou = 0;
+
+              }
+
+            }
+
+          }
+
+        }
+
+        if(!corCorrigida){ corCorrigida = "-"; }
+
+        //console.log("código: " + array_itens[i].codigo + " tamanho: " + tamanhoCorrigido + " cor: " + corCorrigida + " pedido: " + numPedido);
+
+        xhr.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/buscarQtd.php?codigo="+array_itens[i].codigo+"&tamanho="+tamanhoCorrigido+"&cor="+corCorrigida+"&pedido="+numPedido, true);
+        xhr.send();
+
+    }
+    }
+}
+
+function criaTelaQtd(botao){
+
+	let idBotao = botao.id;
+    let array = idBotao.split("_");
+    let index = array[1];
+    let usuario = document.getElementById("botao_drop").innerText;
+    let data_completa = data_atual();
+    let codigo_modelo = $("#codProd_"+index).html();
+    let cor = $("#cor_"+index).html();
+    let tamanho = $("#tamanho_"+index).html();
+
+    //fundo preto
+    let divfundo = document.createElement("div");
+    divfundo.id = "fundo";
+    divfundo.style.display = "none";
+    divfundo.style.backgroundColor = "black";
+    divfundo.style.opacity = 0.8;
+    divfundo.style.top = "0px";
+    divfundo.style.left = "0px";
+    divfundo.style.width = "100%";
+    divfundo.style.height = "100%";
+    divfundo.style.zIndex = "4";
+    divfundo.style.position = "fixed";
+    document.body.appendChild(divfundo);
+
+    //Criando div
+    let div = document.createElement("div");
+
+    div.id = "divB";
+    div.style.backgroundColor = "white";
+    div.style.display = "none";
+    div.style.flexDirection = "column";
+    div.style.width = (window.outerWidth)+"px";
+  	div.style.maxWidth = "600px";
+    div.style.border = "5px solid black";
+    div.style.borderRadius = "25px"
+    div.style.height = "400px";
+    div.style.zIndex = "5";
+    div.style.position = "fixed";
+    div.style.left = "0px";
+    div.style.top = "150px";
+    div.style.fontFamily = "sans-serif";
+    div.style.transform = "translate(-55%, 0)";
+
+    let iconeX = document.createElement("h1");
+
+    iconeX.innerText = "X";
+    iconeX.style.textAlign = "right";
+    iconeX.style.margin = "0 1em";
+    iconeX.style.cursor = "pointer";
+    iconeX.addEventListener("click", () => { fechaTela(); });
+
+    div.appendChild(iconeX);
+
+    let titulo = document.createElement("h2");
+
+    titulo.id = "titulo";
+    titulo.style.textAlign = "center";
+    titulo.style.margin = "2em 0";
+
+    div.appendChild(titulo);
+
+    let div2 = document.createElement("div");
+
+    div2.style.display = "flex";
+    div2.style.alignItems = "center";
+    div2.style.justifyContent = "center";
+
+    let itensPegos = document.createElement("h3");
+
+    itensPegos.innerText = "Itens pegos: ";
+    itensPegos.textAlign = "center";
+
+    div2.appendChild(itensPegos);
+
+    let qtd = document.createElement("label");
+
+    qtd.innerText = 0;
+    qtd.id = "qtd";
+
+    let iconeMenos = document.createElement("img");
+
+    iconeMenos.className = "icones";
+    iconeMenos.id = "iconeMenos";
+    iconeMenos.style.width = "45px";
+    iconeMenos.src = "https://www.rumo.com.br/lojas/00020368/images/icone_subtracao.svg";
+    iconeMenos.style.cursor = "pointer";
+    iconeMenos.addEventListener("click", () => { if(qtd.innerText != "0"){ qtd.innerText = parseInt(qtd.innerText) -1 } });
+
+    div2.appendChild(iconeMenos);
+
+    div2.appendChild(qtd);
+
+    let iconeMais = document.createElement("img");
+
+    iconeMais.className = "icones";
+    iconeMais.id = "iconeMais";
+    iconeMais.style.width = "45px";
+    iconeMais.src = "https://www.rumo.com.br/lojas/00020368/images/icone_soma.svg";
+    iconeMais.style.cursor = "pointer";
+
+    div2.appendChild(iconeMais);
+    div.appendChild(div2);
+
+    let btConfirmar = document.createElement("div");
+
+    btConfirmar.style.border = "5px solid black";
+    btConfirmar.style.borderRadius = "5px";
+    btConfirmar.style.width = "120px";
+    btConfirmar.style.height = "50px";
+    btConfirmar.style.textAlign = "center";
+    btConfirmar.style.backgroundColor = "blue";
+    btConfirmar.style.color = "white";
+    btConfirmar.style.margin = "3em 2.5em";
+    btConfirmar.style.cursor = "pointer";
+    btConfirmar.style.display = "flex";
+    btConfirmar.style.justifyContent = "center";
+    btConfirmar.style.alignItems = "center";
+    btConfirmar.id = "btConfirmar";
+
+    let texto = document.createElement("p");
+
+    texto.innerText = "Confirmar";
+
+    btConfirmar.appendChild(texto);
+    div.appendChild(btConfirmar);
+    document.body.appendChild(div);
+
+}
+
+function abreTela(qtdPegos, nome, control, botao){
+
+  	let idBotao = botao.id;
+    let array = idBotao.split("_");
+    let index = array[1];
+    let qtd = document.querySelector("#qtd");
+    let qtdTotal = botao.dataset.qtd;
+    let usuario = document.getElementById("botao_drop").innerText;
+    let codigo_modelo = $("#codProd_"+index).html();
+    let cor = $("#cor_"+index).html();
+    let tamanho = $("#tamanho_"+index).html();
+    let btConfirmar = document.querySelector("#btConfirmar");
+    let mostraQtdPeguei = document.querySelector("#mostraQtdP_"+index);
+    let mostraQtdFalta = document.querySelector("#mostraQtdF_"+index);
+    let mostraQtdNeutro = document.querySelector("#mostraQtdN_"+index);
+
+  	document.querySelector("#divB").style.left = (document.getElementById("tela_"+index).getBoundingClientRect().left + (parseInt(document.querySelector("#divB").style.width)) / 2) + + 20 + "px";
+    document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= parseInt(botao.dataset.qtd) - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
+	qtd.innerText = parseInt(qtdPegos);
+
+  	if(control == 1){
+
+      document.querySelector("#titulo").innerText = "Quantos estão em falta?";
+
+      btConfirmar.onclick = function() {
+
+        let data_completa = data_atual();
+
+        if(parseInt(qtd.innerText) == qtdTotal){
+
+          document.getElementById("botaoPeguei_"+index).style.visibility = 'hidden';
+          botao.style.backgroundColor = "red";
+
+          mostraQtdNeutro.style.display = "none";
+          mostraQtdPeguei.style.display = "none";
+          mostraQtdFalta.style.display = "block";
+          mostraQtdFalta.innerText = "Há " + qtd.innerText + "/" + qtdTotal + " itens em falta";
+
+          arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "todos em falta", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
+
+          enviarAcoes(arrAcoes);
+
+          fechaTela();
+
+        }else if(parseInt(qtd.innerText) < qtdTotal && parseInt(qtd.innerText) != 0){
+
+          mostraQtdNeutro.style.display = "none";
+          mostraQtdPeguei.style.display = "none";
+          mostraQtdFalta.style.display = "block";
+          mostraQtdFalta.innerText = "Há " + qtd.innerText + "/" + qtdTotal + " itens em falta";
+
+          arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "falta parcial", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
+
+          enviarAcoes(arrAcoes);
+
+          botao.style.backgroundColor = "red";
+
+          fechaTela();
+
+          }else if(parseInt(qtd.innerText) == 0){
+
+            fechaTela();
+
+          }
+
+        document.querySelector("#botaoEmFalta_"+index).dataset.pegou = qtd.innerText;
+
+      }
+
+    }else if(control == 0){
+
+      document.querySelector("#titulo").innerText = "Você precisa pegar "+ qtdTotal + " " + nome;
+
+      btConfirmar.onclick = function() {
+
+		  let data_completa = data_atual();
+
+          if(parseInt(qtd.innerText) == qtdTotal){
+
+              document.getElementById("botaoEmFalta_"+index).style.visibility = 'hidden';
+              botao.style.backgroundColor = "green";
+
+              arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "pegou todos", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
+
+		  	  enviarAcoes(arrAcoes);
+
+              mostraQtdNeutro.style.display = "none";
+          	  mostraQtdFalta.style.display = "none";
+              mostraQtdPeguei.style.display = "block";
+              mostraQtdPeguei.innerText = "Você pegou " + parseInt(qtd.innerText) + "/" + qtdTotal + " itens";
+
+              fechaTela();
+
+          }else if(parseInt(qtd.innerText) < qtdTotal && parseInt(qtd.innerText) != 0){
+
+              mostraQtdNeutro.style.display = "none";
+          	  mostraQtdFalta.style.display = "none";
+              mostraQtdPeguei.style.display = "block";
+              mostraQtdPeguei.innerText = "Você pegou " + parseInt(qtd.innerText) + "/" + qtdTotal + " itens";
+
+              document.querySelector("#botaoPeguei_"+index).style.backgroundColor = "green";
+
+               arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "pegou parcialmente", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
+
+              enviarAcoes(arrAcoes);
+
+              fechaTela();
+
+          }else if(parseInt(qtd.innerText) == 0){
+
+            fechaTela();
+
+          }
+
+        document.querySelector("#botaoPeguei_"+index).dataset.pegou = qtd.innerText;
+
+      }
+    }else if(control == 2){
+
+    	document.querySelector("#titulo").innerText = "Quantos você quer devolver?";
+        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= parseInt(qtdPegos) - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
+        console.log(qtdPegos + " " + qtd.innerText);
+
+        btConfirmar.onclick = function() {
+
+        	let data_completa = data_atual();
+
+          	if(parseInt(qtd.innerText) == qtdPegos){
+
+				document.querySelector("#botaoEmFalta_"+index).style.visibility = "";
+                document.querySelector("#botaoPeguei_"+index).style.backgroundColor = "";
+                botao.dataset.pegou = 0;
+                mostraQtdNeutro.style.display = "block";
+                mostraQtdFalta.style.display = "none";
+                mostraQtdPeguei.style.display = "none";
+				mostraQtdNeutro.innerText = "Você pegou 0/" + qtdTotal + " itens";
+
+                arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "devolveu todos", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtdTotal)}];
+
+                enviarAcoes(arrAcoes);
+
+                fechaTela();
+
+            }else if(parseInt(qtd.innerText) <= qtdPegos && parseInt(qtd.innerText) != 0){
+
+              mostraQtdNeutro.style.display = "none";
+              mostraQtdFalta.style.display = "none";
+              mostraQtdPeguei.style.display = "block";
+              mostraQtdPeguei.innerText = "Você pegou " + (qtdPegos - parseInt(qtd.innerText)) + "/" + qtdTotal + " itens";
+              botao.dataset.pegou = (qtdPegos - parseInt(qtd.innerText));
+
+              arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "devolveu o produto", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": (parseInt(botao.dataset.qtd) - parseInt(qtd.innerText))}];
+
+              enviarAcoes(arrAcoes);
+
+              fechaTela();
+
+            }else{
+
+              fechaTela();
+
+            }
+
+       }
+
+    }else if(control == 3){
+
+		document.querySelector("#titulo").innerText = "Quantos você quer desmarcar falta?";
+        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= parseInt(qtdPegos) - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
+
+        btConfirmar.onclick = function() {
+
+          let data_completa = data_atual();
+
+		  if(parseInt(qtd.innerText) == qtdPegos){
+
+				arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "desmarcou falta de todos", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtdTotal)}];
+
+              	enviarAcoes(arrAcoes);
+
+            	mostraQtdNeutro.style.display = "block";
+          	  	mostraQtdPeguei.style.display = "none";
+          	  	mostraQtdFalta.style.display = "none";
+             	mostraQtdNeutro.innerText = "Você pegou " + (qtdPegos - parseInt(qtd.innerText)) + "/" + qtdTotal + " itens";
+
+            	document.querySelector("#botaoEmFalta_"+index).style.backgroundColor = "";
+                document.querySelector("#botaoPeguei_"+index).style.visibility = "";
+                botao.dataset.pegou = 0;
+
+            	fechaTela();
+
+          }else if(parseInt(qtd.innerText) <= qtdPegos && parseInt(qtd.innerText) != 0){
+
+            	arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "desmarcou opcao em falta", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": (parseInt(botao.dataset.qtd) - parseInt(qtd.innerText))}];
+              	enviarAcoes(arrAcoes);
+            	botao.dataset.pegou = (qtdPegos - parseInt(qtd.innerText));
+
+            	mostraQtdNeutro.style.display = "none";
+          		mostraQtdPeguei.style.display = "none";
+          		mostraQtdFalta.style.display = "block";
+                mostraQtdFalta.innerText = "Há " + (qtdPegos - parseInt(qtd.innerText)) + "/" + qtdTotal + " itens em falta";
+
+            	fechaTela();
+
+          }else{
+
+              fechaTela();
+
+          }
+
+        }
+
+    }
+
+	document.querySelector("#fundo").style.display = "block";
+    document.querySelector("#divB").style.display = "flex";
+
+}
+
+function fechaTela(){
+
+  	document.querySelector("#fundo").style.display = "none";
+	document.querySelector("#divB").style.display = "none";
+
+}
+
+function data_atual(){
+
+  let data = new Date();
+  let dia = data.getDate();
+  let mes = data.getMonth();
+  let ano = data.getFullYear();
+  let hora = data.getHours();
+  let min = data.getMinutes();
+
+  if(min < 10 && min >= 0){
+    min = "0"+min;
+  }
+
+  let seg = data.getSeconds();
+
+  if(seg < 10 && seg >= 0){
+    seg = "0"+seg;
+  }
+
+  let data_completa = ano + "-" + (mes+1) + "-" + dia + " " + hora + ":" + min + ":" + seg;
+
+  return data_completa;
+
+}
+
+function enviarAcoes(acao){
+
+  	let usuario = document.getElementById("botao_drop").innerText;
+	let json = JSON.stringify(acao);
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			//console.log(this.responseText);
+        }
+    }
+
+   xhr.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/registro_acoes.php?array="+json+"&usuario="+usuario, true);
+   xhr.send();
+
+}
+
+function fnGetQtd(mostraQtdPeguei, mostraQtdFalta, mostraQtdNeutro){
+
+	if(mostraQtdFalta.style.display == "block"){
+
+      let qtdAnterior = mostraQtdFalta.innerText.split("/");
+      qtdAnterior[0] = qtdAnterior[0].replace("Há ", "");
+      qtdAnterior[0] = qtdAnterior[0].replace(" ", "");
+
+      return qtdAnterior[0];
+
+    }else if(mostraQtdPeguei.style.display == "block"){
+
+      let qtdAnterior = mostraQtdPeguei.innerText.split("/");
+      qtdAnterior[0] = qtdAnterior[0].replace("Você pegou ", "");
+      qtdAnterior[0] = qtdAnterior[0].replace(" ", "");
+
+      return qtdAnterior[0];
+
+    }else{
+
+      let qtdAnterior = mostraQtdNeutro.innerText.split("/");
+      qtdAnterior[0] = qtdAnterior[0].replace("Você pegou ", "");
+      qtdAnterior[0] = qtdAnterior[0].replace(" ", "");
+
+      return qtdAnterior[0];
+
+    }
+
+}
+
+verificaCliquePeguei();
+  </script>
