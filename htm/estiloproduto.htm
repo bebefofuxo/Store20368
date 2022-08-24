@@ -1,0 +1,1001 @@
+<ProdTop>
+<script>
+iQtdProds=<QtProd>;
+var IsFramePage=false;
+  
+var id_prods_lista = [];
+var preco_total_lista = 0;
+
+var eh_busca = false;
+if(localStorage.getItem("eh_busca") == "true")
+{
+  eh_busca = true;
+}
+localStorage.removeItem("eh_busca");
+</script>
+<script>
+  
+  function htmlDecode(sTxt){
+    var oDoc=new DOMParser().parseFromString(sTxt,"text/html");
+    return oDoc.documentElement.textContent;
+  }
+  
+  
+  function FuncProductsFilter(){
+    FCLib$.fnLoadScript("<PathTo file="htm/productsfilterstore.js">",false);
+  }
+  
+  
+  function prepareFiltersBeforeChange()
+  {
+    var filterOfFilter=document.getElementById("FilName0");
+    var divFiltrarPor = $(".DivFiltrarPor");
+    divFiltrarPor = divFiltrarPor[0];
+
+    
+    if(filterOfFilter && divFiltrarPor)
+    {
+      
+      $(".FilInputSearch.FilInfo0").remove();
+      $(".FilInputSearch.FilInfo1").remove();
+      $(".FilInputSearch.FilInfo2").remove();
+      $(".FilInputSearch.FilInfo3").remove();
+      $(".FilInputSearch.FilInfo4").remove();
+      
+      
+      var ulToBeRemoved = $(".FilInfo0").parent();
+      var filtersOfFilter = $(".FilInfo0").parent().children();
+      
+      
+      for (var i = 0; i < filtersOfFilter.length; i = i + 2)
+      {
+        var new_ul = document.createElement('ul');
+        new_ul.className = "FilSearch";
+        new_ul.appendChild(filtersOfFilter[i]);
+        new_ul.appendChild(filtersOfFilter[i+1]);
+        
+        
+        divFiltrarPor.appendChild(new_ul);
+        
+      }
+      
+      ulToBeRemoved.remove();
+      
+      
+    }
+  }
+  
+  function orderIdade()
+  {
+    var orderedArray = ["320216","320217","320218","320219","320220","482785","725194"];
+    
+    if(document.getElementById("FilItemsList3"))
+    {
+      	var idadeList = document.getElementById("FilItemsList3").children;
+    	var arrayOrderedIdade = [];
+    
+    	for(var i = 0; i < idadeList.length; i++)
+    	{
+      		var itemList = idadeList[i];
+      		var idItem = itemList.children[0].id.substring(3, 10);
+      		arrayOrderedIdade[orderedArray.indexOf(idItem)] = itemList;
+    	}
+    
+    
+   		document.getElementById("FilItemsList3").innerHTML = "";
+    	for(var i = 0; i < arrayOrderedIdade.length; i++)
+    	{
+      		if(arrayOrderedIdade[i] != null)
+      		{
+        		document.getElementById("FilItemsList3").appendChild(arrayOrderedIdade[i]);
+      		}
+      
+    	}
+    }
+    
+    
+    
+  }
+  
+  var orderedArray = ["PREMATURO","RN","PP","P","M","G","GG","EG","0-3M","0-4M","0-5M","0-6M","3-6M","5-8M","6M","6-9M","6-12M","9-12M","0-15","1","2","3","4","6","8","10","13-15","14-15","15-16","15-17","15-18","16-19","16-20","18-22","19-22","20-23","22-25","24-27","13","14","15","16","17","18","17-18","19","20","21","19-20","20-21","21-22","22","23","22-23","24","23-24","25","24-25","25-26","26","27","27-28","28","29","29-30","30","31","31-32","32","P-Adulto","M-Adulto","G-Adulto","GG-Adulto"];
+  
+  function orderTamanho()
+  {
+    
+    if(document.getElementById("AdicItemsList1"))
+    {
+      	var tamanhoList = document.getElementById("AdicItemsList1").children;
+    	var arrayOrderedTamanho = [];
+    
+    	for(var i = 0; i < tamanhoList.length; i++)
+    	{
+      		var itemList = tamanhoList[i];
+      		var nameItem = itemList.children[1].innerHTML.split(" ")[0];
+      		arrayOrderedTamanho[orderedArray.indexOf(nameItem)] = itemList;
+   		}
+    
+    
+    	document.getElementById("AdicItemsList1").innerHTML = "";
+    	for(var i = 0; i < arrayOrderedTamanho.length; i++)
+    	{
+      		if(arrayOrderedTamanho[i] != null)
+      		{
+        		document.getElementById("AdicItemsList1").appendChild(arrayOrderedTamanho[i]);
+     		 }
+      
+    	}
+    }
+
+  }
+  
+  function changeFilterPos(filterID,position){
+
+    var filterToChange=document.getElementById(filterID);
+    if(filterToChange){(filterToChange.parentNode.parentNode.parentNode).insertBefore(filterToChange.parentNode.parentNode, filterToChange.parentNode.parentNode.parentNode.children[position]);}
+  }
+ 
+  FCLib$.onLoaded(function(){
+    prepareFiltersBeforeChange();
+    orderIdade();
+    orderTamanho();
+    //esconder filtro paginas
+    $(".Fil5").parent().hide();
+    //esconder Adic2 - Sexo
+    $(".Adic2").parent().hide();
+    //esconder Adic3 - Idade
+    $(".Adic3").parent().hide();
+    
+    
+    changeFilterPos('FilNameCat',1);
+    changeFilterPos('FilName6',2);
+    changeFilterPos('FilName3',3);
+    changeFilterPos('FilNameAdic1',4);
+    changeFilterPos('FilName1',5);
+    changeFilterPos('FilName2',6);
+    changeFilterPos('FilName4',7);
+    changeFilterPos('FilName0',8);
+    
+    $(".DivFiltrarPor").show();
+    
+    
+    //ajustar label desconto pagina detalhe
+    var labelDesconto = $("#idDivBadge");
+    $("#idDivBadge").remove();
+    $(".fc-DivGridImg-Big").append(labelDesconto);
+    
+
+    
+  });
+  
+  if($('#idDivArqCustomFC').length == 0 && document.body.className=='FCProduct ProductList')
+  {
+    var style = document.createElement('style');
+
+    style.textContent = ".FCOutlet {text-align:center; min-height:75px;width:100%;} .FCOutlet img {width:100%; max-width:1275px;} .FCOutletMob {display:none;} .FCOutletProds {display: -ms-flexbox; display: -webkit-flex; display: flex; width:100%; max-width:1306px; flex-wrap:wrap; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap;} @media screen and (max-width: 640px) {.FCOutlet {display:none;} .FCOutletMob {display:block; text-align:center; min-height:70px; margin-top:5px;width:96%;margin-left:auto;margin-right:auto;} .FCOutletMob img {width:100%;}} @media (max-width:1200px) and (min-width:1025px){.FCOutlet {margin-left:15px;width:98%;}}";
+
+    document.head.appendChild(style);
+    
+    //arrays com as imagens que serão utilizadas. A quantidade de imagens deve ser igual nos dois arrays
+    var array_vantagens_desk = ["CTA_ATACADO-DESKTOP.jpg","CTA_FILTRO-DESKTOP.jpg","CTA_PARCELAMENTO-DESKTOP.jpg","CTA_PROMOCAO-DESKTOP.jpg"];
+    var array_vantagens_mob = ["CTA_ATACADO-MOB.jpg","CTA_FILTRO-MOB.jpg","CTA_PARCELAMENTO-MOB.jpg","CTA_PROMOCAO-MOB.jpg"];
+    
+    var rand = Math.random();
+    var index = parseInt(rand * 1000)%4;
+    let n = (rand * 0xfffff * 1000000).toString(16);
+    var cccfc = n.slice(0, 6);
+    
+    if(screen.width > 640)
+    {
+      var div_banner = document.createElement("div");
+      div_banner.classList.add('FCOutlet');
+      div_banner.innerHTML = "<img src='../lojas/00020368/images/"+array_vantagens_desk[index]+"?cccfc='"+cccfc+" alt='Beneficio'>";
+
+      $("#TabListaProdutos")[0].appendChild(div_banner);
+    }
+    else
+    {
+      var div_banner_mob = document.createElement("div");
+      div_banner_mob.classList.add('FCOutletMob');
+      div_banner_mob.innerHTML = "<img src='../lojas/00020368/images/"+array_vantagens_mob[index]+"?cccfc='"+cccfc+" alt='Beneficio'>";
+
+      $("#TabListaProdutos")[0].appendChild(div_banner_mob);
+    }
+    
+  }
+</script>
+<style>
+#idTitTextoFC, #idFoundFC, #idPageCountFC {display:none;}
+</style>
+<div id="ListaElementos">
+  <div class="PathCatLista"><PathCat></div>
+  <div class="QtdCatProds">Encontrados <b><QtProd></b> produtos</div>
+  <div class="FilCatProds"><div onclick='showDivFilter()' class='FilCatBot'>FILTRAR</div></div>
+  <div id="OrderPagProd"></div>
+</div>
+<!-- Sombra para Filtros na Lista de Produtos -->
+<div id="ProdFilterShadow" onclick="showDivFilter();"></div>
+
+<div id="idFiltrosBusca" style="display:none">
+    <div class="EstTabFiltros">
+        <p class="zFFilterTitle">Listando por:</p>
+      <div id="idFiltroResultadoFC">
+        <div id="idBuscaFiltro" class="EstListaFiltroFC"><ListPathSearch></div>
+      </div>
+      <p class="zFPBotRemoveFiltros"><a class="zFBotRemoveFiltros" href="/">Remover filtros</a></p>
+      <!-- <p id="idDivLinkAdvancedSearchFC"><LinkAdvancedSearch></p> -->
+      <hr>
+      <div id="idFiltroCatFC">
+        <!-- <div class="EstTitFiltroFC zFFilterRedTitle">Categorias:</div> -->
+        <i class="zFDivisorLeftBar left"></i>
+        <!-- <div class="EstListaFiltroFC"><ListPathCatQt></div> -->
+      </div>
+      <div id="idFiltroAdic1FC">
+        <div class="EstTitFiltroFC"><b><NomeAdicional1></b></div><div class=EstListaFiltroFC><ListAdic1Qt></div>
+      </div>
+      <div id="idFiltroAdic2FC">
+        <div class="EstTitFiltroFC"><NomeAdicional2></div><div class=EstListaFiltroFC><ListAdic2Qt></div>
+      </div>
+      <div id="idFiltroAdic3FC">
+        <div class="EstTitFiltroFC"><NomeAdicional3></div><div class="EstListaFiltroFC"><ListAdic3Qt></div>
+      </div>
+    </div>
+  </div>
+  <script src="<PathTo file="htm/js/fc_grid_list_v1.js">"></script><!-- include grid for prod list -->
+</ProdTop>
+
+<!-- list -->
+
+<ProdLista>
+<div class="ProdDestLista">
+<a href='<URLProd>'>
+  <div id=DivProd<IDProduto> <DataAttribute>></div>
+  <div id="lblEsgotado<IDProduto>" class="badgeEsgotado" title="Esgotado">ESGOTADO</div>
+  <div class="ImgProdDesk"><div id="DivImagemProdDouble<IDProduto>" class='ProdCapaDiv'></div></div>
+  <div class="ImgProdMobi"><div class='ProdCapaDiv'><img id='imgProd<IDProduto>' src='<ImagemProdPri>' alt='<NomeProd>' loading='lazy'></div></div>
+  <div style="background-color:transparent; width:100%; height: 30px; position: relative; display: none;" id=bolinhaCores<IDProduto>></div>
+  <div style="background-color:transparent; width:100%; height: 30px; position: relative; display: none;" id=tamanhos<IDProduto>></div>
+  <div class="ProdListOrder">
+    <!-- div class="zf-grid-list-main" id="listGrid_<IDProduto>"></div -->
+    <div class="EstNomeProdCapa"><NomeProd></div>
+    <div id="PrecoProd<IDProduto>" class="PrecoProdCapa"></div>
+  </div>
+  <div class="EstBotVerMais">Eu Quero</div>
+</a>
+<script>
+  
+  var containerProd = $("[class^='ProdDestLista']")[0];
+  
+  //definindo o tamanho de cada bolinha de cor baseando-se na largura atual do container do produto
+  var espacoGeralBolinhas = 0.88*containerProd.offsetWidth;
+  var espacoBolinha = Math.trunc(espacoGeralBolinhas/10);
+  var margem = Math.trunc(0.16*espacoBolinha);
+  var borda = 0.06*espacoBolinha;
+  var tamanhoBolinha = Math.trunc(espacoBolinha - margem - 2*borda);
+  
+  
+  id_prods_lista[id_prods_lista.length] = <IDProduto>;
+  preco_total_lista += <PrecoNum>;
+  
+  //label esgotado
+  if (<Estoque> == 0)
+  {
+     $("#lblEsgotado"+<IDProduto>).show();
+  }
+
+var prd_url_apoio = "<DescrURL>";
+
+if(prd_url_apoio.length > 3)
+{
+  
+    $("#lblEsgotado"+<IDProduto>).parent().parent().css("min-height",parseInt($("#lblEsgotado"+<IDProduto>).parent().parent().css("min-height").replace(/[^-\d\.]/g, '')) + 30);
+    prd_url_apoio = replaceAll(prd_url_apoio,"'","\"")
+
+	//console.log(prd_url_apoio);
+	var obj = JSON.parse(prd_url_apoio);
+  	
+  	var htmlBolinhas = "<div style='background-color:transparent; width: auto; height: 100%; position: relative; margin: 0 auto;'>";
+  	
+  	var arrayCores = obj.c;
+  	
+  	if(obj.t == "liso")
+    {
+		for(var i = 0; i < arrayCores.length; i++)
+        {
+        	var cor = arrayCores[i];
+          
+          	htmlBolinhas = htmlBolinhas + "<div style='background-color:#"+cor+"; width:"+tamanhoBolinha+"px; height:"+tamanhoBolinha+"px; -ms-border-radius:"+tamanhoBolinha+"px; border-radius:"+tamanhoBolinha+"px; -webkit-border-radius:"+tamanhoBolinha+"px; margin-left:"+margem+"px; display:inline-block;border-style:solid;border-width:"+1+"px;border-color:#eeeeee;'></div>";
+        }
+    }/*
+  	else if(obj.t == "poa")
+    {
+		for(var i = 0; i < arrayCores.length; i++)
+        {
+        	var cor = arrayCores[i];
+          	
+          	var coresPoa = cor.split("-");
+          	var corBase = coresPoa[0];
+          	var corBolinha = coresPoa[1];
+          
+          	htmlBolinhas = htmlBolinhas + "<div style='background-color:#"+corBase+"; width:25px; height:25px; -ms-border-radius:25px; border-radius:25px; -webkit-border-radius:25px; margin-left:5px; display:inline-block;border-style:solid;border-width:3px;border-color:#eeeeee;'><div style='background-color:#"+corBolinha+"; width:7px; height:7px; -ms-border-radius:7px; border-radius:7px; -webkit-border-radius:7px; margin-left:9px;margin-top:9px;'></div></div>";
+        }
+    }
+  	else if(obj.t == "duo")
+    {
+		for(var i = 0; i < arrayCores.length; i++)
+        {
+        	var cor = arrayCores[i];
+          	
+          	var coresPoa = cor.split("-");
+          	var corBase = coresPoa[0];
+          	var corBolinha = coresPoa[1];
+          
+          	htmlBolinhas = htmlBolinhas + "<div style='background-color:#"+corBase+"; width:25px; height:25px; -ms-border-radius:25px; border-radius:25px; -webkit-border-radius:25px; margin-left:5px; display:inline-block;border-style:solid;border-width:3px;border-color:#eeeeee;'><div style='background-color:#"+corBolinha+"; width:7px; height:7px; -ms-border-radius:7px; border-radius:7px; -webkit-border-radius:7px; margin-left:9px;margin-top:9px;'></div></div>";
+        }
+    }*/
+
+  	var htmlBolinhas = htmlBolinhas + "</div></div>";
+ 
+  	$("#bolinhaCores"+<IDProduto>).html(htmlBolinhas);
+    $("#bolinhaCores"+<IDProduto>).show();
+
+  	
+}
+
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
+}
+  
+    
+    /*Fixando primeira página na autopaginação*/
+     window.onload = function() {
+      var elemento = document.querySelector('#idMiddlePageFC');
+      if (elemento)
+      {
+        var bloco = elemento.firstElementChild;
+        if(bloco.innerHTML != 1){
+          var url = bloco.getAttribute("href");
+          if (url != null){
+            bloco.innerHTML = 1;
+            url = url.substring(url.indexOf("Pag="), - 10 ) + "pag=1";
+            bloco.setAttribute("href", url);
+            var blocos = document.querySelectorAll('.smtext');
+            blocos[1].remove();
+            var pontos = document.createElement('span');
+            pontos.innerHTML = "<b>...</b>";
+            blocos[0].insertAdjacentElement("afterend", pontos);
+
+          }
+        }
+      }
+
+    };
+
+  
+</script>
+</div>
+
+<script>
+
+  window.addEventListener('DOMContentLoaded', () => {
+        fnShowProd(<PrecoNum>,<PrecoOri>,<IDProduto>,<MaxParcelasProdNum>);
+  		changeImages("<ImagemProdPri>","<ImagemProdDet>","<URLProd>","<IDProduto>","<NomeProdUA>");
+  })
+
+</script>
+
+<script>
+/*set list product*/
+var prds_grid_lin = [];
+var prds_price = [];
+prds_price.push(["<PrecoNum>","<PrecoOri>"]);
+
+  //definindo o tamanho de cada indicativo de tamanho baseando-se na largura atual do container do produto
+  var espacoGeralTamanho = 0.88*containerProd.offsetWidth;
+  var espacoTamanho = Math.trunc(espacoGeralTamanho/7);
+  var margem_tamanho = Math.trunc(0.16*espacoTamanho);
+  var borda_tamanho = 0.06*espacoTamanho;
+  var tam_tamanho = Math.trunc(espacoTamanho - margem_tamanho - 2*borda_tamanho);
+  var margemTop = 0;
+  
+  if (containerProd.offsetWidth > 320 && $("#bolinhaCores"+<IDProduto>).is(":visible"))
+  {
+      margemTop = 10;
+  }
+  
+  if(tam_tamanho < 16)
+  {
+    tam_tamanho = 16;
+  }
+  
+  if (tam_tamanho > 26)
+  {
+    tam_tamanho = 26;
+  }
+  
+  var tam_fonte = 12;
+  
+  if(tam_tamanho < 23)
+  {
+    tam_fonte = 12;
+  }
+  else
+  {
+    tam_fonte = 14;
+  }
+  
+  var id_prod_pai = <IDProduto>;
+  var estoque_pai = <Estoque>;
+  var htmlTamanhos = "<div style='background-color:transparent; width: auto; height: 100%; position: relative; margin: 0 auto;'>";
+  var genero_pai = "<Adicional2Val>";
+  
+  var cor_tamanho = "#e7bd0d";
+  
+  if (genero_pai == "feminino")
+  {
+    cor_tamanho = "#da227f";
+  }
+  else if (genero_pai == "masculino")
+  {
+    cor_tamanho = "#008ae1";
+  }
+  else if (genero_pai == "unissex")
+  {
+    cor_tamanho = "#ffcf08";
+  }
+  
+  var tamanhos_produto = [];
+  
+<Sub>
+prds_price.push(["<PrecoNum>","<PrecoOri>"]);
+(function(){var clr = (("<CorVal>" != "") ? "<CorVal>|<CorRGB>" : "").toString(); prds_grid_lin.push({"id": "<IDProduto>", "cp": "<CodProd>", "cl": clr, "st": "<Estoque>", "wg": "<PesoNum>", "po": "<PrecoOri>", "pn": "<PrecoNum>", "mi": "<MaxParcelasProdNum>", "ad1": "<Adicional1Val>", "ad2": "<Adicional2Val>", "ad3": "<Adicional3Val>", "add1": "<AdicionalD1Val>", "add2":"<AdicionalD2Val>", "add3":"<AdicionalD3Val>", "imgp":"<ImagemProdPri>", "imgd":"<ImagemProdDet>", "imga":"<ImagemProdAmp>"});})();
+  
+  	
+  
+  	var t_ = "<Adicional1Val>";
+  	var e_ = <Estoque>;
+    
+    if(t_ != "")
+    {
+      	if(!tamanhos_produto[t_]) tamanhos_produto[t_] = 0
+  		tamanhos_produto[t_] += parseInt(e_);
+    }
+
+</Sub>
+
+	var array_tamanhos = [];
+  
+  	var keys = Object.keys(tamanhos_produto);
+
+  	
+  	for (var x of keys) {
+    	array_tamanhos.push(x);
+  	}
+  
+  	var tamanhos_ordenados = [];
+  
+  	for(var i = 0; i < array_tamanhos.length; i++)
+    {
+      tamanhos_ordenados[orderedArray.indexOf(array_tamanhos[i])] = array_tamanhos[i];
+    }
+  
+
+	for(var i = 0; i < tamanhos_ordenados.length; i++)
+    {
+      	if(tamanhos_ordenados[i] != null)
+        {
+          if(tamanhos_produto[tamanhos_ordenados[i]] > 0)
+          {
+            htmlTamanhos = htmlTamanhos + "<div style='background-color:"+cor_tamanho+";background-color:"+cor_tamanho+"; min-width:"+tam_tamanho+"px; min-height:"+tam_tamanho+"px; -ms-border-radius:3px; border-radius:3px; -webkit-border-radius:3px; margin-left:"+margem_tamanho+"px; margin-bottom:"+margem_tamanho+"px; display:inline-block;border-style:solid;border-width:"+1+"px;border-color:"+cor_tamanho+";color:#FFFFFF;font-size:"+tam_fonte+"px;'><span style='padding:2px;line-height:"+tam_tamanho+"px;'>"+tamanhos_ordenados[i]+"</span></div>";
+          }
+          else
+          {
+            htmlTamanhos = htmlTamanhos + "<div style='background-color:#DDDDDD; min-width:"+tam_tamanho+"px; min-height:"+tam_tamanho+"px; -ms-border-radius:3px; border-radius:3px; -webkit-border-radius:3px; margin-left:"+margem_tamanho+"px; display:inline-block;border-style:solid;border-width:"+1+"px;border-color:#DDDDDD;color:#FFFFFF;font-size:"+tam_fonte+"px;'><span style='padding:2px;line-height:"+tam_tamanho+"px;'>"+tamanhos_ordenados[i]+"</span></div>";
+          }
+        }
+      
+        
+    }
+
+	htmlTamanhos = htmlTamanhos + "</div></div>";
+ 
+  	$("#tamanhos"+id_prod_pai).html(htmlTamanhos);
+  	$("#tamanhos"+id_prod_pai).css("margin-top",margemTop);
+    
+    
+    if(estoque_pai > 0)
+    {
+      $("#tamanhos"+id_prod_pai).show();
+      $("#tamanhos"+<IDProduto>).css("height",$("#tamanhos"+<IDProduto>)[0].scrollHeight);
+      $("#lblEsgotado"+<IDProduto>).parent().parent().css("min-height",parseInt($("#lblEsgotado"+<IDProduto>).parent().parent().css("min-height").replace(/[^-\d\.]/g, '')) + $("#tamanhos"+<IDProduto>).outerHeight(true));
+      
+    }
+
+</script>
+
+<script>
+(function(){
+  if(prds_grid_lin && typeof prds_grid_lin[prds_grid_lin.length-1] !== 'undefined'){zF_Grid_List.init('<IDProduto>', prds_grid_lin);}
+})();
+</script>
+</ProdLista>
+
+<!-- details -->
+<ProdDet>
+<link rel=preload as=image imagesrcset="<ProdImgDet>">
+<!-- Begin: HTML structure -->
+<link href="<PathTo file="htm/css/fc_grid_v1.css">" rel="stylesheet" type="text/css">
+<script defer src="<PathTo file="htm/js/fc_grid_v1.js">"></script>
+<link rel="stylesheet" type="text/css" href="/js/MagicToolbox/MagicZoomPlusV3/magiczoomplus.css" />
+<script type="text/javascript" src="/js/MagicToolbox/MagicZoomPlusV3/magiczoomplus.js"></script>
+<!-- Video Play / Close -->
+<script>
+  function openvideo() {
+    var x = document.getElementById("videoplayfull");
+    if (x.style.display == "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+
+$(document).ready(function(){
+  $('.videoclose').on('click', function() {
+  $('#popup-youtube-player')[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+    
+    
+});
+
+}); 
+</script>
+<style>
+.EstTabTopo {display:none;}
+</style>
+<div class="FCGridMain">
+<div class="FCPathProdGrid"><PathCat></div>
+<div id="produto2">
+<!-- parte 2 do produto -->
+<script>
+var IDProdutoDet=<IDProduto>;
+var CodVideoProdDet='<CodVideoProd>';
+</script>
+<div class="det-product-img-name-container-full">
+  <div class="det-product-img-name-container-one zoom-gallery" id="idDivGridImg"><img width="100%" height ="100%" srcset="<ProdImgDet>"></div> 
+</div>
+<div id="idDivBadge"></div>
+<Wishlist>
+<script>
+  
+</script>
+
+<div id="IconesRedesSociais1">
+    <div class="TxtRedesSociais">Compartilhe:</div>
+    <!--div><a href="javascript:MostraIndique(<IDLoja>,<IDProduto>)"><img src="<PathTo file="images/iconprodemail.svg">" border="0" alt="E-mail" title="Recomende este produto"></a></div-->
+    <div><ShareFacebook></div>
+    <div><ShareTwitter></div>
+    <div><ShareGooglePlus></div>
+    <div><a id="link_whatsapp_d" href="https://api.whatsapp.com/send?text=Veja o produto '<NomeProd>'. Segue o link: http://lvfc.co/l<IDLojaNum>/p<IDProduto>" target="_blank"><img src="<PathTo file="images/ic_whatsapp2.svg">" border="0" alt="Recomende este produto pelo WhatsApp" title="Recomende este produto pelo WhatsApp"></a></div>
+</div>
+
+<div class="FCContentGrid">
+<h1 id="idNameProductGridFC" class="FCNameProductGrid"><NomeProd></h1>
+<div class="FCSubNameProd">
+  <div class="FCCodProdGrid">Refer&ecirc;ncia/SKU: <CodProd></div>
+  <!------ PRE-VENDA -->
+  <div class="FCPreVendaProd"><a href='#' onclick='lightbox_open4();'><img src="<PathTo file="images/ic_pre_venda.svg">" alt="PRE-VENDA"></a>
+  <div id='light4'><a id='boxclose' onclick='lightbox_close4();'><img src="<PathTo file="images/icon-search-close.svg">" alt='Fechar'></a><h4>PRODUTO EM PRÉ-VENDA LIMITADA!</h4>Compre agora com desconto exclusivo qualquer peça com o selo <b>"PRÉ-VENDA"</b>. Seu pedido terá prazo diferenciado por conter item em pré-venda. Confira o prazo no carrinho de compras!</div><div id='fade4' onClick='lightbox_close4();'></div></div>
+  <!------ ESTAMPA SORTIDA -->
+  <div class="FCEstampaSortidaProd"><img src="<PathTo file="images/ic_estam_sort.svg">" alt="ESTAMPA SORTIDA"></div>
+
+  <script type="text/javascript">
+  //var temPreVenda = verificarPreVendaProduto('<CodProd>');
+  var temPreVenda = false;
+  if (temPreVenda) $(".FCPreVendaProd").show();
+  
+  var codigoModelo = '<CodProd>';
+    
+  if (codigoModelo == '328' || codigoModelo == '326' || codigoModelo == '302' || codigoModelo == '337' || codigoModelo == '410' || codigoModelo == '291' || codigoModelo == '414' || codigoModelo == '399' || codigoModelo == '343' || codigoModelo == '290' || codigoModelo == '028' || codigoModelo == '347' || codigoModelo == '091' || codigoModelo == '300' || codigoModelo == '411')
+    {
+      $(".FCEstampaSortidaProd").show();
+    }
+    
+  </script>
+  <!-- Avaliacoes -->
+  <script type="text/javascript">
+  iQtdOp=<OpiniaoQtd>;
+    if(iQtdOp==0){document.write("<a href='/Opiniao.asp?IDLoja=<IDLoja>&IDProduto=<IDProduto>'><div class='ProductStyleReviewOffBoxFC'><div class='NotaOpiniaoVazio NotaOpiniaoVazio1'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio2'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio3'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio4'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio5'></div></div></a>");}
+    else {document.write("<a style='cursor:pointer;' href'#' onclick='scrollReviews()'><div class='ProductStyleReviewOnBoxFC'><div class='ProductStyleReviewStarsOnFC'><OpiniaoMedia></div><div class='ProductStyleReviewQtyOnFC'>(<OpiniaoQtd> avaliações)</div></div></a>");}
+    function scrollReviews()
+    {
+      var item = $(".produto3_3")[0];
+      item.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    }
+  </script>
+  <!-- Fim Avaliacoes -->
+</div>
+
+  <!--
+  <div class='ProductStyleReviewQtyOnFC'>(<a href="#OP" style="text-decoration:none;">1</a>)</div>")
+  //scroll até as opções
+             -->
+
+<div id="idPriceGridFC" class="FCPriceGrid">
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+                            MostraPrecoDet(<PrecoNum>,<PrecoOri>,'<CodProd>');
+    })
+  </script>
+  </div>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+                          (function(){var e=document.getElementById("idPriceGridFC"); if(e)e.innerHTML+= fnMaxInstallmentsGrid(<PrecoNum>,<MaxParcelasProdNum>) + fnShowEconomyGrid(<PrecoNum>,<PrecoOri>); })();
+  })
+
+</script>
+<div id='showGuiaMedidas'><DescrHTM></div>
+
+<div id="idMainGridFC_<IDProduto>" class="FCGeralGrid"></div>
+
+<div id="IconesRedesSociais2">
+    <div class="TxtRedesSociais">Compartilhe:</div>
+    <!--div><a href="javascript:MostraIndique(<IDLoja>,<IDProduto>)"><img src="<PathTo file="images/iconprodemail.svg">" border="0" alt="E-mail" title="Recomende este produto"></a></div-->
+    <div><ShareFacebook></div>
+    <div><ShareTwitter></div>
+    <div><ShareGooglePlus></div>
+    <div><a id="link_whatsapp_m" href="whatsapp://send?text=Veja o produto '<NomeProd>'. Segue o link: http://lvfc.co/l<IDLojaNum>/p<IDProduto>" target="_blank"><img src="<PathTo file="images/ic_whatsapp2.svg">" border="0" alt="Recomende este produto pelo WhatsApp" title="Recomende este produto pelo WhatsApp"></a></div>
+</div>
+  
+  <div class="FCFreteGratisProd"><a href='#' onclick='lightbox_open1();'><b>Frete Grátis?</b> Clique aqui para saber mais!</a>
+  <!-- voltar para valores maiores -->
+  <!--<div id='light1'><a id='boxclose' onclick='lightbox_close1();'><img src="<PathTo file="images/icon-search-close.svg">" alt='Fechar'></a><div style='text-align:left'>
+  <h4>CONDIÇÕES - FRETE GRÁTIS</h4>Frete grátis para compras acima de <b>R$ 199,00</b>, válido para: <br><br><b>- capitais e regiões metropolitanas do Brasil</b><br><b>- para todo estado de São Paulo</b><br><br>Para as <b>demais cidades do Brasil</b>, frete grátis para compras acima de <b>R$ 239,00</b><br><br>Para outros valores, calcule o frete do seu pedido no carrinho de compras ou na finalização do pedido.</div></div>-->
+    
+    <!-- conteudo para frete R$ 99 -->
+    <div id='light1'><a id='boxclose' onclick='lightbox_close1();'><img src="<PathTo file="images/icon-search-close.svg">" alt='Fechar'></a><div style='text-align:left'>
+  <h4>CONDIÇÕES - FRETE GRÁTIS</h4>Frete grátis para compras acima de <b>R$ 99,00</b>, válido para TODO O BRASIL!</div></div>
+      <!-- <h4>CONDIÇÕES - FRETE GRÁTIS</h4>Frete grátis <b>sem valor mínimo</b>, válido para TODO O BRASIL!</div></div> voltar frete -->
+    <!-- fim  conteudo para frete R$ 99 -->
+
+
+    <div id='fade1' onClick='lightbox_close1();'></div></div>
+
+
+<div class="FCDuvidasProd"><b>Dúvidas?</b> <a href='/page,idloja,20368,arq,faq.htm,faq?utm_source=site_org&utm_medium=faq'>Clique aqui</a></div>
+
+<!-- Calculo do Frete --> 
+<!-- <div class="ProductStyleBoxFC"><div id="ShowCEP<IDProduto>"></div></div> -->
+
+</div>
+<!-- fim parte 2 do produto -->
+</div>
+<div id="maisOpcoes"></div>
+<div id="produto3">
+<!-- parte 3 do produto -->
+<div class="produto3_1">
+<div class="TitulosProd">Detalhes do Produto</div>
+<div class="EstDescrLinha"><img src="<PathTo file="images/x.gif">" width=10 height=1></div>
+<div class="EstDescrProd"><Descricao></div>
+<!--div class="EstDescrProd"><DescrURL></div-->
+</div>
+
+<div class="produto3_2">
+<div class="TitulosProd">Recomendamos Tamb&eacute;m</div>
+<div class="EstDescrLinha"><img src="<PathTo file="images/x.gif">" width=10 height=1></div>
+<div style="margin-top:15px;"><CrossSelling></div>
+</div>
+
+<div class="produto3_3">
+<div class="TitulosProd">Opini&atilde;o dos Clientes</div>
+<div class="EstDescrLinha"><img src="<PathTo file="images/x.gif">" width=10 height=1></div>
+<div style="margin:15px auto 20px auto;"><Comments></div>
+</div>
+  
+<div class="produto3_4">
+<div class="TitulosProd">Sobre a loja</div>
+<div class="EstDescrLinha"><img src="<PathTo file="images/x.gif">" width=10 height=1></div>
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div style="margin-top:30px;" class="elfsight-app-003735fd-5f15-4871-aec7-75c687550ae5"></div>
+</div>
+<!-- parte 3 do produto -->
+</div>
+</div>
+
+<!-- End: HTML structure -->
+<!-- Begin: JS scripts -->
+<script>
+  $(".EstOpiniaoEmail").next().remove();
+  $(".EstOpiniaoEmail").remove();
+  
+  if(<OpiniaoMediaNum> > 0)
+  {
+      $("#idCommentsAvgFC").html($("#idCommentsAvgFC").html()+"<span style='margin-left:5px'><OpiniaoMediaNum></span>");
+  }
+  
+  $("#idCommentsAvgFC table").css("float","left");
+  var estrelas = $("#idCommentsAvgFC");
+  var tb = $("#idCommentsAvgFC").parent().parent();
+  tb.append("<tr><td style='padding-top:5px'>"+estrelas.html()+"</td></tr>");
+  $("#idCommentsAvgFC").remove();
+  
+  window.addEventListener('DOMContentLoaded', () => {
+    /* fnShowCEPGrid(<IDProduto>); Simulacao de Frete */
+  	FCGrid$.fnMultipleZoom("<ImagemProdDet>","<ImagemProdAmp>", true);
+  })
+  
+</script>
+<script>
+var aProductOnlyOneGrid=[], aProductListGrid=[];
+/* Begin: Produto principal */
+var sCor = ("<CorVal>" !="") ? "<CorVal>|<CorRGB>":"";
+aProductOnlyOneGrid.push(JSON.stringify({IDProduto: <IDProduto>,codProd: "<CodProd>", cor: sCor, estoque: <Estoque>, peso: "<PesoNum>", priceOri: "<PrecoOri>", priceNum: "<PrecoNum>", maxInstallmentsNum: <MaxParcelasProdNum>, adicional1: "<Adicional1Val>", adicional2: "<Adicional2Val>", adicional3: "<Adicional3Val>", imgDet:"<ImagemProdDet>", imgAmp:"<ImagemProdAmp>", imgVideo:"<CodVideoProd>"}));
+/* End: Produto principal */
+/* Begin: Lista subprodutos */
+
+  
+  //trocando foto dos relacionados unissex
+  var genero = "<Adicional2Val>";
+  
+  /*
+  var relacionados = $(".EstImageProdCross img");
+  
+  var modelos_unissex = ["021","023","024","025","027","028","029","045","046","047","055","081","085","091","098","2006","2007","2014","2015","2047","2061","2115","275","276","281","282","285","286","290","291","293","294","295","298","299","300","301","302","307","308","309","312","313","315","319","320","321","322","323","324","326","328","329","330","331","334","337","339","340","342","343","344","345","346","347","348","351","352","353","354","355","3550","3551","3552","3553","3556","356","3566","369","370","371","372","373","374","381","382","384","386","388","389","390","396","397","398","399","400","4000","4001","4003","4004","4005","401","402","4023","4024","403","404","405","406","407","408","409","410","4107","411","414","4155","4161","422","423","424","425","426","427","428","429","430","431","432","433","434","435","438","439","440","443","445","446","447","455","456"];
+  
+  var imagens_masculino = ["azul","turquesaList","turquesa","turquesa","turquesa","azul","azul","azul","azul","azul","azul","azul","azul","azul","azul","azul","azul","azul","azul","azul","azul","azulMarinho","azul","azul","azul","azul","azul","turquesa","azul","azul","azul","azul","azul","turquesa","azul","azul","marTurqList","azul","azulMarinho","azul","azulMarinho","azulRoyal","azulRoyal","azulMarinho","azul","azul","azul","marTurqList","marTurqList","marTurqList","azul","azul","azul","azul","azulMarinhoPoa","azulMarinhoPoa","azul","azul","azul","marTurqList","azul","azulMarinho","azul","azulMarinho","azul","azul","lilasListrado","marTurqList","marTurqList","marTurqList","azul","azul_16","azul_16","azul_16","azul","azul_20","azul","preto","azul","azul","marTurqList","marVermList","marVermList","marVermList","azulMarinhoPoa","azulMarinhoPoa","azul","azulMarinhoPoa","azulRoyalPoa","azulRoyalPoa","azulRoyalPoa","azul","azulRoyalPoa","azulMarinho","azul","azul","azul","azul","azul","azul","azul","azul","marVermList","azul","azul","marVermList","azul","marTurqList","marVermList","azul","azul","azul","azul","azulMarinhoList","azul","azul","azul","branco_azul","azulRoyal","azulRoyal","turquesaMarinhoPoa","cremeVermelho","brancoMarinho","cremeMarinho","azulMarinho","azulMarinho","azulRoyal","azulRoyal","azulMarinho","azulMarinho","azulMarinho","azulRoyal","turquesaVerde","turquesaVerde","creme_azulMarinho","azul_marinho","azul","azul","azul","azul","azul"];
+  
+  var imagens_feminino = ["rosa","rosaListrado","rosaPink","rosaPink","cremeRosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","pink","pink","pink","pink","rosa","pink","vermelho","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","lilasRosaList","rosa","pink","rosa","pink","pink","rosaChiclete","rosaChiclete","rosa","rosa","rosa","rosaLilasList","rosaLilasList","rosaLilasList","rosa","rosa","rosa","rosa","rosaPoa","rosaPoa","rosa","rosa","rosa","lilasRosaList","rosa","rosa","rosa","rosaEscuro","rosa","rosa","rosaLilasList","rosaLilasList","rosaListrado","rosaLilasList","rosa","rosa_16","rosa_16","rosa_16","rosa","rosa_20","rosa","rosa","rosa","rosa","lilasRosaList","lilasRosaList","rosaList","lilasRosaList","rosaPoa","rosaPoa","rosa","rosaPoa","rosaPoa","rosaPoa","rosaPoa","rosa","rosaPoa","rosaEscuro","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","lilasRosaList","rosa","rosaChiclete","lilasRosaList","rosa","lilasRosaList","lilasRosaList","rosa","rosa","rosa","rosa","pinkList","rosa","rosa","rosa","rosa","rosaChiclete","rosaChiclete","rosaPink","rosaPink","rosaPink","cremeRosa","rosaChiclete","rosaChiclete","rosaChiclete","rosaChiclete","rosa","rosa","rosaChiclete","rosaChiclete","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa","rosa"
+];
+  
+  var imagens_unissex = ["creme","multicolList","brancoVerm","branco","brancoVerm","turquesa","branco","creme","branco","creme","branco","creme","branco","cremeMasc","branco","azulMarinho","creme","mescla","creme","creme","creme","branco","creme","branco","branco","verde","creme","branco","turquesa","turquesa","creme","branco","creme","branco","creme","turquesa","turqList","turquesa","vermelho","creme","vermelho","vermelho","turquesaEscuro","vermelho","branco","creme","branco","turquesaList","verdeListrado","turquesaList","cremeMasc","cremeFem","branco","creme","azulMarinhoPoa","azulMarinhoPoa","cremeFem","creme","branco","turqList","cremeFem","vermelho","branco","vermelho","cremeMasc","creme","turquesaList","verdeListrado","turquesaList","turquesaList","creme","branco_16","vermelho_16","vermelho_16","branco","branco_20","branco","branco","branco","creme","turqList","verAmarList","verAmarList","verAmarList","azulMarinhoPoa","azulMarinhoPoa","creme","azulMarinhoPoa","vermelhoPoa","vermelhoPoa","vermelhoPoa","branco","vermelhoPoa","vermelho","cremeFem","branco","verde","verde","verde","verde","creme","creme","verAmarList","creme","creme","turqList","creme","turqList","turqList","branco","creme","branco","cremeFem","azulMarinhoList","cremeFem","cremeFem","amareloVerde","branco_azul","vermelho","turquesaEsc","verde","cremePreto","cremeMarinho","cremeVermelho","azulMarinho","azulRoyal","turquesaEsc","turquesaEsc","vermelho","vermelho","azulMarinho","turquesaEsc","creme","CremeMarinho","creme","azul_marinho","creme","branco","creme","branco","creme"];
+  
+  for(var i = 0; i < relacionados.length; i++)
+  {
+    var link_imagem = relacionados[i].src;
+    
+    var array_link_1 = link_imagem.split("/prod/");
+    var array_link_2 = array_link_1[1].split("_");
+    
+    var modelo_relacionado = array_link_2[0];
+    
+    var pos_modelo = modelos_unissex.indexOf(modelo_relacionado);
+    
+    if(pos_modelo != -1)
+    {
+        if(genero == "masculino")
+    	{
+      
+     		relacionados[i].src = array_link_1[0] + "/prod/" + modelo_relacionado + "_" + imagens_masculino[pos_modelo] + "_p.jpg";
+          console.log(relacionados[i].src);
+      
+    	}
+      	else if(genero == "feminino")
+    	{
+      
+     		relacionados[i].src = array_link_1[0] + "/prod/" + modelo_relacionado + "_" + imagens_feminino[pos_modelo] + "_p.jpg";
+          console.log(relacionados[i].src);
+      
+    	}
+      	else if(genero == "unissex")
+    	{
+      
+     		relacionados[i].src = array_link_1[0] + "/prod/" + modelo_relacionado + "_" + imagens_unissex[pos_modelo] + "_p.jpg";
+          console.log(relacionados[i].src);
+      
+    	}
+    }
+    
+      
+  }
+  */
+  
+<sub>
+var sCor = ("<CorVal>" !="") ? "<CorVal>|<CorRGB>":"";
+aProductListGrid.push(JSON.stringify({IDProduto: <IDProduto>, codProd: "<CodProd>", cor: sCor, estoque: <Estoque>, peso: "<PesoNum>", priceOri: "<PrecoOri>", priceNum: "<PrecoNum>", maxInstallmentsNum: <MaxParcelasProdNum>, adicional1: "<Adicional1Val>", adicional2: "<Adicional2Val>", adicional3: "<Adicional3Val>", imgDet:"<ImagemProdDet>", imgAmp:"<ImagemProdAmp>", imgPri:"<ImagemProdPri>", imgVideo:"<CodVideoProd>"}));
+
+var estilo = "<AdicionalD1Val>";
+
+
+</sub>
+/* End: Lista subprodutos */
+
+window.addEventListener('DOMContentLoaded', () => {
+
+                        //Fernando - btnSelectImg - no dia 09/11/2020 mudamos o botão cinza "Seleciona as opções" pelo botão verde "Comprar"
+                        /* Begin: Código opcional para alterar as configurações da grade */
+                        FCGrid$.myOptions = {
+                        autoSelect : false,
+                        cartOnPage : true,
+                        shippingUpdate : false,
+                        incMultGrid : false,
+                        separadorRGBCor : '|',
+                        qtyDescriptors : 2,
+                        htmlFlagChecked : '<i class="FCCheckedGrid"></i>',
+                        imageProduct : 'cor',
+                        colorName : false,
+                        colorImg : true,
+                        colorImgFormat : '.gif',
+                        stock: false,
+                        btnAnimation : true,
+                        btnSelectImg : 'botcarrinho.svg',
+                        btnBuyImg : 'botcarrinho.svg',
+                        btnAddedImg : 'botadded.svg',
+                        btnContactUSImg : 'botconsultegrid.svg',
+                        btnSoldOut : 'botcarrinhoesgotado.svg',
+                        iconArrowPrevIMG : 'icon-grid-arrow-prev.svg',
+                        iconArrowNextIMG : 'icon-grid-arrow-next.svg',
+                        textGrid : 'Selecione as opções abaixo',
+                        order : ['cor','adicional1','adicional2','adicional3'],
+                        nameDescriptor : {
+                        cor : 'Cor',
+                        adicional1 : 'Tamanho',
+                        adicional2 : 'Sexo',
+                        adicional3 : 'Idade',
+                        },
+                        textDescriptor : {
+                        cor : 'Selecione a <b>Cor</b>',
+                        adicional1 : 'Selecione o <b>Tamanho</b>',
+                        adicional2 : 'Selecione o <b>Sexo</b>',
+                        adicional3 : 'Selecione a <b>Idade</b>',
+                        }
+                        };
+                        /* End: Código opcional para alterar as configurações da grade */
+                        FCGrid$.init("idMainGridFC_<IDProduto>", aProductListGrid, aProductOnlyOneGrid); /* Inicia a grade */
+
+  })
+
+
+</script>
+
+<!-- Personalizar Icones Redes Sociais Desktop -->
+<script>
+
+  var marca_modelo = htmlDecode("<AdicionalD3Val>");
+  var codigo_fornecedor;
+  
+  if(marca_modelo == "Top Chot" || marca_modelo == "TOP CHOT" || marca_modelo == "TOPCHOT")
+  {
+
+    var codigoSemLetra = codigoModelo.replace(/\D/g,'');
+    console.log("CODIGO: " + codigoSemLetra);
+
+    if(isNaN(codigoModelo))
+    {
+      
+      if(codigoSemLetra.length == 4)
+      {
+          codigoSemLetra = codigoSemLetra.substring(0, 3);
+      }
+
+      if(estilo == "Estampado" || estilo == "estampado")
+      {
+
+        var referenceNode = $(".content_guia_plus_others")[0];
+        if(referenceNode){
+        	referenceNode.innerHTML = referenceNode.innerHTML + "<a style='float:right;' href='/page,idloja,20368,arq,ver_mais_"+codigoSemLetra+".htm'><img src='../lojas/00020368/images/btn_mais_estampas.svg' alt='Mais Estampas' title='Mais Estampas'></a>"
+        }
+        
+      }
+      else if(estilo == "Liso" || estilo == "liso" || estilo == "Listrado" || estilo == "listrado")
+      {
+
+        var referenceNode = $(".content_guia_plus_others")[0];
+        if(referenceNode){
+        	referenceNode.innerHTML = referenceNode.innerHTML + "<a style='float:right;' href='/page,idloja,20368,arq,ver_mais_"+codigoSemLetra+".htm'><img src='../lojas/00020368/images/btn_mais_cores.svg' alt='Mais Cores' title='Mais Cores'></a>"
+        }
+       
+
+      }
+
+
+    }
+
+  }
+  else
+  {
+    
+    
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function()
+    {
+      if (this.readyState == 4 && this.status == 200) {
+
+        if (this.responseText > 1)
+        {
+          $("#btn_mais_cores").show();
+        }
+
+      }
+    };
+    var descricao_curta = htmlDecode("<DescricaoCurta>");
+    
+    var array = descricao_curta.split(";");
+    
+    if (array.length > 2)
+    {
+      codigo_fornecedor = array[1];
+
+      var link_semelhantes = codigo_fornecedor + "+" + marca_modelo;
+      link_semelhantes = link_semelhantes.replaceAll(" ","+");
+
+      var referenceNode = $(".content_guia_plus_others")[0];
+      if(referenceNode){
+        referenceNode.innerHTML = referenceNode.innerHTML + "<a id='btn_mais_cores' style='display:none; float:right;' href='/listaprodutos.asp?IDLoja=20368&Digitada=True&Texto="+link_semelhantes+"'><img src='../lojas/00020368/images/btn_mais_cores.svg' alt='Mais Cores' title='Mais Cores'></a>"
+      }
+
+      if (codigo_fornecedor != "F" && codigo_fornecedor != "f")
+      {
+        
+        xhr.open("GET","https://bebefofuxo.net/scripts/analise_semelhantes/analisar.php?codigo_fornecedor="+codigo_fornecedor+"&marca=" + encodeURI(marca_modelo),true);
+
+        xhr.send();
+      }
+
+    }
+
+    
+  }  
+  
+var sRodapeContent=document.getElementById('produto2');
+if(sRodapeContent)var aImgsShare=sRodapeContent.getElementsByTagName('img');
+if(aImgsShare)
+  for(var i=0;i<aImgsShare.length;i++){
+    if(aImgsShare[i].className=='EstImgShareFacebook'){
+     aImgsShare[i].setAttribute('data-src',FC$.PathImg +'ic_facebook.svg');
+     aImgsShare[i].src=FC$.PathImg +'ic_facebook.svg';
+   }
+    if(aImgsShare[i].className=='EstImgShareTwitter'){
+     aImgsShare[i].setAttribute('data-src',FC$.PathImg +'ic_twitter.svg');
+     aImgsShare[i].src=FC$.PathImg +'ic_twitter.svg';
+   }
+    if(aImgsShare[i].className=='EstImgShareGooglePlus'){
+     aImgsShare[i].setAttribute('data-src',FC$.PathImg +'ic_googleplus.svg');
+     aImgsShare[i].src=FC$.PathImg +'ic_googleplus.svg';
+   }
+    if(aImgsShare[i].className=='EstImgSharePinterest'){
+     aImgsShare[i].setAttribute('data-src',FC$.PathImg +'ic_pinterest.svg');
+     aImgsShare[i].src=FC$.PathImg +'ic_pinterest.svg';
+   }
+  }
+</script>
+<div id='light3'><a id='boxclose' onclick='lightbox_close3();'><img src="<PathTo file="images/icon-search-close.svg">" alt='Fechar'></a>
+</div>
+<div id='fade3' onClick='lightbox_close3();'></div>
+  
+
+
+</ProdDet>
+
+<!-- zoom -->
+<ProdAmp>
+</ProdAmp>
+
+<!-- footer -->
+  <ProdBottom>
+    <script>
+      /* Autopaginacao - exec func of products */
+      function FuncAutoPagEnd(){
+        zF$.fnExecAllFuncProducts(); /* exec all function products */
+      }
+      /* Texto final na Lista de Produtos */
+      window.addEventListener('DOMContentLoaded', () => {
+                              CategoryDescription();
+      })
+      
+
+
+      if(FC$.Mobile == false && $("#link_whatsapp_m").length > 0)
+      {
+        $("#link_whatsapp_m").attr('href',encodeURI($("#link_whatsapp_m").attr('href').replace("whatsapp://","https://api.whatsapp.com/")))
+      }
+
+
+      //carregar texto dos comentários como html para os emojis aparecerem
+      $(".EstOpiniaoTexto").each(function(){
+
+        $(this).html($(this).text());
+
+      })
+
+      //$(".FCBtnGrid").click("click", function(){console.log("clicou")});
+
+    </script>
+  </ProdBottom>
