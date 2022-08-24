@@ -1,0 +1,146 @@
+/* Configuracao Geral Menu Desktop - Bebe Fofuxo */
+.topnav {overflow: hidden;  margin:0 auto; width:100%; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content:center; -webkit-justify-content:center; -moz-justify-content:center; }
+.topnav button {border:none; cursor:pointer;}
+#darknav {display:none; position: absolute; width: 100%; height: 3000px; z-index: -1; top: 250px; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.5);}
+.dropdown {float: left;  border:none;}
+.dropdown [id^="dropbtn"] {font-family: 'Nunito', Arial, sans-serif; font-size: 17px; font-weight:400; border:none; outline: none; color: #685f52; margin: 0; background:#f5f5f5; padding:20px 16px;}
+.dropdown #dropbtn12  {font-family: 'Nunito', Arial, sans-serif; font-size: 17px; font-weight:400; border:none; outline: none; color: #ffffff; margin: 0; background:#da187f; padding:20px 16px;}
+.dropdown #dropbtn10  {font-family: 'Arial Black'; font-size: 17px; font-weight:400; border:none; outline: none; color: #000000; margin: 0; background:#F4C708; padding:20px 16px;}
+
+[class^="dropdown-menu"] {display: none; width: 100%; max-width:984px; padding:0px 20px 20px 20px; position: absolute; z-index: 5; background:#fff; border-bottom:2px solid #e4e4e4;}
+.dropdown-menu1, .dropdown-menu2 {margin: 0 0 0 0;}
+.dropdown-menu3 {margin: 0 0 0 -142px;}
+.dropdown-menu4 {margin: 0 0 0 -260px;}
+.dropdown-menu5 {margin: 0 0 0 -380px;}
+.dropdown-menu6 {margin: 0 0 0 -472px;}
+.dropdown-menu7 {margin: 0 0 0 -580px;}
+.dropdown-menu8 {margin: 0 0 0 -750px;}
+.dropdown-menu9 {margin: 0 0 0 -853px;}
+.dropdown-menu10 {margin: 0 0 0 -833px;}
+.dropdown-menu11 {margin: 0 0 0 -986px;}
+.drop-column {width:26%; float:left;}
+.drop-column-prod {width:48%; float:left;}
+.drop-column-prod .drop-ad img {margin:20px 0 0 0; width:100%; max-width:470px;}
+
+/*ALTERACAO BLACK FRIDAY - segunda linha comentada refere ao black friday*/
+.drop-column b {float: none; font-size: 15px; font-weight:700; font-family: 'Nunito', Arial, sans-serif; color: #008ae1; padding: 20px 0 5px 0; text-decoration: none; display: block;}
+/*.drop-column b {float: none; font-size: 15px; font-weight:700; font-family: 'Nunito', Arial, sans-serif; color: #000000; padding: 20px 0 5px 0; text-decoration: none; display: block;}*/
+/*FIM - alteracao BLACK FRIDAY*/
+
+.drop-column a {float: none; padding: 4px 0; font-size: 14px; font-weight:400; font-family: 'Nunito', Arial, sans-serif; color: #685f52; text-decoration: none; display: block;}
+.drop-column a:hover {text-decoration:underline;}
+.drop-blue {float:left; text-decoration: none; display: block;}
+.drop-blue a {color: #008ae1 !important; padding: 20px 0 0 0 !important; font-size: 16px !important; font-weight: 700 !important;}
+
+/*ALTERACAO BLACK FRIDAY - segunda linha comentada refere ao black friday*/
+.dropdown [id^="dropbtn"]:hover {color:#ffffff !important; background:#008ae1 !important;}
+/*.dropdown [id^="dropbtn"]:hover {color:#000000 !important; background:#F4C708 !important;}*/
+/*FIM - alteracao BLACK FRIDAY*/
+
+.dropdown #dropbtn12:hover {color:#ffffff !important; background:#c1006c !important;}
+.dropdown #dropbtn10:hover {color:#F4C708 !important; background:#000000 !important;}
+.dropdown:hover [class^="dropdown-menu"] {display: block;}
+
+div.topnav .dropdown:hover ~ #darknav {display:block;}
+.notshowDarknav:hover ~ #darknav {display:none !important;}
+
+/* fernando - 10/10/19 */
+.drop-column-small {width:17%; float:left;}
+
+/*ALTERACAO BLACK FRIDAY - segunda linha comentada refere ao black friday*/
+.drop-column-small b {float: none; font-size: 15px; font-weight:700; font-family: 'Nunito', Arial, sans-serif; color: #008ae1; padding: 20px 0 5px 0; text-decoration: none; display: block;}
+/*.drop-column-small b {float: none; font-size: 15px; font-weight:700; font-family: 'Nunito', Arial, sans-serif; color: #000000; padding: 20px 0 5px 0; text-decoration: none; display: block;}*/
+/*FIM - alteracao BLACK FRIDAY*/
+
+.drop-column-small a {float: none; padding: 4px 0; font-size: 14px; font-weight:400; font-family: 'Nunito', Arial, sans-serif; color: #685f52; text-decoration: none; display: block;}
+.drop-column-small a:hover {text-decoration:underline;}
+
+/*ALTERACAO BLACK FRIDAY - segunda linha comentada refere ao black friday*/
+.drop-column-small-ultima b {float: none; font-size: 15px; font-weight:700; font-family: 'Nunito', Arial, sans-serif; color: #da187f; padding: 20px 0 5px 0; text-decoration: none; display: block;}
+/*.drop-column-small-ultima b {float: none; font-size: 15px; font-weight:700; font-family: 'Nunito', Arial, sans-serif; color: #000000; padding: 20px 0 5px 0; text-decoration: none; display: block;}*/
+/*FIM - alteracao BLACK FRIDAY*/
+.drop-column-small-ultima {width:15%; float:left;}
+.drop-column-small-ultima a {float: none; padding: 4px 0; font-size: 14px; font-weight:400; font-family: 'Nunito', Arial, sans-serif; color: #685f52; text-decoration: none; display: block;}
+.drop-column-small-ultima a:hover {text-decoration:underline;}
+/* fernando - 10/10/19 */
+
+/* setas abaixo do hover */
+[id^="arrow-down"] {display:none; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #008ae1; position: absolute;}
+.dropdown-menu1 #arrow-down1 {left: 3%;}
+.dropdown-menu2 #arrow-down2 {left: 3%;}
+.dropdown-menu3 #arrow-down3 {left: 17%;}
+.dropdown-menu4 #arrow-down4 {left: 36%;}
+.dropdown-menu5 #arrow-down5 {left: 41%;}
+.dropdown-menu6 #arrow-down6 {left: 50%;}
+.dropdown-menu7 #arrow-down7 {left: 61%;}
+.dropdown-menu8 #arrow-down8 {left: 80%;}
+.dropdown-menu9 #arrow-down9 {left: 96%;}
+.dropdown-menu10 #arrow-down10 {left: 69%;}
+.dropdown-menu11 #arrow-down11 {left: 82.5%;}
+
+
+@media screen and (max-width: 1365px) {
+.topnav {max-width:1280px;}	
+.dropdown [id^="dropbtn"] {font-size:15px; padding:16px 18px;}
+.dropdown #dropbtn12 {font-size:15px; padding:16px 18px;}
+.dropdown #dropbtn10 {font-size:15px; padding:16px 18px;}
+
+.dropdown-menu2 {margin: 0 0 0 -60px;}
+.dropdown-menu3 {margin: 0 0 0 -200px;}
+.dropdown-menu4 {margin: 0 0 0 -271px;}
+.dropdown-menu5 {margin: 0 0 0 -380px;}
+.dropdown-menu6 {margin: 0 0 0 -472px;}
+.dropdown-menu7 {margin: 0 0 0 -580px;}
+.dropdown-menu8 {margin: 0 0 0 -750px;}
+.dropdown-menu9 {margin: 0 0 0 -853px;}
+.dropdown-menu10 {margin: 0 0 0 -833px;}
+.dropdown-menu11 {margin: 0 0 0 -986px;}
+  
+.dropdown-menu2 #arrow-down2 {left: 11%;}
+.dropdown-menu3 #arrow-down3 {left: 22.5%;}
+.dropdown-menu4 #arrow-down4 {left: 35.5%;}
+.dropdown-menu5 #arrow-down5 {left: 40.5%;}
+.dropdown-menu6 #arrow-down6 {left: 49.5%;}
+.dropdown-menu7 #arrow-down7 {left: 60.5%;}
+.dropdown-menu8 #arrow-down8 {left: 78%;}
+.dropdown-menu9 #arrow-down9 {left: 92%;}
+.dropdown-menu10 #arrow-down10 {left: 67%;}
+.dropdown-menu11 #arrow-down11 {left: 80.5%;}
+  
+#darknav {top: 240px;}
+}
+
+@media screen and (max-width: 1275px) {
+.topnav {max-width:1024px;}	
+.dropdown [id^="dropbtn"] {font-size:13.5px; padding:15px 11px;}
+.dropdown #dropbtn12 {font-size:13.5px; padding:15px 11px;}
+.dropdown #dropbtn10 {font-size:13.5px; padding:15px 11px;}
+[class^="dropdown-menu"] {display: none; width: 100%; max-width:960px;}
+.dropdown-menu1 {margin: 0 0 0 0px;}
+.dropdown-menu1 #arrow-down1 {left: 7.5%;}
+.dropdown-menu2 {margin: 0 0 0 -176px;}
+.dropdown-menu2 #arrow-down2 {left: 22.5%;}
+.dropdown-menu3 {margin: 0 0 0 -284px;}
+.dropdown-menu3 #arrow-down3 {left: 30.7%;}
+.dropdown-menu4 {margin: 0 0 0 -338px;}
+.dropdown-menu4 #arrow-down4 {left: 42%;}
+.dropdown-menu5 {margin: 0 0 0 -506px;}
+.dropdown-menu5 #arrow-down5 {left: 53.5%;}
+.dropdown-menu6 {margin: 0 0 0 -574px;}
+.dropdown-menu6 #arrow-down6 {left: 60.3%;}
+.dropdown-menu7 {margin: 0 0 0 -642px;}
+.dropdown-menu7 #arrow-down7 {left: 67.4%;}
+.dropdown-menu8 {margin: 0 0 0 -714px;}
+.dropdown-menu8 #arrow-down8 {left: 75%;}
+.dropdown-menu9 {margin: 0 0 0 -804px;}
+.dropdown-menu9 #arrow-down9 {left: 86.5%;}
+.dropdown-menu10 {margin: 0 0 0 -718px;}
+.dropdown-menu10 #arrow-down10 {left: 77%;}
+.dropdown-menu11 {margin: 0 0 0 -835px;}
+.dropdown-menu11 #arrow-down11 {left: 87.5%;}
+#darknav {top: 235px;}
+}
+
+@media screen and (max-width: 1023px) {
+.topnav {display:none}
+}
