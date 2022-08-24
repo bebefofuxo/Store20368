@@ -1,0 +1,95 @@
+.sidenav {height: 100%; width: 0; z-index:2; position: fixed; top: 0; left: 0; background-color:#fff;transition: 0.5s;overflow-x: hidden;overflow-y: scroll;-webkit-overflow-scrolling: touch;}
+
+/*ALTERACAO BLACK FRIDAY - segunda linha comentada refere ao black friday*/
+.sidenav h2 {padding: 0px 0px 6px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 20px; color:#008ae1; display: block; transition: 0.3s; position: relative; border-bottom:1px solid #dedede; text-transform:uppercase;}
+/*.sidenav h2 {padding: 0px 0px 6px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 20px; color:#000000; display: block; transition: 0.3s; position: relative; border-bottom:1px solid #dedede; text-transform:uppercase; }*/
+/*FIM - alteracao BLACK FRIDAY*/
+
+/*Alteração no layout para inserção dos Combos - Gabriela 25-06-21*/
+.sidenav .text-deco {text-decoration: none;}
+.sidenav .text-trans { text-transform: none;}
+
+.sidenav .accordion {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 18px; color:#685f52; text-align: left; display: block; position: relative; border-bottom:1px solid #dedede; background-color:#fff; transition: 0.4s; cursor: pointer; }
+.sidenav .accordion a {color:#685f52; text-decoration:none; white-space:nowrap}
+.sidenav .outlet {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 18px; color:#ffffff; text-align: left; display: block; position: relative; background-color:#dc087f; transition: 0.4s; cursor: pointer; }
+.sidenav .outlet a {color:#ffffff; text-decoration:none; white-space:nowrap; background-color:#dc087f; display:block}
+.sidenav .kids {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 18px; color:#ffffff; text-align: left; display: block; position: relative; background-color:#eca113; transition: 0.4s; cursor: pointer; }
+.sidenav .kids a {color:#ffffff; text-decoration:none; white-space:nowrap; background-color:#eca113; display:block}
+.sidenav .megasaldao {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 20px; color:#F9cc10; text-align: left; position: relative; background-color:#000000; transition: 0.4s; cursor: pointer; border-bottom: 1px solid #4c4c4c;}
+.sidenav .megasaldao a {color:#F9cc10; text-decoration:none; white-space:nowrap; background-color:#000000; display:block}
+.sidenav .megasaldaobranco {color:#ffffff !important;}
+.sidenav .preco strong {font-size: 20px}
+
+.sidenav .megasaldao_2 {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 20px; color:#F9cc10; text-align: left; position: relative; background-color:#5e5e5e; transition: 0.4s; cursor: pointer; border-bottom: 1px solid #4c4c4c;}
+.sidenav .megasaldao_2 a {color:#F9cc10; text-decoration:none; white-space:nowrap; background-color:#5e5e5e; display:block}
+
+.sidenav .faqMobile {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 18px; color:#aaaaaa; text-align: left; display: block; position: relative; background-color:#eeeeee; transition: 0.4s; cursor: pointer; }
+.sidenav .faqMobile a {color:#aaaaaa; text-decoration:none; white-space:nowrap; background-color:#eeeeee; display:block}
+
+/*ALTERACAO BLACK FRIDAY - segunda linha comentada refere ao black friday*/
+.sidenav .novidade {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 18px; color:#ffffff; text-align: left; display: block; position: relative; background-color:#ff5707; transition: 0.4s; cursor: pointer; }
+/*.sidenav .novidade {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 18px; color:#F4C708; text-align: left; display: block; position: relative; background-color:#000000; transition: 0.4s; cursor: pointer; }*/
+.sidenav .novidade a {color:#ffffff; text-decoration:none; white-space:nowrap; background-color:#ff5707; display:block}
+/*.sidenav .novidade a {color:#F4C708; text-decoration:none; white-space:nowrap; background-color:#000000; display:block}*/
+/*FIM - alteracao BLACK FRIDAY*/
+.sidenav .combo {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 18px; color:#ffffff; text-align: left; display: block; position: relative; background-color:#6823d6; transition: 0.4s; cursor: pointer; }
+.sidenav .combo a {color:#ffffff; text-decoration:none; white-space:nowrap; background-color:#6823d6; display:block}
+
+.sidenav .ultimaChance {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 18px; color:#ffffff; text-align: left; display: block; position: relative; background-color:#048b53; transition: 0.4s; cursor: pointer; }
+.sidenav .ultimaChance a {color:#ffffff; text-decoration:none; white-space:nowrap; background-color:#048b53; display:block}
+
+.sidenav .blackfriday {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 18px; color:#FFFFFF; text-align: left; display: block; position: relative; background-color:#008ae1; transition: 0.4s; cursor: pointer; text-shadow: 0 0 2px #000000}
+.sidenav .blackfriday a {color:#FFFFFF; text-decoration:none; white-space:nowrap; background-color:#008ae1; display:block; text-shadow: 0 0 2px #000000}
+
+
+
+/* fernando - 13/09/19 */
+.sidenav .semSub {padding: 10px 0px 10px 15px; font-family: 'Nunito', Arial, sans-serif; font-size: 18px; color:#685f52; text-align: left; display: block; position: relative; border-bottom:1px solid #dedede; background-color:#fff; transition: 0.4s; cursor: pointer; }
+.sidenav .semSub a {color:#685f52; text-decoration:none; white-space:nowrap; display:block}
+.sidenav .active, .sidenav .semSub:hover {background-color:#ffffff; }	
+/* fernando - 13/09/19 */
+
+.sidenav .active, .sidenav .accordion:hover {background-color:#ffffff; }	
+.sidenav .accordion img {vertical-align: middle; width: 32px; margin: 0 8px 0 0;}
+.sidenav .panel {font-size: 16px; background-color: #efefef; overflow: hidden; max-height: 0; transition: .3s }
+.sidenav .panel.sub-active{max-height: none !important; transition: .8s; height:auto !important}
+.sidenav .panel a {padding: 10px 0 10px 15px; color:#685f52; font-weight:400; text-decoration:none; display: block; position: relative; border-bottom:1px solid #dedede; transition: 0.4s; cursor: pointer; font-size:15px; background-color:#efefef;}
+.sidenav .panel a:hover {background-color:#efefef; }
+.sidenav .panel a strong {color: #423d35; font-weight:700;}
+.sidenav .panel b {padding: 10px 0 10px 15px; color: #685f52; font-weight:400; text-decoration: none; display: block; position: relative; border-bottom: 1px solid #dedede; transition: 0.4s; cursor: pointer; text-transform:uppercase; }
+.sidenav .panel b:hover {background-color:#efefef; }
+.sidenav .closebtn {position: relative;}
+.sidenav .closebtn img {height:26px; margin:20px 0 0 15px;}
+.sidenav .spacemenu {width:100%; height:50px; }
+#sidebg {display:none; height: 100%; width: 100%; z-index:1; position: fixed; top: 0; left: 0; background: url('../../images/ic-arrow-left-menu.svg') no-repeat right center scroll; background-color: rgba(51, 51, 51, 0.5); overflow-x: hidden; transition: 0.5s;}
+a.fixedButtons {text-decoration: none;}
+
+.arrow {
+  border: solid #685f52;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 4px;
+  margin-right: 15px;
+  margin-top: 7px;
+  float: right;
+}
+
+.arrow_white {
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 7px;
+  margin-right: 15px;
+  margin-top: 14px;
+  float: right;
+}
+
+
+.arrow_right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.arrow_down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
