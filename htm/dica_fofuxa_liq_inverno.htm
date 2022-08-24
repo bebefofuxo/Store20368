@@ -1,0 +1,509 @@
+<style>
+div#topofixed {    display: none;}
+div#rodape_bg {   display: none;}
+</style>
+<script>
+  
+  var link_ver_mais = "/liquida-inverno";
+  var scroll_atual = 0;
+  
+  var sessao_id = <Y>;
+  window.localStorage.setItem("sessao_id", sessao_id);
+  
+  var carrinho_faixa_etaria = -1; //0 - 3 a 12 meses; 1 - 1 a 3 anos
+  var carrinho_genero = 0; //0 - unissex, 1 - masc, 2 - fem
+
+  var mostrar_comprar_mais = window.localStorage.mostrar_comprar_mais;
+  var ja_apareceu = window.localStorage.ja_apareceu_comprar_mais;
+  
+  //produtos a serem mostrados no comprar mais - provisório
+  var produtos_comprar_mais = [];
+
+  //3 a 12 meses
+  produtos_comprar_mais[0] = [];
+  produtos_comprar_mais[1] = [];
+  
+  //1 a 5 anos
+  produtos_comprar_mais[2] = [];
+  produtos_comprar_mais[3] = [];
+  
+  //unissex
+  produtos_comprar_mais[4] = [];
+  produtos_comprar_mais[5] = [];
+
+  //3 a 12 - masculino
+  produtos_comprar_mais[0][0] = [];
+  produtos_comprar_mais[0][0]["link"] = "/conjunto-bebe-masculino-blusa-azul-royal-com-capuz-ursinho-e-calca-p-m-g-gg-orango-kids";
+  produtos_comprar_mais[0][0]["id_produto"] = 7800623;
+  produtos_comprar_mais[0][0]["preco"] = 69.99;
+  produtos_comprar_mais[0][0]["preco_promocao"] = 49.99;
+  produtos_comprar_mais[0][0]["nome_imagem"] = ["16975_p"];
+  produtos_comprar_mais[0][0]["nome_produto"] = "Conjunto Bebê Masculino Blusa Azul Royal com Capuz Ursinho e Calça (P/M/G/GG) - Orango Kids";
+  produtos_comprar_mais[0][0]["cod_produto"] = "16975";
+
+  produtos_comprar_mais[0][1] = [];
+  produtos_comprar_mais[0][1]["link"] = "/conjunto-bebe-masculino-jaqueta-azul-marinho-acampamento-com-capuz-e-calca-mescla-p-m-g-kappes";
+  produtos_comprar_mais[0][1]["id_produto"] = 7788730;
+  produtos_comprar_mais[0][1]["preco"] = 59.99;
+  produtos_comprar_mais[0][1]["preco_promocao"] = 39.99;
+  produtos_comprar_mais[0][1]["nome_imagem"] = ["16890_p"];
+  produtos_comprar_mais[0][1]["nome_produto"] = "Conjunto Bebê Masculino Jaqueta Azul Marinho Acampamento com Capuz e Calça Mescla (P/M/G) - Kappes";
+  produtos_comprar_mais[0][1]["cod_produto"] = "16890";
+
+  produtos_comprar_mais[0][2] = [];
+  produtos_comprar_mais[0][2]["link"] = "/conjunto-bebe-longo-mostarda-grafite-ursos-viston";
+  produtos_comprar_mais[0][2]["id_produto"] = 7833584;
+  produtos_comprar_mais[0][2]["preco"] = 59.99;
+  produtos_comprar_mais[0][2]["preco_promocao"] = 39.99;
+  produtos_comprar_mais[0][2]["nome_imagem"] = ["17086_p"];
+  produtos_comprar_mais[0][2]["nome_produto"] = "Conjunto Bebê Moletom Blusa Mostarda Ursos e Calça Grafite (P/M/G) - Viston";
+  produtos_comprar_mais[0][2]["cod_produto"] = "17086";
+
+  produtos_comprar_mais[0][3] = [];
+  produtos_comprar_mais[0][3]["link"] = "/conjunto-bebe-marinho-e-mescla-ursos-p-g-viston";
+  produtos_comprar_mais[0][3]["id_produto"] = 7824948;
+  produtos_comprar_mais[0][3]["preco"] = 59.99;
+  produtos_comprar_mais[0][3]["preco_promocao"] = 47.99;
+  produtos_comprar_mais[0][3]["nome_imagem"] = ["17056_p"];
+  produtos_comprar_mais[0][3]["nome_produto"] = "Conjunto Bebê Masculino Moletom Jaqueta com Capuz Azul Marinho Ursos e Calça Mescla (P/M/G) - Viston";
+  produtos_comprar_mais[0][3]["cod_produto"] = "17056";
+
+  produtos_comprar_mais[0][4] = [];
+  produtos_comprar_mais[0][4]["link"] = "/conjunto-bebe-moletom-mescla-marinho-ursos-viston";
+  produtos_comprar_mais[0][4]["id_produto"] = 7833573;
+  produtos_comprar_mais[0][4]["preco"] = 59.99;
+  produtos_comprar_mais[0][4]["preco_promocao"] = 42.99;
+  produtos_comprar_mais[0][4]["nome_imagem"] = ["17084_p"];
+  produtos_comprar_mais[0][4]["nome_produto"] = "Conjunto Bebê Moletom Blusa Mescla Ursos e Calça Azul Marinho (P/M/G) - Viston";
+  produtos_comprar_mais[0][4]["cod_produto"] = "17084";
+  
+  
+  //3 a 12 - feminino
+  produtos_comprar_mais[1][0] = [];
+  produtos_comprar_mais[1][0]["link"] = "/conjunto-longo-bebe-moletom-rosa-p-a-g-viston";
+  produtos_comprar_mais[1][0]["id_produto"] = 7833536;
+  produtos_comprar_mais[1][0]["preco"] = 59.99;
+  produtos_comprar_mais[1][0]["preco_promocao"] = 41.99;
+  produtos_comprar_mais[1][0]["nome_imagem"] = ["17081_p"];
+  produtos_comprar_mais[1][0]["nome_produto"] = "Conjunto Bebê Feminino Moletom Blusa Mescla Pinguim de Laço e Calça Rosa (P/M/G) - Viston";
+  produtos_comprar_mais[1][0]["cod_produto"] = "17081";
+
+  produtos_comprar_mais[1][1] = [];
+  produtos_comprar_mais[1][1]["link"] = "/conjunto-longo-bebe-c--capuz-off-white-rosa-viston";
+  produtos_comprar_mais[1][1]["id_produto"] = 7824861;
+  produtos_comprar_mais[1][1]["preco"] = 59.99;
+  produtos_comprar_mais[1][1]["preco_promocao"] = 47.99;
+  produtos_comprar_mais[1][1]["nome_imagem"] = ["17051_p"];
+  produtos_comprar_mais[1][1]["nome_produto"] = "Conjunto Bebê Feminino Moletom Jaqueta com Capuz Off White Onça e Calça Rosa (P/M/G) - Viston";
+  produtos_comprar_mais[1][1]["cod_produto"] = "17051";
+
+  produtos_comprar_mais[1][2] = [];
+  produtos_comprar_mais[1][2]["link"] = "/conjunto-bebe-estrela-rosa-marinho-p-gg-orango-kids";
+  produtos_comprar_mais[1][2]["id_produto"] = 7914762;
+  produtos_comprar_mais[1][2]["preco"] = 69.99;
+  produtos_comprar_mais[1][2]["preco_promocao"] = 49.99;
+  produtos_comprar_mais[1][2]["nome_imagem"] = ["17316_p"];
+  produtos_comprar_mais[1][2]["nome_produto"] = "Conjunto Bebê Feminino Blusa com Capuz Estrela Rosa e Calça Azul Marinho (P/M/G/GG) - Orango Kids";
+  produtos_comprar_mais[1][2]["cod_produto"] = "17316";
+
+  produtos_comprar_mais[1][3] = [];
+  produtos_comprar_mais[1][3]["link"] = "/conjunto-bebe-moletom-blusa-rosa-p-m-g-viston";
+  produtos_comprar_mais[1][3]["id_produto"] = 7941559;
+  produtos_comprar_mais[1][3]["preco"] = 59.99;
+  produtos_comprar_mais[1][3]["preco_promocao"] = 39.99;
+  produtos_comprar_mais[1][3]["nome_imagem"] = ["17348_p"];
+  produtos_comprar_mais[1][3]["nome_produto"] = "Conjunto Bebê Feminino Moletom Blusa Rosa Unicórnio e Calça Mescla (P/M/G) - Viston";
+  produtos_comprar_mais[1][3]["cod_produto"] = "17348";
+
+  produtos_comprar_mais[1][4] = [];
+  produtos_comprar_mais[1][4]["link"] = "/conjunto-bebe-feminino-jaqueta-marinho-c-capuz-e-calca-verde";
+  produtos_comprar_mais[1][4]["id_produto"] = 7788749;
+  produtos_comprar_mais[1][4]["preco"] = 59.99;
+  produtos_comprar_mais[1][4]["preco_promocao"] = 39.99;
+  produtos_comprar_mais[1][4]["nome_imagem"] = ["16907_p"];
+  produtos_comprar_mais[1][4]["nome_produto"] = "Conjunto Bebê Feminino Jaqueta Azul Marinho Guaxinim com Capuz e Calça Verde (P/M/G) - Kappes";
+  produtos_comprar_mais[1][4]["cod_produto"] = "16907";
+
+
+  //1 a 5 - masculino
+  produtos_comprar_mais[2][0] = [];
+  produtos_comprar_mais[2][0]["link"] = "/conjunto-bebe-jaqueta-laranja-urso-e-calca-azul-marinho";
+  produtos_comprar_mais[2][0]["id_produto"] = 7788898;
+  produtos_comprar_mais[2][0]["preco"] = 69.99;
+  produtos_comprar_mais[2][0]["preco_promocao"] = 46.99;
+  produtos_comprar_mais[2][0]["nome_imagem"] = ["16897_p"];
+  produtos_comprar_mais[2][0]["nome_produto"] = "Conjunto Bebê Masculino Jaqueta Laranja Urso com Capuz e Calça Azul Marinho (1/2/3) - Kappes";
+  produtos_comprar_mais[2][0]["cod_produto"] = "16897";
+
+  produtos_comprar_mais[2][1] = [];
+  produtos_comprar_mais[2][1]["link"] = "/conjunto-bebe-masculino-jaqueta-mescla-pista-de-corrida-com-capuz-e-calca-bordo-1-2-3-kappes";
+  produtos_comprar_mais[2][1]["id_produto"] = 7788872;
+  produtos_comprar_mais[2][1]["preco"] = 69.99;
+  produtos_comprar_mais[2][1]["preco_promocao"] = 48.99;
+  produtos_comprar_mais[2][1]["nome_imagem"] = ["16895_p"];
+  produtos_comprar_mais[2][1]["nome_produto"] = "Conjunto Bebê Masculino Jaqueta Mescla Pista de Corrida com Capuz e Calça Bordô (1/2/3) - Kappes";
+  produtos_comprar_mais[2][1]["cod_produto"] = "16895";
+
+  produtos_comprar_mais[2][2] = [];
+  produtos_comprar_mais[2][2]["link"] = "/conjunto-bebe-jaqueta-marinho-game-com-capuz-e-calca";
+  produtos_comprar_mais[2][2]["id_produto"] = 7788871;
+  produtos_comprar_mais[2][2]["preco"] = 69.99;
+  produtos_comprar_mais[2][2]["preco_promocao"] = 46.99;
+  produtos_comprar_mais[2][2]["nome_imagem"] = ["16896_p"];
+  produtos_comprar_mais[2][2]["nome_produto"] = "Conjunto Bebê Masculino Jaqueta Azul Marinho Video Game com Capuz e Calça Mescla (1/2/3) - Kappes";
+  produtos_comprar_mais[2][2]["cod_produto"] = "16896";
+
+  produtos_comprar_mais[2][3] = [];
+  produtos_comprar_mais[2][3]["link"] = "/conjunto-bebe-blusa-moletom-skate-calca-viston";
+  produtos_comprar_mais[2][3]["id_produto"] = 7824976;
+  produtos_comprar_mais[2][3]["preco"] = 59.99;
+  produtos_comprar_mais[2][3]["preco_promocao"] = 47.99;
+  produtos_comprar_mais[2][3]["nome_imagem"] = ["17061_p"];
+  produtos_comprar_mais[2][3]["nome_produto"] = "Conjunto Bebê Masculino Moletom Blusa com Capuz Grafite Skate e Calça Mostarda (1/2/3) - Viston";
+  produtos_comprar_mais[2][3]["cod_produto"] = "17061";
+
+  produtos_comprar_mais[2][4] = [];
+  produtos_comprar_mais[2][4]["link"] = "/conjunto-bebe-masculino-jaqueta-verde-tigre-roar-com-capuz-e-calca-preta-1-2-3-kappes";
+  produtos_comprar_mais[2][4]["id_produto"] = 7788863;
+  produtos_comprar_mais[2][4]["preco"] = 69.99;
+  produtos_comprar_mais[2][4]["preco_promocao"] = 48.99;
+  produtos_comprar_mais[2][4]["nome_imagem"] = ["16894_p"];
+  produtos_comprar_mais[2][4]["nome_produto"] = "Conjunto Bebê Masculino Jaqueta Verde Tigre Roar com Capuz e Calça Preta (1/2/3) - Kappes";
+  produtos_comprar_mais[2][4]["cod_produto"] = "16894";
+
+  //1 a 5 - feminino
+  produtos_comprar_mais[3][0] = [];
+  produtos_comprar_mais[3][0]["link"] = "/conjunto-bebe-feminino-blusa-rosa-coelha-e-calca-mescla-1-2-3-cleomara";
+  produtos_comprar_mais[3][0]["id_produto"] = 7803897;
+  produtos_comprar_mais[3][0]["preco"] = 49.99;
+  produtos_comprar_mais[3][0]["preco_promocao"] = 32.99;
+  produtos_comprar_mais[3][0]["nome_imagem"] = ["16995_p"];
+  produtos_comprar_mais[3][0]["nome_produto"] = "Conjunto Bebê Feminino Blusa Rosa Coelha e Calça Mescla (1/2/3) - Cleomara";
+  produtos_comprar_mais[3][0]["cod_produto"] = "16995";
+
+  produtos_comprar_mais[3][1] = [];
+  produtos_comprar_mais[3][1]["link"] = "/conjunto-bebe-jaqueta-rosa-gatas-com-capuz-e-calca-marinho";
+  produtos_comprar_mais[3][1]["id_produto"] = 7788859;
+  produtos_comprar_mais[3][1]["preco"] = 69.99;
+  produtos_comprar_mais[3][1]["preco_promocao"] = 46.99;
+  produtos_comprar_mais[3][1]["nome_imagem"] = ["16916_p"];
+  produtos_comprar_mais[3][1]["nome_produto"] = "Conjunto Bebê Feminino Jaqueta Rosa Gatas com Capuz e Calça Marinho (1/2/3) - Kappes";
+  produtos_comprar_mais[3][1]["cod_produto"] = "16916";
+
+  produtos_comprar_mais[3][2] = [];
+  produtos_comprar_mais[3][2]["link"] = "/conjunto-bebe-jaqueta-pink-gatas-com-capuz-e-calca-mescla";
+  produtos_comprar_mais[3][2]["id_produto"] = 7788795;
+  produtos_comprar_mais[3][2]["preco"] = 69.99;
+  produtos_comprar_mais[3][2]["preco_promocao"] = 46.99;
+  produtos_comprar_mais[3][2]["nome_imagem"] = ["16911_p"];
+  produtos_comprar_mais[3][2]["nome_produto"] = "Conjunto Bebê Feminino Jaqueta Pink Gatas com Capuz e Calça Mescla (1/2/3) - Kappes";
+  produtos_comprar_mais[3][2]["cod_produto"] = "16911";
+
+  produtos_comprar_mais[3][3] = [];
+  produtos_comprar_mais[3][3]["link"] = "/conjunto-bebe-feminino-moletom-blusa-mescla-ursa-fofa-e-calca-pink-1-2-3-viston";
+  produtos_comprar_mais[3][3]["id_produto"] = 7396066;
+  produtos_comprar_mais[3][3]["preco"] = 59.99;
+  produtos_comprar_mais[3][3]["preco_promocao"] = 45.99;
+  produtos_comprar_mais[3][3]["nome_imagem"] = ["15271_p"];
+  produtos_comprar_mais[3][3]["nome_produto"] = "Conjunto Bebê Feminino Moletom Blusa Mescla Ursa Fofa e Calça Pink (1/2/3) - Viston";
+  produtos_comprar_mais[3][3]["cod_produto"] = "15271";
+
+  produtos_comprar_mais[3][4] = [];
+  produtos_comprar_mais[3][4]["link"] = "/conjunto-bebe-feminino-jaqueta-marinho-dinos-e-calca-verde";
+  produtos_comprar_mais[3][4]["id_produto"] = 7788810;
+  produtos_comprar_mais[3][4]["preco"] = 69.99;
+  produtos_comprar_mais[3][4]["preco_promocao"] = 46.99;
+  produtos_comprar_mais[3][4]["nome_imagem"] = ["16913_p"];
+  produtos_comprar_mais[3][4]["nome_produto"] = "Conjunto Bebê Feminino Jaqueta Azul Marinho Dinos com Capuz e Calça Verde (1/2/3) - Kappes";
+  produtos_comprar_mais[3][4]["cod_produto"] = "16913";
+
+
+  //produtos a serem mostrados no comprar mais - provisório - FIM
+  
+  var frases_comprar_mais = [];
+  frases_comprar_mais[0] = ["Já viu que estamos queimando o estoque de inverno? Aproveite!","Como está o guarda-roupa para o frio? Aproveite nossa liquidação!","Aproveite a liquidação para comprar tamanhos maiores para o inverno do ano que vem!"];
+  frases_comprar_mais[1] = ["Já viu que estamos queimando o estoque de inverno? Aproveite!","Como está o guarda-roupa para o frio? Aproveite nossa liquidação!","Aproveite a liquidação para comprar tamanhos maiores para o inverno do ano que vem!"];
+  frases_comprar_mais[2] = ["Já viu que estamos queimando o estoque de inverno? Aproveite!","Como está o guarda-roupa para o frio? Aproveite nossa liquidação!","Aproveite a liquidação para comprar tamanhos maiores para o inverno do ano que vem!"];
+  frases_comprar_mais[3] = ["Já viu que estamos queimando o estoque de inverno? Aproveite!","Como está o guarda-roupa para o frio? Aproveite nossa liquidação!","Aproveite a liquidação para comprar tamanhos maiores para o inverno do ano que vem!"];
+  
+  frases_comprar_mais[4] = ["Já viu que estamos queimando o estoque de inverno? Aproveite!","Como está o guarda-roupa para o frio? Aproveite nossa liquidação!","Aproveite a liquidação para comprar tamanhos maiores para o inverno do ano que vem!"];
+  frases_comprar_mais[5] = ["Já viu que estamos queimando o estoque de inverno? Aproveite!","Como está o guarda-roupa para o frio? Aproveite nossa liquidação!","Aproveite a liquidação para comprar tamanhos maiores para o inverno do ano que vem!"];
+  
+  var id_frase = Math.round(Math.random()*100)%3;
+
+  if(mostrar_comprar_mais)
+  {
+    carrinho_faixa_etaria = window.localStorage.carrinho_faixa_etaria;
+    carrinho_genero = window.localStorage.carrinho_genero;
+    montar_comprar_mais();
+    
+    var txt_fe = "";
+    if(carrinho_faixa_etaria == 0)
+    {
+      txt_fe = "3 a 12 meses";
+    }
+    else if(carrinho_faixa_etaria == 1)
+    {
+      txt_fe = "1 a 3 anos";
+    }
+    
+    var txt_genero = "";
+    if(carrinho_genero == 0)
+    {
+      txt_genero = "unissex";
+    }
+    else if(carrinho_genero == 1)
+    {
+      txt_genero = "masculino";
+    }
+    else if(carrinho_genero == 2)
+    {
+      txt_genero = "feminino";
+    }
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&frase_id=" + id_frase + "&tema_apresentado=" + "liquida_inverno" + "&genero_carrinho=" + txt_genero + "&frase_id=" + id_frase + "&faixa_etaria_carrinho=" + txt_fe,false,fnprocessRegistroAtividade);
+    
+    if(ja_apareceu)
+    {
+      fn_mostrar_comprar_mais_sem_animacao();
+    }
+    else
+    {
+      fn_mostrar_comprar_mais();
+    }
+    
+  }
+  else
+  {
+	window.location.href = "https://www.bebefofuxo.com.br";
+  }
+
+  
+
+  function montar_comprar_mais()
+  {
+    var div_comprar_mais = document.createElement("div");
+    div_comprar_mais.id = "id_comprar_mais";
+    var div_ref = document.getElementById("idFCLeftContentRight");
+    document.body.insertBefore(div_comprar_mais,div_ref);
+
+    $("#id_comprar_mais").css('top', window.innerHeight);
+
+    var altura_conteudo = window.innerHeight-100-70;
+
+    var content_comprar_mais = "<div class='titulo_cm'><span>ANTES DE COMPLETAR SEU PEDIDO</span></div>";
+    content_comprar_mais += "<div class='pergunta_cm'><span>Que tal uma dica?</span></div>";
+    content_comprar_mais += "<div class='linha_cm'></div>";
+    
+
+    var gen_fe = 0;
+    var array_produtos;
+    if(carrinho_faixa_etaria == 0)
+    {
+      if(carrinho_genero == 0)
+      {
+        array_produtos = produtos_comprar_mais[0].concat(produtos_comprar_mais[1]);
+        array_produtos = shuffleArray(array_produtos);
+        gen_fe=4;
+        link_ver_mais = "/liquida-inverno";
+        
+      }
+      else if(carrinho_genero == 1)
+      {
+        array_produtos = produtos_comprar_mais[0];
+        gen_fe = 0;
+        link_ver_mais = "/liquida-inverno";
+      }
+      else if(carrinho_genero == 2)
+      {
+        array_produtos = produtos_comprar_mais[1];
+        gen_fe = 1;
+        link_ver_mais = "/liquida-inverno";
+      }
+    }
+    else if(carrinho_faixa_etaria == 1)
+    {
+      if(carrinho_genero == 0)
+      {
+        array_produtos = produtos_comprar_mais[2].concat(produtos_comprar_mais[3]);
+        array_produtos = shuffleArray(array_produtos);
+        gen_fe = 5;
+        link_ver_mais = "/liquida-inverno";
+        
+      }
+      else if(carrinho_genero == 1)
+      {
+        array_produtos = produtos_comprar_mais[2];
+        gen_fe = 2;
+        link_ver_mais = "/liquida-inverno";
+      }
+      else if(carrinho_genero == 2)
+      {
+        array_produtos = produtos_comprar_mais[3];
+        gen_fe = 3;
+        link_ver_mais = "/liquida-inverno";
+      }
+    }
+    
+    content_comprar_mais += "<div class='conteudo_cm' style='height:"+altura_conteudo+"px'><div class='dica_cm'><span>"+frases_comprar_mais[gen_fe][id_frase]+"</span></div>";
+
+    content_comprar_mais += "<div id='TabListaProdutos'>";
+    
+    for(var i = 0; i < array_produtos.length; i++)
+    {
+		content_comprar_mais += montar_produto(array_produtos[i]["link"],array_produtos[i]["id_produto"],array_produtos[i]["preco"],array_produtos[i]["preco_promocao"],array_produtos[i]["nome_imagem"][0],array_produtos[i]["nome_produto"],array_produtos[i]["cod_produto"]);
+    }
+
+
+    content_comprar_mais += "</div>";
+    
+    content_comprar_mais += "<div class='btn_vermais_cm'>Ver mais liquida inverno</div>";
+    
+    content_comprar_mais += "</div>";
+    
+    content_comprar_mais += "<div class='btn_cm'><span class='obrigado_cm'>Não, obrigado</span><br><span>IR PARA O PAGAMENTO</span></div>";
+
+    $("#id_comprar_mais").html(content_comprar_mais);
+
+  }
+  
+  $(".btn_cm").click(function(){
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_nao_obrigado=" + "1",false,fnprocessRegistroAtividade_NaoObrigado);
+    
+    
+  });
+  
+  $(".btn_vermais_cm").click(function(){
+
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_mostrar_mais_produto=" + "1",false,fnprocessRegistroAtividade_VerMais);
+
+
+  });
+
+  $(".link-prod").click(function(e){
+	
+    e.preventDefault();
+    var link = this.href;
+    var codigo_modelo = $(this).data("id");
+    codigo_modelo = codigo_modelo.replace(/"/g, '');
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_produto=" + "1" + "&cod_modelo=" + codigo_modelo,false,fnprocessRegistroAtividade_CliqueProduto,link);
+
+
+  });
+  
+  var timeout;
+  $(".conteudo_cm").scroll(function() {
+
+    if($(".conteudo_cm").scrollTop() > scroll_atual)
+    {
+      scroll_atual = parseInt($(".conteudo_cm").scrollTop());
+
+      clearTimeout(timeout);
+      timeout = setTimeout(function(s) {
+
+        AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&scroll_y=" + scroll_atual,false,fnprocessRegistroAtividade_Scroll);
+
+      }, 2000);
+    }
+    
+    
+  });
+
+
+  function montar_produto(link,id_produto,preco,preco_promocao,nome_imagem,nome_produto,cod_produto)
+  {
+    var desconto = Math.round((1-(preco_promocao/preco))*100);
+    var preco_virgula = preco.toFixed(2).replace(".", ",");
+    var preco_promocao_virgula = preco_promocao.toFixed(2).replace(".", ",");
+
+    var preco_promocao_parcela = preco_promocao/6;
+    preco_promocao_parcela = preco_promocao_parcela.toFixed(2);
+    var preco_promocao_parcela_virgula = preco_promocao_parcela.replace(".", ",");
+
+    //var link = "https://www.bebefofuxo.com.br" + link;
+
+    var cod_prod = '"'+cod_produto+'"';
+    
+    var content_produto = "<div class='ProdDestLista'>";
+    content_produto += "<a class='link-prod' href='"+link+"' data-id='"+cod_prod+"'>";
+    content_produto += "<div id='DivProd"+id_produto+"' data-sale='true' data-release='true'><div class='badgesProd'><div class='badgeProm' title='Oferta'>-"+desconto+"%</div></div></div>";
+    content_produto += "<div class='ImgProdDesk'><div id='DivImagemProdDouble"+id_produto+"' class='ProdCapaDiv'><img src='../lojas/00020368/prod/"+nome_imagem+".jpg' alt='"+nome_produto+"' loading='lazy'></div></div>";
+    content_produto += "<div class='ImgProdMobi'><div class='ProdCapaDiv'><img src='../lojas/00020368/prod/"+nome_imagem+".jpg' alt='"+nome_produto+"' loading='lazy'></div></div>";
+    content_produto += "<div class='ProdListOrder'>";
+    content_produto += "<div class='EstNomeProdCapa'>"+nome_produto+"</div>";
+    content_produto += "<div id='PrecoProd"+id_produto+"' class='PrecoProdCapa'><span class='PrecoDeHome'>de <strike>R$&nbsp;"+preco_virgula+"</strike>&nbsp;&nbsp;</span><span class='PrecoPorHome'>por R$<b>&nbsp;"+preco_promocao_virgula+"</b></span><div class='EstParcHome'>6X de R$&nbsp;"+preco_promocao_parcela_virgula+" sem juros</div></div>";
+    content_produto += "</div>";
+    content_produto += "<div class='EstBotVerMais'>Eu Quero</div></a>";
+    content_produto += "</div>";
+
+
+    return content_produto;
+  }
+
+  function fn_mostrar_comprar_mais()
+  {
+    window.localStorage.setItem("ja_apareceu_comprar_mais", 1);
+    
+    $("#id_comprar_mais").animate({
+      top: 0
+    }, 500);
+  }
+  
+  function fn_mostrar_comprar_mais_sem_animacao()
+  {
+    $("#id_comprar_mais").css("top",0);
+  }
+  
+  function fnprocessRegistroAtividade_Scroll()
+  {
+    //console.log("Registrado scroll com sucesso");
+  }
+  
+  function fnprocessRegistroAtividade()
+  {
+    //console.log("Registrado entrada na página com sucesso");
+  }
+  
+  function fnprocessRegistroAtividade_NaoObrigado()
+  {
+    //console.log("Registrado Não Obrigado com sucesso");
+    
+    window.localStorage.removeItem("carrinho_genero");
+    window.localStorage.removeItem("carrinho_faixa_etaria");
+    window.localStorage.removeItem("mostrar_comprar_mais");
+    //window.localStorage.removeItem("ja_apareceu_comprar_mais");
+    //window.localStorage.removeItem("sessao_id");
+    
+    
+    window.location.href = "/checkout.asp?idloja=20368";
+  }
+  
+  
+  function fnprocessRegistroAtividade_VerMais()
+  {
+    //console.log("Registrado Ver Mais com sucesso");
+    
+    window.location.href = link_ver_mais;
+  }
+  
+  function fnprocessRegistroAtividade_CliqueProduto()
+  {
+    //console.log("Registrado Clique Produto com sucesso");
+    
+	window.location.href = arguments[1];
+  }
+  
+  function shuffleArray(arr) {
+        // Loop em todos os elementos
+    for (let i = arr.length - 1; i > 0; i--) {
+            // Escolhendo elemento aleatório
+        const j = Math.floor(Math.random() * (i + 1));
+        // Reposicionando elemento
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    // Retornando array com aleatoriedade
+    return arr;
+}
+</script>
