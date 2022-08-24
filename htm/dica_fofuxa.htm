@@ -1,0 +1,689 @@
+<style>
+div#topofixed {    display: none;}
+div#rodape_bg {   display: none;}
+</style>
+<script>
+  
+  var link_ver_mais = "/categorias/calcado-e-meia-para-bebe";
+  var scroll_atual = 0;
+  
+  var sessao_id = <Y>;
+  window.localStorage.setItem("sessao_id", sessao_id);
+  
+  var carrinho_faixa_etaria = -1; //0 - 3 a 12 meses; 1 - 1 a 3 anos
+  var carrinho_genero = 0; //0 - unissex, 1 - masc, 2 - fem
+
+  var mostrar_comprar_mais = window.localStorage.mostrar_comprar_mais;
+  var ja_apareceu = window.localStorage.ja_apareceu_comprar_mais;
+  
+  //produtos a serem mostrados no comprar mais - provisório
+  var produtos_comprar_mais = [];
+
+  //3 a 12 meses
+  produtos_comprar_mais[0] = [];
+  produtos_comprar_mais[1] = [];
+  
+  //1 a 5 anos
+  produtos_comprar_mais[2] = [];
+  produtos_comprar_mais[3] = [];
+
+  //3 a 12 - masculino
+  produtos_comprar_mais[0][0] = [];
+  produtos_comprar_mais[0][0]["link"] = "/tenis-bebe-cano-alto-star-branco-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[0][0]["id_produto"] = 6731989;
+  produtos_comprar_mais[0][0]["preco"] = 45.99;
+  produtos_comprar_mais[0][0]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[0][0]["nome_imagem"] = ["13312_p"];
+  produtos_comprar_mais[0][0]["nome_produto"] = "Tênis Bebê Cano Alto Star Branco (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[0][0]["cod_produto"] = "13312";
+  
+  produtos_comprar_mais[0][1] = [];
+  produtos_comprar_mais[0][1]["link"] = "/tenis-bebe-cano-alto-star-preto-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[0][1]["id_produto"] = 6731965;
+  produtos_comprar_mais[0][1]["preco"] = 45.99;
+  produtos_comprar_mais[0][1]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[0][1]["nome_imagem"] = ["13310_p"];
+  produtos_comprar_mais[0][1]["nome_produto"] = "Tênis Bebê Cano Alto Star Preto (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[0][1]["cod_produto"] = "13310";
+  
+  produtos_comprar_mais[0][2] = [];
+  produtos_comprar_mais[0][2]["link"] = "/tenis-bebe-star-branco-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[0][2]["id_produto"] = 6429084;
+  produtos_comprar_mais[0][2]["preco"] = 45.99;
+  produtos_comprar_mais[0][2]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[0][2]["nome_imagem"] = ["3501B_p"];
+  produtos_comprar_mais[0][2]["nome_produto"] = "Tênis Bebê Star Branco (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[0][2]["cod_produto"] = "3501B";
+  
+  produtos_comprar_mais[0][3] = [];
+  produtos_comprar_mais[0][3]["link"] = "/tenis-bebe-cano-alto-star-vermelho-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[0][3]["id_produto"] = 6731971;
+  produtos_comprar_mais[0][3]["preco"] = 45.99;
+  produtos_comprar_mais[0][3]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[0][3]["nome_imagem"] = ["13311_p"];
+  produtos_comprar_mais[0][3]["nome_produto"] = "Tênis Bebê Cano Alto Star Vermelho (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[0][3]["cod_produto"] = "13311";
+  
+  produtos_comprar_mais[0][4] = [];
+  produtos_comprar_mais[0][4]["link"] = "/tenis-bebe-skate-preto-e-branco-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[0][4]["id_produto"] = 6731978;
+  produtos_comprar_mais[0][4]["preco"] = 45.99;
+  produtos_comprar_mais[0][4]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[0][4]["nome_imagem"] = ["13316_p"];
+  produtos_comprar_mais[0][4]["nome_produto"] = "Tênis Bebê Skate Preto e Branco (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[0][4]["cod_produto"] = "13316";
+  
+  produtos_comprar_mais[0][5] = [];
+  produtos_comprar_mais[0][5]["link"] = "/tenis-courino-verde-militar-detalhe-pontilhado-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[0][5]["id_produto"] = 6531352;
+  produtos_comprar_mais[0][5]["preco"] = 45.99;
+  produtos_comprar_mais[0][5]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[0][5]["nome_imagem"] = ["4476_p"];
+  produtos_comprar_mais[0][5]["nome_produto"] = "Tênis Courino Verde Militar Detalhe Pontilhado (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[0][5]["cod_produto"] = "4476";
+  
+  produtos_comprar_mais[0][6] = [];
+  produtos_comprar_mais[0][6]["link"] = "/tenis-bebe-masculino-carrinho-azul-p-m-g-tico-s-baby";
+  produtos_comprar_mais[0][6]["id_produto"] = 7898312;
+  produtos_comprar_mais[0][6]["preco"] = 45.99;
+  produtos_comprar_mais[0][6]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[0][6]["nome_imagem"] = ["17298_p"];
+  produtos_comprar_mais[0][6]["nome_produto"] = "Tênis Bebê Masculino Azul Carrinho (P/M/G) - Tico's Baby";
+  produtos_comprar_mais[0][6]["cod_produto"] = "17298";
+  
+  produtos_comprar_mais[0][7] = [];
+  produtos_comprar_mais[0][7]["link"] = "/tenis-bebe-masculino-calce-facil-azul-marinho-espaco-tico-s";
+  produtos_comprar_mais[0][7]["id_produto"] = 7675946;
+  produtos_comprar_mais[0][7]["preco"] = 45.99;
+  produtos_comprar_mais[0][7]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[0][7]["nome_imagem"] = ["7924_p"];
+  produtos_comprar_mais[0][7]["nome_produto"] = "Tênis Bebê Masculino Calce Fácil Azul Marinho Espaço (P/M/G) - Tico's Baby";
+  produtos_comprar_mais[0][7]["cod_produto"] = "7924";
+  
+  produtos_comprar_mais[0][8] = [];
+  produtos_comprar_mais[0][8]["link"] = "/tenis-botinha-bebe-branco-p-m-g-tico-s-baby";
+  produtos_comprar_mais[0][8]["id_produto"] = 7710219;
+  produtos_comprar_mais[0][8]["preco"] = 45.99;
+  produtos_comprar_mais[0][8]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[0][8]["nome_imagem"] = ["16736_p"];
+  produtos_comprar_mais[0][8]["nome_produto"] = "Tênis Botinha Bebê Branco (P/M/G) - Tico's Baby";
+  produtos_comprar_mais[0][8]["cod_produto"] = "16736";
+  
+  produtos_comprar_mais[0][9] = [];
+  produtos_comprar_mais[0][9]["link"] = "/sandalia-bebe-papete-azul-marinho-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[0][9]["id_produto"] = 6429309;
+  produtos_comprar_mais[0][9]["preco"] = 45.99;
+  produtos_comprar_mais[0][9]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[0][9]["nome_imagem"] = ["3514D_p"];
+  produtos_comprar_mais[0][9]["nome_produto"] = "Sandália Bebê Papete Azul Marinho (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[0][9]["cod_produto"] = "3514D";
+  
+  //3 a 12 - feminino
+  produtos_comprar_mais[1][0] = [];
+  produtos_comprar_mais[1][0]["link"] = "/tenis-bebe-cano-alto-star-branco-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[1][0]["id_produto"] = 6731989;
+  produtos_comprar_mais[1][0]["preco"] = 45.99;
+  produtos_comprar_mais[1][0]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[1][0]["nome_imagem"] = ["13312_p"];
+  produtos_comprar_mais[1][0]["nome_produto"] = "Tênis Bebê Cano Alto Star Branco (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[1][0]["cod_produto"] = "13312";
+  
+  produtos_comprar_mais[1][1] = [];
+  produtos_comprar_mais[1][1]["link"] = "/tenis-bebe-cano-alto-star-preto-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[1][1]["id_produto"] = 6731965;
+  produtos_comprar_mais[1][1]["preco"] = 45.99;
+  produtos_comprar_mais[1][1]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[1][1]["nome_imagem"] = ["13310_p"];
+  produtos_comprar_mais[1][1]["nome_produto"] = "Tênis Bebê Cano Alto Star Preto (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[1][1]["cod_produto"] = "13310";
+  
+  produtos_comprar_mais[1][2] = [];
+  produtos_comprar_mais[1][2]["link"] = "/tenis-bebe-star-branco-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[1][2]["id_produto"] = 6429084;
+  produtos_comprar_mais[1][2]["preco"] = 45.99;
+  produtos_comprar_mais[1][2]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[1][2]["nome_imagem"] = ["3501B_p"];
+  produtos_comprar_mais[1][2]["nome_produto"] = "Tênis Bebê Star Branco (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[1][2]["cod_produto"] = "3501B";
+  
+  produtos_comprar_mais[1][3] = [];
+  produtos_comprar_mais[1][3]["link"] = "/tenis-bebe-cano-alto-star-vermelho-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[1][3]["id_produto"] = 6731971;
+  produtos_comprar_mais[1][3]["preco"] = 45.99;
+  produtos_comprar_mais[1][3]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[1][3]["nome_imagem"] = ["13311_p"];
+  produtos_comprar_mais[1][3]["nome_produto"] = "Tênis Bebê Cano Alto Star Vermelho (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[1][3]["cod_produto"] = "13311";
+  
+  produtos_comprar_mais[1][4] = [];
+  produtos_comprar_mais[1][4]["link"] = "/tenis-bebe-star-cano-alto-azul-jeans-rosa-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[1][4]["id_produto"] = 6731693;
+  produtos_comprar_mais[1][4]["preco"] = 45.99;
+  produtos_comprar_mais[1][4]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[1][4]["nome_imagem"] = ["13309_p"];
+  produtos_comprar_mais[1][4]["nome_produto"] = "Tênis Bebê Feminino Star Cano Alto Azul Jeans e Rosa (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[1][4]["cod_produto"] = "13309";
+  
+  produtos_comprar_mais[1][5] = [];
+  produtos_comprar_mais[1][5]["link"] = "/tenis-sarja-com-cadarco-e-listras-florais-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[1][5]["id_produto"] = 6529963;
+  produtos_comprar_mais[1][5]["preco"] = 45.99;
+  produtos_comprar_mais[1][5]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[1][5]["nome_imagem"] = ["4470_p"];
+  produtos_comprar_mais[1][5]["nome_produto"] = "Tênis Feminino Sarja Com Cadarço e Listras Florais (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[1][5]["cod_produto"] = "4470";
+  
+  produtos_comprar_mais[1][6] = [];
+  produtos_comprar_mais[1][6]["link"] = "/tenis-courino-rosa-detalhe-pontilhado-p-m-g-gg-baby-soffete";
+  produtos_comprar_mais[1][6]["id_produto"] = 6531334;
+  produtos_comprar_mais[1][6]["preco"] = 39.99;
+  produtos_comprar_mais[1][6]["preco_promocao"] = 30.99;
+  produtos_comprar_mais[1][6]["nome_imagem"] = ["4475_p"];
+  produtos_comprar_mais[1][6]["nome_produto"] = "Tênis Courino Rosa Detalhe Pontilhado (P/M/G/GG) - Baby Soffete";
+  produtos_comprar_mais[1][6]["cod_produto"] = "4475";
+  
+  produtos_comprar_mais[1][7] = [];
+  produtos_comprar_mais[1][7]["link"] = "/sapatilha-bebe-feminina-preta-poa-com-laco-p-m-g-tico-s-baby";
+  produtos_comprar_mais[1][7]["id_produto"] = 7071991;
+  produtos_comprar_mais[1][7]["preco"] = 45.99;
+  produtos_comprar_mais[1][7]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[1][7]["nome_imagem"] = ["14325_p"];
+  produtos_comprar_mais[1][7]["nome_produto"] = "Sapatilha Bebê Feminina Preta Poá com Laço (P/M/G) - Tico's Baby";
+  produtos_comprar_mais[1][7]["cod_produto"] = "14325";
+  
+  produtos_comprar_mais[1][8] = [];
+  produtos_comprar_mais[1][8]["link"] = "/tenis-bebe-feminino-calce-facil-pink-e-rosa-coracoezinhos";
+  produtos_comprar_mais[1][8]["id_produto"] = 7676124;
+  produtos_comprar_mais[1][8]["preco"] = 45.99;
+  produtos_comprar_mais[1][8]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[1][8]["nome_imagem"] = ["7930_p"];
+  produtos_comprar_mais[1][8]["nome_produto"] = "Tênis Bebê Feminino Calce Fácil Pink e Rosa Coraçõezinhos (P/M/G) - Tico's Baby";
+  produtos_comprar_mais[1][8]["cod_produto"] = "7930";
+  
+  produtos_comprar_mais[1][9] = [];
+  produtos_comprar_mais[1][9]["link"] = "/tenis-bebe-feminino-gatinha-rosa-p-m-g-tico-s-baby";
+  produtos_comprar_mais[1][9]["id_produto"] = 7898301;
+  produtos_comprar_mais[1][9]["preco"] = 45.99;
+  produtos_comprar_mais[1][9]["preco_promocao"] = 33.99;
+  produtos_comprar_mais[1][9]["nome_imagem"] = ["17297_p"];
+  produtos_comprar_mais[1][9]["nome_produto"] = "Tênis Bebê Feminino Rosa Gatinha (P/M/G) - Tico's Baby";
+  produtos_comprar_mais[1][9]["cod_produto"] = "17297";
+
+
+  //1 a 5 - masculino
+  produtos_comprar_mais[2][0] = [];
+  produtos_comprar_mais[2][0]["link"] = "/tenis-infantil-masculino-preto-vermelho-ratinho-20-ao-27-linda-ju";
+  produtos_comprar_mais[2][0]["id_produto"] = 6789010;
+  produtos_comprar_mais[2][0]["preco"] = 69.99;
+  produtos_comprar_mais[2][0]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[2][0]["nome_imagem"] = ["7672_p"];
+  produtos_comprar_mais[2][0]["nome_produto"] = "Tênis Infantil Masculino Preto e Vermelho Ratinho (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[2][0]["cod_produto"] = "7672";
+  
+  produtos_comprar_mais[2][1] = [];
+  produtos_comprar_mais[2][1]["link"] = "/tenis-infantil-branco-tubarao-20-ao-27-linda-ju";
+  produtos_comprar_mais[2][1]["id_produto"] = 7116728;
+  produtos_comprar_mais[2][1]["preco"] = 69.99;
+  produtos_comprar_mais[2][1]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[2][1]["nome_imagem"] = ["7776_p"];
+  produtos_comprar_mais[2][1]["nome_produto"] = "Tênis Infantil Masculino Branco Tubarõezinhos (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[2][1]["cod_produto"] = "7776";
+  
+  produtos_comprar_mais[2][2] = [];
+  produtos_comprar_mais[2][2]["link"] = "/tenis-infantil-masculino-marinho-com-velcro-20-ao-27-linda-ju";
+  produtos_comprar_mais[2][2]["id_produto"] = 6789149;
+  produtos_comprar_mais[2][2]["preco"] = 69.99;
+  produtos_comprar_mais[2][2]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[2][2]["nome_imagem"] = ["7675_p"];
+  produtos_comprar_mais[2][2]["nome_produto"] = "Tênis Infantil Masculino Azul Marinho com Velcro (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[2][2]["cod_produto"] = "7675";
+  
+  produtos_comprar_mais[2][3] = [];
+  produtos_comprar_mais[2][3]["link"] = "/tenis-infantil-calce-facil-azul-marinho-20-ao-27-tico-s-baby";
+  produtos_comprar_mais[2][3]["id_produto"] = 7744117;
+  produtos_comprar_mais[2][3]["preco"] = 69.99;
+  produtos_comprar_mais[2][3]["preco_promocao"] = 50.99;
+  produtos_comprar_mais[2][3]["nome_imagem"] = ["7939_p"];
+  produtos_comprar_mais[2][3]["nome_produto"] = "Tênis Infantil Masculino Calce Fácil Azul Marinho (20 ao 27) - Tico's Baby";
+  produtos_comprar_mais[2][3]["cod_produto"] = "7939";
+  
+  produtos_comprar_mais[2][4] = [];
+  produtos_comprar_mais[2][4]["link"] = "/tenis-infantil-masculino-preto-come-come-20-ao-27-linda-ju";
+  produtos_comprar_mais[2][4]["id_produto"] = 6788967;
+  produtos_comprar_mais[2][4]["preco"] = 69.99;
+  produtos_comprar_mais[2][4]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[2][4]["nome_imagem"] = ["7670_p"];
+  produtos_comprar_mais[2][4]["nome_produto"] = "Tênis Infantil Masculino Preto Come-Come (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[2][4]["cod_produto"] = "7670";
+  
+  produtos_comprar_mais[2][5] = [];
+  produtos_comprar_mais[2][5]["link"] = "/tenis-infantil-masculino-azul-marinho-bone-20-ao-27-linda-ju";
+  produtos_comprar_mais[2][5]["id_produto"] = 6789001;
+  produtos_comprar_mais[2][5]["preco"] = 69.99;
+  produtos_comprar_mais[2][5]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[2][5]["nome_imagem"] = ["7669_p"];
+  produtos_comprar_mais[2][5]["nome_produto"] = "Tênis Infantil Masculino Azul Marinho Boné (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[2][5]["cod_produto"] = "7669";
+  
+  produtos_comprar_mais[2][6] = [];
+  produtos_comprar_mais[2][6]["link"] = "/tenis-infantil-masculino-azul-marinho-com-velcro-dinossauro-20-ao-27-linda-ju";
+  produtos_comprar_mais[2][6]["id_produto"] = 7307747;
+  produtos_comprar_mais[2][6]["preco"] = 69.99;
+  produtos_comprar_mais[2][6]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[2][6]["nome_imagem"] = ["7831_p"];
+  produtos_comprar_mais[2][6]["nome_produto"] = "Tênis Infantil Masculino Azul Marinho com Velcro Dinossauro (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[2][6]["cod_produto"] = "7831";
+  
+  produtos_comprar_mais[2][7] = [];
+  produtos_comprar_mais[2][7]["link"] = "/tenis-infantil-calce-facil-laranja-preto-brincadeiras-20-ao-27-tico-s-baby";
+  produtos_comprar_mais[2][7]["id_produto"] = 7744161;
+  produtos_comprar_mais[2][7]["preco"] = 69.99;
+  produtos_comprar_mais[2][7]["preco_promocao"] = 50.99;
+  produtos_comprar_mais[2][7]["nome_imagem"] = ["7935_p"];
+  produtos_comprar_mais[2][7]["nome_produto"] = "Tênis Infantil Masculino Calce Fácil Laranja e Preto Brincadeiras (20 ao 27) - Tico's Baby";
+  produtos_comprar_mais[2][7]["cod_produto"] = "7935";
+  
+  produtos_comprar_mais[2][8] = [];
+  produtos_comprar_mais[2][8]["link"] = "/tenis-infantil-marinho-dino-velcro-duplo-20-ao-27-linda-ju";
+  produtos_comprar_mais[2][8]["id_produto"] = 7116371;
+  produtos_comprar_mais[2][8]["preco"] = 69.99;
+  produtos_comprar_mais[2][8]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[2][8]["nome_imagem"] = ["7769_p"];
+  produtos_comprar_mais[2][8]["nome_produto"] = "Tênis Infantil Masculino Azul Marinho Dino com Velcro Duplo (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[2][8]["cod_produto"] = "7769";
+  
+  produtos_comprar_mais[2][9] = [];
+  produtos_comprar_mais[2][9]["link"] = "/mocassim-bebe-masculino-liso-azul-marinho-17-ao-22-tico-s-baby";
+  produtos_comprar_mais[2][9]["id_produto"] = 7592750;
+  produtos_comprar_mais[2][9]["preco"] = 69.99;
+  produtos_comprar_mais[2][9]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[2][9]["nome_imagem"] = ["7888_p"];
+  produtos_comprar_mais[2][9]["nome_produto"] = "Mocassim Bebê Masculino Liso Azul Marinho (17 ao 22) - Tico's Baby";
+  produtos_comprar_mais[2][9]["cod_produto"] = "7888";
+  
+  
+  //1 a 5 - feminino
+  produtos_comprar_mais[3][0] = [];
+  produtos_comprar_mais[3][0]["link"] = "/tenis-infantil-calce-facil-pink-e-rosa-20-ao-27-tico-s-baby";
+  produtos_comprar_mais[3][0]["id_produto"] = 7744150;
+  produtos_comprar_mais[3][0]["preco"] = 69.99;
+  produtos_comprar_mais[3][0]["preco_promocao"] = 50.99;
+  produtos_comprar_mais[3][0]["nome_imagem"] = ["7940_p"];
+  produtos_comprar_mais[3][0]["nome_produto"] = "Tênis Infantil Feminino Calce Fácil Pink e Rosa (20 ao 27) - Tico's Baby";
+  produtos_comprar_mais[3][0]["cod_produto"] = "7940";
+  
+  produtos_comprar_mais[3][1] = [];
+  produtos_comprar_mais[3][1]["link"] = "/tenis-infantil-slip-on-bege-unicornio-20-ao-27-linda-ju";
+  produtos_comprar_mais[3][1]["id_produto"] = 6788543;
+  produtos_comprar_mais[3][1]["preco"] = 69.99;
+  produtos_comprar_mais[3][1]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[3][1]["nome_imagem"] = ["7662_p"];
+  produtos_comprar_mais[3][1]["nome_produto"] = "Tênis Infantil Feminino Slip-On Bege Unicórnio (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[3][1]["cod_produto"] = "7662";
+  
+  produtos_comprar_mais[3][2] = [];
+  produtos_comprar_mais[3][2]["link"] = "/tenis-infantil-feminino-branco-elefante-20-ao-27-linda-ju";
+  produtos_comprar_mais[3][2]["id_produto"] = 6788867;
+  produtos_comprar_mais[3][2]["preco"] = 69.99;
+  produtos_comprar_mais[3][2]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[3][2]["nome_imagem"] = ["7665_p"];
+  produtos_comprar_mais[3][2]["nome_produto"] = "Tênis Infantil Feminino Branco Elefante (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[3][2]["cod_produto"] = "7665";
+  
+  produtos_comprar_mais[3][3] = [];
+  produtos_comprar_mais[3][3]["link"] = "/tenis-infantil-feminino-branco-e-azul-floco-de-neve-20-ao-27-linda-ju";
+  produtos_comprar_mais[3][3]["id_produto"] = 6788829;
+  produtos_comprar_mais[3][3]["preco"] = 69.99;
+  produtos_comprar_mais[3][3]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[3][3]["nome_imagem"] = ["7663_p"];
+  produtos_comprar_mais[3][3]["nome_produto"] = "Tênis Infantil Feminino Branco e Azul Floco de Neve (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[3][3]["cod_produto"] = "7663";
+  
+  produtos_comprar_mais[3][4] = [];
+  produtos_comprar_mais[3][4]["link"] = "/tenis-infantil-branco-unicornio-aplique-20-ao-27-linda-ju";
+  produtos_comprar_mais[3][4]["id_produto"] = 6788854;
+  produtos_comprar_mais[3][4]["preco"] = 69.99;
+  produtos_comprar_mais[3][4]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[3][4]["nome_imagem"] = ["7664_p"];
+  produtos_comprar_mais[3][4]["nome_produto"] = "Tênis Infantil Feminino Branco Unicórnio com Aplique (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[3][4]["cod_produto"] = "7664";
+  
+  produtos_comprar_mais[3][5] = [];
+  produtos_comprar_mais[3][5]["link"] = "/tenis-infantil-off-white-off-white-e-rose-bolinhas-20-ao-27";
+  produtos_comprar_mais[3][5]["id_produto"] = 7744160;
+  produtos_comprar_mais[3][5]["preco"] = 69.99;
+  produtos_comprar_mais[3][5]["preco_promocao"] = 50.99;
+  produtos_comprar_mais[3][5]["nome_imagem"] = ["7934_p"];
+  produtos_comprar_mais[3][5]["nome_produto"] = "Tênis Infantil Feminino Calce Fácil Off White e Rosê Bolinhas (20 ao 27) - Tico's Baby";
+  produtos_comprar_mais[3][5]["cod_produto"] = "7934";
+  
+  produtos_comprar_mais[3][6] = [];
+  produtos_comprar_mais[3][6]["link"] = "/tenis-infantil-feminino-branco-e-rosa-com-velcro-coracoes-20-ao-27-linda-ju";
+  produtos_comprar_mais[3][6]["id_produto"] = 7307891;
+  produtos_comprar_mais[3][6]["preco"] = 69.99;
+  produtos_comprar_mais[3][6]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[3][6]["nome_imagem"] = ["7833_p"];
+  produtos_comprar_mais[3][6]["nome_produto"] = "Tênis Infantil Feminino Branco e Rosa com Velcro Corações (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[3][6]["cod_produto"] = "7833";
+  
+  produtos_comprar_mais[3][7] = [];
+  produtos_comprar_mais[3][7]["link"] = "/tenis-infantil-feminino-rosa-poa-lacinho-20-ao-27-linda-ju";
+  produtos_comprar_mais[3][7]["id_produto"] = 6788891;
+  produtos_comprar_mais[3][7]["preco"] = 69.99;
+  produtos_comprar_mais[3][7]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[3][7]["nome_imagem"] = ["7666_p"];
+  produtos_comprar_mais[3][7]["nome_produto"] = "Tênis Infantil Feminino Rosa Poá Lacinho (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[3][7]["cod_produto"] = "7666";
+  
+  produtos_comprar_mais[3][8] = [];
+  produtos_comprar_mais[3][8]["link"] = "/tenis-infantil-rosa-lapis-babado-glitter-20-ao-27-linda-ju";
+  produtos_comprar_mais[3][8]["id_produto"] = 7116473;
+  produtos_comprar_mais[3][8]["preco"] = 69.99;
+  produtos_comprar_mais[3][8]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[3][8]["nome_imagem"] = ["7770_p"];
+  produtos_comprar_mais[3][8]["nome_produto"] = "Tênis Infantil Feminino Rosa Lápis com Babado e Glitter (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[3][8]["cod_produto"] = "7770";
+  
+  produtos_comprar_mais[3][9] = [];
+  produtos_comprar_mais[3][9]["link"] = "/tenis-infantil-preto-laco-e-glitter-20-ao-27-linda-ju";
+  produtos_comprar_mais[3][9]["id_produto"] = 7116495;
+  produtos_comprar_mais[3][9]["preco"] = 69.99;
+  produtos_comprar_mais[3][9]["preco_promocao"] = 59.99;
+  produtos_comprar_mais[3][9]["nome_imagem"] = ["7772_p"];
+  produtos_comprar_mais[3][9]["nome_produto"] = "Tênis Infantil Feminino Preto Laço Poá e Glitter (20 ao 27) - Linda Jú";
+  produtos_comprar_mais[3][9]["cod_produto"] = "7772";
+
+
+  //produtos a serem mostrados no comprar mais - provisório - FIM
+  
+  var frases_comprar_mais = [];
+  frases_comprar_mais[0] = ["Que tal aproveitar a sua comprinha e levar um calçado para o seu fofuxo?","Vamos aproveitar para deixar seu fofuxo mais estiloso?","Conhece nossos queridinhos que todo mundo compra?"];
+  frases_comprar_mais[1] = ["Que tal aproveitar a sua comprinha e levar um calçado para a sua fofuxa?","Vamos aproveitar para deixar sua fofuxa mais estilosa?","Conhece nossos queridinhos que todo mundo compra?"];
+  frases_comprar_mais[2] = ["Que tal aproveitar a sua comprinha e levar um calçado para o seu fofuxo?","Será que o pézinho do seu fofuxo não cresceu? Leva um calçado para ele!","Conhece nossos queridinhos que todo mundo compra?"];
+  frases_comprar_mais[3] = ["Que tal aproveitar a sua comprinha e levar um calçado para a sua fofuxa?","Será que o pézinho da sua fofuxa não cresceu? Leva um calçado para ela!","Conhece nossos queridinhos que todo mundo compra?"];
+  
+  frases_comprar_mais[4] = ["Que tal aproveitar a sua comprinha e levar um calçado para o(a) seu(sua) fofuxo(a)?","Vamos aproveitar para deixar seu(sua) fofuxo(a) mais estiloso(a)?","Conhece nossos queridinhos que todo mundo compra?"];
+  frases_comprar_mais[5] = ["Que tal aproveitar a sua comprinha e levar um calçado para o seu(sua) fofuxo(a)?","Será que o pézinho do(a) seu(sua) fofuxo(a) não cresceu? Leva um calçado para ele(a)!","Conhece nossos queridinhos que todo mundo compra?"];
+  
+  var id_frase = Math.round(Math.random()*100)%3;
+
+  if(mostrar_comprar_mais)
+  {
+    carrinho_faixa_etaria = window.localStorage.carrinho_faixa_etaria;
+    carrinho_genero = window.localStorage.carrinho_genero;
+    montar_comprar_mais();
+    
+    var txt_fe = "";
+    if(carrinho_faixa_etaria == 0)
+    {
+      txt_fe = "3 a 12 meses";
+    }
+    else if(carrinho_faixa_etaria == 1)
+    {
+      txt_fe = "1 a 3 anos";
+    }
+    
+    var txt_genero = "";
+    if(carrinho_genero == 0)
+    {
+      txt_genero = "unissex";
+    }
+    else if(carrinho_genero == 1)
+    {
+      txt_genero = "masculino";
+    }
+    else if(carrinho_genero == 2)
+    {
+      txt_genero = "feminino";
+    }
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&frase_id=" + id_frase + "&tema_apresentado=" + "calcado" + "&genero_carrinho=" + txt_genero + "&frase_id=" + id_frase + "&faixa_etaria_carrinho=" + txt_fe,false,fnprocessRegistroAtividade);
+    
+    if(ja_apareceu)
+    {
+      fn_mostrar_comprar_mais_sem_animacao();
+    }
+    else
+    {
+      fn_mostrar_comprar_mais();
+    }
+    
+  }
+  else
+  {
+	window.location.href = "https://www.bebefofuxo.com.br";
+  }
+
+  
+
+  function montar_comprar_mais()
+  {
+    var div_comprar_mais = document.createElement("div");
+    div_comprar_mais.id = "id_comprar_mais";
+    var div_ref = document.getElementById("idFCLeftContentRight");
+    document.body.insertBefore(div_comprar_mais,div_ref);
+
+    $("#id_comprar_mais").css('top', window.innerHeight);
+
+    var altura_conteudo = window.innerHeight-100-70;
+
+    var content_comprar_mais = "<div class='titulo_cm'><span>ANTES DE COMPLETAR SEU PEDIDO</span></div>";
+    content_comprar_mais += "<div class='pergunta_cm'><span>Que tal uma dica?</span></div>";
+    content_comprar_mais += "<div class='linha_cm'></div>";
+    
+
+    var gen_fe = 0;
+    var array_produtos;
+    if(carrinho_faixa_etaria == 0)
+    {
+      if(carrinho_genero == 0)
+      {
+        var a = produtos_comprar_mais[0].slice(0,4);
+        var b = produtos_comprar_mais[0].slice(4);
+        var c = produtos_comprar_mais[1].slice(4);
+        var d = b.concat(c);
+        d = shuffleArray(d);
+        array_produtos = a.concat(d);
+        gen_fe=4;
+        link_ver_mais = "/categorias/calcado-e-meia-para-bebe?fil=320216+320217+320218&avancada=true&tfil=3+a+12+meses+Prematuro+Recem+nascido";
+        
+      }
+      else if(carrinho_genero == 1)
+      {
+        array_produtos = produtos_comprar_mais[0];
+        gen_fe = 0;
+        link_ver_mais = "/categorias/calcado-e-meia-para-bebe?fil=319942+320216+320217+320218&avancada=true&tfil=3+a+12+meses+Prematuro+Recem+nascido+Masculino";
+      }
+      else if(carrinho_genero == 2)
+      {
+        array_produtos = produtos_comprar_mais[1];
+        gen_fe = 1;
+        link_ver_mais = "/categorias/calcado-e-meia-para-bebe?fil=319943+320216+320217+320218&avancada=true&tfil=3+a+12+meses+Prematuro+Recem+nascido+Feminino";
+      }
+    }
+    else if(carrinho_faixa_etaria == 1)
+    {
+      if(carrinho_genero == 0)
+      {
+        array_produtos = produtos_comprar_mais[2].concat(produtos_comprar_mais[3]);
+        array_produtos = shuffleArray(array_produtos);
+        gen_fe = 5;
+        link_ver_mais = "/categorias/calcado-e-meia-para-bebe?fil=320219&avancada=true&tfil=1+a+3+anos";
+        
+      }
+      else if(carrinho_genero == 1)
+      {
+        array_produtos = produtos_comprar_mais[2];
+        gen_fe = 2;
+        link_ver_mais = "/categorias/calcado-e-meia-para-bebe?fil=319942+320219&avancada=true&tfil=1+a+3+anos+Masculino";
+      }
+      else if(carrinho_genero == 2)
+      {
+        array_produtos = produtos_comprar_mais[3];
+        gen_fe = 3;
+        link_ver_mais = "/categorias/calcado-e-meia-para-bebe?fil=319943+320219&avancada=true&tfil=1+a+3+anos+Feminino";
+      }
+    }
+    
+    content_comprar_mais += "<div class='conteudo_cm' style='height:"+altura_conteudo+"px'><div class='dica_cm'><span>"+frases_comprar_mais[gen_fe][id_frase]+"</span></div>";
+
+    content_comprar_mais += "<div id='TabListaProdutos'>";
+    
+    for(var i = 0; i < array_produtos.length; i++)
+    {
+		content_comprar_mais += montar_produto(array_produtos[i]["link"],array_produtos[i]["id_produto"],array_produtos[i]["preco"],array_produtos[i]["preco_promocao"],array_produtos[i]["nome_imagem"][0],array_produtos[i]["nome_produto"],array_produtos[i]["cod_produto"]);
+    }
+
+
+    content_comprar_mais += "</div>";
+    
+    content_comprar_mais += "<div class='btn_vermais_cm'>Ver mais calçados</div>";
+    
+    content_comprar_mais += "</div>";
+    
+    content_comprar_mais += "<div class='btn_cm'><span class='obrigado_cm'>Não, obrigado</span><br><span>IR PARA O PAGAMENTO</span></div>";
+
+    $("#id_comprar_mais").html(content_comprar_mais);
+
+  }
+  
+  $(".btn_cm").click(function(){
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_nao_obrigado=" + "1",false,fnprocessRegistroAtividade_NaoObrigado);
+    
+    
+  });
+  
+  $(".btn_vermais_cm").click(function(){
+
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_mostrar_mais_produto=" + "1",false,fnprocessRegistroAtividade_VerMais);
+
+
+  });
+
+  $(".link-prod").click(function(e){
+	
+    e.preventDefault();
+    var link = this.href;
+    var codigo_modelo = $(this).data("id");
+    codigo_modelo = codigo_modelo.replace(/"/g, '');
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_produto=" + "1" + "&cod_modelo=" + codigo_modelo,false,fnprocessRegistroAtividade_CliqueProduto,link);
+
+
+  });
+  
+  var timeout;
+  $(".conteudo_cm").scroll(function() {
+
+    if($(".conteudo_cm").scrollTop() > scroll_atual)
+    {
+      scroll_atual = parseInt($(".conteudo_cm").scrollTop());
+
+      clearTimeout(timeout);
+      timeout = setTimeout(function(s) {
+
+        AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&scroll_y=" + scroll_atual,false,fnprocessRegistroAtividade_Scroll);
+
+      }, 2000);
+    }
+    
+    
+  });
+
+
+  function montar_produto(link,id_produto,preco,preco_promocao,nome_imagem,nome_produto,cod_produto)
+  {
+    var desconto = Math.round((1-(preco_promocao/preco))*100);
+    var preco_virgula = preco.toFixed(2).replace(".", ",");
+    var preco_promocao_virgula = preco_promocao.toFixed(2).replace(".", ",");
+
+    var preco_promocao_parcela = preco_promocao/6;
+    preco_promocao_parcela = preco_promocao_parcela.toFixed(2);
+    var preco_promocao_parcela_virgula = preco_promocao_parcela.replace(".", ",");
+
+    //var link = "https://www.bebefofuxo.com.br" + link;
+
+    var cod_prod = '"'+cod_produto+'"';
+    
+    var content_produto = "<div class='ProdDestLista'>";
+    content_produto += "<a class='link-prod' href='"+link+"' data-id='"+cod_prod+"'>";
+    content_produto += "<div id='DivProd"+id_produto+"' data-sale='true' data-release='true'><div class='badgesProd'><div class='badgeProm' title='Oferta'>-"+desconto+"%</div></div></div>";
+    content_produto += "<div class='ImgProdDesk'><div id='DivImagemProdDouble"+id_produto+"' class='ProdCapaDiv'><img src='../lojas/00020368/prod/"+nome_imagem+".jpg' alt='"+nome_produto+"' loading='lazy'></div></div>";
+    content_produto += "<div class='ImgProdMobi'><div class='ProdCapaDiv'><img src='../lojas/00020368/prod/"+nome_imagem+".jpg' alt='"+nome_produto+"' loading='lazy'></div></div>";
+    content_produto += "<div class='ProdListOrder'>";
+    content_produto += "<div class='EstNomeProdCapa'>"+nome_produto+"</div>";
+    content_produto += "<div id='PrecoProd"+id_produto+"' class='PrecoProdCapa'><span class='PrecoDeHome'>de <strike>R$&nbsp;"+preco_virgula+"</strike>&nbsp;&nbsp;</span><span class='PrecoPorHome'>por R$<b>&nbsp;"+preco_promocao_virgula+"</b></span><div class='EstParcHome'>6X de R$&nbsp;"+preco_promocao_parcela_virgula+" sem juros</div></div>";
+    content_produto += "</div>";
+    content_produto += "<div class='EstBotVerMais'>Eu Quero</div></a>";
+    content_produto += "</div>";
+
+
+    return content_produto;
+  }
+
+  function fn_mostrar_comprar_mais()
+  {
+    window.localStorage.setItem("ja_apareceu_comprar_mais", 1);
+    
+    $("#id_comprar_mais").animate({
+      top: 0
+    }, 500);
+  }
+  
+  function fn_mostrar_comprar_mais_sem_animacao()
+  {
+    $("#id_comprar_mais").css("top",0);
+  }
+  
+  function fnprocessRegistroAtividade_Scroll()
+  {
+    //console.log("Registrado scroll com sucesso");
+  }
+  
+  function fnprocessRegistroAtividade()
+  {
+    //console.log("Registrado entrada na página com sucesso");
+  }
+  
+  function fnprocessRegistroAtividade_NaoObrigado()
+  {
+    //console.log("Registrado Não Obrigado com sucesso");
+    
+    window.localStorage.removeItem("carrinho_genero");
+    window.localStorage.removeItem("carrinho_faixa_etaria");
+    window.localStorage.removeItem("mostrar_comprar_mais");
+    //window.localStorage.removeItem("ja_apareceu_comprar_mais");
+    //window.localStorage.removeItem("sessao_id");
+    
+    
+    window.location.href = "/checkout.asp?idloja=20368";
+  }
+  
+  
+  function fnprocessRegistroAtividade_VerMais()
+  {
+    //console.log("Registrado Ver Mais com sucesso");
+    
+    window.location.href = link_ver_mais;
+  }
+  
+  function fnprocessRegistroAtividade_CliqueProduto()
+  {
+    //console.log("Registrado Clique Produto com sucesso");
+    
+	window.location.href = arguments[1];
+  }
+  
+  function shuffleArray(arr) {
+        // Loop em todos os elementos
+    for (let i = arr.length - 1; i > 0; i--) {
+            // Escolhendo elemento aleatório
+        const j = Math.floor(Math.random() * (i + 1));
+        // Reposicionando elemento
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    // Retornando array com aleatoriedade
+    return arr;
+}
+</script>
