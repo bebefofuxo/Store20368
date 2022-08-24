@@ -1,0 +1,65 @@
+<style>
+.ProductList #idFCContent {margin:0 auto !important; width: 100% !important; min-height: 550px !important;}
+#ProductsFilterFC {display:none;}
+#idTitTextoFC {display:none;}
+.AlignBusca {width:100%; max-width:650px; display: -ms-flexbox; display: -webkit-flex; display: flex; flex-wrap:wrap; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap; margin:30px auto 0 auto;}
+.LupaBusca {width:18%;}
+.LupaBusca img {height:90px;}
+.TitBusca {width:82%; color:#685f52; font-size:36px; font-weight:400; text-decoration:none;}
+.ExpBusca {color:#008ae1; font-size:40px; font-weight:400;text-decoration:none;}
+.ExpBusca img {height:32px; margin-left:5px; cursor:pointer; border:none; opacity: 0.4 !important; filter: alpha(opacity=40) !important;}
+.TxtBusca {width:100%; color:#685f52; font-size:16px; font-weight:400; margin-top:50px;}
+.TxtBusca b {font-size:18px; font-weight:700;}
+.BotPromBusca {width:100%; margin-top:40px;}
+.BotPromBusca a {font-family: 'Nunito', Arial, sans-serif; font-size:21px; font-weight:400; color:#fff; text-transform:uppercase; text-decoration:none; background-color:#dc087f; border: none; border-radius: 5px; -webkit-border-radius: 5px; -ms-border-radius: 5px; padding: 8px 30px; width:200px; cursor: pointer; -webkit-appearance: none;}
+.BotPromBusca a:hover {opacity:0.7; filter: alpha(opacity=70); color:#fff;}
+
+@media screen and (max-width: 667px) {
+.AlignBusca {width:95%;}
+.TitBusca {font-size:32px;}	
+}
+
+@media screen and (max-width: 568px) {
+.LupaBusca {width: 20%;}
+.TitBusca  {width: 80%; font-size: 28px;}
+.ExpBusca {font-size: 28px;}
+.ExpBusca img {height:24px;}
+.TxtBusca {margin-top:30px;}
+}
+
+@media screen and (max-width: 560px) {
+.AlignBusca {width: 92%;}
+.LupaBusca {width:100%;}
+.TitBusca  {width:100%; margin-top:10px;}
+}
+
+@media screen and (max-width: 375px) {
+.TitBusca {font-size: 24px;}
+}
+
+@media screen and (max-width: 320px) {
+.LupaBusca img {height: 70px;}
+.ExpBusca {font-size: 24px;}
+}
+</style>
+
+<script>
+var iQtdProds=0;
+localStorage.removeItem("eh_busca");
+</script>
+
+<div class="AlignBusca">
+  <div class="LupaBusca"><img src="<PathTo file="images/ic_buscablue.svg">" alt="Busca"></div>
+  <div class="TitBusca">Não encontramos produtos para esta busca:<br>
+    <span class="ExpBusca">"<SearchText>" <a href="/buscaavancada.asp?IDLoja=<IDLoja>"><img src="<PathTo file="images/ic_close.svg">" alt="Fechar"></a></span>
+    
+    <div class="TxtBusca"><b>Dicas para sua busca:</b><br>
+    - Verifique se não há erros de digitação;<br>
+    - Tente utilizar uma única palavra;<br>
+    - Procure utilizar sinônimos ao termo desejado.<br>
+    <br>
+    <a href="/buscaavancada.asp?IDLoja=<IDLoja>">Clique aqui</a> e faça uma busca avançada ou veja nossas promoções.</div>
+
+    <div class="BotPromBusca"><a href="/listaprodutos.asp?IDLoja=<IDLoja>&promocao=true">Promoções</a></div>
+  </div>
+</div>
