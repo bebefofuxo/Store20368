@@ -1,0 +1,169 @@
+<head>
+<title>Descadastrar Celular | Bebê Fofuxo</title>
+</head>
+<script src="<baseloja>htm/js/vanillamaskermin.js"></script>
+<script src="<BaseLoja>htm/js/jqueryMask.js"></script>
+
+<style>
+  .descadastrar .InputText {
+    font-family: 'Nunito', Arial, sans-serif;
+    font-size: 18px !important;
+    border: 1px solid #dedede;
+    background-color: #fff;
+    color: #685f52;
+    padding: 5px 5px 5px 5px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -ms-border-radius: 3px;
+    height: 32px;
+    width: 90% !important;
+    max-width: 370px;
+    -webkit-text-size-adjust: 100% !important;
+    -webkit-appearance: none;
+    margin-top:30px;
+  }
+  
+  .descadastrar .resposta {
+    text-align: center;
+    font-size: 14px;
+    color: gray;
+    width: 90% !important;
+    max-width: 370px;
+    height: 14px;
+    line-height: 14px;
+    margin-top: 10px;
+    display:none;
+  }
+
+  
+  .descadastrar .btn_descadastrar {
+    background-color: #dc087f;
+    border: none;
+    border-radius: 5px;
+    -ms-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    padding: 6px 0;
+    width: 90% !important;
+    max-width: 370px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 25px;
+    margin-bottom:40px;
+  }
+  
+  @media screen and (max-width: 650px) {
+    
+    .descadastrar .InputText {
+
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
+
+    }
+    
+    .descadastrar .resposta {
+      margin-left:auto;
+      margin-right:auto;
+      text-align:center;
+    }
+
+    .descadastrar .btn_descadastrar {
+      margin-left:auto;
+      margin-right:auto;
+    }
+    
+  }
+  
+  @media screen and (max-width: 380px) {
+
+    .descadastrar .btn_descadastrar {
+      font-size: 14px !important;
+    }
+    
+  }
+
+</style>
+
+<div class="Titulos">Descadastrar Celular</div>
+
+<p>Para retirar o seu celular da nossa lista de promoções adicione o seu número com DDD no campo abaixo e clique em <i><b>Não quero receber promoções</b></i>.</p>
+
+<div class="descadastrar">
+  <input class="InputText" type="text" name="P2Telefone" id="P2Telefone" size="10" maxlength="20" style="width:100px" autocomplete="tel">
+  <div id="resposta" class="resposta">Aguarde, estamos descadastrando seu número</div>
+  <div id="btn_descadastrar" class="btn_descadastrar">Não quero receber promoções</div>
+</div>
+
+<script>
+  function inputHandler(masks, max, event) {
+    var c = event.target;
+    var v = c.value.replace(/\D/g, '');
+    var m = c.value.length > max ? 1 : 0;
+    VMasker(c).unMask();
+    VMasker(c).maskPattern(masks[m]);
+    c.value = VMasker.toPattern(v, masks[m]);
+  }
+
+  var telMask = ['(99) 9999-99999', '(99) 99999-9999'];
+  var tel = document.querySelector('#P2Telefone');
+  VMasker(tel).maskPattern(telMask[0]);
+  tel.addEventListener('input', inputHandler.bind(undefined, telMask, 14), false);
+  
+  
+  var btn_descadastrar = document.getElementById("btn_descadastrar");
+  btn_descadastrar.onclick = function()
+  {
+    var num_celular = $("#P2Telefone").val();
+    num_celular = num_celular.replace(/ /g,'');
+    num_celular = num_celular.replace("(", "");
+    num_celular = num_celular.replace("(", "");
+    num_celular = num_celular.replace(")", "");
+    num_celular = num_celular.replace(")", "");
+    num_celular = num_celular.replace("-", "");
+    num_celular = num_celular.replace("-", "");
+    num_celular = num_celular.replace("-", "");
+    num_celular = num_celular.replace("-", "");
+    num_celular = num_celular.replace("+", "");
+    num_celular = num_celular.replace("+", "");
+    num_celular = num_celular.replace("+", "");
+    num_celular = num_celular.replace("+", "");
+    
+    num_celular = "55" + num_celular;
+    
+    console.log(num_celular);
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) 
+      {
+        if(this.responseText=="0")
+        {
+          document.getElementById("resposta").style.color = "red";
+          document.getElementById("resposta").style.height = "34px";
+          document.getElementById("resposta").innerText = "Número não encontrado. Verifique se o número está correto. Caso o problema persista entra em contato com atendimento@bebefofuxo.com.br.";
+          document.getElementById("resposta").style.display = "block";
+        }
+        else
+        {
+          document.getElementById("resposta").style.color = "green";
+          document.getElementById("resposta").style.height = "14px";
+          document.getElementById("resposta").innerText = "Número descadastrado com sucesso.";
+          document.getElementById("resposta").style.display = "block";
+        }
+
+
+      }
+    };
+    xhttp.open("GET", "https://www.bebefofuxo.net/scripts/clientes_wa/descadastrar.php?status=-1&num_celular="+num_celular, true);
+    xhttp.send();
+    document.getElementById("resposta").style.color = "gray";
+    document.getElementById("resposta").style.height = "14px";
+    document.getElementById("resposta").innerText = "Aguarde, estamos descadastrando seu número.";
+  	document.getElementById("resposta").style.display = "block";
+  }
+</script>
