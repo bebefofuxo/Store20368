@@ -1,0 +1,229 @@
+<head>
+<title>Black Friday Bebê Fofuxo - roupas para bebê e criança com o melhor preço do Brasil!</title>
+    <meta name="description" content="Economize na Black Friday da Bebê Fofuxo com roupas baratas para o enxoval do seu bebê. A Bebê Fofuxo é especializada em roupas, calçados e acessórios para bebês e crianças de até 6 anos. Temos tudo para o enxoval do seu bebê pelo menor preço do Brasil. Conheça nossas linhas de body, mijão (culote), macacão e tudo mais o que seu bebê precisa para estar sempre fofo e confortável!">
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes, minimal-ui">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Language" content="pt-br">
+    <meta name="keywords" content="enxoval bebê,roupa bebê barato,roupa bebê atacado,black friday roupas de bebê,kits roupas bebê,body bebê,macacão bebê,mijão bebê">
+	
+	<link rel="stylesheet" href="../lojas/00020368/htm/blackfriday/2021/css/style.css?cccfc=9">
+
+	
+
+</head>
+
+<script>
+  
+  $(".cupomPrimeiraCompra").html("<strong>UM MÊS INTEIRO DE OFERTAS PARA VOCÊ!</strong>");
+  $(".cupomPrimeiraCompra").css("background-color","#000000");
+  $(".cupomPrimeiraCompra").css("color","#f9cc10");
+  $("#topobusca").hide();
+  
+  $(".topologo img").attr("src","../../../../lojas/00020368/images/logo_bf.png")
+  $(".topologo source").attr("srcset","../../../../lojas/00020368/images/logo_bf_mob.png")
+
+  $(document).ready(function() {
+    document.getElementById("idFCContent").style.paddingTop = "20px";
+    document.getElementById("idFCContent").style.width = "100%";
+    document.getElementById("idFCContent").style.maxWidth = "none";
+    document.getElementById("rodape_alinha").style.marginTop = "0px";
+    
+    
+    
+    
+    
+    if(window.screen.width <= 768)
+    {
+      $("#img_logo").attr("src","../../../../lojas/00020368/images/blackfriday/2021/LOGO-CENTRO-MOB.png");
+    }
+    else
+    {
+      $("#img_logo").attr("src","../../../../lojas/00020368/images/blackfriday/2021/LOGO-CENTRO.png");
+    }
+    
+    $("#img_logo").show();
+  });
+
+  var xhrAjax = new XMLHttpRequest();
+
+  function respostaAjaxBlackFriday() {
+
+    if (xhrAjax.readyState == 4 && xhrAjax.status == 200) {
+
+      $("#infoAguarde").hide();
+
+      if (xhrAjax.responseText == "1") {
+        alert("Você já está cadastrado! Aguarde que você irá receber novidades sobre a nossa Black Friday!");
+      } else if (xhrAjax.responseText == "2") {
+        alert("Erro ao cadastrar. Por favor, verifique se o e-mail está correto.");
+
+      } else {
+        alert("Seu e-mail foi cadastrado! Você receberá informações em breve sobre nossa Black Friday!");
+
+      }
+    }
+
+
+  }
+
+  function verificarUsuarioCadastradoBlackFriday() {
+
+    var txtFieldEmail = document.querySelector("#inputEmail");
+
+    if(validacaoEmail(txtFieldEmail))
+    {
+      $("#infoAguarde").show();
+
+      xhrAjax.onreadystatechange = respostaAjaxBlackFriday;
+      xhrAjax.open("GET", "https://bebefofuxo.net/scripts/blackfriday/blackfriday.php?emailUsuario=" + txtFieldEmail.value, true);
+
+      xhrAjax.send();
+      return false;
+    }
+    else
+    {
+
+      alert("Erro ao cadastrar. Por favor, verifique se o e-mail está correto.");
+
+      return false;
+
+    }
+
+  }
+
+  function validacaoEmail(field) {
+    var usuario = field.value.substring(0, field.value.indexOf("@"));
+    var dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+
+    if ((usuario.length >=1) &&
+        (dominio.length >=3) &&
+        (usuario.search("@")==-1) &&
+        (dominio.search("@")==-1) &&
+        (usuario.search(" ")==-1) &&
+        (dominio.search(" ")==-1) &&
+        (dominio.search(".")!=-1) &&
+        (dominio.indexOf(".") >=1)&&
+        (dominio.lastIndexOf(".") < dominio.length - 1)) {
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  
+</script>
+
+
+<div id="content_bf">
+  <div class="triang-invertido" id="invertido-1"><img src="../../../../lojas/00020368/images/blackfriday/2021/TRIANG-INVERTIDO.png"></div>
+  <div class="triang-invertido" id="invertido-2"><img src="../../../../lojas/00020368/images/blackfriday/2021/TRIANG-INVERTIDO.png"></div>
+  <div class="triang-preenchido" id="preenchido-1"><img src="../../../../lojas/00020368/images/blackfriday/2021/TRIANG-PREENCHIDO.png"></div>
+  <div class="triang-preenchido" id="preenchido-2"><img src="../../../../lojas/00020368/images/blackfriday/2021/TRIANG-PREENCHIDO.png"></div>
+  
+  <div class="faltam_bf">FALTAM</div>
+
+  <ul class="countdown_black">
+
+    <li> <div class="ct-count_black">
+      <span class="days">00</span>
+      <p class="days_ref">DIAS</p>
+      </div>
+    </li>
+    <li>
+      <div class="ct-count_black"> <span class="hours">00</span>
+        <p class="hours_ref">HORAS</p>
+      </div>
+    </li>
+    <li> 
+      <div class="ct-count_black">
+        <span class="minutes">00</span>
+        <p class="minutes_ref">MIN</p>
+      </div>
+    </li>
+
+    <li>
+      <div class="ct-count_black">
+        <span class="seconds">00</span>
+        <p class="seconds_ref">SEG</p>
+      </div>
+    </li>
+  </ul>
+  
+  <div class="para_a">
+    <img src="../../../../lojas/00020368/images/blackfriday/2021/para_a.png">
+  </div>
+  
+  <div class="logo_black_friday">
+    <img id="img_logo" style="display:none;" src="">
+  </div>
+
+  <div class="deixe_seu_email">DEIXE SEU EMAIL QUE A GENTE TE AVISA QUANDO AS OFERTAS COMEÇAREM</div>
+  <form class="formulario" onSubmit="return verificarUsuarioCadastradoBlackFriday();">
+    <div class="input"><input type="text" id="inputEmail" placeholder="email@email.com" /><button><span></span></button></div>
+  </form>
+  <div id="infoAguarde">Aguarde...</div>
+  
+ 
+  <div class="redes_sociais">
+    <div class="facebook">
+  		<a href="https://www.facebook.com/bebefofuxo/" target="_blank" rel="noopener"><img src="../../../../lojas/00020368/images/blackfriday/2021/FACEBOOK.png" alt="Facebook" title="Facebook"></a>
+    </div>
+    <div class="instagram">
+  		<a href="https://www.instagram.com/bebe_fofuxo/" target="_blank" rel="noopener"><img src="../../../../lojas/00020368/images/blackfriday/2021/INSTAGRAM.png" alt="Instagram" title="Instagram"></a>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lojas/00020368/htm/blackfriday/2021/js/count.js"></script>
+<script type="text/javascript" src="../lojas/00020368/htm/blackfriday/2021/js/main.js"></script>
+<script class="source" type="text/javascript">
+        $('.countdown_black').downCount({
+            date: '11/01/2021 10:00:00',
+            offset: -3
+        });
+</script>
+
+<script>
+  $("#invertido-1").css("width","22px");
+  $("#invertido-1").css("height","22px");
+  $("#invertido-1 img").css("width","22px");
+  $("#invertido-1 img").css("height","22px");
+  $("#invertido-1").css("top",$(".para_a").position().top+$(".para_a").outerHeight(true)+30);
+  $("#invertido-1").css("left","14vw");
+  
+  $("#invertido-2").css("width","16px");
+  $("#invertido-2").css("height","16px");
+  $("#invertido-2 img").css("width","16px");
+  $("#invertido-2 img").css("height","16px");
+  $("#invertido-2").css("top",$(".logo_black_friday").position().top+$(".logo_black_friday").outerHeight(true)+20);
+  $("#invertido-2").css("left","88vw");
+  $("#invertido-2").css("transform","rotate(90deg)");
+  
+  $("#preenchido-1").css("width","18px");
+  $("#preenchido-1").css("height","18px");
+  $("#preenchido-1 img").css("width","18px");
+  $("#preenchido-1 img").css("height","18px");
+  $("#preenchido-1").css("top",$(".faltam_bf").position().top+$(".faltam_bf").outerHeight(true)-20);
+  $("#preenchido-1").css("left","90vw");
+  
+  $("#preenchido-2").css("width","15px");
+  $("#preenchido-2").css("height","15px");
+  $("#preenchido-2 img").css("width","15px");
+  $("#preenchido-2 img").css("height","15px");
+  $("#preenchido-2").css("top",$(".redes_sociais").position().top+50);
+  $("#preenchido-2").css("left","9vw");
+  
+  if(window.screen.width > 768)
+  {
+    $("#invertido-1").remove();
+    $("#invertido-2").remove();
+    $("#preenchido-1").remove();
+    $("#preenchido-2").remove();
+  }
+
+
+</script>
