@@ -1,0 +1,582 @@
+<style>
+div#topofixed {    display: none;}
+div#rodape_bg {   display: none;}
+</style>
+<script>
+  
+  var link_ver_mais = "/categorias/kit-body-para-bebe";
+  var scroll_atual = 0;
+  
+  var sessao_id = <Y>;
+  window.localStorage.setItem("sessao_id", sessao_id);
+  
+  var carrinho_faixa_etaria = -1; //0 - 3 a 12 meses; 1 - 1 a 3 anos
+  var carrinho_genero = 0; //0 - unissex, 1 - masc, 2 - fem
+
+  var mostrar_comprar_mais = window.localStorage.mostrar_comprar_mais;
+  var ja_apareceu = window.localStorage.ja_apareceu_comprar_mais;
+  
+  //produtos a serem mostrados no comprar mais - provisório
+  var produtos_comprar_mais = [];
+
+  //3 a 12 meses
+  produtos_comprar_mais[0] = [];
+  produtos_comprar_mais[1] = [];
+  
+  //1 a 5 anos
+  produtos_comprar_mais[2] = [];
+  produtos_comprar_mais[3] = [];
+  
+  //unissex
+  produtos_comprar_mais[4] = [];
+  produtos_comprar_mais[5] = [];
+
+  //3 a 12 - masculino
+  produtos_comprar_mais[0][0] = [];
+  produtos_comprar_mais[0][0]["link"] = "/kit-bebe-masculino-3-pecas-bodies-com-calca-mescla-e-laranja-tigrinho-p-m-g-gg-bebe-fofuxo";
+  produtos_comprar_mais[0][0]["id_produto"] = 7546576;
+  produtos_comprar_mais[0][0]["preco"] = 59.99;
+  produtos_comprar_mais[0][0]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[0][0]["nome_imagem"] = ["15768_p"];
+  produtos_comprar_mais[0][0]["nome_produto"] = "Kit Bebê Masculino 3 Peças Bodies com Calça Mescla e Laranja Tigrinho (P/M/G/GG) - Bebê Fofuxo";
+  produtos_comprar_mais[0][0]["cod_produto"] = "15768";
+
+  produtos_comprar_mais[0][1] = [];
+  produtos_comprar_mais[0][1]["link"] = "/kit-bebe-3-pecas-bodies-branco-calca-marrom-elefante-p-m-g-gg";
+  produtos_comprar_mais[0][1]["id_produto"] = 7703427;
+  produtos_comprar_mais[0][1]["preco"] = 59.99;
+  produtos_comprar_mais[0][1]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[0][1]["nome_imagem"] = ["16719_p"];
+  produtos_comprar_mais[0][1]["nome_produto"] = "Kit Bebê 3 Peças Suedine Bodies Branco e Calça Marrom Elefante (P/M/G/GG) - Orango Kids";
+  produtos_comprar_mais[0][1]["cod_produto"] = "16719";
+
+  produtos_comprar_mais[0][2] = [];
+  produtos_comprar_mais[0][2]["link"] = "/kit-bebe-3-pecas-bodies-com-calca-mescla-e-cinza-bichinhos-p-m-g-gg-bebe-fofuxo";
+  produtos_comprar_mais[0][2]["id_produto"] = 7523150;
+  produtos_comprar_mais[0][2]["preco"] = 59.99;
+  produtos_comprar_mais[0][2]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[0][2]["nome_imagem"] = ["15670_p"];
+  produtos_comprar_mais[0][2]["nome_produto"] = "Kit Bebê 3 Peças Bodies com Calça Mescla e Cinza Bichinhos (P/M/G/GG) - Bebê Fofuxo";
+  produtos_comprar_mais[0][2]["cod_produto"] = "15670";
+
+  produtos_comprar_mais[0][3] = [];
+  produtos_comprar_mais[0][3]["link"] = "/kit-bebe-masculino-3-pecas-body-e-shorts-amarelo-e-mescla-ursinho-rn-p-m-g-gg-kappes";
+  produtos_comprar_mais[0][3]["id_produto"] = 7598110;
+  produtos_comprar_mais[0][3]["preco"] = 59.99;
+  produtos_comprar_mais[0][3]["preco_promocao"] = 44.99;
+  produtos_comprar_mais[0][3]["nome_imagem"] = ["16136_p"];
+  produtos_comprar_mais[0][3]["nome_produto"] = "Kit Bebe Masculino 3 Peças Body e Shorts Amarelo e Mescla Ursinho (RN/P/M/G/GG) - Kappes";
+  produtos_comprar_mais[0][3]["cod_produto"] = "16136";
+
+  produtos_comprar_mais[0][4] = [];
+  produtos_comprar_mais[0][4]["link"] = "/kit-bebe-body-calca-amarelo-girafa-p-gg-orango-kids";
+  produtos_comprar_mais[0][4]["id_produto"] = 7947446;
+  produtos_comprar_mais[0][4]["preco"] = 59.99;
+  produtos_comprar_mais[0][4]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[0][4]["nome_imagem"] = ["17366_p"];
+  produtos_comprar_mais[0][4]["nome_produto"] = "Kit Bebê 3 Peças Ribana Bodies e Calça Amarelo e Branco Girafa (P/M/G/GG) - Orango Kids";
+  produtos_comprar_mais[0][4]["cod_produto"] = "17366";
+
+  produtos_comprar_mais[0][5] = [];
+  produtos_comprar_mais[0][5]["link"] = "/kit-bebe-bodies-calca-verde-panda-p-gg-orango-kids";
+  produtos_comprar_mais[0][5]["id_produto"] = 7947435;
+  produtos_comprar_mais[0][5]["preco"] = 59.99;
+  produtos_comprar_mais[0][5]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[0][5]["nome_imagem"] = ["17367_p"];
+  produtos_comprar_mais[0][5]["nome_produto"] = "Kit Bebê 3 Peças Ribana Bodies e Calça Verde e Branco Panda (P/M/G/GG) - Orango Kids";
+  produtos_comprar_mais[0][5]["cod_produto"] = "17367";
+
+  //3 a 12 - feminino
+  produtos_comprar_mais[1][0] = [];
+  produtos_comprar_mais[1][0]["link"] = "/kit-bebe-body-calca-amarelo-girafa-p-gg-orango-kids";
+  produtos_comprar_mais[1][0]["id_produto"] = 7947446;
+  produtos_comprar_mais[1][0]["preco"] = 59.99;
+  produtos_comprar_mais[1][0]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[1][0]["nome_imagem"] = ["17366_p"];
+  produtos_comprar_mais[1][0]["nome_produto"] = "Kit Bebê 3 Peças Ribana Bodies e Calça Amarelo e Branco Girafa (P/M/G/GG) - Orango Kids";
+  produtos_comprar_mais[1][0]["cod_produto"] = "17366";
+
+  produtos_comprar_mais[1][1] = [];
+  produtos_comprar_mais[1][1]["link"] = "/kit-bebe-3-pecas-bodies-com-calca-branco-e-mescla-urso-panda-p-m-g-gg-bebe-fofuxo";
+  produtos_comprar_mais[1][1]["id_produto"] = 7522854;
+  produtos_comprar_mais[1][1]["preco"] = 59.99;
+  produtos_comprar_mais[1][1]["preco_promocao"] = 43.99;
+  produtos_comprar_mais[1][1]["nome_imagem"] = ["15668_p"];
+  produtos_comprar_mais[1][1]["nome_produto"] = "Kit Bebê 3 Peças Bodies com Calça Branco e Mescla Urso Panda (P/M/G/GG) - Bebê Fofuxo";
+  produtos_comprar_mais[1][1]["cod_produto"] = "15668";
+
+  produtos_comprar_mais[1][2] = [];
+  produtos_comprar_mais[1][2]["link"] = "/kit-bebe-3-pecas-bodies-shorts-preto-e-branco-vaquinha-p-m-g-gg-bebe-fofuxo";
+  produtos_comprar_mais[1][2]["id_produto"] = 7646144;
+  produtos_comprar_mais[1][2]["preco"] = 59.99;
+  produtos_comprar_mais[1][2]["preco_promocao"] = 44.99;
+  produtos_comprar_mais[1][2]["nome_imagem"] = ["16579_p"];
+  produtos_comprar_mais[1][2]["nome_produto"] = "Kit Bebê Feminino 3 Peças Bodies com Shorts Preto e Branco Vaquinha (P/M/G/GG) - Bebê Fofuxo";
+  produtos_comprar_mais[1][2]["cod_produto"] = "16579";
+
+  produtos_comprar_mais[1][3] = [];
+  produtos_comprar_mais[1][3]["link"] = "/kit-bebe-feminino-3-pecas-body-e-calca-com-faixa-rosa-e-preto-coracoes-p-m-g-gg-orango-kids";
+  produtos_comprar_mais[1][3]["id_produto"] = 7585573;
+  produtos_comprar_mais[1][3]["preco"] = 49.99;
+  produtos_comprar_mais[1][3]["preco_promocao"] = 39.99;
+  produtos_comprar_mais[1][3]["nome_imagem"] = ["15883_p"];
+  produtos_comprar_mais[1][3]["nome_produto"] = "Kit Bebê Feminino 3 Peças Body e Calça com Faixa Rosa e Preto Poá Corações (P/M/G/GG) - Orango Kids";
+  produtos_comprar_mais[1][3]["cod_produto"] = "15883";
+
+  produtos_comprar_mais[1][4] = [];
+  produtos_comprar_mais[1][4]["link"] = "/kit-bebe-3-pecas-body-e-calca-e-faixa-branco-e-vermelho-arco-iris-rn-p-m-g-gg-bebe-fofuxo";
+  produtos_comprar_mais[1][4]["id_produto"] = 7600785;
+  produtos_comprar_mais[1][4]["preco"] = 49.99;
+  produtos_comprar_mais[1][4]["preco_promocao"] = 37.99;
+  produtos_comprar_mais[1][4]["nome_imagem"] = ["16219_p"];
+  produtos_comprar_mais[1][4]["nome_produto"] = "Kit Bebê Feminino 3 Peças Body e Calça e Faixa Branco e Vermelho Arco-Íris (P/M/G/GG) - Bebê Fofuxo";
+  produtos_comprar_mais[1][4]["cod_produto"] = "16219";
+
+  produtos_comprar_mais[1][5] = [];
+  produtos_comprar_mais[1][5]["link"] = "/kit-bebe-body-shorts-faixa-rosa-morango-p-a-gg";
+  produtos_comprar_mais[1][5]["id_produto"] = 7707928;
+  produtos_comprar_mais[1][5]["preco"] = 49.99;
+  produtos_comprar_mais[1][5]["preco_promocao"] = 37.99;
+  produtos_comprar_mais[1][5]["nome_imagem"] = ["16728_p"];
+  produtos_comprar_mais[1][5]["nome_produto"] = "Kit Bebê Feminino 3 Peças Body e Shorts com Faixa Rosa e Vermelho Morango (P/M/G/GG) - Orango Kids";
+  produtos_comprar_mais[1][5]["cod_produto"] = "16728";
+
+
+  //1 a 5 - masculino
+  produtos_comprar_mais[2][0] = [];
+  produtos_comprar_mais[2][0]["link"] = "/kit-bebe-3-pecas-body-e-shorts-com-babador-mescla-e-laranja-leao-1-2-3-bebe-fofuxo";
+  produtos_comprar_mais[2][0]["id_produto"] = 7619441;
+  produtos_comprar_mais[2][0]["preco"] = 49.99;
+  produtos_comprar_mais[2][0]["preco_promocao"] = 38.99;
+  produtos_comprar_mais[2][0]["nome_imagem"] = ["16294_p"];
+  produtos_comprar_mais[2][0]["nome_produto"] = "Kit Bebê 3 Peças Body e Shorts com Babador Mescla e Laranja Leão (1/2/3) - Bebê Fofuxo";
+  produtos_comprar_mais[2][0]["cod_produto"] = "16294";
+
+  produtos_comprar_mais[2][1] = [];
+  produtos_comprar_mais[2][1]["link"] = "/kit-bebe-3-pecas-bodies-com-shorts-verde-e-preto-pandinha-1-2-3-bebe-fofuxo";
+  produtos_comprar_mais[2][1]["id_produto"] = 7620504;
+  produtos_comprar_mais[2][1]["preco"] = 59.99;
+  produtos_comprar_mais[2][1]["preco_promocao"] = 44.99;
+  produtos_comprar_mais[2][1]["nome_imagem"] = ["16296_p"];
+  produtos_comprar_mais[2][1]["nome_produto"] = "Kit Bebê 3 Peças Bodies com Shorts Verde e Preto Pandinha (1/2/3) - Bebê Fofuxo";
+  produtos_comprar_mais[2][1]["cod_produto"] = "16296";
+
+  produtos_comprar_mais[2][2] = [];
+  produtos_comprar_mais[2][2]["link"] = "/kit-bebe-5-bodies-masculino-marinho-branco-1-2-3";
+  produtos_comprar_mais[2][2]["id_produto"] = 7721879;
+  produtos_comprar_mais[2][2]["preco"] = 79.99;
+  produtos_comprar_mais[2][2]["preco_promocao"] = 61.99;
+  produtos_comprar_mais[2][2]["nome_imagem"] = ["16761_p"];
+  produtos_comprar_mais[2][2]["nome_produto"] = "Kit Bebê Masculino 5 Bodies Manga Curta Ribana Azul Marinho e Branco (1/2/3) - Sorriso Kids";
+  produtos_comprar_mais[2][2]["cod_produto"] = "16761";
+
+  produtos_comprar_mais[2][3] = [];
+  produtos_comprar_mais[2][3]["link"] = "/kit-bebe-body-shorts-babador-verde-leao-1-a-3";
+  produtos_comprar_mais[2][3]["id_produto"] = 7707914;
+  produtos_comprar_mais[2][3]["preco"] = 49.99;
+  produtos_comprar_mais[2][3]["preco_promocao"] = 37.99;
+  produtos_comprar_mais[2][3]["nome_imagem"] = ["16729_p"];
+  produtos_comprar_mais[2][3]["nome_produto"] = "Kit Bebê Masculino 3 Peças Body e Shorts com Babador Mescla e Verde Leão (1/2/3) - Orango Kids";
+  produtos_comprar_mais[2][3]["cod_produto"] = "16729";
+
+  produtos_comprar_mais[2][4] = [];
+  produtos_comprar_mais[2][4]["link"] = "/kit-bebe-masculino-3-pecas-body-e-calca-com-babador-mescla-e-verde-leaozinho-1-2-3-bebe-fofuxo";
+  produtos_comprar_mais[2][4]["id_produto"] = 7497154;
+  produtos_comprar_mais[2][4]["preco"] = 49.99;
+  produtos_comprar_mais[2][4]["preco_promocao"] = 40.99;
+  produtos_comprar_mais[2][4]["nome_imagem"] = ["15619_p"];
+  produtos_comprar_mais[2][4]["nome_produto"] = "Kit Bebê Masculino 3 Peças Body e Calça com Babador Mescla e Verde Leãozinho (1/2/3) - Bebê Fofuxo";
+  produtos_comprar_mais[2][4]["cod_produto"] = "15619";
+  
+  
+  //1 a 5 - feminino
+  produtos_comprar_mais[3][0] = [];
+  produtos_comprar_mais[3][0]["link"] = "/kit-bebe-3-pecas-body-e-calca-com-babador-bandana-branco-e-amarelo-girafa-1-2-3-bebe-fofuxo";
+  produtos_comprar_mais[3][0]["id_produto"] = 7497147;
+  produtos_comprar_mais[3][0]["preco"] = 49.99;
+  produtos_comprar_mais[3][0]["preco_promocao"] = 40.99;
+  produtos_comprar_mais[3][0]["nome_imagem"] = ["15618_p"];
+  produtos_comprar_mais[3][0]["nome_produto"] = "Kit Bebê 3 Peças Body e Calça com Babador Bandana Branco e Amarelo Girafa (1/2/3) - Bebê Fofuxo";
+  produtos_comprar_mais[3][0]["cod_produto"] = "15618";
+
+  produtos_comprar_mais[3][1] = [];
+  produtos_comprar_mais[3][1]["link"] = "/kit-bebe-feminino-3-pecas-body-e-calca-com-faixa-rosa-e-vermelho-morango-1-2-3-bebe-fofuxo";
+  produtos_comprar_mais[3][1]["id_produto"] = 7508464;
+  produtos_comprar_mais[3][1]["preco"] = 49.99;
+  produtos_comprar_mais[3][1]["preco_promocao"] = 40.99;
+  produtos_comprar_mais[3][1]["nome_imagem"] = ["15643_p"];
+  produtos_comprar_mais[3][1]["nome_produto"] = "Kit Bebê Feminino 3 Peças Body e Calça com Faixa Rosa e Vermelho Morango (1/2/3) - Bebê Fofuxo";
+  produtos_comprar_mais[3][1]["cod_produto"] = "15643";
+
+  produtos_comprar_mais[3][2] = [];
+  produtos_comprar_mais[3][2]["link"] = "/kit-bebe-body-shorts-faixa-vermelho-morango-1-a-3";
+  produtos_comprar_mais[3][2]["id_produto"] = 7707941;
+  produtos_comprar_mais[3][2]["preco"] = 49.99;
+  produtos_comprar_mais[3][2]["preco_promocao"] = 37.99;
+  produtos_comprar_mais[3][2]["nome_imagem"] = ["16730_p"];
+  produtos_comprar_mais[3][2]["nome_produto"] = "Kit Bebê Feminino 3 Peças Body e Shorts com Faixa Rosa e Vermelho Morango (1/2/3) - Orango Kids";
+  produtos_comprar_mais[3][2]["cod_produto"] = "16730";
+
+  produtos_comprar_mais[3][3] = [];
+  produtos_comprar_mais[3][3]["link"] = "/kit-bebe-feminino-3-pecas-bodies-com-shorts-branco-e-rosa-panda-coracoes-1-2-3-bebe-fofuxo";
+  produtos_comprar_mais[3][3]["id_produto"] = 7638367;
+  produtos_comprar_mais[3][3]["preco"] = 59.99;
+  produtos_comprar_mais[3][3]["preco_promocao"] = 44.99;
+  produtos_comprar_mais[3][3]["nome_imagem"] = ["16560_p"];
+  produtos_comprar_mais[3][3]["nome_produto"] = "Kit Bebê Feminino 3 Peças Bodies com Shorts Branco e Rosa Panda Corações (1/2/3) - Bebê Fofuxo";
+  produtos_comprar_mais[3][3]["cod_produto"] = "16560";
+
+  produtos_comprar_mais[3][4] = [];
+  produtos_comprar_mais[3][4]["link"] = "/kit-bebe-5-bodies-curto-branco-pink-1-2-3-sorriso-kids";
+  produtos_comprar_mais[3][4]["id_produto"] = 7729584;
+  produtos_comprar_mais[3][4]["preco"] = 79.99;
+  produtos_comprar_mais[3][4]["preco_promocao"] = 62.99;
+  produtos_comprar_mais[3][4]["nome_imagem"] = ["16783_p"];
+  produtos_comprar_mais[3][4]["nome_produto"] = "Kit Bebê Feminino 5 Bodies Manga Curta Ribana Branco e Pink (1/2/3) - Sorriso Kids";
+  produtos_comprar_mais[3][4]["cod_produto"] = "16783";
+  
+  //3 a 12 meses - unissex
+  produtos_comprar_mais[4][0] = [];
+  produtos_comprar_mais[4][0]["link"] = "/kit-bebe-3-pecas-bodies-shorts-branco-amarelo-girafinha-p-m-g-gg-bebe-fofuxo";
+  produtos_comprar_mais[4][0]["id_produto"] = 7646139;
+  produtos_comprar_mais[4][0]["preco"] = 59.99;
+  produtos_comprar_mais[4][0]["preco_promocao"] = 40.99;
+  produtos_comprar_mais[4][0]["nome_imagem"] = ["16578_p"];
+  produtos_comprar_mais[4][0]["nome_produto"] = "Kit Bebê 3 Peças Bodies com Shorts Branco e Amarelo Girafinha (P/M/G/GG) - Bebê Fofuxo";
+  produtos_comprar_mais[4][0]["cod_produto"] = "16578";
+
+  produtos_comprar_mais[4][1] = [];
+  produtos_comprar_mais[4][1]["link"] = "/kit-bebe-3-bodies-branco-e-amarelo-rn-p-m-g-gg-sorriso-kids";
+  produtos_comprar_mais[4][1]["id_produto"] = 7056516;
+  produtos_comprar_mais[4][1]["preco"] = 59.99;
+  produtos_comprar_mais[4][1]["preco_promocao"] = 45.99;
+  produtos_comprar_mais[4][1]["nome_imagem"] = ["14264_p"];
+  produtos_comprar_mais[4][1]["nome_produto"] = "Kit Bebê 3 Bodies Manga Curta Ribana Branco e Amarelo (RN/P/M/G/GG) - Sorriso Kids";
+  produtos_comprar_mais[4][1]["cod_produto"] = "14264";
+
+  produtos_comprar_mais[4][2] = [];
+  produtos_comprar_mais[4][2]["link"] = "/kit-bebe-5-bodies-manga-curta-ribana-e-canelado-grafite-e-preto-rn-p-m-g-gg-bebe-fofuxo";
+  produtos_comprar_mais[4][2]["id_produto"] = 7651866;
+  produtos_comprar_mais[4][2]["preco"] = 79.99;
+  produtos_comprar_mais[4][2]["preco_promocao"] = 74.99;
+  produtos_comprar_mais[4][2]["nome_imagem"] = ["16583_p"];
+  produtos_comprar_mais[4][2]["nome_produto"] = "Kit Bebê 5 Bodies Manga Curta Ribana e Canelado Grafite e Preto (RN/P/M/G/GG) - Bebê Fofuxo";
+  produtos_comprar_mais[4][2]["cod_produto"] = "16583";
+
+  produtos_comprar_mais[4][3] = [];
+  produtos_comprar_mais[4][3]["link"] = "/kit-bebe-5-bodies-amarelo-marinho-rn-a-gg";
+  produtos_comprar_mais[4][3]["id_produto"] = 7720414;
+  produtos_comprar_mais[4][3]["preco"] = 79.99;
+  produtos_comprar_mais[4][3]["preco_promocao"] = 61.99;
+  produtos_comprar_mais[4][3]["nome_imagem"] = ["16760_p"];
+  produtos_comprar_mais[4][3]["nome_produto"] = "Kit Bebê 5 Bodies Manga Curta Ribana Amarelo e Vermelho (RN/P/M/G/GG) - Sorriso Kids";
+  produtos_comprar_mais[4][3]["cod_produto"] = "16760";
+
+  produtos_comprar_mais[4][4] = [];
+  produtos_comprar_mais[4][4]["link"] = "/kit-bebe-3-bodies-suedine-creme-e-branco-bear-rn-p-m-g-gg-kappes";
+  produtos_comprar_mais[4][4]["id_produto"] = 7514975;
+  produtos_comprar_mais[4][4]["preco"] = 69.99;
+  produtos_comprar_mais[4][4]["preco_promocao"] = 49.99;
+  produtos_comprar_mais[4][4]["nome_imagem"] = ["15648_p"];
+  produtos_comprar_mais[4][4]["nome_produto"] = "Kit Bebê 3 Bodies Suedine Creme e Branco Bear (RN/P/M/G/GG) - Kappes";
+  produtos_comprar_mais[4][4]["cod_produto"] = "15648";
+
+  produtos_comprar_mais[4][5] = [];
+  produtos_comprar_mais[4][5]["link"] = "/kit-bebe-5-bodies-branco-amarelo-rn-p-m-g-gg-sorriso-kids";
+  produtos_comprar_mais[4][5]["id_produto"] = 7147552;
+  produtos_comprar_mais[4][5]["preco"] = 79.99;
+  produtos_comprar_mais[4][5]["preco_promocao"] = 61.99;
+  produtos_comprar_mais[4][5]["nome_imagem"] = ["14619_p"];
+  produtos_comprar_mais[4][5]["nome_produto"] = "Kit Bebê 5 Bodies Manga Curta Ribana Branco e Amarelo (RN/P/M/G/GG) - Sorriso Kids";
+  produtos_comprar_mais[4][5]["cod_produto"] = "14619";
+
+
+  //produtos a serem mostrados no comprar mais - provisório - FIM
+  
+  var frases_comprar_mais = [];
+  frases_comprar_mais[0] = ["Você já conhece nossos Kit Bodies? Deixe seu bebê lindo com eles!","Porque você não leva um Kit Body? Vai ficar lindo no seu bebê!","Sabe qual a melhor parte do Kit Body? As peças combinam perfeitamente! E o preço vale muito a pena!"];
+  frases_comprar_mais[1] = ["Você já conhece nossos Kit Bodies? Deixe sua bebê linda com eles!","Porque você não leva um Kit Body? Vai ficar lindo na sua bebê!","Sabe qual a melhor parte do Kit Body? As peças combinam perfeitamente! E o preço vale muito a pena!"];
+  frases_comprar_mais[2] = ["Você já conhece nossos Kit Bodies? Deixe seu filho lindo com eles!","Porque você não leva um Kit Body? Vai ficar lindo no seu filho!","Sabe qual a melhor parte do Kit Body? As peças combinam perfeitamente! E o preço vale muito a pena!"];
+  frases_comprar_mais[3] = ["Você já conhece nossos Kit Bodies? Deixe sua filha linda com eles!","Porque você não leva um Kit Body? Vai ficar lindo na sua filha!","Sabe qual a melhor parte do Kit Body? As peças combinam perfeitamente! E o preço vale muito a pena!"];
+  
+  frases_comprar_mais[4] = ["Você já conhece nossos Kit Bodies? Deixe seu(sua) bebê lindo(a) com eles!","Porque você não leva um Kit Body? Vai ficar lindo em seu(sua) bebê!","Sabe qual a melhor parte do Kit Body? As peças combinam perfeitamente! E o preço vale muito a pena!"];
+  frases_comprar_mais[5] = ["Você já conhece nossos Kit Bodies? Deixe seu(sua) filho(a) arrasando com eles!","Porque você não leva um Kit Body? Vai ficar lindo em seu(sua) filho(a)!","Sabe qual a melhor parte do Kit Body? As peças combinam perfeitamente! E o preço vale muito a pena!"];
+  
+  var id_frase = Math.round(Math.random()*100)%3;
+
+  if(mostrar_comprar_mais)
+  {
+    carrinho_faixa_etaria = window.localStorage.carrinho_faixa_etaria;
+    carrinho_genero = window.localStorage.carrinho_genero;
+    montar_comprar_mais();
+    
+    var txt_fe = "";
+    if(carrinho_faixa_etaria == 0)
+    {
+      txt_fe = "3 a 12 meses";
+    }
+    else if(carrinho_faixa_etaria == 1)
+    {
+      txt_fe = "1 a 3 anos";
+    }
+    
+    var txt_genero = "";
+    if(carrinho_genero == 0)
+    {
+      txt_genero = "unissex";
+    }
+    else if(carrinho_genero == 1)
+    {
+      txt_genero = "masculino";
+    }
+    else if(carrinho_genero == 2)
+    {
+      txt_genero = "feminino";
+    }
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&frase_id=" + id_frase + "&tema_apresentado=" + "kit_body" + "&genero_carrinho=" + txt_genero + "&frase_id=" + id_frase + "&faixa_etaria_carrinho=" + txt_fe,false,fnprocessRegistroAtividade);
+    
+    if(ja_apareceu)
+    {
+      fn_mostrar_comprar_mais_sem_animacao();
+    }
+    else
+    {
+      fn_mostrar_comprar_mais();
+    }
+    
+  }
+  else
+  {
+	window.location.href = "https://www.bebefofuxo.com.br";
+  }
+
+  
+
+  function montar_comprar_mais()
+  {
+    var div_comprar_mais = document.createElement("div");
+    div_comprar_mais.id = "id_comprar_mais";
+    var div_ref = document.getElementById("idFCLeftContentRight");
+    document.body.insertBefore(div_comprar_mais,div_ref);
+
+    $("#id_comprar_mais").css('top', window.innerHeight);
+
+    var altura_conteudo = window.innerHeight-100-70;
+
+    var content_comprar_mais = "<div class='titulo_cm'><span>ANTES DE COMPLETAR SEU PEDIDO</span></div>";
+    content_comprar_mais += "<div class='pergunta_cm'><span>Que tal uma dica?</span></div>";
+    content_comprar_mais += "<div class='linha_cm'></div>";
+    
+
+    var gen_fe = 0;
+    var array_produtos;
+    if(carrinho_faixa_etaria == 0)
+    {
+      if(carrinho_genero == 0)
+      {
+        array_produtos = produtos_comprar_mais[4];
+        gen_fe=4;
+        link_ver_mais = "/categorias/kit-body-para-bebe?fil=319944+320217+320218&avancada=true&tfil=3+a+12+meses+Recem+nascido+Unissex";
+        
+      }
+      else if(carrinho_genero == 1)
+      {
+        array_produtos = produtos_comprar_mais[0];
+        gen_fe = 0;
+        link_ver_mais = "/categorias/kit-body-para-bebe?fil=319942+320217+320218&avancada=true&tfil=3+a+12+meses+Recem+nascido+Masculino";
+      }
+      else if(carrinho_genero == 2)
+      {
+        array_produtos = produtos_comprar_mais[1];
+        gen_fe = 1;
+        link_ver_mais = "/categorias/kit-body-para-bebe?fil=319943+320217+320218&avancada=true&tfil=3+a+12+meses+Recem+nascido+Feminino";
+      }
+    }
+    else if(carrinho_faixa_etaria == 1)
+    {
+      if(carrinho_genero == 0)
+      {
+        array_produtos = produtos_comprar_mais[2].concat(produtos_comprar_mais[3]);
+        array_produtos = shuffleArray(array_produtos);
+        gen_fe = 5;
+        link_ver_mais = "/categorias/body-para-bebe?fil=320219&avancada=true&tfil=1+a+3+anos";
+        
+      }
+      else if(carrinho_genero == 1)
+      {
+        array_produtos = produtos_comprar_mais[2];
+        gen_fe = 2;
+        link_ver_mais = "/categorias/body-para-bebe?fil=320219+319942&avancada=true&tfil=1+a+3+anos+Masculino";
+      }
+      else if(carrinho_genero == 2)
+      {
+        array_produtos = produtos_comprar_mais[3];
+        gen_fe = 3;
+        link_ver_mais = "/categorias/body-para-bebe?fil=320219+319943&avancada=true&tfil=1+a+3+anos+Feminino";
+      }
+    }
+    
+    content_comprar_mais += "<div class='conteudo_cm' style='height:"+altura_conteudo+"px'><div class='dica_cm'><span>"+frases_comprar_mais[gen_fe][id_frase]+"</span></div>";
+
+    content_comprar_mais += "<div id='TabListaProdutos'>";
+    
+    for(var i = 0; i < array_produtos.length; i++)
+    {
+		content_comprar_mais += montar_produto(array_produtos[i]["link"],array_produtos[i]["id_produto"],array_produtos[i]["preco"],array_produtos[i]["preco_promocao"],array_produtos[i]["nome_imagem"][0],array_produtos[i]["nome_produto"],array_produtos[i]["cod_produto"]);
+    }
+
+
+    content_comprar_mais += "</div>";
+    
+    content_comprar_mais += "<div class='btn_vermais_cm'>Ver mais Kits Bodies</div>";
+    
+    content_comprar_mais += "</div>";
+    
+    content_comprar_mais += "<div class='btn_cm'><span class='obrigado_cm'>Não, obrigado</span><br><span>IR PARA O PAGAMENTO</span></div>";
+
+    $("#id_comprar_mais").html(content_comprar_mais);
+
+  }
+  
+  $(".btn_cm").click(function(){
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_nao_obrigado=" + "1",false,fnprocessRegistroAtividade_NaoObrigado);
+    
+    
+  });
+  
+  $(".btn_vermais_cm").click(function(){
+
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_mostrar_mais_produto=" + "1",false,fnprocessRegistroAtividade_VerMais);
+
+
+  });
+
+  $(".link-prod").click(function(e){
+	
+    e.preventDefault();
+    var link = this.href;
+    var codigo_modelo = $(this).data("id");
+    codigo_modelo = codigo_modelo.replace(/"/g, '');
+    
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&clicou_produto=" + "1" + "&cod_modelo=" + codigo_modelo,false,fnprocessRegistroAtividade_CliqueProduto,link);
+
+
+  });
+  
+  var timeout;
+  $(".conteudo_cm").scroll(function() {
+
+    if($(".conteudo_cm").scrollTop() > scroll_atual)
+    {
+      scroll_atual = parseInt($(".conteudo_cm").scrollTop());
+
+      clearTimeout(timeout);
+      timeout = setTimeout(function(s) {
+
+        AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&scroll_y=" + scroll_atual,false,fnprocessRegistroAtividade_Scroll);
+
+      }, 2000);
+    }
+    
+    
+  });
+
+
+  function montar_produto(link,id_produto,preco,preco_promocao,nome_imagem,nome_produto,cod_produto)
+  {
+    var desconto = Math.round((1-(preco_promocao/preco))*100);
+    var preco_virgula = preco.toFixed(2).replace(".", ",");
+    var preco_promocao_virgula = preco_promocao.toFixed(2).replace(".", ",");
+
+    var preco_promocao_parcela = preco_promocao/6;
+    preco_promocao_parcela = preco_promocao_parcela.toFixed(2);
+    var preco_promocao_parcela_virgula = preco_promocao_parcela.replace(".", ",");
+
+    //var link = "https://www.bebefofuxo.com.br" + link;
+
+    var cod_prod = '"'+cod_produto+'"';
+    
+    var content_produto = "<div class='ProdDestLista'>";
+    content_produto += "<a class='link-prod' href='"+link+"' data-id='"+cod_prod+"'>";
+    content_produto += "<div id='DivProd"+id_produto+"' data-sale='true' data-release='true'><div class='badgesProd'><div class='badgeProm' title='Oferta'>-"+desconto+"%</div></div></div>";
+    content_produto += "<div class='ImgProdDesk'><div id='DivImagemProdDouble"+id_produto+"' class='ProdCapaDiv'><img src='../lojas/00020368/prod/"+nome_imagem+".jpg' alt='"+nome_produto+"' loading='lazy'></div></div>";
+    content_produto += "<div class='ImgProdMobi'><div class='ProdCapaDiv'><img src='../lojas/00020368/prod/"+nome_imagem+".jpg' alt='"+nome_produto+"' loading='lazy'></div></div>";
+    content_produto += "<div class='ProdListOrder'>";
+    content_produto += "<div class='EstNomeProdCapa'>"+nome_produto+"</div>";
+    content_produto += "<div id='PrecoProd"+id_produto+"' class='PrecoProdCapa'><span class='PrecoDeHome'>de <strike>R$&nbsp;"+preco_virgula+"</strike>&nbsp;&nbsp;</span><span class='PrecoPorHome'>por R$<b>&nbsp;"+preco_promocao_virgula+"</b></span><div class='EstParcHome'>6X de R$&nbsp;"+preco_promocao_parcela_virgula+" sem juros</div></div>";
+    content_produto += "</div>";
+    content_produto += "<div class='EstBotVerMais'>Eu Quero</div></a>";
+    content_produto += "</div>";
+
+
+    return content_produto;
+  }
+
+  function fn_mostrar_comprar_mais()
+  {
+    window.localStorage.setItem("ja_apareceu_comprar_mais", 1);
+    
+    $("#id_comprar_mais").animate({
+      top: 0
+    }, 500);
+  }
+  
+  function fn_mostrar_comprar_mais_sem_animacao()
+  {
+    $("#id_comprar_mais").css("top",0);
+  }
+  
+  function fnprocessRegistroAtividade_Scroll()
+  {
+    //console.log("Registrado scroll com sucesso");
+  }
+  
+  function fnprocessRegistroAtividade()
+  {
+    //console.log("Registrado entrada na página com sucesso");
+  }
+  
+  function fnprocessRegistroAtividade_NaoObrigado()
+  {
+    //console.log("Registrado Não Obrigado com sucesso");
+    
+    window.localStorage.removeItem("carrinho_genero");
+    window.localStorage.removeItem("carrinho_faixa_etaria");
+    window.localStorage.removeItem("mostrar_comprar_mais");
+    //window.localStorage.removeItem("ja_apareceu_comprar_mais");
+    //window.localStorage.removeItem("sessao_id");
+    
+    
+    window.location.href = "/checkout.asp?idloja=20368";
+  }
+  
+  
+  function fnprocessRegistroAtividade_VerMais()
+  {
+    //console.log("Registrado Ver Mais com sucesso");
+    
+    window.location.href = link_ver_mais;
+  }
+  
+  function fnprocessRegistroAtividade_CliqueProduto()
+  {
+    //console.log("Registrado Clique Produto com sucesso");
+    
+	window.location.href = arguments[1];
+  }
+  
+  function shuffleArray(arr) {
+        // Loop em todos os elementos
+    for (let i = arr.length - 1; i > 0; i--) {
+            // Escolhendo elemento aleatório
+        const j = Math.floor(Math.random() * (i + 1));
+        // Reposicionando elemento
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    // Retornando array com aleatoriedade
+    return arr;
+}
+  
+</script>
