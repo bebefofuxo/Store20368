@@ -1,0 +1,549 @@
+/* CSS Grid v1 - 08.07.2015 */
+
+/*MagicZoom*/
+.MagicThumb-caption{padding: 2px 8px!important;}
+
+/* classes geradas dinamicamente:being */
+.FCCorGrid{}
+.FCAdicional1Grid{}
+.FCAdicional2Grid{}
+.FCAdicional3Grid{}
+.FCAdicionalD1Grid{}
+.FCAdicionalD2Grid{}
+.FCAdicionalD3Grid{}
+/* classes geradas dinamicamente:end */
+
+/* Detalhe CSS */
+.ProductDet #idFCContent {padding: 20px 0 0 0;}
+.det-product-img-name-container-full{width:40%;}
+.det-product-img-name-container-one{width:100%;}
+#fc-grid-api-controls {border: 1px solid #e4e4e4; background:#fff;}
+.fc-grid-api-controls-prev {display:none;}
+.fc-grid-api-controls-next {display:none;}
+.mz-thumb-selected img {-webkit-filter: brightness(80%) !important; filter: brightness(80%) !important;}
+.mz-thumb img {border: 1px solid #ededed !important; box-shadow: none !important;}
+.FCGridMain #idDivGridImg {max-width:484px; min-height: 430px; max-height: 484px;  padding:0px; float:left;}
+.MagicZoom, .mz-figure {z-index: 0 !important;}
+img.ZoomIMG2 {max-width: 90%;}
+a[data-zoom-id] img, .mz-thumb img{padding-bottom:0!important}
+#produto2 {display: flex; display: -webkit-flex; display: -ms-flexbox;}
+.FCGridMain {width:100%; max-width:1306px; margin:0 auto; position:relative;}
+.FCGridMain .FCDescritorGrid {min-width: 26px; min-height: 26px; display: block; text-align: center; border: 1px solid #e4e4e4; border-radius: 5px; -webkit-border-radius: 5px; padding: 5px; margin: 0; line-height: 26px;}
+.FCContentGrid {width:60%;}
+.FCPathProdGrid {font-family: 'Nunito', Arial, sans-serif; font-size: 14px; display: flex; display: -webkit-flex; display: -ms-flexbox; padding-bottom:15px; width:100%;}
+.FCPathProdGrid a {font-family: 'Nunito', Arial, sans-serif; font-size: 14px; text-decoration:none; color:#685f52}
+.FCPathProdGrid a:visited {color:#685f52; }
+.FCPathProdGrid a:active  {color:#685f52; }
+.FCPathProdGrid a:hover   {color:#008ae1; }
+.FCPathProdGrid .EstPathCat a {text-decoration:none;}
+.FCPathProdGrid .EstPathCat .pad {background: none; padding: 0 5px;}
+.FCPathProdGrid .EstPathCat .pad:after {content:'>'; font-size:12px;}
+.FCNameProductGrid {font-size:30px; line-height:30px; margin:0 0 5px 0; color:#685f52;}
+.FCPriceGrid {width:100%;min-height:56px;height:auto;margin-top:10px;}
+.EstParc {font-size:16px; color:#da187f; font-weight: 400; margin-top:2px;}
+.EstParc b {font-weight: 700;}
+.FCGeralGrid {padding-top:20px; padding-bottom:0px;min-height:134px;}
+.FCBoxGrid {text-align: left; font-size: 15px; margin-bottom: 8px; z-index: 10; display: flex; display: -webkit-flex; display: -ms-flexbox; -webkit-flex-wrap:wrap; flex-wrap:wrap;}
+.FCDescritorGridDisabled .FCDescritorGrid {background:#f2f2f2; color:#686868; cursor:not-allowed;}
+.FCSelectedGrid {border: 2px solid #3f91fc; border-radius: 7px; -webkit-border-radius: 7px;}
+.FCSelectedGrid .FCCheckedGrid {display:none;} /* retirado a pedido do cliente */
+li.FCDescritorGridActivated .FCSelectedGrid .FCGridMain .FCDescritorGrid {border:0px;}
+.FCStepGrid {min-height:20px; display: block; text-align: left; border: 0; padding: 0; }
+.FCStepGridNumber {display:none !important; width: 24px; height: 22px; display: inline-block; padding-top:2px; border-radius:0; background:#dc087f; color:#fff; text-align:center;}
+.FCOptionSelected {display: inline-block; font-weight:400; color:#685f52;}
+.FCStepGridTitle  {display: inline-block; padding:0; margin:0 6px 0 0;}
+.FCStepGridTitle .FCTitQtyInc {margin-left:5px;}
+.FCTitQtyInc {position: relative; height: 28px; padding-top: 10px;}
+.FCSoldOutLabel span {background:#eee; color:#dfdfdf;}
+.FCSoldOutLabel .FCFlagEsgotadoGrid {width: 20px; height: 18px; position: absolute; margin: 0; top: -4px; right: -7px; background: #e17600; font-size: 13px; line-height:16px; font-weight: 400; color: #fff;  padding: 2px 0 0 0; border: none; border-radius: 10px; -webkit-border-radius: 10px; -ms-border-radius: 10px; text-align: center !important; z-index: 1;}
+.FCDescritorGridActivated  {cursor: pointer;}
+.FCCheckedGrid {width:16px; height:16px; position:absolute; background:url('../../images/checkedgrid.svg') no-repeat; z-index:1; top:0px; right:-4px; display:none;}
+.FCGridBtnZoom {position: absolute; bottom:0; height:16px; } /* Mostrar o Botao Ampliar */
+.FCBtnEsgotadoGrid, .FCBtnConsultenos, .FCBtnComprarGrid, .FCBtnSelecioneGrid {max-height:46px; height:auto; cursor:pointer; text-align:center;}
+
+/* Infos abaixo do Titulo do Produto */
+.FCSubNameProd {display: flex; display: -webkit-flex; display: -ms-flexbox; justify-content:space-between; -webkit-justify-content:space-between; -ms-justify-content:space-between;}
+.FCCodProdGrid {display:none; font-size:12px; margin: 0; width:100%;} /* retirado a pedido do cliente */
+.FCFreteGratisProd img {height:16px;}
+.FCFreteGratisProd {width: 100%; margin: 15px 0px 15px 0px; float:left; font-size:15px; font-weight:400; color: #685f52;}
+.FCFreteGratisProd b {font-weight:700;}
+
+.FCPreVendaProd img {height:16px;}
+.FCPreVendaProd {display: none;}
+
+.FCEstampaSortidaProd img {height:16px;}
+.FCEstampaSortidaProd {display: none;}
+
+
+/* Botao Guia de Medidas */
+.FCGuiaMedidas {width: 100%; margin: 20px 0 0 0;}
+.FCGuiaMedidas img {width: 180px;}
+.FCGuiaMedidas .content_guia_plus_others {width:384px;}
+.FCGuiaMedidas .FCBotGuia {background: #f5f5f5; color: #685f52; width:384px; padding:6px 0; border-radius: 5px; -webkit-border-radius: 5px; -ms-border-radius: 5px; border:none; text-align: center; font-size: 13px; text-transform: uppercase; letter-spacing: 2px;  text-decoration:none; cursor:pointer; }
+.FCGuiaMedidas .FCBotGuia:hover {background: #008ae1; color: #f5f5f5;}
+
+/* Botao Ver Mais */
+.FCVerMais {width: 100%; margin: 20px 0 0 0;}
+.FCVerMais .FCBotVerMais {background: #e2f2ff; color: #008ae1; width:384px; padding:6px 0; border-radius: 5px; -webkit-border-radius: 5px; -ms-border-radius: 5px; border:none; text-align: center; font-size: 13px; text-transform: uppercase; letter-spacing: 2px;  text-decoration:none; cursor:pointer; }
+.FCVerMais .FCBotVerMais:hover {background: #008ae1; color: #f5f5f5;}
+
+/* Texto Duvidas abaixo do Botao Comprar */
+.FCDuvidasProd {width: 100%; margin: 15px 0; float:left; font-size:13px; font-weight:400; color: #685f52;}
+.FCDuvidasProd br {display:none;}
+.FCDuvidasProd b {font-weight:700;}
+
+/* Calculo do Frete */
+#idShippingValues table {width:70%;}
+#idDivCEPBg {padding: 12px 0; width:100%; float:left; margin-top:10px; border-top:1px solid #e4e4e4;}
+#idDivCEPFC {display: flex; display: -webkit-flex; display: -ms-flexbox; -webkit-flex-wrap:wrap; flex-wrap:wrap;}
+#idDivTitCEP {cursor:pointer;width:98%; font-size:14px; color:#685f52;}
+#idDivTitCEP a {color:#685f52; text-decoration:none;}
+#idDivTitCEP a:hover {text-decoration:underline;}
+#idDivTitCEP img {margin-right:10px;}
+#idDivContentCEP {width:98%; margin-top:6px;}
+#idDivCEPCalc {display: flex; display: -webkit-flex; display: -ms-flexbox; -webkit-flex-wrap:wrap; flex-wrap:wrap; height: 24px; margin-top: 3px;}
+#idDivCEPCalc img {height: 22px; margin: 0 0 0 8px; cursor:pointer;}
+#idDivCalcule {font-size:16px; font-weight:400; margin-top:8px;}
+.FieldCEP label {font-size:12px;}
+.FieldCEPQty {display:none;}
+.FieldCEPNum input {font-size:12px !important;}
+.freightResult {font-size:14px; color:#dc087f;}
+[id*='idShippingValues'] {width:100%;}
+[id*='idQtdZip'] {width:25px; height: 22px; padding:0 0 0 8px; font-size:12px; border-radius: 3px; -webkit-border-radius: 3px; border:1px solid #e4e4e4; -webkit-border:1px solid #e4e4e4; -webkit-appearance:none; }
+[id*='idZip'] {width:150px; height: 22px; padding:0 0 0 8px; font-size:12px; border-radius: 3px; -webkit-border-radius: 3px; border:1px solid #e4e4e4; -webkit-border:1px solid #e4e4e4; -webkit-appearance:none; }
+.ZipOption {margin-top:10px; display: -webkit-flex; -webkit-flex-wrap:wrap; flex-wrap:wrap;}
+.ZipName   {font-size: 13px; font-family: 'Nunito', Arial, sans-serif; font-weight: 400; color:#685f52;}
+.ZipValue  {font-size: 13px; font-family: 'Nunito', Arial, sans-serif; font-weight: 400; color:#685f52; margin-left:10px;}
+.ZipObsVal {font-family: 'Nunito', Arial, sans-serif; font-size: 12px; font-weight: 300; color:#685f52;}
+
+/* Detalhe do Produto */
+.TitulosProd {color:#685f52; font-size: 22px; font-weight:700; text-decoration: none; width: 100%; margin-top:40px;}
+#produto3 {width:100%; display: -ms-flexbox; display: -webkit-flex; display: flex; justify-content:flex-start; -webkit-justify-content:flex-start; -ms-justify-content:flex-start; flex-wrap:wrap; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap;}
+.produto3_1 {order:2; width:100%;}
+.produto3_2 {order:1; width:100%;}
+.produto3_3 {order:3; width:100%;}
+.produto3_4 {order:4; width:100%;}
+.EstDescrProd {margin-top:15px;width:100%; font-weight:400; color:#685f52;}
+.EstDescrLinha {background-color:#e4e4e4; height:1px; width:100%;}
+
+/* Selo de Promocao Detalhe do Produto */
+#idDivBadge {position: absolute; top: 20px; right: 20px; height: 40px; z-index:1;} /* Retirado selos a pedido do cliente - 13/02/2019 */
+.badgesProdDet {background-color: #00a777; color: #fff; border: none; border-radius: 20px; -ms-border-radius: 20px; -webkit-border-radius: 20px; font-size: 12px; width: 40px; height: 28px; padding: 12px 0 0 0; text-align:center;font-weight: 700;}
+
+/* Botao Lista de Desejos - NAO HABILITADO */
+#FCBtnDesejosDet {display:none; position: absolute; top: 40px; left: 442px; width:36px; height: 26px; padding:10px 0 0 0; text-align:center; border: none; border-radius: 18px; -ms-border-radius: 18px; -webkit-border-radius: 18px; background:#f0f0f0; z-index:1;}
+#FCBtnDesejosDet img {height:18px;}
+
+/* Thumbs na Vertical */
+#idDivGridImg{display: flex; display: -webkit-flex; display: -ms-flexbox; -webkit-flex-direction:column;flex-direction:column;position:relative;}
+.fc-DivGridImg-Big {order:2;position:absolute;left:82px;}
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {width:82px;height:82px;}
+
+/* fotoProdHover */
+.hoverConteiner{background:#fff; border-radius: 5px; -ms-border-radius: 5px; -webkit-border-radius: 5px; min-width: 120px; min-height: 120px; text-align: center; position:absolute; top: -145px; left:-20px;right:0;margin-left:auto; margin-right:auto; vertical-align: middle; line-height: 40px; box-shadow: 0 0 7px #999;z-index: 1}
+.hoverConteiner img {max-width: 100%; max-height: 100%; height: 120px; z-index: 1; position: relative; margin-top:5px;}
+.hoverConteiner span{color:#dc087f;display: block; background-color: #fff; font-family: 'Nunito', Arial, sans-serif; font-weight: 400; display:none !important;} /* Nome da cor abaixo da foto  */
+.hoverConteiner:before{content: ""; width: 15px; height: 15px; position: absolute; bottom: -9px; left: 30px; border-left:1px solid #e2e2e2; border-bottom:1px solid #e2e2e2; transform: rotate(-45deg); background: #fff; z-index: -1;}
+/*hide desktop*/
+@media only screen and (min-width: 1025px) {.hoverConteiner{display: none;}}
+
+/* Video Detalhe */
+#videodet {position:relative; bottom:-30px;}
+#videoplayfull {display:none;}
+.videobot {width:66px; cursor:pointer;}
+.videoclose {cursor:pointer; text-align: right;}
+.videoclose img {height:22px;}
+.videoplay {width: 480px; height: auto; padding: 70px 10px; position: absolute; top: -440px; left: -90px; background: #fff; z-index: 3;}
+.videoWrapper {position: relative; padding-bottom: 56.25%; /* 16:9 */ padding-top: 25px; height: 0;}
+.videoWrapper iframe {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+
+/* icones redes sociais */
+#IconesRedesSociais1 {display: flex; display: -webkit-flex; display: -ms-flexbox; position: absolute; top: 440px; left: 295px;}
+#IconesRedesSociais1 img {height:24px; margin:0 0 0 5px; vertical-align:middle;}
+#IconesRedesSociais2 {display:none;}
+#IconesRedesSociais2 img {height:24px; margin:0 0 0 5px; vertical-align:middle;}
+.TxtRedesSociais {font-size:13px; font-weight:400; color:#685f52; padding:3px 0 0 0;}
+
+/* Lightbox Aviso */ 
+#fade1, #fade2, #fade3, #fade4 {display: none; position: fixed; top: 0%; left: 0%; width: 100%; height: 100%; background-color: black; z-index: 1001; -moz-opacity: 0.8; opacity: .80; filter: alpha(opacity=80);}
+#light1 {display: none; position: fixed; top: 315px; left: 36%; padding: 20px 30px 20px 20px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; max-width: 400px; background: #fff; z-index: 1002; overflow: visible; font-size:14px;}
+#light1 h4 {font-size:18px; font-weight:700; color:#0088e4; margin:0 0 15px 0;}
+#light2 {display: none; position: fixed; top: 100px; left: 36%; padding: 20px 30px 20px 20px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; max-width: 400px; background: #fff; z-index: 1002; overflow: visible; font-size:14px;}
+#light2 h4 {font-size:18px; font-weight:700; color:#0088e4; margin:0 0 15px 0;}
+#light3 {display: none; position: absolute; top: 100px; left: 32%; padding: 20px 30px 20px 20px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; max-width: 500px; background: #fff; z-index: 1002; overflow: visible; font-size:14px;}
+#light3 h4 {font-size:18px; font-weight:700; color:#0088e4; margin:0 0 15px 0;}
+#light4 {display: none; position: fixed; top: 315px; left: 36%; padding: 20px 30px 20px 20px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; max-width: 400px; background: #fff; z-index: 1002; overflow: visible; font-size:14px;}
+#light4 h4 {font-size:18px; font-weight:700; color:#0088e4; margin:0 0 15px 0;}
+#boxclose {float: right; cursor: pointer; display: inline-block; position: absolute; right: 5px; top: 5px; z-index: 1002; }
+#boxclose img {width: 20px; height: 20px; margin: 3px 3px 0 0;}
+
+/* Guia de Medidas */
+.GuiaTabela1 {display: flex; display: -webkit-flex; display: -ms-flexbox; width:100%; max-width: 330px; margin: 0 auto; font-size: 12px; padding: 2px; background: #f0f0f0; border-radius:3px; -webkit-border-radius:3px; -ms-border-radius:3px; }
+.GuiaTabelaTit {font-size: 13px; line-height: 13px; font-weight: 700; padding: 5px 0; height: 30px; background: #f0f0f0; display: flex; display: -webkit-flex; display: -ms-flexbox; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center; align-items: center; -webkit-align-items: center; -ms-align-items: center;}
+.GuiaTabelaRow {background:#fff; padding:5px 0; border-bottom:2px solid #f0f0f0;}
+.GuiaTabelaCol1 {width:34%; text-align: center; }
+.GuiaTabelaCol2 {width:20%; text-align: center; border-left:2px solid #f0f0f0;}
+.GuiaTabelaCol3 {width:20%; text-align: center; border-left:2px solid #f0f0f0;}
+.GuiaTabelaCol4 {width:26%; text-align: center; border-left:2px solid #f0f0f0; font-weight:700; }
+.GuiaMedidas2 {width:100%; max-width: 500px; margin: 0 auto;}
+.GuiaMedidas2 img {max-width:100%;}
+
+/* Botao Comprar */
+.FCBoxGridBuy {margin:20px 0 0 0;}
+.FCResumeProduct {margin: 0 0 0 0;}
+.FCBoxGrid .FCBoxGridBuy .FCBoxGridOnly {border:none; padding:0;}
+
+/* Tooltip - Dica para o Usuario */
+.FCTooltipGrid {position: relative; width: 280px; top: -80px; left: 0px; text-align:center; font-size: 13px; padding: 10px 5px; background: #dc087f; color: #fff; margin: 0px auto !important; border: none; border-radius: 5px; -webkit-border-radius: 5px; z-index:1; -webkit-transition:visibility 0s linear 0.3s,opacity 0.5s linear; transition:visibility 0s linear 0.3s,opacity 0.5s linear;}
+.FCTooltipGrid.On {visibility:visible; opacity:1;}
+.FCTooltipGrid.Off {visibility:hidden; opacity:0;}
+
+/* incMult */
+.QTIncMultGrid {min-width:40px; min-height:36px; border: 1px solid #e4e4e4; border-radius: 5px; -webkit-border-radius: 5px; font-size:14px; padding:0 0 0 5px;}
+.FCIncMultGridButton {height: 32px; width: 20px; float: left; margin-left: -20px; position: relative; left: 46px; top: 1px;}
+.FCIncMultGridButton span {width: 20px; height: 18px; display: block; float: left; background: transparent; text-align: center; cursor: pointer; font-size: 11px; color: #6c6c6c; -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+.FCIncMultGridButton span:first-child {border-top-right-radius: 5px;}
+.FCIncMultGridButton span:last-child {border-bottom-right-radius: 5px;}
+.FCIncMultGridButton span:active {background: #dc087f; color: #ffffff;}
+
+/* Mensagem Produto Adicionado */
+#DivShowCartOnPage {background-color:#eaf5f1; border: 1px solid #28c08d; border-radius: 4px; -webkit-border-radius: 4px; color: #00ae7c; width: 268px; height: auto; text-align:center; position: absolute; z-index: 1; top: -80px; left: 0px; box-shadow: 0 3px 8px -2px #187455;}
+.ShowCartTxt1 {font-size:16px; line-height:16px; font-weight:400;color:#28c08d;text-decoration:none;text-align:center; background:url('../../images/ic_sacola_ad.svg') no-repeat left center scroll; background-color:#FFF; border-bottom: 1px solid #28c08d; border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; padding:8px 0;}
+.ShowCartTxt2 {font-size:20px;font-weight:400;text-transform:uppercase;text-align:center; padding:10px 0;}
+.ShowCartTxt2 a {color:#28c08d;text-decoration:none;}
+
+/* Descritores */
+.FCTxtGrid {display:none; width:100%; height:auto; position:relative; margin-bottom:5px;padding:5px 0px; font-size:15px; z-index:1;}
+.FCGridAdicContent span {display:inline-block; padding:0 5px 0 0;}
+.AdicNome {font-weight:400;}
+.AdicItem {font-weight:700;}
+.AdicItemCor {min-width: 16px; min-height: 20px; display: inline-block; margin: 0 5px; border: 1px solid #e4e4e4; border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%;}
+.FCDescritorContent {width:100%; height:auto; list-style: none; padding: 0; margin: 0 0 0 0; display: -webkit-flex; display: flex; display: -ms-flexbox; justify-content: flex-start; -webkit-justify-content:flex-start; flex-wrap:wrap; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap;}
+.FCDescritorContent li {position: relative; margin:10px 10px 0 0;}
+
+/* Descrição HTML */
+.zFDescrProdCont {font-size:16px;}
+.zFDescrProdCont a {color:#dc087f; }
+.zFDescrProdCont  ul.a-custom {list-style-type:circle; list-style-position: inside;}
+.zFDescrProdCont  h2.subtitle-custom {font-size:18px;}
+  
+/* Estilo do Cross Selling */
+#idEstLinhaProdCrossFC {display:none;}
+#idTitProdCrossFC {display:none;}
+#idListProdCrossFC {width:100%; float:left; margin:20px 0;}
+#idListProdCrossFC li {overflow:hidden; width:17.5%; height:260px; float:left; margin:0px 15px; text-align:center;}
+#idListProdCrossFC .FCPrice {color:#da187f; font-weight:700; font-size:14px;}
+.EstNameProdCross {color:#685f52; font-size:14px; font-weight:400;}
+.EstNameProdCross a {color:#685f52; text-decoration:none;}
+.EstNameProdCross a:hover {color:#dc087f;}
+.EstFotoProdCross {max-width:160px;}
+.EstDescrProdCross, .EstCatProdCross, .EstRefProdCross {display:none;}
+
+/*  Estilo Opinioes de Produtos */
+.ProductStyleReviewOffBoxFC {display:flex;}
+.EstTabOpinioes {font-size:14px;word-break:break-word;}
+.EstOpiniaoLinha {color:#e2e2e2;height:1px;width:100%;max-width:1306px;}
+#idTabListaOpFC {font-weight:400;width:100%;max-width:1306px;}
+#idTabListaOpFC hr {border:none; margin-top:0; height:1px;}
+#idTabListaOpFC hr.EstOpiniaoLinha {border-top:1px solid #e2e2e2; margin-top:15px; margin-bottom:7px; height:1px;}
+#idTabListaOpFC #idCommentsClickFC {height:16px; margin-bottom:10px;}
+#idTabListaOpFC .EstOpiniaoNome {font-size:16px; line-height:18px; text-transform:capitalize;}
+#idTabListaOpFC .EstOpiniaoLocal {text-transform:capitalize;}
+
+/*avaliacoes*/
+.ProductStyleReviewOnBoxFC {display:flex;}
+.ProductStyleReviewQtyOnFC {margin-left:5px;margin-top:-2px;color:gray;}
+
+@media only screen and (max-width: 1280px) {
+/* grade detalhe */
+.det-product-img-name-container-full {width: 42%;}
+.FCContentGrid {width: 58%;}
+.FCGridMain #idDivGridImg {min-height: 410px;} 
+.FCFCBoxGridIncMult {width: 21%;}
+.FCBoxGridBuy {width: 79%;}
+/* lightbox frete + guia */
+#light1 {top: 290px;}
+}
+
+@media only screen and (max-width: 1279px) {
+/* grade detalhe */	
+.det-product-img-name-container-full {width:46%;}
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {width: 77px; height: 77px;}
+.FCContentGrid {width: 51%;}
+.FCFCBoxGridIncMult {width: 29%;}
+.FCBoxGridBuy {width: 71%;}
+/* selos */
+#FCBtnDesejosDet {left:415px;}
+/* video */
+.videoplay {width: 454px; top: -410px;}
+/* icones redes sociais */
+#IconesRedesSociais1 {display: none;}
+#IconesRedesSociais2 {display: flex; display: -webkit-flex; display: -ms-flexbox; justify-content:flex-start; -webkit-justify-content:flex-start; -ms-justify-content:flex-start; margin:20px 0 10px 0;}
+/* sugerimos */
+#idListProdCrossFC li {width: 30%;}
+/* lightbox frete + guia */
+#light2 {top: 15%;}
+#light3 {top: 15%; left:23%;}
+}
+
+@media only screen and (min-width: 1131px) and (max-width: 1279px) {
+	.det-product-img-name-container-full {width: 43% !important;}
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1182px) {
+	.FCContentGrid {margin-left: 2%;}
+}
+
+@media only screen and (min-width: 1131px) and (max-width: 1279px) {
+
+}
+@media only screen and (max-width: 960px) {
+/* grade detalhe */
+#FCBtnDesejosDet {left: 388px;}
+/* video */
+.videoplay {width: 427px; top: -380px; padding: 55px 10px;}
+}
+
+@media only screen and (max-width: 812px) {
+.FCGuiaMedidas .content_guia_plus_others {width:100%; display:inline-flex;}
+.FCGuiaMedidas img {width:98%; max-width:180px}
+/* grade detalhe */
+.fc-DivGridImg-Big {left: 64px;}
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {width: 64px; height: 61px;}
+img.ZoomIMG2 {max-width: 84%;}
+.FCGridMain #idDivGridImg {min-height: 330px;}
+/* setas na foto de detalhe */
+/* .fc-grid-api-controls-prev {display:block; height:60px; position:absolute; top:40%; left:0; z-index:1;} */
+/* .fc-grid-api-controls-next {display:block; height:60px; position:absolute; top:40%; right:0; z-index:1;} */
+.FCNameProductGrid {font-size: 26px; line-height: 28px;}
+.FCResumeProduct {margin: 15px 0 5px 0;}
+/* selos */
+#FCBtnDesejosDet {left: 320px;}
+/* video */
+.videoplay {width: 360px; padding: 50px 13px; top: -333px; left: -75px;}
+/* lightbox frete + guia */
+#light1 {position: absolute; top: -90px; left:24%;}
+#light2 {position: absolute; top: -145px; left:27%;}
+#light3 {position: absolute; top: -145px; left: 16%; padding: 15px;}
+#light4 {position: absolute; top: -90px; left:24%;}
+/* sugerimos */
+#idListProdCrossFC li {width: 29%;}
+.FCFCBoxGridIncMult {width:100%; padding:0 0 0 0; margin:10px 0 0 0;}
+.FCBoxGridBuy {width: 100%;}
+}
+
+@media only screen and (max-width: 768px) {
+/* grade detalhe */
+.det-product-img-name-container-full {width: 48%;}
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {width: 64px; height: 59px;}
+.FCContentGrid {width: 49%; margin: 0 0 0 3%;}
+.FCGuiaMedidas .FCBotGuia {width: 360px;}
+.FCVerMais .FCBotVerMais {width: 360px;}
+.FCGuiaMedidas .content_guia_plus_others {width:360px;}
+.FCBtnEsgotadoGrid img, .FCBtnConsultenos img, .FCBtnComprarGrid img, .FCBtnSelecioneGrid img {max-width:360px;}
+.FCFreteGratisProd {float:right;text-align:right;}
+.FCDuvidasProd {width: 100%; margin:15px 0 0 0; float: right; text-align:right;}
+.FCDuvidasProd br {display:block;}
+/* selos */
+#FCBtnDesejosDet {left: 313px;}
+/* video */
+.videoplay {width: 353px; padding: 50px 12px; top: -325px; left: -75px;}
+/* lightbox frete + guia */
+#light1 {top:0; left:21%;}
+#light2 {top:0;}
+#light3 {top:0; left:14%;}
+#light4 {top:0; left:21%;}
+}
+
+@media only screen and (max-width: 736px) {
+/* grade detalhe */
+.fc-DivGridImg-Big {left: 61px;}
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {width: 61px; height: 57px;}
+img.ZoomIMG2 {max-width: 83%;}
+.FCGuiaMedidas .FCBotGuia {width: 345px;}
+.FCVerMais .FCBotVerMais {width: 345px;}
+.FCGuiaMedidas .content_guia_plus_others {width:345px;}
+.FCBtnEsgotadoGrid img, .FCBtnConsultenos img, .FCBtnComprarGrid img, .FCBtnSelecioneGrid img {max-width:345px;}
+.FCDuvidasProd {margin:0 0 0 0;}
+.FCGeralGrid {padding-bottom:30px;min-height:auto;}
+/* selos */
+#FCBtnDesejosDet {left: 300px;}
+/* video */
+.videoplay {width: 340px; padding: 45px 14px; top: -310px; left: -75px;}
+/* icones redes sociais */
+#IconesRedesSociais2 {justify-content:flex-end; -webkit-justify-content:flex-end; -ms-justify-content:flex-end;  margin:0 0 15px 0;}
+/* lightbox frete + guia */
+#light1 {top: -60px; left:20%;}
+#light2 {top: -140px; left:25%;}
+#light3 {top: -140px; left:13%;}
+#light4 {top: -60px; left:20%;}
+}
+
+@media only screen and (max-width: 667px) {
+/* grade detalhe */
+.fc-DivGridImg-Big {left: 56px;}
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {width: 56px; height: 52px;}
+img.ZoomIMG2 {max-width: 80%;}
+.FCContentGrid {width: 48%; margin: 0 0 0 4%;}
+.FCGuiaMedidas .FCBotGuia {width: 305px;}
+.FCVerMais .FCBotVerMais {width: 305px;}
+.FCGuiaMedidas .content_guia_plus_others {width:305px;}
+.FCBtnEsgotadoGrid img, .FCBtnConsultenos img, .FCBtnComprarGrid img, .FCBtnSelecioneGrid img {max-width: 305px;}
+/* selos */
+#FCBtnDesejosDet {left: 268px;}
+/* video */
+.videoplay {width: 308px; padding: 40px 19px; top: -285px; left: -75px;}
+/* lightbox frete + guia */
+#light1 {top: -120px; left: 15%;}
+#light2 {top: -185px; left: 20%;}
+#light3 {top: -185px; left: 9%;}
+#light4 {top: -120px; left: 15%;}
+/* sugerimos */
+#idListProdCrossFC li {width: 28.5%;}
+}
+
+@media only screen and (max-width: 640px) {
+/* grade detalhe */
+.fc-DivGridImg-Big {left: 53px;}
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {width: 53px; height: 50px;}
+img.ZoomIMG2 {max-width: 80%;}
+.FCNameProductGrid {font-size: 24px; line-height: 24px;}
+.FCGuiaMedidas .FCBotGuia {width: 295px;}
+.FCVerMais .FCBotVerMais {width: 295px;}
+.FCGuiaMedidas .content_guia_plus_others {width:295px;}
+.FCBtnEsgotadoGrid img, .FCBtnConsultenos img, .FCBtnComprarGrid img, .FCBtnSelecioneGrid img {max-width: 295px;}
+.FCDuvidasProd {font-size:12px;}
+.FCDuvidasProd br {display:none;}
+/* selos */
+#FCBtnDesejosDet {left: 255px;}
+#idDivBadge {right: 10px;top:10px}
+/* video */
+.videoplay {width: 293px; padding: 40px 13px; top: -275px; left: -65px;}
+/* lightbox frete + guia */
+#light1 {top: -130px;}
+#light3 {left: 8%;}
+#light4 {top: -130px;}
+/* sugerimos */
+#idListProdCrossFC li {width: 44%;}
+#boxclose {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 0px 0px 0px 3px;
+	}
+}
+
+@media only screen and (max-width: 568px) {
+.fc-DivGridImg-Big {left: 47px;}
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {width: 47px; height: 43px;}
+.FCGuiaMedidas .FCBotGuia {width: 255px;}
+.FCVerMais .FCBotVerMais {width: 255px;}
+.FCGuiaMedidas .content_guia_plus_others {width:255px;}
+.FCBtnEsgotadoGrid img, .FCBtnConsultenos img, .FCBtnComprarGrid img, .FCBtnSelecioneGrid img {max-width: 255px;}
+.FCDuvidasProd {width: 96%;}
+/* selos */
+#FCBtnDesejosDet {left: 216px;}
+#idDivBadge {right: 10px;top:10px}
+/* video */
+.videoplay {width: 255px; padding: 30px 13px; top: -240px; left: -60px;}
+/* lightbox frete + guia */
+#light1 {top: -140px;left: 8%;}
+#light2 {top: -175px;left: 15%;}
+#light3 {top: 10%;left: 0%;position: absolute;}
+#light4 {top: -140px;left: 8%;}
+}
+
+@media only screen and (max-width: 560px) {
+#FCBtnDesejosDet {top: 30px;	 left: 90%; z-index: 1;} 
+/*#idDivBadge {top: 30px;	left: 90%; z-index: 1;}*/
+#idDivBadge {right: 20px;top:20px}
+#idListProdCrossFC li {width: 42%; margin: 0 15px 30px 15px;} 
+#idButtonBuyFC {z-index:1;position: fixed; background-color: #fff; border-top: 1px solid #E0E0E0; bottom:0px; left: 0px; width: 100%; margin: 0 0 0 0; padding:30px 0; display: flex; display: -webkit-flex; display: -ms-flexbox; align-items: center; -webkit-align-items: center; justify-content: center; -webkit-justify-content: center;} 
+.FCGridBtnZoom {display:none;} 
+.FCGuiaMedidas .FCBotGuia {width: 100%;}
+.FCVerMais .FCBotVerMais {width: 100%;}
+.FCGuiaMedidas .content_guia_plus_others {width:100%;}
+.FCBtnEsgotadoGrid img, .FCBtnConsultenos img, .FCBtnComprarGrid img, .FCBtnSelecioneGrid img {max-width: 100%;} 
+.FCDuvidasProd {width: 100%; font-size:13px;} 
+.FCDuvidasProd br {display:block;} 
+.FCPathProdGrid {padding-bottom: 10px;} 
+/* Thumbs na Horizontal */
+#produto2 {flex-wrap: wrap; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap;} 
+#idDivGridImg {flex-wrap: wrap; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-direction: row; -webkit-flex-direction: row; justify-content: center; -webkit-justify-content: center; -ms-justify-content: center;} 
+.det-product-img-name-container-full {width: 100%; margin: 0;} 
+.FCGridMain #idDivGridImg {max-width: 100%;  min-height: 475px; max-height: 100%; } 
+#fc-grid-api-controls {border: none;} 
+.fc-DivGridImg-Big {left:auto; order: 1; position: absolute; width:100%} 
+.fc-DivGridImg-Small1 {order: 2; position: relative; top: 473px; width: 20px; height: 12px;} 
+.fc-DivGridImg-Small2 {order: 3; position: relative; top: 473px; width: 20px; height: 12px;} 
+img.ZoomIMG2 {visibility:hidden;} 
+.mz-thumb {width: 10px; height: 10px; background: #e4e4e4; border-radius: 50%; border: 1px solid #e4e4e4; margin: 0 4px;} 
+.mz-thumb-selected {background: #b5b5b5; border: 1px solid #b5b5b5;} 
+/* video */
+#videodet {margin: -17px 0 0 0;} 
+.videoplay {width: 100%; padding: 77px 0; top: -405px; left: 0;}
+/* lightbox frete + guia */
+#light1 {top:0; left: 0;} 
+#light2 {top:-70px; left: 4%; padding: 15px;} 
+#light3 {top: 10%;left: 0%;position: absolute;}
+#light4 {top:0; left: 0;}
+/* Descricao + Recomendados + Compre Junto */
+.FCContentGrid {width: 100%; margin: 35px auto 0 auto;} 
+#produto3 {width: 100%; margin: 0 auto;} 
+}
+@media only screen and (max-width: 414px) {
+	.FCGridMain #idDivGridImg {min-height: 410px;} 
+	.fc-DivGridImg-Small1 {top: 396px;}
+	.fc-DivGridImg-Small2 {top: 396px;} 
+}
+
+@media only screen and (max-width: 400px) {
+.FCBtnEsgotadoGrid img, .FCBtnConsultenos img, .FCBtnComprarGrid img, .FCBtnSelecioneGrid img {max-width: 92%;} 
+}
+
+@media only screen and (max-width: 376px) {
+	.FCGridMain #idDivGridImg {min-height: 390px;}
+	.fc-DivGridImg-Small1 {top: 375px;}
+	.fc-DivGridImg-Small2 {top: 375px;}
+	.FCContentGrid {margin: 10px auto 0 auto !important;}
+#FCBtnDesejosDet {left: 89%;}
+#idDivBadge {right:20px;top:20px}
+.FCBtnEsgotadoGrid, .FCBtnConsultenos, .FCBtnComprarGrid, .FCBtnSelecioneGrid {max-height: 42px;}
+#idListProdCrossFC li {width: 100%; height: auto; margin: 0 0 30px 0;}
+/* thumbs na horizontal */
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {top: 360px;}
+/* lightbox frete + guia */
+#light2 {top: -110px; left: 0;}
+/* video */
+.videoplay {padding: 70px 0; top: -370px;}
+/* Descricao */
+}
+
+@media only screen and (max-width: 360px) {
+/* thumbs na horizontal */
+.FCGridMain #idDivGridImg {min-height: 380px;}
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {top: 336px;}
+/* lightbox frete + guia */
+#light2 {top: -115px;}
+/* video */
+.videoplay {padding: 60px 0; top: -340px;}
+}
+
+
+@media only screen and (max-width: 320px) {
+#FCBtnDesejosDet {left: 87.5%;}
+.FCBtnEsgotadoGrid, .FCBtnConsultenos, .FCBtnComprarGrid, .FCBtnSelecioneGrid {max-height: 35px;}
+.FCDuvidasProd {font-size: 12px;}
+/* thumbs na horizontal */
+.FCGridMain #idDivGridImg {min-height: 345px;}
+.fc-DivGridImg-Small1, .fc-DivGridImg-Small2 {top: 300px;}
+/* lightbox frete + guia */
+#light1 {padding: 15px;}
+#light2 {top: -140px;}
+#boxclose img {width: 17px; height: 17px; margin: 0 0 0 0;}
+.GuiaTabelaTit {font-size: 11px; line-height: 11px;}
+.GuiaTabela1 {font-size: 11px;}
+.GuiaTabelaCol1 {width: 36%;}
+.GuiaTabelaCol2, .GuiaTabelaCol3 {width: 19%;}
+/* video */
+.videoplay {padding: 55px 0; top: -305px;}
+}
