@@ -1,0 +1,105 @@
+<div id='rodape_alinha'>
+  <div id='rodape_bg'>
+
+  <!-- rodape bloco 1 -->
+  <div class='rodlinha2'>
+  
+  <div class="rod4p">
+    <div class="rodt1">Atendimento</div>
+    <div class="rodt1"><img src="<PathTo file="images/ic_telefone.svg">" alt="Telefone" title="Telefone">(11) 93320-9186</div>
+    <div class="rodt1" id="id_whatsapp_rodape"><a href='https://api.whatsapp.com/send?phone=5511933209186&text=Ol%C3%A1,%20estou%20com%20d%C3%BAvida,%20pode%20me%20ajudar?' target='_blank'><img src="<PathTo file="images/ic_whatsapp2.svg">" alt="WhatsApp" title="WhatsApp">(11) 93320-9186</a></div>
+    <div class="rodtxt3">De Segunda à Sexta das 8h30 às 17h30<br><a href="mailto:atendimento@bebefofuxo.com.br">atendimento@bebefofuxo.com.br</a></div>
+  </div>
+
+  <div class='rod5p'>
+    <div class="rodt1">Pagamentos</div>
+    <div class="rodtxt1">Pague em até 6X sem juros nos cartões</div>
+    <div class="rod5pi"><img src="<PathTo file="images/ic_mastercard2.svg">" alt="MasterCard" title="MasterCard"><img src="<PathTo file="images/ic_visa1.svg">" alt="Visa" title="Visa"><img src="<PathTo file="images/ic_amex2.svg">" alt="American Express" title="American Express"><!--<img src="<PathTo file="images/ic_diners2.svg">" alt="Dinners" title="Dinners">--><img src="<PathTo file="images/ic_elo1.svg">" alt="Elo" title="Elo"><img src="<PathTo file="images/ic_pix.svg">" alt="Pix" title="Pix"><img src="<PathTo file="images/ic_boleto1.svg">" alt="Boleto Bancário" title="Boleto Bancário"></div>
+  </div>
+  
+  <div class='rod6p'>
+    <div class="rodt1">Segurança</div>
+    <div class="rod6pi">
+    <a href="https://www.fastcommerce.com.br/security-badge.ehc?url=<StoreDomain>" target="_blank" rel="noopener"><img src="/security-badge.ehc" alt="Safe Site" title="Safe Site"></a>
+    <a href="https://www.google.com/transparencyreport/safebrowsing/diagnostic/?hl=pt-BR#url=<StoreDomain>" target="_blank" rel="noopener"><img src="<PathTo file="images/Google_Loja_Segura.svg">" alt="Google Loja Segura" title="Google Loja Segura"></a>
+    </div>
+  </div>
+  
+  <div class='rod7'><a href="https://www.bebefofuxo.com.br"><picture><source media="(max-width:1024px)" srcset="<baseLoja>images/logomobile.png"><img src="<PathTo file="images/logotopo.png">" alt="Bebê Fofuxo" title="Bebê Fofuxo"></picture></a></div>
+  <div class='rod8 rodtxt0'>BEBE FOFUXO COMERCIO DE ROUPAS INFANTIS LTDA. &nbsp;|&nbsp; CNPJ 13.043.380/0001-93 &nbsp;|&nbsp; Telefone: (11) 4515-7761 &nbsp;|&nbsp; Email: <a href="mailto:atendimento@bebefofuxo.com.br">atendimento@bebefofuxo.com.br</a></div>
+
+  </div>
+  <!-- fim rodape bloco 1 -->
+ 
+  </div>
+</div>
+<script src="<baseloja>htm/js/vanillamaskermin.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+                          fnFooter();
+  })
+
+  if(FC$.Page=='Register' && $("#P2CPF").length==1){
+    /*masks*/
+    function inputHandler(masks, max, event) {
+      var c = event.target;
+      var v = c.value.replace(/\D/g, '');
+      var m = c.value.length > max ? 1 : 0;
+      VMasker(c).unMask();
+      VMasker(c).maskPattern(masks[m]);
+      c.value = VMasker.toPattern(v, masks[m]);
+    }
+
+    var telMask = ['(99)9999-99999', '(99)99999-9999'];
+    var tel = document.querySelector('#P2Telefone');
+    VMasker(tel).maskPattern(telMask[0]);
+    tel.addEventListener('input', inputHandler.bind(undefined, telMask, 14), false);
+
+    var docMask = ['999.999.999-999', '99.999.999/9999-99'];
+    var doc = document.querySelector('#P2CPF');
+    VMasker(doc).maskPattern(docMask[0]);
+    doc.addEventListener('input', inputHandler.bind(undefined, docMask, 14), false);
+
+    var cepMask = ['99999-999'];
+    var cep = document.querySelector('#P2CEP');
+    VMasker(cep).maskPattern(cepMask[0]);
+    cep.addEventListener('input', inputHandler.bind(undefined, cepMask, 14), false);
+
+    var nascMask = ['99/99/9999'];
+    var nasc = document.querySelector('#P2DataNasc');
+    VMasker(nasc).maskPattern(nascMask[0]);
+    nasc.addEventListener('input', inputHandler.bind(undefined, nascMask, 14), false);
+
+    $("#idTxtCPFFC").hide();
+    $("#idForcaSenhaFC").hide();
+
+    var tbody = $("#idTxtSenhaMinOriFC").parent().parent().parent()[0]
+    var table_row  = document.createElement('tr');
+    table_row.style.height = "10px";
+    table_row.appendChild($("#idTxtSenhaMinOriFC")[0]);
+    tbody.appendChild(table_row);
+    $("#idTxtSenhaMinOriFC").css("margin-top","5px");
+    
+    $("#idImgBotNextPageFC").remove();
+    $("#idImgBotPreviousPageFC").remove();
+    $("#idTxtBotNextPageFC").css("padding-right","15px");
+    $("#idTxtBotPreviousPageFC").css("padding-left","15px");
+
+
+    $("#idCellPhoneFC").remove();
+    $("#idTxtPhoneFC").remove();
+    $("#idOccupationFC").remove();
+    $("#idTxtCEP1FC a")[0].style.display = "block";
+
+  }
+  
+if(FC$.Page=='Register' && $("#idPhoneFC").length==1){
+  
+  $("#idCellPhoneFC").remove();
+  $("#idOccupationFC").remove();
+  
+}
+  
+  
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "89256c0fbdef4b0d934dfae215be4387"}'></script><!-- End Cloudflare Web Analytics -->
