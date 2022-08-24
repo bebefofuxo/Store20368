@@ -1,0 +1,291 @@
+<style>
+#idChkAllFC {width: 100%; max-width: 600px;}
+#idCheckoutFC #idChkCol1FC {width: 100%; margin:0 0 0 0;}
+#idCheckoutFC #idChkCol2FC, #idCheckoutFC #idChkCol3FC {width: 100%; margin:20px 0 0 0;}
+#idCheckoutFC .EstChkValorCampo {font-family: 'Nunito', Arial, sans-serif; font-size: 14px;}
+#idChkCompletionIntFC {width:95%; padding:10px;}
+#idTxtPedConfirmadoFC {height:30px;padding:10px; background-color:#00ae7c; color:#fcfcfc; font-size:14px;}
+#idTxtPaymentMethodFC {font-size:16px;}
+#idChkOrderNumberFC {font-size:24px;}
+#idChkTxtPedConfirmadoFC {margin-top: 20px; background-color: #fcfcfc; padding: 5px; border: 1px solid #dedede; text-align: center; border-radius: 3px; -webkit-border-radius: 3px;}
+#idChkTxtPedConfirmadoFC p {color:#008ae1; font-size:18px; margin: 8px 0;}
+#idChkOrderNumberFC {background-color: #fff; padding: 6px; border: 1px solid #dedede; border-radius: 3px; -webkit-border-radius: 3px; font-size: 24px; color: #008ae1;}
+#idChkTxtTimeCompletionFC p {font-size:12px; font-family: 'Nunito', Arial, sans-serif; }
+#idDadosPagtoFC {font-size:12px;}
+#EstNomePagto {color:#685f52;font-size:14px;font-weight:400;}
+#PassosCompra,.idTxtPrintFC{display:none;}
+  
+.idTxtTrackConfFC{background-color:#0281d2;width:100%;max-width:320px;text-align: center;margin: auto;height: 30px;-webkit-border-radius: 5px !important;}
+.idTxtTrackConfFC a {color: white;text-decoration:none;display:inline-block;padding-top:5px;}
+
+@media screen and (max-width: 560px) {
+#idCheckoutFC .EstChkValorCampo {max-width: 100%;}
+}
+@media screen and (max-width: 360px) {
+#idTxtPaymentMethodFC {font-size:14px;}
+.EstChkDadosPagto, .EstTxtOrderCompletion {font-size:13px;}
+}
+</style>
+
+<div id='light_enviowhats' style="background-color:white;height:295px;"><div id="saudacao" style="padding:15px;font-size:22px; color:#008ae1">Olá, NOME</div>
+<div style="padding:15px;padding-top:0px;font-size:16px; color:gray">Obrigado pela compra! =)<br><br>Você deseja receber mensagens com <span style="color:black;">promoções</span>, <span style="color:black;">cupons</span> e <span style="color:black;">sorteios</span> em seu <span style="color:green;">Whatsapp</span> e sempre aproveitar nossos preços baixos?</div>
+    <div style="cursor:pointer;padding:15px;padding-top:25px"><div onclick="registrar_nao()" style="float:left;width:130px;background-color:darkgray;color:white;height: 45px;text-align:center;font-size: 18px;line-height: 45px;">Não, obrigado</div>
+        <div onclick="registrar_sim()" style="cursor:pointer;float:right;width:130px;background-color:green;color:white;height: 45px;text-align:center;font-size: 18px;line-height: 45px;">Sim, eu quero!</div>
+
+    
+</div></div>
+<div id='fade_enviowhats' onclick='fechar_popup_frete();'></div>
+
+<script type="text/javascript">
+  
+  var celular_face = window.localStorage.celular_wa;
+  var cidade_face = window.localStorage.cidade;
+  var estado_face = window.localStorage.estado;
+  var primeiro_nome_face = window.localStorage.primeiro_nome;
+  var ultimo_nome_face = window.localStorage.ultimo_nome;
+  var data_nasc_face = window.localStorage.data_nasc;
+  
+  window.localStorage.removeItem("vales");
+  
+  var mostrar_wa = window.localStorage.mostrar_wa;
+  var num_celular = window.localStorage.celular_wa;
+  var nome = window.localStorage.nome_wa;
+  var email = window.localStorage.email_wa;
+  
+  setTimeout(mostrar_msg_wahtsapp, 1000);
+  
+  function mostrar_msg_wahtsapp()
+  {
+    if(num_celular && mostrar_wa)
+    {
+      if(num_celular != "" && num_celular.length == 13 && nome != "" && email != "" && mostrar_wa == "sim")
+      {
+        var primeiro_nome = nome.split(" ")[0];
+        $("#saudacao").text("Olá, " + primeiro_nome);
+        
+        $("#fade_enviowhats").show();
+        $("#light_enviowhats").show();
+        $("#light_enviowhats").css("left",(window.outerWidth-300)/2);
+        $("#light_enviowhats").css("top",(window.outerHeight-340)/2);
+      }
+      else
+      {
+        window.localStorage.removeItem("mostrar_wa");
+        window.localStorage.removeItem("celular_wa");
+        window.localStorage.removeItem("nome_wa");
+        window.localStorage.removeItem("email_wa");
+      }
+    }
+  }
+  
+  
+  
+  function registrar_sim()
+  {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200)
+      {
+        console.log("registrado com sucesso");
+      }
+    };
+    if(num_celular != "" && num_celular.length == 13 && nome != "" && email != "")
+    {
+      	xhttp.open("GET", "https://www.bebefofuxo.net/scripts/clientes_wa/registrar_dados_site.php?status=1&num_celular="+num_celular+"&nome="+nome+"&email="+email, true);
+    	xhttp.send();
+    }  
+    
+    $("#fade_enviowhats").hide();
+    $("#light_enviowhats").hide();
+    window.localStorage.removeItem("mostrar_wa");
+    window.localStorage.removeItem("celular_wa");
+    window.localStorage.removeItem("nome_wa");
+    window.localStorage.removeItem("email_wa");
+  }
+  
+  function registrar_nao()
+  {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200)
+      {
+        console.log("registrado com sucesso");
+      }
+    };
+    if(num_celular != "" && num_celular.length == 13 && nome != "" && email != "")
+    {
+      	xhttp.open("GET", "https://www.bebefofuxo.net/scripts/clientes_wa/registrar_dados_site.php?status=-1&num_celular="+num_celular+"&nome="+nome+"&email="+email, true);
+    	xhttp.send();
+    }
+    
+    $("#fade_enviowhats").hide();
+    $("#light_enviowhats").hide();
+    window.localStorage.removeItem("mostrar_wa");
+    window.localStorage.removeItem("celular_wa");
+    window.localStorage.removeItem("nome_wa");
+    window.localStorage.removeItem("email_wa");
+  }
+  
+  
+  function fnprocessRegistroAtividade_FinalizouCompra()
+  {
+    console.log("Registrado Finalizou Compra com sucesso");
+    
+  }
+
+  if(window.localStorage.getItem('entrega_jato') == 1)
+  {
+    window.localStorage.removeItem('entrega_jato');
+  }
+  
+  if(window.localStorage.getItem('btn_ganhe20_clicado') == "sim")
+  {
+    window.localStorage.removeItem('btn_ganhe20_clicado');
+  }
+  
+  var ja_apareceu_comprar_mais = window.localStorage.ja_apareceu_comprar_mais;
+
+  if(ja_apareceu_comprar_mais)
+  {
+    var sessao_id = window.localStorage.sessao_id;
+
+    AjaxExecFC("https://bebefofuxo.net/scripts/compre_mais/registrar_atividade.php","sessao_id="+ sessao_id + "&finalizou_compra=" + "1",false,fnprocessRegistroAtividade_FinalizouCompra);
+    
+    window.localStorage.removeItem("carrinho_genero");
+    window.localStorage.removeItem("carrinho_faixa_etaria");
+    window.localStorage.removeItem("mostrar_comprar_mais");
+    window.localStorage.removeItem("ja_apareceu_comprar_mais");
+    window.localStorage.removeItem("sessao_id");
+    window.localStorage.removeItem("comprar_mais_data");
+  }
+
+//Personalização dos botoes e texto da pagina final
+var sPag=document.location.href.toUpperCase();
+  
+if(sPag.indexOf("CHECKOUT.ASP")>=0)
+{
+  
+  var linkDetalhes = $("#idShowOrderDetailsFC");
+  
+  if(linkDetalhes)
+  {
+    $("#idShowOrderDetailsFC").hide();
+  }
+  
+  /*
+  if(localStorage.getItem("formaEntrega") == "SEDEX" || localStorage.getItem("formaEntrega") == "Encomenda PAC")
+  {
+    var elemAviso = document.createElement('div');
+  	elemAviso.innerHTML = "<strong>ATENÇÃO MAMÃE:</strong> os Correios estão <strong>parcialmente</strong> em greve.<br>Isso pode afetar um pouquinho o prazo de entrega. Os Correios estão se esforçando para que a greve não atrapalhe a operação deles. Caso qualquer atraso ocorra, saiba que você pode contar com nossa equipe totalmente preparada para te auxiliar. Agradecemos a compreensão! &#10084;&#65039;";
+  	elemAviso.style.backgroundColor = "#eeeeee";
+  	elemAviso.style.color = "#000000";
+  	elemAviso.style.padding = "15px 15px 15px 15px";
+  	elemAviso.style.margin = "0px 0px 3px 0px";
+  	elemAviso.style.lineHeight = "1.5";
+  	elemAviso.style.fontSize  = "14px";
+  	elemAviso.style.textAlign  = "center";
+  
+  	$("#idShowOrderDetailsFC").parent().parent().prepend(elemAviso);
+  }
+  */
+  /*
+  //aviso para prazo diferenciado COVID
+  var elemAviso = document.createElement('div');
+  elemAviso.innerHTML = "<strong>ATENÇÃO MAMÃE:</strong> iremos demorar um pouquinho para separar o seu pedido.<br><strong>Mas não se preocupe!</strong><br> O prazo que te informamos no momento da compra já está considerando esse tempinho de separação maior. Estamos com uma fila de pedidos grande devido ao surto de COVID-19, mas você irá receber seu pedido com todo o carinho de nossa equipe. Agradecemos a compreensão! &#10084;&#65039;";
+  elemAviso.style.backgroundColor = "#eeeeee";
+  elemAviso.style.color = "#000000";
+  elemAviso.style.padding = "15px 15px 15px 15px";
+  elemAviso.style.margin = "0px 0px 3px 0px";
+  elemAviso.style.lineHeight = "1.5";
+  elemAviso.style.fontSize  = "14px";
+  elemAviso.style.textAlign  = "center";
+  
+  $("#idShowOrderDetailsFC").parent().parent().prepend(elemAviso);
+  */
+  
+  //scroll para mostrar botão de imprimir
+  if(FC$.Mobile == true)
+  {
+      $('html, body').animate({
+         scrollTop: 230
+      }, 1000);
+  }
+  
+  try{
+    
+    //mudança de texto para quando for boleto
+  	var linhaTextoBoleto = document.getElementById("idTxtBoletoFC");
+    
+    linhaTextoBoleto.innerHTML = "SEU PEDIDO SERÁ ENVIADO <u><b>SOMENTE APÓS O PAGAMENTO</b></u> DO BOLETO BANCÁRIO. (O boleto <u><b>NÃO</b></u> será enviado pelo Correio).<br><br>A data de vencimento é de 3 dias corridos após o fechamento do pedido. Após essa data, o pedido será automaticamente cancelado em caso de não-pagamento.";
+    
+    var ehBoleto=linhaTextoBoleto.innerHTML.toUpperCase();
+    
+    if(ehBoleto.indexOf("BOLETO")>=0)
+    {
+      var linhaTextoBoletoDois = document.getElementById("idTxtPaymentOpenFC");
+      linhaTextoBoletoDois.innerHTML = "<p><span class='EstChkTextoContinuar'><b>CLIQUE NO BOTÃO ABAIXO</b> para <b>VISUALIZAR</b> e <b>EFETUAR O PAGAMENTO DO BOLETO:</span></p>";
+      
+      var botaoPagamento = document.getElementById("idBotPaymentOpenFC");
+      
+    }
+    
+    
+    
+    
+    
+  }catch(e){}
+  
+  if($("#idBotPaymentOpenFC").length == 1)
+  {
+    var newNode = document.createElement("div");
+    newNode.style.width = "200px";
+    newNode.style.marginLeft = "auto";
+    newNode.style.marginRight = "auto";
+    newNode.style.marginTop = "30px";
+    newNode.innerHTML = "<div style='text-align:center;'>Seu pagamento será processado pela <br> <img style='margin-top:10px;' src='/lojas/00020368/images/yapay.png' width='150px' height='42'></div>";
+    fnInsertAfter(newNode,$("#idBotPaymentOpenFC")[0]);
+  }
+  
+  if($(".qrMain").length == 1)
+  {
+    $(".qrMain").css("margin-left","auto");
+    $(".qrMain").css("margin-right","auto")
+    
+    var newNode = document.createElement("div");
+    newNode.style.width = "200px";
+    newNode.style.marginLeft = "auto";
+    newNode.style.marginRight = "auto";
+    newNode.style.marginTop = "30px";
+    newNode.innerHTML = "<div style='text-align:center;'>Seu pagamento será processado pela <br> <img style='margin-top:10px;' src='/lojas/00020368/images/yapay.png' width='150px' height='42'></div>";
+    fnInsertAfter(newNode,$(".qrMain")[0]);
+  }
+  
+  
+  
+}
+  
+  
+  
+  
+  
+  
+  
+if(FC$.Page!="Checkout"){
+  var iFormaPagto="<IDFormaPagamento>";
+  
+  if(iFormaPagto=="3"){ /*Cartão de crédito*/
+    var sFormaPagto="<FormaPagamento> (<TipoCartao>)"
+    setTimeout("document.getElementById('idDadosPagtoTitFC').innerHTML='<td class=EstTabTopo colspan=2 align=center>Forma de Pagamento</td>';",100); /*Altera titulo da parte inferior dos dados para pagamento */
+    }
+    else{
+    var sFormaPagto="<FormaPagamento>"
+    setTimeout("document.getElementById('idDadosPagtoTitFC').style.display='none';",100); /*Altera titulo da parte inferior dos dados para pagamento */
+  }
+  
+  var sDadosPagto="<br><br><table width=97% align=center class=EstTabPedido><tr height=25><td class=EstTabPedidoTit align=center>Dados para Pagamento</td></tr><tr><td align=center><br><span id=EstNomePagto>"+ sFormaPagto +"</span><br><br>"+ document.getElementById('idDadosPagtoFC').innerHTML +"</td></tr></table>"; /*Instruções e botão para pagamento*/
+  var sBannerEbit="";  /*Banner do e-bit */
+  
+  setTimeout("document.getElementById('idDadosPagtoFC').innerHTML='';",10); /*Remove da parte inferior os dados para pagamento */
+  setTimeout("document.getElementById('idTopoConfirmacaoFC').innerHTML=sDadosPagto+sBannerEbit+'<br><br><span class=Titulos>Informações do seu Pedido:</span>';",10);  /*Insere no topo da página de pedido confirmado as instruções para pagamento + banner do ebit */
+}
+</script>
