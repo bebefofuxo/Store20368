@@ -1,0 +1,118 @@
+.flickity-enabled {position: relative;}
+.flickity-enabled:focus { outline: none; }
+.flickity-viewport {overflow: hidden; position: relative; height: 100%}
+.flickity-slider {position: absolute; width: 100%; height: 100%;}
+.flickity-enabled.is-draggable {-webkit-tap-highlight-color: transparent; tap-highlight-color: transparent; -webkit-user-select: none; -ms-user-select: none; user-select: none;}
+.flickity-enabled.is-draggable .flickity-viewport {cursor: move; cursor: -webkit-grab; cursor: grab;}
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {cursor: -webkit-grabbing; cursor: grabbing;}
+.flickity-prev-next-button {position: absolute; top: 50%; width: 50px; height: 50px; border: none; cursor: pointer; -webkit-transform: translateY(-50%); transform: translateY(-50%); opacity: 0.8; filter: alpha(opacity=80);}
+.flickity-prev-next-button:hover {background: transparent; opacity: 1;}
+.flickity-prev-next-button:active {opacity: 0.6; filter: alpha(opacity=60);}
+.flickity-prev-next-button.previous {left: 0px; background:url('../../images/icon-grid-arrow-prev.svg') no-repeat center;}
+.flickity-prev-next-button.next {right: 0px; background:url('../../images/icon-grid-arrow-next.svg') no-repeat center;}
+.flickity-prev-next-button:disabled {opacity: 0.3; filter: alpha(opacity=30); cursor: auto;}
+.flickity-prev-next-button svg {display:none;}
+.flickity-page-dots {position: absolute; width: 100%; bottom: 5px; padding: 0; margin: 0; list-style: none; text-align: center; line-height: 1;}
+.flickity-rtl .flickity-page-dots { direction: rtl; }
+.flickity-page-dots .dot {display: inline-block; width: 12px; height: 12px; margin: 0 5px; background: #fff; border:1px solid #fff; border-radius: 50%; -webkit-border-radius: 50%; -ms-border-radius: 50%; cursor: pointer; opacity:50%}
+.flickity-page-dots .dot.is-selected {background: #d0d0d0; border:1px solid #d0d0d0; ; opacity:100%}
+
+/* Banner Topo Home Largura de 1366px */
+.carousel-cell {width: 100%; height:35.87vw; max-height:490px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-align-items: center; align-items: center;}
+.carousel-cell img {display: block; max-width: 100%; max-height: 100%; }
+.carousel-cell.is-selected img {opacity: 1;}
+
+/* Produto Home Largura de 1366px */
+.carousel2 {width:100%; max-width:1326px; margin:20px auto 0 auto;}
+.carousel2 .flickity-prev-next-button {top: 40%;}
+.carousel2 .flickity-prev-next-button.previous {left: 0px; background:url('../../images/icon-prod-arrow-prev.svg') no-repeat center;}
+.carousel2 .flickity-prev-next-button.next {right: 0px; background:url('../../images/icon-prod-arrow-next.svg') no-repeat center;}
+.carousel-cell2 {width: 21.1%; height: 440px; margin: 0 11px; padding: 0 15px; text-align: center;}
+.carousel-cell2.is-selected img {opacity: 1;}
+
+/* Media Queries */
+@media (max-width: 1280px) {
+	/*.carousel-cell {height:459px;}*/
+	.carousel2 {width: 98%;}
+	.carousel-cell2 {width: 21.1%; margin: 0 15px; padding: 0 10px;}
+}
+
+@media (max-width: 1024px) {
+	/*.carousel-cell {height:367px;}*/
+	.carousel-cell2 {width:28.5%;}
+}
+
+@media (max-width: 812px) {
+	/*.carousel-cell {height:291px;}*/
+	.carousel-cell2 {width: 27.4%; height:370px;}
+}
+
+@media (max-width: 768px) {
+	/*.carousel-cell {height:275px;}*/
+	.carousel-cell2 {width: 27%; height: 380px;}
+}
+
+@media (max-width: 736px) {
+	/*.carousel-cell {height:264px;}*/
+	.carousel-cell2 {width: 43.5%; height:360px;}
+}
+
+@media (max-width: 667px) {
+	/*.carousel-cell {height:239px;}*/
+	.carousel-cell2 {width: 43%; height: 365px;}
+}
+
+@media (max-width: 640px) {
+	/*.carousel-cell {height:230px;}*/
+	.carousel-cell2 {width: 42.5%; height:355px;}
+}
+
+@media (max-width: 630px) {
+  .carousel-cell {width: 100%; height:66.44vw; max-height:418px;}
+}
+
+@media (max-width: 568px) {
+	/*.carousel-cell {height:378px;}*/
+	.flickity-page-dots {bottom:5px;}
+	.carousel-cell2 {width: 41%; height: 320px;}
+    .carousel-cell {width: 100%; height:66.44vw; max-height:418px;position:absolute;left:100%;}
+}
+
+@media screen and (min-width: 415px) and (max-width: 489px) {
+	.carousel-cell2 {width: 39%;height: 334px;}
+}
+
+@media (max-width: 414px) {
+	/*.carousel-cell {height:276px;}*/
+	.carousel2 {width: 94%;}
+	.carousel-cell2 {width: 42%; height:auto; margin: 0 20px; padding: 0 0; text-align: center;}
+	.flickity-prev-next-button {width: 22px; height: 50px;}
+    .carousel-cell {width: 100%; height:66.44vw; max-height:418px;}
+}
+
+@media (max-width: 407px) {
+	
+	.carousel-cell2 {width: 41%; margin: 0 21px;}
+	
+}
+
+@media (max-width: 375px) {
+	/*.carousel-cell {height:250px;}*/
+	.carousel-cell2 {width: 40%; margin: 0 22px;}
+    .carousel-cell {width: 100%; height:66.44vw; max-height:418px;}
+}
+
+@media (max-width: 360px) {
+	/*.carousel-cell {height:240px;}*/
+	.carousel2 {width: 92%;}
+	.carousel2 .flickity-prev-next-button {top: 50%;}
+	.carousel-cell2 {width:93%; height: auto; margin: 0 15px; padding: 0 0;}
+    .carousel-cell {width: 100%; height:66.44vw; max-height:418px;}
+}
+
+@media (max-width: 320px) {
+	/*.carousel-cell {height:213px;}*/
+	.carousel2 .flickity-prev-next-button {top: 45%;}
+	.carousel-cell2 {width:92%;}
+    .carousel-cell {width: 100%; height:66.44vw; max-height:418px;}
+}
