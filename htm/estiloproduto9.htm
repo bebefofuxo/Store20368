@@ -1,0 +1,189 @@
+<ProdTop>
+<base target="_parent">
+<style>
+#idTitTextoFC, #idFoundFC, #idPageCountFC {display:none;}
+</style>
+
+<script>
+iQtdProds=<QtProd>;
+</script>
+</ProdTop>
+
+<ProdLista>
+<!-- Nao e utilizado na Espiadinha -->
+</ProdLista>
+
+<!-- details -->
+<ProdDet>
+<!-- Begin: HTML structure -->
+<link href="<PathTo file="htm/css/fc_grid_v1.css">" rel="stylesheet" type="text/css">
+<script src="<PathTo file="htm/js/fc_grid_v1.js">"></script>
+<link rel="stylesheet" type="text/css" href="/js/MagicToolbox/MagicZoomPlusV3/magiczoomplus.css" />
+<script type="text/javascript" src="/js/MagicToolbox/MagicZoomPlusV3/magiczoomplus.js"></script>
+<!-- Video Play / Close -->
+<script>
+  function openvideo() {
+    var x = document.getElementById("videoplayfull");
+    if (x.style.display == "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
+}
+
+$(document).ready(function(){
+  $('.videoclose').on('click', function() {
+  $('#popup-youtube-player')[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');    
+});
+
+}); 
+</script>
+<style>
+.EstTabTopo {display:none;}
+</style>
+<div class="FCGridMain">
+<div class="FCPathProdGrid"><PathCat></div>
+<div id="produto2">
+<!-- parte 2 do produto -->
+<script>
+var IDProdutoDet=<IDProduto>;
+var CodVideoProdDet='<CodVideoProd>';
+</script>
+<div class="det-product-img-name-container-full">
+  <div class="det-product-img-name-container-one zoom-gallery" id="idDivGridImg"></div> 
+</div>
+<div id="idDivBadge"></div>
+
+<div class="FCContentGrid">
+<h1 id="idNameProductGridFC" class="FCNameProductGrid"><NomeProd></h1>
+<div class="FCSubNameProd">
+  <div class="FCCodProdGrid">Refer&ecirc;ncia/SKU: <CodProd></div>
+  <div class="FCFreteGratisProd"><img src="<PathTo file="images/ic_frete_gratis_det.svg">" alt="Frete Grátis"></div>
+  <Wishlist>
+</div>
+
+
+<div id="idPriceGridFC" class="FCPriceGrid">
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+                            MostraPrecoDet(<PrecoNum>,<PrecoOri>,'<CodProd>');
+    })
+    
+  </script>
+  </div>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+                          (function(){var e=document.getElementById("idPriceGridFC"); if(e)e.innerHTML+= fnMaxInstallmentsGrid(<PrecoNum>,<MaxParcelasProdNum>) + fnShowEconomyGrid(<PrecoNum>,<PrecoOri>); })();
+  })
+
+</script>
+<br>
+<div id="idMainGridFC_<IDProduto>"></div>
+
+<div class="FCDuvidasProd"><b>Dúvidas?</b> <a href='/ajuda.asp?IDLoja=<IDLoja>'>Clique aqui</a> ou Ligue no <b>(11) 4515-7761</b> (de seg. à sex. das 9h às 18h)</div>
+
+<!-- Calculo do Frete --> 
+<!-- <div class="ProductStyleBoxFC"><div id="ShowCEP<IDProduto>"></div></div> -->
+
+</div>
+<!-- fim parte 2 do produto -->
+</div>
+
+<div id="produto3">
+<!-- parte 3 do produto -->
+<div class="produto3_1">
+<div class="TitulosProd">Detalhes do Produto</div>
+<div class="EstDescrLinha"><img src="<PathTo file="images/x.gif">" width=10 height=1></div>
+<div class="EstDescrProd"><Descricao></div>
+<!--div class="EstDescrProd"><DescrURL></div-->
+</div>
+
+<div class="produto3_2">
+<div class="TitulosProd">Recomendamos Tamb&eacute;m</div>
+<div class="EstDescrLinha"><img src="<PathTo file="images/x.gif">" width=10 height=1></div>
+<div style="margin-top:15px;"><CrossSelling></div>
+</div>
+
+<div class="produto3_3">
+<div class="TitulosProd">Opini&atilde;o dos Clientes</div>
+<div class="EstDescrLinha"><img src="<PathTo file="images/x.gif">" width=10 height=1></div>
+<div style="margin:15px auto 20px auto;"><Comments></div>
+</div>
+<!-- parte 3 do produto -->
+</div>
+</div>
+
+<!-- End: HTML structure -->
+<!-- Begin: JS scripts -->
+<script>
+  /* fnShowCEPGrid(<IDProduto>); Simulacao de Frete */
+  FCGrid$.fnMultipleZoom("<ImagemProdDet>","<ImagemProdAmp>", false);
+</script>
+<script>
+var aProductOnlyOneGrid=[], aProductListGrid=[];
+/* Begin: Produto principal */
+var sCor = ("<CorVal>" !="") ? "<CorVal>|<CorRGB>":"";
+aProductOnlyOneGrid.push(JSON.stringify({IDProduto: <IDProduto>,codProd: "<CodProd>", cor: sCor, estoque: <Estoque>, peso: "<PesoNum>", priceOri: "<PrecoOri>", priceNum: "<PrecoNum>", maxInstallmentsNum: <MaxParcelasProdNum>, adicional1: "<Adicional1Val>", adicional2: "<Adicional2Val>", adicional3: "<Adicional3Val>", imgDet:"<ImagemProdDet>", imgAmp:"<ImagemProdAmp>", imgVideo:"<CodVideoProd>"}));
+/* End: Produto principal */
+/* Begin: Lista subprodutos */
+<sub>
+var sCor = ("<CorVal>" !="") ? "<CorVal>|<CorRGB>":"";
+aProductListGrid.push(JSON.stringify({IDProduto: <IDProduto>, codProd: "<CodProd>", cor: sCor, estoque: <Estoque>, peso: "<PesoNum>", priceOri: "<PrecoOri>", priceNum: "<PrecoNum>", maxInstallmentsNum: <MaxParcelasProdNum>, adicional1: "<Adicional1Val>", adicional2: "<Adicional2Val>", adicional3: "<Adicional3Val>", imgDet:"<ImagemProdDet>", imgAmp:"<ImagemProdAmp>", imgPri:"<ImagemProdPri>", imgVideo:"<CodVideoProd>"}));
+</sub>
+/* End: Lista subprodutos */
+
+/* Begin: Código opcional para alterar as configurações da grade */
+FCGrid$.myOptions = {
+    autoSelect : false,
+    cartOnPage : true,
+    shippingUpdate : false,
+    incMultGrid : false,
+    separadorRGBCor : '|',
+    qtyDescriptors : 2,
+    htmlFlagChecked : '<i class="FCCheckedGrid"></i>',
+    imageProduct : 'cor',
+    colorName : false,
+    colorImg : true,
+    colorImgFormat : '.png',
+    stock: false,
+    btnAnimation : true,
+    btnSelectImg : 'botselecionegrid.svg',
+    btnBuyImg : 'botcarrinho.svg',
+    btnAddedImg : 'botadded.svg',
+    btnContactUSImg : 'botconsultegrid.svg',
+    btnSoldOut : 'botcarrinhoesgotado.svg',
+    iconArrowPrevIMG : 'icon-grid-arrow-prev.svg',
+    iconArrowNextIMG : 'icon-grid-arrow-next.svg',
+    textGrid : 'Selecione as opções abaixo',
+    order : ['cor','adicional1','adicional2','adicional3'],
+    nameDescriptor : {
+     cor : 'Cor',
+     adicional1 : 'Tamanho',
+     adicional2 : 'Sexo',
+     adicional3 : 'Idade',
+    },
+    textDescriptor : {
+      cor : 'Selecione a <b>Cor</b>',
+      adicional1 : 'Selecione o <b>Tamanho</b>',
+      adicional2 : 'Selecione o <b>Sexo</b>',
+      adicional3 : 'Selecione a <b>Idade</b>',
+    }
+};
+/* End: Código opcional para alterar as configurações da grade */
+FCGrid$.init("idMainGridFC_<IDProduto>", aProductListGrid, aProductOnlyOneGrid); /* Inicia a grade */
+</script>
+</ProdDet>
+
+<!-- zoom -->
+<ProdAmp>
+</ProdAmp>
+
+<!-- footer -->
+<ProdBottom>
+  <script>
+    /* Autopaginacao - exec func of products */
+    function FuncAutoPagEnd(){
+      zF$.fnExecAllFuncProducts(); /* exec all function products */
+    }
+  </script>
+</ProdBottom>
