@@ -1,0 +1,208 @@
+<ProdTop>
+<style type="text/css">
+.Titulos, #idFoundFC, #idPageCountFC, .Titulos, #idTitPagFC, #idEstTDTitProdCrossFC, hr.EstLinhaProd, #idBRListaProdFC, .os_filtro li.pad, #idPathSearchTextEmptyFC, .os_filtrado li.pad { display:none !important}
+#idulpathsearchfc li, #idUlPathSearchCatFC li, #idPathSearchAdic1FC, #idPathSearchSaleFC, #idPathSearchAdic2FC { display:block}
+.estcontinua2 { display:none}
+</style>
+<script src="<baseloja>htm/js/OS_Departamento.js" type="text/javascript"></script>
+<JurosParcelas>
+<!--topoprod-->
+
+<div class="osc_produtos" id="pfcatex">
+<!--filtro-->
+  <div class="osc_topo" id="breadLista">
+      <PathCat>  
+      <div class="osc_ordenalista">
+      <script>ordenaLista();</script>  
+      </div>      
+  </div>
+  <div class="osc_filtro">
+    <div class="jfiltrado">
+      <h2>Filtrando por:</h2>
+    <div class="os_filtrado"><ListPathSearch></div>
+    <div class="os_f_limpar"><a href="/prod,IDLoja,20368,IDCategoria,,all"><img src="<baseloja>images/layout/os_limpar.png"></a></div>
+    </div>
+    <!--<h2>Refinar busca:</h2>-->
+    <span class="filtroCat"><NomeCat></span>
+    <div id="idListaProdCategoriasFC">
+      <h3>Departamento</h3>
+      <div class="os_grpFiltro"><ListPathCatQt></div>
+    </div>
+    <div id="idListaProdAdicional1FC">      
+      <h3><NomeAdicional1></h3>
+      <div class="os_grpFiltro"><ListAdic1Qt></div>
+    </div> 
+    <div id="idListaProdAdicional2FC">
+      <h3><NomeAdicional2></h3>
+      <div class="os_grpFiltro"><ListAdic2Qt></div>
+    </div>
+    <div id="idListaProdAdicional3FC">
+      <h3><NomeAdicional3></h3>
+      <div class="os_grpFiltro"><ListAdic3Qt></div>
+    </div>
+
+  </div>
+<!--fim filtro-->
+<script type="text/javascript">
+
+AjustaFiltros();
+var iQtdProds=<QtProd>;
+</script>
+  
+  <!--lista-->
+  <div class="osc_lista">
+    <div class="banner_categoria"></div>     
+    <h2 style="display:none">Produtos</h2>
+    
+</ProdTop>
+
+<ProdLista>
+<div class="pr1">
+  <div class="image"><a href="/prod,idloja,20368,idproduto,<IDProduto>,<NomeProdUA>"><ImagemProd></a></div>
+  <h3 class="name"><a href="/prod,idloja,20368,idproduto,<IDProduto>,<NomeProdUA>"><NomeProd></a></h3>
+  <div class="price"><PrecoSimples></div>
+  <div class="parcela"><script>MostraMaxParcela(<PrecoNum>,<MaxParcelasProdNum>);</script></div>
+  <!--<div class="economia"><script>MostraDesconto(<PrecoNum>);</script></div>-->
+  <a href="/prod,idloja,20368,idproduto,<IDProduto>,<NomeProdUA>" class="pr1comprar">ver detalhes</a>
+</div>
+</ProdLista>
+
+<ProdDet>
+</div></div>
+<!--fim lista-->
+<style type="text/css">
+#EstCommentsTxt, #pfcatex, #breadLista {display:none !important}
+.estcontinua2 { display:block}
+</style>
+<link rel="stylesheet" href="<baseloja>htm/fancybox.css" type="text/css" media="all">
+<script src="<baseloja>htm/js/fancybox.js" type="text/javascript"></script>
+<script src="<baseloja>htm/js/OS_Produto.js" type="text/javascript"></script>
+<script language="JavaScript" src="<baseloja>htm/SimulaFreteFC.js"></script>
+<script src="<baseloja>htm/FC_Grid.js" type="text/javascript"></script> 
+<script src="<baseloja>htm/encoder.js" type="text/javascript"></script>
+<script type="text/javascript">
+//globais
+var FC_aSubProd=new Array();
+var bDet=true;
+var bTemSubProds=false;
+var PrecoProdPaiOri=<PrecoOri>
+var PrecoProdPaiNum=<PrecoNum>
+</script>
+
+<div class="osc_produtos" id="compra">
+  <div class="osp_bradcumb"><PathCat><div class="estcontinua2"><NomeProd></div></div>
+  <div class="osp_foto" id="imagens-produto">
+    <div class="os_imgDetalhes"><img src="<ImagemProdAmp>" id="thumbos" /></div> <!--detalhes-->
+    <div id="container_image" class="ezoom"><img src="<ImagemProdAmp>" id="imageos"></div> <!--zoom-->
+  <script>exibeVariacao('<ImagemProdAmp>');</script>  <!--miniaturas--> </div>
+    <div class="osp_redes">
+      <table width="100%">
+        <tr>
+          <td><ShareFacebook></td>
+          <td><ShareTwitter></td>
+          <td><Facebook type="like" send="true" layout="button_count" width="150" show_faces="false"></td>
+          <td><script>IndicaProd(<IDProduto>);</script></td>
+        </tr>
+      </table> 
+    </div>
+    <div class="clear"></div>
+  </div>
+  
+  <div class="osp_comprar" id="dados-compra">
+    
+    
+      <div class="osp_name"><NomeProd><!--<b>Ref. <CodProd></b>--></div>
+      <div class="osp_price" id="PrecoProdPrinc"><PrecoSimples></div> 
+      <div class="osp_parcela" id="mparcelado"><script>MostraMaxParcela(<PrecoNum>,<MaxParcelasProdNum>);</script></div>  
+      <!--<div class="osp_economia"><script>MostraDesconto(<PrecoNum>);</script></div>-->
+      <div class="desc-curta"><DescrHTM></div>
+      <!--inicio.grade-->
+      <div class="os_GradeComprar"> 
+  <script type="text/javascript">
+  <Sub>
+  bTemSubProds=true;
+  var sCor="<CorVal>"
+  if(sCor!="")sCor=sCor+"|<CorRGB>"
+  FC_aSubProd[FC_aSubProd.length]=[[<IDProduto>,"<CodProd>",<Estoque>,"<PrecoOri>","<PrecoNum>","<PesoNum>","<ImagemProdPri>","<ImagemProdDet>","<ImagemProdAmp>",sCor,"<Adicional1Val>","<Adicional2Val>","<Adicional3Val>","<AdicionalD1Val>","<AdicionalD2Val>","<AdicionalD3Val>"]];
+  </Sub>
+  </script>
+        <div id="comprasubproduto" style="display:none">
+          <FormProd>
+            <LinkComprar>
+          </FormProd>
+        </div>
+        <script type="text/javascript">
+  if(bTemSubProds) {
+      document.write("<table border='0' cellspacing='0' cellpadding='0' style='padding-top:10px'><tr><td>");
+      FC_fInitProd(<IDProduto>);
+      document.write("</td></tr></table>");
+      }
+  else { 
+      if(<Estoque>>0) {
+          //document.write("<div class='gradeComprar2'><a href='AddProduto.asp?IDLoja=<IDLoja>&IDProduto=<IDProduto>'><img src='<baseloja>images/botgridcomprar.png' border=0></a></div>");
+          document.getElementById("comprasubproduto").style.display="block";
+      }
+      else {
+          document.write("<a href='#E' onclick=MostraDispCaptcha('"+IDLojaNum+"',<IDProduto>);><img src='<baseloja>images/botgridesgotado.png' border=0></a>");
+      }
+  }
+  </script> 
+      </div>
+      <!--fim.grade-->
+      
+      <div class="osp_simula">
+        <div id="ShowCEP<IDProduto>"></div>
+      <script>ShowCEP(<IDProduto>);</script>
+      </div>
+      <div class="osp_duvidas" style="text-align:center">
+        <p><b>Dúvidas?</b> <a href="/faleconosco.asp?idloja=20368">Clique aqui</a> ou  Ligue no <strong>11 3569-0773</strong> (de seg. à sex. das 9h às 18h)</span></p>
+      </div> 
+  </div>
+</div>
+
+<!-- descricao -->
+<div class="osp_descricao" id="detalhes-produto">
+  <h3>Descrição do produto</h3>
+  <div class="descHtml">
+    <Descricao>
+  </div>
+</div>
+
+<!-- relacionados -->
+<div class="gt-relacionados" style="display:none">
+  <h3>Quem viu, viu também</h3>
+  <CrossSelling>  
+</div>
+
+<div class="osp_historico">
+  <h3>Comente esse produto</h3>
+  <Facebook type="comments" width="997">
+</div>
+
+
+<div><div>
+</ProdDet>
+<ProdBottom>  
+</div>
+<br class="clear">
+</div>
+
+</ProdBottom>
+
+<!-- PopTamanho -->
+
+<script type="text/javascript" src="<baseloja>htm/tamanho.js"></script>
+<link type="text/css" rel="stylesheet" href="<baseloja>htm/tamanho.css">
+<div id="modalParentTam" style="display: block;"></div>
+<div id="FullBackgroundTam" style="display: block;">
+<div id="popupNewsTam">
+<div id="btnFecharTam"></div>  
+<div class="detail-quick-purchaseTam">
+<img src="<baseloja>images/popnews/imginfo.png" alt="">
+</div>
+
+
+</div>
+</div>
+<script type="text/javascript">PopNews();</script>
+<!-- PopTamanho -->
