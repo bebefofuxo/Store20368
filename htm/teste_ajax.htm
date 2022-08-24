@@ -1,0 +1,20 @@
+<script>
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = function()
+  {
+    if (this.readyState == 4 && this.status == 200) {
+
+      console.log(this.responseText);
+
+    }
+  };
+
+  xhr.open("GET","https://bebefofuxo.net/scripts/analise_semelhantes/analisar.php?codigo_fornecedor=F6063&marca=Pimpolho",true);
+
+  xhr.send();
+
+  
+
+</script>
