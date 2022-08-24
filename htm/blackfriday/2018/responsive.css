@@ -1,0 +1,192 @@
+
+@media (max-width: 1024px) {
+    .pagina {
+        width: 100%;
+    }
+    header{
+        background-color: #303030;
+        background-image: none;
+    }
+    .header-esquerda{
+        width: 100%;
+        text-align: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .header-esquerda h1{
+        margin: 0 auto;
+    }
+    .header-esquerda img,.header-centro img{
+        max-width: 100%;
+        margin-left: 0px;
+    }
+    .header-centro{
+        width: 100%;
+        text-align: center;
+    }
+    .header-direita{
+        width: 100%;
+        background-image: none;
+        background-color: #ec2f58;
+        padding: 35px 40px;
+        height: auto;
+    }
+    .header-direita .formulario{
+        max-width: 400px;
+        width: auto;
+        float: none;
+        margin: 0 auto;
+    }
+    .header-direita .formulario:after{
+        display: none;
+    }
+
+    .contagem-regressiva .container{
+        padding: 0px 15px;
+    }
+    .contagem-regressiva-item,.contagem-regressiva-rodape .contagem-regressiva-item{
+        line-height: 37px;
+        clear: both;
+        float: none;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .content{
+        width: 350px;
+        display: table;
+        margin: 0 auto;
+    }
+    .contagem-regressiva-item-ativo,.contagem-regressiva-rodape .contagem-regressiva-item-ativo{
+        clear: none;
+        width: auto;
+        float: left;
+        font-size: 20px;
+        margin-left: 9px;
+        margin-right: 9px;
+        text-align: left;
+        line-height: 73px;
+    }
+    .contagem-regressiva-item-ativo img,.contagem-regressiva-rodape .contagem-regressiva-item-ativo img{
+        width: 70px;
+    }
+    .contagem-regressiva-item .cr,.contagem-regressiva-rodape .contagem-regressiva-item .cr{
+        margin-top: -73px;
+        margin-left: 20px;
+    }
+    .contagem-regressiva-item-ativo:first-child,.contagem-regressiva-rodape .contagem-regressiva-item-ativo:first-child{
+        margin-left: 0px;
+    }
+    .contagem-regressiva-item-ativo:last-child,.contagem-regressiva-rodape .contagem-regressiva-item-ativo:last-child{
+        margin-right: 0px;
+    }
+    
+    
+    
+    .oferta{
+        background-position: right;
+        text-align: center;
+    }
+    .oferta h2,.oferta img{
+        font-size: 40px;
+        float: none;
+    }
+    .produtos-buscados .container{
+        width: 100%;
+    }
+    .produtos-buscados h2{
+        text-align: center;
+        width: 100%;
+    }
+    .produtos-buscados h2:after{
+        display: none;
+    }
+    .categoria{
+        text-align: center;
+    }
+    .categoria img,.categoria h3{
+        float: none;
+    }
+    .esquenta{
+        background-position: right;
+        text-align: center;
+    }
+    .esquenta h2,.esquenta img{
+        font-size: 40px;
+        float: none;
+    }
+    .contagem-regressiva-rodape{
+        padding: 20px 0px;
+        background-size: cover;
+        background-position: center center;
+        background-color: #ec2f58;
+    }
+    .relogio {
+        display: none;
+    }
+}
+
+
+
+@media (max-width: 400px) {
+    .header-direita{
+        padding: 35px 15px;
+    }
+    .header-esquerda h1{
+        font-size: 60px;
+        background-size: 100%;
+        width: 100%;
+    }
+    .contagem-regressiva-item,.contagem-regressiva-rodape .contagem-regressiva-item{
+        clear: both;
+        float: none;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .container,.contagem-regressiva .container{
+        padding: 0px;
+    }
+    .content{
+        width: 290px;
+        display: table;
+        margin: 0 auto;
+    }
+    .contagem-regressiva-item-ativo,.contagem-regressiva-rodape .contagem-regressiva-item-ativo{
+        clear: none;
+        width: auto;
+        float: left;
+        font-size: 16px;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: left;
+        line-height: 73px;
+    }
+    .contagem-regressiva-item-ativo img,.contagem-regressiva-rodape .contagem-regressiva-item-ativo img{
+        width: 60px;
+    }
+    .contagem-regressiva-item .cr,.contagem-regressiva-rodape .contagem-regressiva-item .cr{
+        margin-top: -73px;
+        margin-left: 15px;
+    }
+    .contagem-regressiva-item-ativo:first-child,.contagem-regressiva-rodape .contagem-regressiva-item-ativo:first-child{
+        margin-left: 0px;
+    }
+    .contagem-regressiva-item-ativo:last-child,.contagem-regressiva-rodape .contagem-regressiva-item-ativo:last-child{
+        margin-right: 0px;
+    }
+    
+    
+    .esquenta h2, .oferta h2{
+        font-size: 32px;
+    }
+    .relogio {
+        width: 70px;
+    }
+}
