@@ -1,0 +1,195 @@
+@media (max-width: 1024px) {
+  
+  
+  .bootstrap-iso .esquenta,
+  .bootstrap-iso .oferta {
+    background-position: right;
+  }
+  .bootstrap-iso .pagina {
+    width: 100%;
+  }
+  .bootstrap-iso header {
+    background-color: #303030;
+    background-image: none;
+  }
+  .bootstrap-iso .header-esquerda {
+    width: 100%;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .bootstrap-iso .header-esquerda h1 {
+    margin: 0 auto;
+  }
+  .bootstrap-iso .header-centro img,
+  .bootstrap-iso .header-esquerda img {
+    max-width: 100%;
+    margin-left: 0;
+  }
+  .bootstrap-iso .header-centro {
+    width: 100%;
+    text-align: center;
+  }
+  .bootstrap-iso .header-direita {
+    width: 100%;
+    background-image: none;
+    background-color: #ffc700;
+    padding: 35px 40px;
+    height: auto;
+  }
+  .bootstrap-iso .header-direita .formulario {
+    max-width: 400px;
+    width: auto;
+    float: none;
+    margin: 0 auto;
+  }
+  .bootstrap-iso .header-direita .formulario:after {
+    display: none;
+  }
+  .bootstrap-iso .contagem-regressiva .container {
+    padding: 0 15px;
+  }
+  .bootstrap-iso .contagem-regressiva-item,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item {
+    line-height: 37px;
+    clear: both;
+    float: none;
+    width: 100%;
+    height: auto;
+    margin: 10px auto;
+    text-align: center;
+  }
+  .bootstrap-iso .content {
+    width: 350px;
+    display: table;
+    margin: 0 auto;
+  }
+  .bootstrap-iso .produtos-buscados h2:after{
+    display:none;
+    
+  }
+  
+  .bootstrap-iso .relogio {
+    
+  }
+  .bootstrap-iso .contagem-regressiva-item-ativo,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item-ativo {
+    clear: none;
+    width: auto;
+    float: left;
+    font-size: 20px;
+    margin-left: 9px;
+    margin-right: 9px;
+    text-align: left;
+    line-height: 73px;
+  }
+  .bootstrap-iso .esquenta h2,
+  .bootstrap-iso .esquenta img,
+  .bootstrap-iso .oferta h2,
+  .bootstrap-iso .oferta img {
+    font-size: 40px;
+    float: none;
+  }
+  .bootstrap-iso .categoria,
+  .bootstrap-iso .esquenta,
+  .bootstrap-iso .oferta {
+    text-align: center;
+  }
+  .bootstrap-iso .contagem-regressiva-item-ativo img,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item-ativo img {
+    width: 70px;
+  }
+  .bootstrap-iso .contagem-regressiva-item .cr,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item .cr {
+    margin-top: -73px;
+    margin-left: 20px;
+  }
+  .bootstrap-iso .contagem-regressiva-item-ativo:first-child,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item-ativo:first-child {
+    margin-left: 0;
+  }
+  .bootstrap-iso .contagem-regressiva-item-ativo:last-child,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item-ativo:last-child {
+    margin-right: 0;
+  }
+  .bootstrap-iso .produtos-buscados .container {
+    width: 100%;
+  }
+  .bootstrap-iso .produtos-buscados h2 {
+    text-align: center;
+    width: 100%;
+  }
+  .bootstrap-iso .categoria h3,
+  .bootstrap-iso .categoria img {
+    float: none;
+  }
+  .bootstrap-iso .contagem-regressiva-rodape {
+    padding: 20px 0;
+    background-size: cover;
+    background-position: center center;
+    background-color: #ffc700;
+  }
+}
+@media (max-width: 400px) {
+  .bootstrap-iso .header-direita {
+    padding: 35px 15px;
+  }
+  .bootstrap-iso .header-esquerda h1 {
+    font-size: 60px;
+    background-size: 100%;
+    width: 100%;
+  }
+  .bootstrap-iso .contagem-regressiva-item,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item {
+    clear: both;
+    float: none;
+    width: 100%;
+    height: auto;
+    margin: 10px auto;
+    text-align: center;
+  }
+  .bootstrap-iso .contagem-regressiva .container,
+  .bootstrap-iso .container {
+    padding: 0;
+  }
+  .bootstrap-iso .content {
+    width: 290px;
+    display: table;
+    margin: 0 auto;
+  }
+  .bootstrap-iso .contagem-regressiva-item-ativo,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item-ativo {
+    clear: none;
+    width: auto;
+    float: left;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: left;
+    line-height: 73px;
+  }
+  .bootstrap-iso .contagem-regressiva-item-ativo img,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item-ativo img {
+    width: 60px;
+  }
+  .bootstrap-iso .contagem-regressiva-item .cr,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item .cr {
+    margin-top: -73px;
+    margin-left: 15px;
+  }
+  .bootstrap-iso .contagem-regressiva-item-ativo:first-child,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item-ativo:first-child {
+    margin-left: 0;
+  }
+  .bootstrap-iso .contagem-regressiva-item-ativo:last-child,
+  .bootstrap-iso .contagem-regressiva-rodape .contagem-regressiva-item-ativo:last-child {
+    margin-right: 0;
+  }
+  .bootstrap-iso .esquenta h2,
+  .bootstrap-iso .oferta h2 {
+    font-size: 32px;
+  }
+  .bootstrap-iso .relogio {
+    width: 70px;
+  }
+}
