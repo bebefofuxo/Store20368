@@ -1,0 +1,175 @@
+<script>document.body.className+=" ProductList";</script>
+<script src='<PathTo file="htm/js/hotsite-lib.js">'></script>
+<link rel="stylesheet" href='<pathTo file="/css/productsfilter.css">'>
+
+<style>
+.FCOutlet {text-align:center;}
+.FCOutlet img {width:100%; max-width:1275px;}
+.FCOutletMob {display:none;}
+.FCOutletProds {display: -ms-flexbox; display: -webkit-flex; display: flex; width:100%; max-width:1306px; flex-wrap:wrap; -webkit-flex-wrap:wrap; -ms-flex-wrap:wrap;}
+@media screen and (max-width: 640px) {
+.FCOutlet {display:none;}
+.FCOutletMob {display:block; text-align:center;}
+.FCOutletMob img {width:100%;}
+}
+@keyframes scaleToFull{
+  0% {transform:scale(.01);}
+  100% {transform:scale(1);position:relative;visibility:visible;}
+}
+@keyframes scaleToNone{
+  0% {transform:scale(1);}
+  30% {transform:scale(.01);visibility:hidden;}
+  100% {transform:scale(.01);position:absolute;visibility:hidden;}
+}
+.hotsite-container-products .smoothShow{transform:scale(.01);animation-name:scaleToFull;animation-duration:.2s;animation-timing-function:ease-out;animation-fill-mode:forwards;}
+.hotsite-container-products .smoothShow:nth-of-type(4n+1){animation-delay:.1s;}
+.hotsite-container-products .smoothShow:nth-of-type(4n+2){animation-delay:.15s;}
+.hotsite-container-products .smoothShow:nth-of-type(4n+3){animation-delay:.2s;}
+.hotsite-container-products .smoothShow:nth-of-type(4n+4){animation-delay:.25s;}
+.hotsite-container-products .smoothHide{transform:scale(1);animation:.5s ease-out .1s 1 scaleToNone forwards;}
+@media not all and (min-resolution:.001dpcm) { @media
+{
+   .hotsite-container-products .smoothHide{position:absolute;}
+}}
+
+#HotSiteTit,#HotSiteQtd{padding:0 15px;}
+#ProdFilterShadow {top: 0;}
+</style>
+
+<div class="FCOutlet"><img src="<PathTo file="images/FANTASIA-PREVENDA.jpg">" alt="Promoção"></div>
+<div class="FCOutletMob"><img src="<PathTo file="images/FANTASIA-PREVENDA-MOB.jpg">" alt="Promoção"></div>
+<div id="TabTitProd" class="FCProdSty">
+  <div id=HotSiteTit style="line-height:40px;font-weight:bold;font-size:1.5em;">Esquenta Carnaval - Fantasias</div> 
+  <div id=HotSiteQtd></div>
+  <!-- mobile filter-->
+  <div id="ListaElementos">
+    <div class="FilCatProds">
+      <div onclick='showDivFilter()' class='FilCatBot'>FILTRAR</div>
+    </div>
+  <div id="OrderPagProd"></div>
+  </div>
+  <!-- Sombra para Filtros na Lista de Produtos -->
+  <div id="ProdFilterShadow" onclick="showDivFilter();"></div>
+  <div id="idFiltrosBusca" style="display:none">
+    <div class="EstTabFiltros">
+      <p class="zFFilterTitle">Listando por:</p>
+      <div id="idFiltroResultadoFC">
+        <div id="idBuscaFiltro" class="EstListaFiltroFC"><ListPathSearch></div>
+      </div>
+      <p class="zFPBotRemoveFiltros"><a class="zFBotRemoveFiltros" href="/">Remover filtros</a></p>
+      <!-- <p id="idDivLinkAdvancedSearchFC"><LinkAdvancedSearch></p> -->
+      <hr>
+      <div id="idFiltroCatFC">
+        <!-- <div class="EstTitFiltroFC zFFilterRedTitle">Categorias:</div> -->
+        <i class="zFDivisorLeftBar left"></i>
+        <!-- <div class="EstListaFiltroFC"><ListPathCatQt></div> -->
+      </div>
+      <div id="idFiltroAdic1FC">
+        <div class="EstTitFiltroFC"><b><NomeAdicional1></b></div><div class=EstListaFiltroFC><ListAdic1Qt></div>
+      </div>
+      <div id="idFiltroAdic2FC">
+        <div class="EstTitFiltroFC"><NomeAdicional2></div><div class=EstListaFiltroFC><ListAdic2Qt></div>
+      </div>
+      <div id="idFiltroAdic3FC">
+        <div class="EstTitFiltroFC"><NomeAdicional3></div><div class="EstListaFiltroFC"><ListAdic3Qt></div>
+      </div>
+    </div>
+  </div>
+  <!-- END - mobile filter-->
+  <div id="TabListaProdutos" class="hotsite-container-products">
+<prod out="p22" cod="055">
+<prod out="p22" cod="159J">
+<prod out="p22" cod="158K">
+<prod out="p22" cod="451E">
+<prod out="p22" cod="451B">
+<prod out="p22" cod="326">
+<prod out="p22" cod="298">
+<prod out="p22" cod="158F">
+<prod out="p22" cod="2014">
+<prod out="p22" cod="4023">
+<prod out="p22" cod="3565">
+<prod out="p22" cod="3566">
+<prod out="p22" cod="2123">
+<prod out="p22" cod="2115">
+<prod out="p22" cod="2131">
+<prod out="p22" cod="2136">
+<prod out="p22" cod="2148">
+<prod out="p22" cod="2127">
+<prod out="p22" cod="2120">
+<prod out="p22" cod="450C">
+<prod out="p22" cod="450B">
+<prod out="p22" cod="370">
+<prod out="p22" cod="346">
+<prod out="p22" cod="299">
+<prod out="p22" cod="343">
+<prod out="p22" cod="2006">
+<prod out="p22" cod="402">
+<prod out="p22" cod="389">
+<prod out="p22" cod="410">
+<prod out="p22" cod="4492">
+<prod out="p22" cod="4482">
+<prod out="p22" cod="3604">
+<prod out="p22" cod="12353">
+<prod out="p22" cod="12522">
+<prod out="p22" cod="12354">
+<prod out="p22" cod="12433">
+<prod out="p22" cod="12437">
+<prod out="p22" cod="12436">
+<prod out="p22" cod="429">
+<prod out="p22" cod="396">
+<prod out="p22" cod="330">
+<prod out="p22" cod="337">
+<prod out="p22" cod="307">
+<prod out="p22" cod="302">
+<prod out="p22" cod="291">
+<prod out="p22" cod="369">
+<prod out="p22" cod="381">
+<prod out="p22" cod="377">
+<prod out="p22" cod="331">
+<prod out="p22" cod="428">
+<prod out="p22" cod="4107">
+<prod out="p22" cod="12428">
+<prod out="p22" cod="12435">
+<prod out="p22" cod="12438">
+<prod out="p22" cod="12434">
+<prod out="p22" cod="12432">
+<prod out="p22" cod="12430">
+<prod out="p22" cod="290">
+<prod out="p22" cod="285">
+<prod out="p22" cod="390">
+<prod out="p22" cod="406">
+<prod out="p22" cod="414">
+<prod out="p22" cod="430">
+<prod out="p22" cod="352">
+<prod out="p22" cod="339">
+<prod out="p22" cod="348">
+<prod out="p22" cod="382">
+<prod out="p22" cod="275">
+<prod out="p22" cod="323">
+<prod out="p22" cod="373">
+<prod out="p22" cod="407">
+<prod out="p22" cod="408">
+<prod out="p22" cod="293">
+<prod out="p22" cod="282">
+<prod out="p22" cod="347">
+<prod out="p22" cod="319">
+<prod out="p22" cod="351">
+<prod out="p22" cod="371">
+<prod out="p22" cod="435">
+<prod out="p22" cod="334">
+<prod out="p22" cod="354">
+<prod out="p22" cod="353">
+<prod out="p22" cod="344">
+<prod out="p22" cod="431">
+<prod out="p22" cod="397">
+<prod out="p22" cod="432">
+<prod out="p22" cod="405">
+<prod out="p22" cod="399">
+<prod out="p22" cod="322">
+<prod out="p22" cod="409">
+<prod out="p22" cod="398">
+  </div>
+</div>
+
+<script>LibHotSite$.fnInit();</script>
+
