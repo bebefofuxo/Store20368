@@ -1,0 +1,194 @@
+
+<head>
+<title>Black Friday Ninja Bebê Fofuxo - roupas para bebê e criança com o melhor preço do Brasil!</title>
+    <meta name="description" content="Economize na Black Friday da Bebê Fofuxo com roupas baratas para o enxoval do seu bebê. A Bebê Fofuxo é especializada em roupas, calçados e acessórios para bebês e crianças de até 6 anos. Temos tudo para o enxoval do seu bebê pelo menor preço do Brasil. Conheça nossas linhas de body, mijão (culote), macacão e tudo mais o que seu bebê precisa para estar sempre fofo e confortável!">
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes, minimal-ui">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Language" content="pt-br">
+    <meta name="keywords" content="enxoval bebê,roupa bebê barato,roupa bebê atacado,black friday roupas de bebê,kits roupas bebê,body bebê,macacão bebê,mijão bebê">
+	
+	<link rel="stylesheet" href="../lojas/00020368/htm/blackfriday/2019/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  	<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+	
+
+</head>
+
+<script>
+
+  $(document).ready(function() {
+    document.getElementById("idFCContent").style.paddingTop = "0px";
+    document.getElementById("idFCContent").style.width = "100%";
+    document.getElementById("topofixed").style.backgroundColor = "#ffffff";
+    $("#lateral").height($("#content").height());
+    document.getElementById("rodape_alinha").style.marginTop = "0px";
+  });
+  
+  window.onload = function() {
+    
+    $("#lateral").height($("#content").height());
+  }
+  
+  
+  var xhrAjax = new XMLHttpRequest();
+
+function respostaAjaxBlackFriday() {
+
+    if (xhrAjax.readyState == 4 && xhrAjax.status == 200) {
+
+      	$("#infoAguarde").hide();
+        
+        if (xhrAjax.responseText == "1") {
+            alert("Você já está cadastrado! Aguarde que você irá receber novidades sobre a nossa Black Friday!");
+        } else if (xhrAjax.responseText == "2") {
+            alert("Erro ao cadastrar. Por favor, verifique se o e-mail está correto.");
+
+        } else {
+            alert("Seu e-mail foi cadastrado! Você receberá informações em breve sobre nossa Black Friday!");
+
+        }
+    }
+
+
+}
+
+function verificarUsuarioCadastradoBlackFriday() {
+
+  var txtFieldEmail = document.querySelector("#inputEmail");
+  
+  if(validacaoEmail(txtFieldEmail))
+  {
+    $("#infoAguarde").show();
+
+    xhrAjax.onreadystatechange = respostaAjaxBlackFriday;
+    xhrAjax.open("GET", "https://bebefofuxo.net/scripts/blackfriday/blackfriday.php?emailUsuario=" + txtFieldEmail.value, true);
+
+    xhrAjax.send();
+    return false;
+  }
+  else
+  {
+    
+    alert("Erro ao cadastrar. Por favor, verifique se o e-mail está correto.");
+      
+    return false;
+    
+  }
+    
+}
+  
+function validacaoEmail(field) {
+var usuario = field.value.substring(0, field.value.indexOf("@"));
+var dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+ 
+if ((usuario.length >=1) &&
+    (dominio.length >=3) &&
+    (usuario.search("@")==-1) &&
+    (dominio.search("@")==-1) &&
+    (usuario.search(" ")==-1) &&
+    (dominio.search(" ")==-1) &&
+    (dominio.search(".")!=-1) &&
+    (dominio.indexOf(".") >=1)&&
+    (dominio.lastIndexOf(".") < dominio.length - 1)) {
+return true;
+}
+else{
+return false;
+}
+}
+
+</script>
+<div id="wrapper">
+
+	<div id="main">
+
+	<div class="header-mobile">
+	<header><img src="<baseloja>images/blackfriday/2019/logo_bb.png"  width="270" height="auto" alt="Logo Bebe Fofuxo" /></header>
+	</div>
+	
+		<div id="content">
+			<header>
+			<div class="ct-header">
+			<h1>Black Friday</h1>
+			<img src="<baseloja>images/blackfriday/2019/logo-ninja.png"  width="200" height="115" alt="Black Friday Ninja" />
+			<div class="logo-ninja"><img src="<baseloja>images/blackfriday/2019/ninja-.gif" width="750" height="auto" alt="Animacao Ninja"/></div>
+			<div class="logo-black-friday-mobile">
+		<div class="ct-logo">
+				<h1>Black Friday</h1>
+			<img src="<baseloja>images/blackfriday/2019/logo-ninja.png"  width="200" height="115" alt="Black Friday Ninja" />
+		</div>
+			</div>
+			</header>
+
+
+<footer>
+
+<ul class="countdown">
+
+<li class="faltam">Faltam:</li>
+
+<li> <div class="ct-count">
+<span class="days">00</span>
+<p class="days_ref">dias</p>
+</div>
+</li>
+<li>
+<div class="ct-count"> <span class="hours">00</span>
+<p class="hours_ref">horas</p>
+</div>
+</li>
+<li> 
+<div class="ct-count">
+<span class="minutes">00</span>
+<p class="minutes_ref">min</p>
+</div>
+</li>
+
+<li>
+<div class="ct-count">
+ <span class="seconds">00</span>
+<p class="seconds_ref">seg</p>
+</div>
+</li>
+</ul>
+</footer>
+
+	</div>
+
+<aside class="lateral" id="lateral">
+	<header><img src="<baseloja>images/blackfriday/2019/logo_bb.png"  width="270" height="auto" alt="Logo Bebe Fofuxo" /></header>
+		<h2>A gente te avisa<br> por e-mail:</h2>
+		<form onSubmit="return verificarUsuarioCadastradoBlackFriday();">
+		<div class="input"><input type="text" id="inputEmail" placeholder="email@email.com" /></div>
+		<button><span></span></button>
+		<div class="seta">
+		<img class="ico-seta-desktop" src="<baseloja>images/blackfriday/2019/ico-seta-desktop.png" />
+		<img class="ico-seta-mobile" src="<baseloja>images/blackfriday/2019/ico-seta-mobile.gif" />
+		
+		</div>
+		</form>
+		<div id="infoAguarde">Aguarde...</div>
+		<ul class="social">
+		<li><a href="https://www.facebook.com/bebefofuxo/" target="_blank" rel="noopener"><img class="facebook" src="<baseloja>images/blackfriday/2019/ico-facebook-desktop.gif" alt="Facebook"/></a></li>
+		<li><a href="https://www.instagram.com/bebe_fofuxo/" target="_blank" rel="noopener"><img  class="instagram" src="<baseloja>images/blackfriday/2019/ico-instagram-desktop.gif" alt="Instagram"/></a></li>
+		
+		</ul>
+		</aside>
+</div>
+
+
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lojas/00020368/htm/blackfriday/2019/js/count.js"></script> 
+<script type="text/javascript" src="../lojas/00020368/htm/blackfriday/2019/js/main.js"></script> 
+<script class="source" type="text/javascript">
+        $('.countdown').downCount({
+            date: '11/29/2019 00:00:00',
+            offset: -3
+        }, function () {
+            alert('Oferta Encerrada!');
+        });
+    </script>
