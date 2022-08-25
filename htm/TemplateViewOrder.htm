@@ -542,7 +542,7 @@ function clique_logout(){
                 document.querySelector(".btLogout").style.display = "none";
               	enviarAcoes(arrAcoesF);
 
-               //window.location.href = "https://bebefofuxo.net/scripts/sistema_picking/tela_inicial/index.html";
+               window.location.href = "https://bebefofuxo.net/scripts/sistema_picking/tela_inicial/index.html";
             }
         }
     };
@@ -551,22 +551,26 @@ function clique_logout(){
     let arrayBg = [];
     let arrayControl = [];
 
-    const element = document.querySelectorAll(".botao1");
-    const element2 = document.querySelectorAll(".botao2");
+    const botoes = document.querySelectorAll(".botoes");
 
-    arrayControl = arrayControl.concat(element,element2);
+    botoes.forEach((element) => {
 
-    for(let i = 0; i < arrayControl[0].length; i++){
-        if(arrayControl[0][i].style.backgroundColor != "green" && arrayControl[1][i].style.backgroundColor != "red"){
-            arrayBg.push("none");
-        }else if(arrayControl[0][i].style.backgroundColor == "green" && arrayControl[1][i].style.backgroundColor != "red"){
-            arrayBg.push("green");
-        }else if(arrayControl[0][i].style.backgroundColor != "green" && arrayControl[1][i].style.backgroundColor == "red"){
-            arrayBg.push("red");
+		if(element.style.backgroundColor != "green" && element.style.backgroundColor != "red"){
+
+			arrayBg.push("none");
+
+        }else if(element.style.backgroundColor == "green" && element.style.backgroundColor != "red"){
+
+          	arrayBg.push("green");
+
+        }else if(element.style.backgroundColor != "green" && element.style.backgroundColor == "red"){
+
+          	arrayBg.push("red");
+
         }
-    }
-  
-  console.log(arrayBg);
+
+    });
+	console.log(arrayBg);
 
     xhttp2.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/registro_logout.php?nome="+usuario+"&data="+data_completa+"&numPedido="+numPedido+"&bg="+arrayBg, true);//Enviando registros do logout para o banco de dados
     xhttp2.send();
@@ -1116,6 +1120,18 @@ function insereTextos(){
 
                 }
 
+                if(acao.acao == "pegou parcialmente"){
+
+					$.get( "https://bebefofuxo.net/scripts/sistema_picking/buscarAcao.php", {num_pedido: numPedido, codigo_modelo: array_itens[i].codigo, tamanho: tamanhoCorrigido, cor: corCorrigida, acao1: "falta parcial", acao2: "desmarcou falta de todos"} )
+                    .done(function( data ) {
+                        let row = parseInt(data);
+                        if(row == "1"){
+                            document.querySelector("#botaoEmFalta_"+i).style.backgroundColor = "red";
+                        }
+                    });
+
+                }
+
               }else if(acao.acao == "todos em falta" || acao.acao == "falta parcial" || acao.acao == "desmarcou opcao em falta"){
 
                 document.querySelector("#mostraQtdF_"+i).style.display = "block";
@@ -1132,7 +1148,14 @@ function insereTextos(){
 
                 }else if(acao.acao == "falta parcial"){
 
-                  document.querySelector("#botaoPeguei_"+i).style.visibility = "hidden";
+                  $.get( "https://bebefofuxo.net/scripts/sistema_picking/buscarAcao.php", {num_pedido: numPedido, codigo_modelo: array_itens[i].codigo, tamanho: tamanhoCorrigido, cor: corCorrigida, acao1: "pegou parcialmente", acao2: "devolveu todos"} )
+                    .done(function( data ) {
+                        let row = parseInt(data);
+                        if(row == "1"){
+                            document.querySelector("#botaoPeguei_"+i).style.backgroundColor = "green";
+                        }
+                    });
+
                   document.querySelector("#botaoEmFalta_"+i).style.backgroundColor = "red";
 
                 }
@@ -1320,6 +1343,12 @@ function abreTela(qtdPegos, nome, control, botao){
 
       document.querySelector("#titulo").innerText = "Quantos estão em falta?";
 
+      if(document.querySelector("#botaoPeguei_"+index).style.backgroundColor == "green"){
+
+        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= parseInt(document.querySelector("#botaoPeguei_"+index).dataset.pegou) - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
+
+      }
+
       btConfirmar.onclick = function() {
 
         let data_completa = data_atual();
@@ -1368,6 +1397,12 @@ function abreTela(qtdPegos, nome, control, botao){
     }else if(control == 0){
 
       document.querySelector("#titulo").innerText = "Você precisa pegar "+ qtdTotal + " " + nome;
+
+      if(document.querySelector("#botaoEmFalta_"+index).style.backgroundColor == "red"){
+
+        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= parseInt(document.querySelector("#botaoEmFalta_"+index).dataset.pegou) - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
+
+      }
 
       btConfirmar.onclick = function() {
 
@@ -1591,6 +1626,12 @@ function fnGetQtd(mostraQtdPeguei, mostraQtdFalta, mostraQtdNeutro){
       return qtdAnterior[0];
 
     }
+
+}
+
+function fnGetFalta(){
+
+	
 
 }
 
