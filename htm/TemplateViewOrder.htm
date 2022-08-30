@@ -129,6 +129,24 @@
 
   }
 
+  .pegou{
+
+    color: green;
+
+  }
+
+  .pegou:after{
+
+    content: "Você pegou";
+
+  }
+
+  .falta{
+
+    color: red;
+
+  }
+
   @media screen and (max-width: 500px) {
     .imgProd{
       width: 255px;
@@ -231,6 +249,7 @@ let control = 2;
 let strings = "";
 let array = [];
 let arrAcoes = [];
+let acoesPedido = [];
 let arrAcoesF = [];
 let acoes = "";
 let array_acoes = [];
@@ -555,15 +574,15 @@ function clique_logout(){
 
     botoes.forEach((element) => {
 
-		if(element.style.backgroundColor != "green" && element.style.backgroundColor != "red"){
+		if(element.style.backgroundColor != "green" && element.style.backgroundColor != "red" && element.style.visibility != "hidden"){
 
 			arrayBg.push("none");
 
-        }else if(element.style.backgroundColor == "green" && element.style.backgroundColor != "red"){
+        }else if(element.style.backgroundColor == "green" && element.style.backgroundColor != "red" && element.style.visibility != "hidden"){
 
           	arrayBg.push("green");
 
-        }else if(element.style.backgroundColor != "green" && element.style.backgroundColor == "red"){
+        }else if(element.style.backgroundColor != "green" && element.style.backgroundColor == "red" && element.style.visibility != "hidden"){
 
           	arrayBg.push("red");
 
@@ -764,23 +783,9 @@ function criaTelas(){
         botaoFalta.dataset.qtd = array_itens[i].quantidade;
         botaoFalta.addEventListener("click", () => { vermelho(botaoFalta); });
 
-  		let mostraQtdPeguei = document.createElement("label");
-  		mostraQtdPeguei.id = "mostraQtdP_" + i;
-  		mostraQtdPeguei.style.color = "green";
-  		mostraQtdPeguei.style.display = "none";
-  		mostraQtdPeguei.innerText = "teste";
-
-  		let mostraQtdNeutro = document.createElement("label");
-  		mostraQtdNeutro.id = "mostraQtdN_" + i;
-  		mostraQtdNeutro.style.color = "black";
-  		mostraQtdNeutro.style.display = "none";
-   		mostraQtdNeutro.innerText = "Você pegou 0/" + array_itens[i].quantidade + " itens";
-
-  		let mostraQtdFalta = document.createElement("label");
-  		mostraQtdFalta.id = "mostraQtdF_" + i;
-  		mostraQtdFalta.style.color = "red";
-  		mostraQtdFalta.style.display = "none";
-   		mostraQtdFalta.innerText = "teste";
+  		let mostraQtd = document.createElement("label");
+  		mostraQtd.id = "mostraQtd_" + i;
+        mostraQtd.className = "neutro";
 
         divTela.appendChild(setaEsquerda);
         setaEsquerda.appendChild(imgSetaEsquerda);
@@ -799,9 +804,7 @@ function criaTelas(){
         tituloTamanho.appendChild(tamanho);
         div.appendChild(tituloQtd);
         tituloQtd.appendChild(qtd);
-  		tituloQtd.appendChild(mostraQtdPeguei);
-  		tituloQtd.appendChild(mostraQtdFalta);
-  		tituloQtd.appendChild(mostraQtdNeutro);
+  		tituloQtd.appendChild(mostraQtd);
         div.appendChild(divImg);
         divImg.appendChild(img);
         div.appendChild(divBotoes);
@@ -977,7 +980,7 @@ function verificaCliquePeguei(){
 
                 cod[i] = array_itens[i].codigo+"-"+corCorrigida+"-"+tamanhoCorrigido;
 
-                if(array_acoes.includes(cod[i])){
+                if(array_acoes.includes(cod[i]) && array_itens[i].quantidade < 2){
 
                     document.getElementById("botaoPeguei_"+i).style.backgroundColor = "green";
                     document.getElementById("botaoEmFalta_"+i).style.visibility = 'hidden';
@@ -1082,111 +1085,106 @@ function insereTextos(){
 
         }
 
-      if(array_itens[i].quantidade > 1){
+		if(array_itens[i].quantidade > 1){
 
-        let xhr = new XMLHttpRequest();
+			document.querySelector("#botaoPeguei_"+i).dataset.pegou = 0;
+            document.querySelector("#botaoEmFalta_"+i).dataset.pegou = 0;
 
-        xhr.onreadystatechange = function(){
+		}
+    }
 
-          if(this.readyState == 4 && this.status == 200){
-			console.log(this.response);
-            let acao = eval(this.response)[0];
+	let xhr = new XMLHttpRequest();
 
-            if(acao){
+	xhr.onreadystatechange = function(){
 
-              document.querySelector("#botaoPeguei_"+i).dataset.pegou = acao.qtd;
-              document.querySelector("#botaoEmFalta_"+i).dataset.pegou = acao.qtd;
+		if(this.readyState == 4 && this.status == 200){
 
-              if(acao.acao == "devolveu todos" || acao.acao == "desmarcou falta de todos"){
+			acoesPedido = eval(this.response);
 
-                document.querySelector("#mostraQtdN_"+i).style.display = "block";
-                document.querySelector("#botaoPeguei_"+i).style.visibility = "";
-                document.querySelector("#botaoEmFalta_"+i).style.visibility = "";
-                document.querySelector("#botaoPeguei_"+i).style.backgroundColor = "";
-                document.querySelector("#botaoEmFalta_"+i).style.backgroundColor = "";
-                document.querySelector("#botaoPeguei_"+i).dataset.pegou = 0;
-                document.querySelector("#botaoEmFalta_"+i).dataset.pegou = 0;
+            for(let i = 0; i < array_itens.length; i++){
 
-              }else if(acao.acao == "pegou todos" || acao.acao == "pegou parcialmente"){
+				let tamanhoT = array_itens[i].tamanho;
+                let tamanhoCorrigido = tamanhoT.replace(/Tamanho: /g, '');
 
-                document.querySelector("#mostraQtdP_"+i).style.display = "block";
-                document.querySelector("#mostraQtdP_"+i).innerText = "Você pegou " + acao.qtd + "/" + array_itens[i].quantidade + " itens";
-                document.querySelector("#botaoPeguei_"+i).style.backgroundColor = "green";
+                let corCorrigida = "";
 
-                if(acao.acao == "pegou todos"){
+                if(array_itens[i].cor != ""){
 
-                  document.querySelector("#botaoPeguei_"+i).style.backgroundColor = "green";
-                  document.querySelector("#botaoEmFalta_"+i).style.visibility = "hidden";
+                    let corT = array_itens[i].cor;
+                    corCorrigida = corT.replace(/Cor: /g, '');
 
                 }
 
-                if(acao.acao == "pegou parcialmente"){
+              	if(acoesPedido[i].codigo_modelo == array_itens[i].codigo && acoesPedido[i].tamanho == tamanhoCorrigido && acoesPedido[i].cor == corCorrigida && parseInt(array_itens[i].quantidade) > 1){
 
-					$.get( "https://bebefofuxo.net/scripts/sistema_picking/buscarAcao.php", {num_pedido: numPedido, codigo_modelo: array_itens[i].codigo, tamanho: tamanhoCorrigido, cor: corCorrigida, acao1: "falta parcial", acao2: "desmarcou falta de todos"} )
-                    .done(function( data ) {
-                        let row = parseInt(data);
-                        if(row == "1"){
-                            document.querySelector("#botaoEmFalta_"+i).style.backgroundColor = "red";
-                        }
+					let arrFalta = 0;
+                    let arrDesmarcouFalta = 0;
+
+					acoesPedido.forEach((element) => {
+
+                      if(element.acao == "produto em falta"){
+
+                        arrFalta += parseInt(element.qtd);
+
+                      }else if(element.acao == "desmarcou opcao em falta"){
+
+                        arrDesmarcouFalta += parseInt(element.qtd);
+
+                      }
+
                     });
 
-                }
+                    let resultado = arrFalta - arrDesmarcouFalta;
 
-              }else if(acao.acao == "todos em falta" || acao.acao == "falta parcial" || acao.acao == "desmarcou opcao em falta"){
+					if(resultado == 0){
 
-                document.querySelector("#mostraQtdF_"+i).style.display = "block";
-                document.querySelector("#mostraQtdF_"+i).innerText = "Há " + acao.qtd + "/" + array_itens[i].quantidade + " itens em falta";
+						setQtd(0, i, acoesPedido[i].qtd);
 
-                if(acao.acao == "todos em falta"){
+                    }else{
 
-                  document.querySelector("#botaoPeguei_"+i).style.visibility = "hidden";
-                  document.querySelector("#botaoEmFalta_"+i).style.visibility = "";
-                  document.querySelector("#botaoPeguei_"+i).style.backgroundColor = "";
-                  document.querySelector("#botaoEmFalta_"+i).style.backgroundColor = "red";
-                  document.querySelector("#botaoPeguei_"+i).dataset.pegou = acao.qtd;
-                  document.querySelector("#botaoEmFalta_"+i).dataset.pegou = acao.qtd;
+                        setQtd(1, i, acoesPedido[i].qtd);
 
-                }else if(acao.acao == "falta parcial"){
+                    }
 
-                  $.get( "https://bebefofuxo.net/scripts/sistema_picking/buscarAcao.php", {num_pedido: numPedido, codigo_modelo: array_itens[i].codigo, tamanho: tamanhoCorrigido, cor: corCorrigida, acao1: "pegou parcialmente", acao2: "devolveu todos"} )
-                    .done(function( data ) {
-                        let row = parseInt(data);
-                        if(row == "1"){
-                            document.querySelector("#botaoPeguei_"+i).style.backgroundColor = "green";
-                        }
+                  	let arrPegou = 0;
+                    let arrDevolveu = 0;
+
+                  	acoesPedido.forEach((element) => {
+
+                      if(element.acao == "pegou o produto"){
+
+                        arrPegou += parseInt(element.qtd);
+
+                      }else if(element.acao == "devolveu o produto"){
+
+                        arrDevolveu += parseInt(element.qtd);
+
+                      }
+
                     });
 
-                  document.querySelector("#botaoEmFalta_"+i).style.backgroundColor = "red";
+                    let resultado2 = arrPegou - arrDevolveu;
 
-                }
+					if(resultado2 == 0){
 
-              }
+						setQtd(2, i, acoesPedido[i].qtd);
 
-            }else{
+                    }else{
 
-              if(array_itens[i].quantidade > 1){
+                        setQtd(3, i, acoesPedido[i].qtd);
 
-                document.querySelector("#mostraQtdN_"+i).style.display = "block";
-                document.querySelector("#botaoPeguei_"+i).dataset.pegou = 0;
-                document.querySelector("#botaoEmFalta_"+i).dataset.pegou = 0;
+                    }
 
-              }
+            	}
 
             }
 
-          }
+		}
 
-        }
+	}
 
-        if(!corCorrigida){ corCorrigida = "-"; }
-
-        //console.log("código: " + array_itens[i].codigo + " tamanho: " + tamanhoCorrigido + " cor: " + corCorrigida + " pedido: " + numPedido);
-
-        xhr.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/buscarQtd.php?codigo="+array_itens[i].codigo+"&tamanho="+tamanhoCorrigido+"&cor="+corCorrigida+"&pedido="+numPedido, true);
-        xhr.send();
-
-    }
-    }
+	xhr.open("GET", "https://bebefofuxo.net/scripts/sistema_picking/buscarAcao.php?num_pedido="+numPedido, true);
+	xhr.send();
 }
 
 function criaTelaQtd(botao){
@@ -1334,9 +1332,10 @@ function abreTela(qtdPegos, nome, control, botao){
     let mostraQtdPeguei = document.querySelector("#mostraQtdP_"+index);
     let mostraQtdFalta = document.querySelector("#mostraQtdF_"+index);
     let mostraQtdNeutro = document.querySelector("#mostraQtdN_"+index);
+    let limite = parseInt(botao.dataset.qtd);
 
   	document.querySelector("#divB").style.left = (document.getElementById("tela_"+index).getBoundingClientRect().left + (parseInt(document.querySelector("#divB").style.width)) / 2) + + 20 + "px";
-    document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= parseInt(botao.dataset.qtd) - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
+    document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= limite - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
 	qtd.innerText = parseInt(qtdPegos);
 
   	if(control == 1){
@@ -1344,8 +1343,8 @@ function abreTela(qtdPegos, nome, control, botao){
       document.querySelector("#titulo").innerText = "Quantos estão em falta?";
 
       if(document.querySelector("#botaoPeguei_"+index).style.backgroundColor == "green"){
-
-        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= parseInt(document.querySelector("#botaoPeguei_"+index).dataset.pegou) - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
+		limite = parseInt(document.querySelector("#botaoPeguei_"+index).dataset.pegou);
+        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= limite - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
 
       }
 
@@ -1358,12 +1357,12 @@ function abreTela(qtdPegos, nome, control, botao){
           document.getElementById("botaoPeguei_"+index).style.visibility = 'hidden';
           botao.style.backgroundColor = "red";
 
-          mostraQtdNeutro.style.display = "none";
-          mostraQtdPeguei.style.display = "none";
-          mostraQtdFalta.style.display = "block";
-          mostraQtdFalta.innerText = "Há " + qtd.innerText + "/" + qtdTotal + " itens em falta";
+          //mostraQtdNeutro.style.display = "none";
+          //mostraQtdPeguei.style.display = "none";
+          //mostraQtdFalta.style.display = "block";
+          //mostraQtdFalta.innerText = "Há " + qtd.innerText + "/" + qtdTotal + " itens em falta";
 
-          arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "todos em falta", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
+          arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "produto em falta", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
 
           enviarAcoes(arrAcoes);
 
@@ -1371,12 +1370,12 @@ function abreTela(qtdPegos, nome, control, botao){
 
         }else if(parseInt(qtd.innerText) < qtdTotal && parseInt(qtd.innerText) != 0){
 
-          mostraQtdNeutro.style.display = "none";
-          mostraQtdPeguei.style.display = "none";
-          mostraQtdFalta.style.display = "block";
-          mostraQtdFalta.innerText = "Há " + qtd.innerText + "/" + qtdTotal + " itens em falta";
+          //mostraQtdNeutro.style.display = "none";
+          //mostraQtdPeguei.style.display = "none";
+          //mostraQtdFalta.style.display = "block";
+          //mostraQtdFalta.innerText = "Há " + qtd.innerText + "/" + qtdTotal + " itens em falta";
 
-          arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "falta parcial", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
+          arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "produto em falta", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
 
           enviarAcoes(arrAcoes);
 
@@ -1385,6 +1384,26 @@ function abreTela(qtdPegos, nome, control, botao){
           fechaTela();
 
           }else if(parseInt(qtd.innerText) == 0){
+
+            if(parseInt(document.querySelector("#botaoPeguei_"+index).dataset.pegou) == 0){
+
+				//mostraQtdNeutro.style.display = "block";
+				//mostraQtdPeguei.style.display = "none";
+				//mostraQtdFalta.style.display = "none";
+
+            }else{
+
+              	//mostraQtdNeutro.style.display = "none";
+          		//mostraQtdPeguei.style.display = "block";
+          		//mostraQtdFalta.style.display = "none";
+            	//mostraQtdPeguei.innerText = "Você pegou " + parseInt(qtd.innerText) + "/" + qtdTotal + " itens";
+
+            }
+
+            arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "desmarcou opcao em falta", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtdPegos)}];
+			console.log(arrAcoes);
+            enviarAcoes(arrAcoes);
+
 
             fechaTela();
 
@@ -1399,8 +1418,8 @@ function abreTela(qtdPegos, nome, control, botao){
       document.querySelector("#titulo").innerText = "Você precisa pegar "+ qtdTotal + " " + nome;
 
       if(document.querySelector("#botaoEmFalta_"+index).style.backgroundColor == "red"){
-
-        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= parseInt(document.querySelector("#botaoEmFalta_"+index).dataset.pegou) - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
+		limite = parseInt(document.querySelector("#botaoEmFalta_"+index).dataset.pegou);
+        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= limite - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
 
       }
 
@@ -1413,7 +1432,7 @@ function abreTela(qtdPegos, nome, control, botao){
               document.getElementById("botaoEmFalta_"+index).style.visibility = 'hidden';
               botao.style.backgroundColor = "green";
 
-              arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "pegou todos", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
+              arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "pegou o produto", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
 
 		  	  enviarAcoes(arrAcoes);
 
@@ -1433,7 +1452,7 @@ function abreTela(qtdPegos, nome, control, botao){
 
               document.querySelector("#botaoPeguei_"+index).style.backgroundColor = "green";
 
-               arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "pegou parcialmente", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
+               arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "pegou o produto", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtd.innerText)}];
 
               enviarAcoes(arrAcoes);
 
@@ -1451,7 +1470,8 @@ function abreTela(qtdPegos, nome, control, botao){
     }else if(control == 2){
 
     	document.querySelector("#titulo").innerText = "Quantos você quer devolver?";
-        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= parseInt(qtdPegos) - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
+        limite = parseInt(qtdPegos);
+        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= limite - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
         console.log(qtdPegos + " " + qtd.innerText);
 
         btConfirmar.onclick = function() {
@@ -1463,26 +1483,39 @@ function abreTela(qtdPegos, nome, control, botao){
 				document.querySelector("#botaoEmFalta_"+index).style.visibility = "";
                 document.querySelector("#botaoPeguei_"+index).style.backgroundColor = "";
                 botao.dataset.pegou = 0;
-                mostraQtdNeutro.style.display = "block";
-                mostraQtdFalta.style.display = "none";
-                mostraQtdPeguei.style.display = "none";
-				mostraQtdNeutro.innerText = "Você pegou 0/" + qtdTotal + " itens";
 
-                arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "devolveu todos", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtdTotal)}];
+                if(parseInt(document.querySelector("#botaoEmFalta_"+index).dataset.pegou) > 0){
+
+					mostraQtdFalta.style.display = "block";
+                    mostraQtdNeutro.style.display = "none";
+                	mostraQtdPeguei.style.display = "none";
+
+                }else{
+
+					mostraQtdFalta.style.display = "none";
+                    mostraQtdNeutro.style.display = "block";
+                	mostraQtdPeguei.style.display = "none";
+
+                }
+
+                arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "devolveu o produto", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtdTotal)}];
 
                 enviarAcoes(arrAcoes);
 
                 fechaTela();
 
-            }else if(parseInt(qtd.innerText) <= qtdPegos && parseInt(qtd.innerText) != 0){
+            }else if(parseInt(qtd.innerText) < qtdPegos && parseInt(qtd.innerText) != 0){
 
               mostraQtdNeutro.style.display = "none";
               mostraQtdFalta.style.display = "none";
               mostraQtdPeguei.style.display = "block";
               mostraQtdPeguei.innerText = "Você pegou " + (qtdPegos - parseInt(qtd.innerText)) + "/" + qtdTotal + " itens";
+              botao.style.backgroundColor = "";
+              document.querySelector("#botaoEmFalta_"+index).style.visibility = "";
+              document.querySelector("#botaoEmFalta_"+index).dataset.pegou = (qtdTotal - (qtdPegos - parseInt(qtd.innerText)));
               botao.dataset.pegou = (qtdPegos - parseInt(qtd.innerText));
 
-              arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "devolveu o produto", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": (parseInt(botao.dataset.qtd) - parseInt(qtd.innerText))}];
+              arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "devolveu o produto", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": (qtdPegos - parseInt(qtd.innerText))}];
 
               enviarAcoes(arrAcoes);
 
@@ -1499,7 +1532,8 @@ function abreTela(qtdPegos, nome, control, botao){
     }else if(control == 3){
 
 		document.querySelector("#titulo").innerText = "Quantos você quer desmarcar falta?";
-        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= parseInt(qtdPegos) - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
+        limite = parseInt(qtdPegos);
+        document.querySelector("#iconeMais").onclick = function(){ if(parseInt(qtd.innerText) <= limite - 1){ qtd.innerText = parseInt(qtd.innerText) + 1 }}
 
         btConfirmar.onclick = function() {
 
@@ -1507,14 +1541,24 @@ function abreTela(qtdPegos, nome, control, botao){
 
 		  if(parseInt(qtd.innerText) == qtdPegos){
 
-				arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "desmarcou falta de todos", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtdTotal)}];
+				arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "desmarcou opcao em falta", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": parseInt(qtdTotal)}];
 
               	enviarAcoes(arrAcoes);
 
-            	mostraQtdNeutro.style.display = "block";
-          	  	mostraQtdPeguei.style.display = "none";
-          	  	mostraQtdFalta.style.display = "none";
-             	mostraQtdNeutro.innerText = "Você pegou " + (qtdPegos - parseInt(qtd.innerText)) + "/" + qtdTotal + " itens";
+                if(parseInt(document.querySelector("#botaoPeguei_"+index).dataset.pegou) > 0){
+
+					mostraQtdFalta.style.display = "none";
+                    mostraQtdNeutro.style.display = "none";
+                	mostraQtdPeguei.style.display = "block";
+                    mostraQtdPeguei.innerText = "Você pegou " + document.querySelector("#botaoPeguei_"+index).dataset.pegou + "/" + qtdTotal + " itens";
+
+                }else{
+
+					mostraQtdFalta.style.display = "none";
+                    mostraQtdNeutro.style.display = "block";
+                	mostraQtdPeguei.style.display = "none";
+
+                }
 
             	document.querySelector("#botaoEmFalta_"+index).style.backgroundColor = "";
                 document.querySelector("#botaoPeguei_"+index).style.visibility = "";
@@ -1524,7 +1568,7 @@ function abreTela(qtdPegos, nome, control, botao){
 
           }else if(parseInt(qtd.innerText) <= qtdPegos && parseInt(qtd.innerText) != 0){
 
-            	arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "desmarcou opcao em falta", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": (parseInt(botao.dataset.qtd) - parseInt(qtd.innerText))}];
+            	arrAcoes = [{"nome": usuario, "data": data_completa, "numPedido": numPedido, "acao": "desmarcou opcao em falta", "codigoModelo": codigo_modelo, "cor": cor, "tamanho": tamanho, "qtd": (qtdPegos - parseInt(qtd.innerText))}];
               	enviarAcoes(arrAcoes);
             	botao.dataset.pegou = (qtdPegos - parseInt(qtd.innerText));
 
@@ -1532,6 +1576,9 @@ function abreTela(qtdPegos, nome, control, botao){
           		mostraQtdPeguei.style.display = "none";
           		mostraQtdFalta.style.display = "block";
                 mostraQtdFalta.innerText = "Há " + (qtdPegos - parseInt(qtd.innerText)) + "/" + qtdTotal + " itens em falta";
+                botao.style.backgroundColor = "";
+              	document.querySelector("#botaoPeguei_"+index).style.visibility = "";
+              	document.querySelector("#botaoPeguei_"+index).dataset.pegou = (qtdTotal - (qtdPegos - parseInt(qtd.innerText)));
 
             	fechaTela();
 
@@ -1629,9 +1676,55 @@ function fnGetQtd(mostraQtdPeguei, mostraQtdFalta, mostraQtdNeutro){
 
 }
 
-function fnGetFalta(){
+function setQtd(control, index, qtd){
 
-	
+	if(document.querySelector("#mostraQtd_"+index).className == "neutro"){
+      if(control == 0){
+
+        if(document.querySelector("#botaoPeguei_"+index).dataset.pegou == 0){
+
+          document.querySelector("#mostraQtd_"+index).className = "neutro";
+          document.querySelector("#mostraQtd_"+index).innerText = "Você não pegou nenhum item";
+          document.querySelector("#botaoEmFalta_"+index).dataset.pegou = 0;
+
+        }else{
+
+          document.querySelector("#mostraQtd_"+index).className = "peguei";
+          document.querySelector("#mostraQtd_"+index).innerText = "Você pegou " + qtd + " item(s)";
+          document.querySelector("#botaoEmFalta_"+index).dataset.pegou = 0;
+
+        }
+
+      }else if(control == 1){
+
+        document.querySelector("#mostraQtd_"+index).className = "falta";
+        document.querySelector("#mostraQtd_"+index).innerText = "Há " + qtd + " item(s) em falta";
+        document.querySelector("#botaoEmFalta_"+index).dataset.pegou = qtd;
+
+      }else if(control == 2){
+
+        if(document.querySelector("#botaoEmFalta_"+index).dataset.pegou == 0){
+
+          document.querySelector("#mostraQtd_"+index).className = "neutro";
+          document.querySelector("#mostraQtd_"+index).innerText = "Você não pegou nenhum item";
+          document.querySelector("#botaoPeguei_"+index).dataset.pegou = 0;
+
+        }else{
+
+          document.querySelector("#mostraQtd_"+index).className = "falta";
+          document.querySelector("#mostraQtd_"+index).innerText = "Há " + qtd + " item(s) em falta";
+          document.querySelector("#botaoPeguei_"+index).dataset.pegou = 0;
+
+        }
+
+      }else if(control == 3){
+
+        document.querySelector("#mostraQtd_"+index).className = "peguei";
+        document.querySelector("#mostraQtd_"+index).innerText = "Você pegou " + qtd + " item(s)";
+        document.querySelector("#botaoPeguei_"+index).dataset.pegou = qtd;
+//Fazer o inserir textos para o peguei
+      }
+    }
 
 }
 
