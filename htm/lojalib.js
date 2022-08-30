@@ -1,3 +1,4 @@
+var politica_frete_gratis_geral_ativo = true;
 var cupom_frete_gratis_ativo = true;
 var id_cupom_frete_gratis = 135894;
 var mostrar_comprar_mais = false;
@@ -1478,7 +1479,7 @@ function fnprocessXMLCEPC(obj){
   if (valorCarrinho < valorMinimo) {
     $("#Cart-mensagemFrete").show();
     
-	if(cupom_frete_gratis_ativo && FC$.CouponID == id_cupom_frete_gratis)
+	if((cupom_frete_gratis_ativo && FC$.CouponID == id_cupom_frete_gratis) || politica_frete_gratis_geral_ativo == true)
     {
       $("#Cart-mensagemFrete").hide();
     }
@@ -2396,7 +2397,7 @@ var Cart$=(function(){
       $(".CartDesign-progresso-frete-gratis").show();
       $(".CartDesign-contem-frete-gratis").hide();
       
-      if(cupom_frete_gratis_ativo && FC$.CouponID == id_cupom_frete_gratis)
+      if((cupom_frete_gratis_ativo && FC$.CouponID == id_cupom_frete_gratis) || politica_frete_gratis_geral_ativo == true)
       {
         $(".CartDesign-lembrete-frete-gratis").hide();
       	$(".CartDesign-progresso-frete-gratis").hide();
